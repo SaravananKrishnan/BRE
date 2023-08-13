@@ -160,7 +160,6 @@ class IR():
         graph.render(filepath)
         return
 
-
 def runIR(fileName):
     ir = IR()
     with open('output/COBOL_{}/CFG/CFG_{}.json'.format(fileName,fileName)) as f:
