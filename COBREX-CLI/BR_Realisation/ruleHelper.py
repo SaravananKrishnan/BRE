@@ -307,7 +307,7 @@ class ruleHelper():
         '''
             Checks whether or not given node is a candidate for merging as a rule. 
         '''
-        if 'when' in node.head.properties['name'] :
+        if 'evaluate' in node.head.properties['name'] and 'ruled' not in node.head.properties['name']:
             return True
         return False
     
@@ -377,8 +377,124 @@ class ruleHelper():
             child,_ = child.children[0]
         return True
 
+    def _check_multiple_branching_(self,node):
+        for child,_ in node.children:
+            child = child.children[0][0]
+            # We need to see that every child should have exactly one children
+            while child.head.value != 'END-EVALUATE':
+                if len(child.children) != 1:
+                    return True
+                child = child.children[0][0]
+        return False
+
+    def ___Merge_two___(self,node):
+        child,label = node.children[0]
+        if(child.head.value == 'END-EVALUATE'):
+            return False
+        node.children.remove((child,label))
+        node.children += child.children
+        if node in self.rules:
+            self.rules.remove(node)
+        if child in self.rules:
+            self.rules.remove(child)
+        node.head.properties['name'].add('rule')
+        temp = node.head
+        visited = []
+        while len(temp.properties['children']) > 0 and temp not in visited:
+            visited.append(temp)
+            temp = temp.properties['children'][0][0]
+        temp.properties['children'].append((child.head,label))
+        node.head.properties['name'] = node.head.properties['name'].union(child.head.properties['name'])
+        node.primarySet = node.primarySet.union(child.primarySet)
+        node.secondarySet = node.secondarySet.union(child.secondarySet)
+        node.properties['source_variables'] = node.properties['source_variables'].union(child.properties['source_variables'])        
+        node.properties['target_variables'] = node.properties['target_variables'].union(child.properties['target_variables'])        
+        node.properties['conditional_variables'] = node.properties['conditional_variables'].union(child.properties['conditional_variables'])
+        return True
+
+    def __make_one_in_branch__(self,node):
+        while(self.___Merge_two___(node)):
+            continue
+
+    def __make_parallel_sequential_when__(self,nodes):
+        node = nodes[0]
+        nodes.remove(node)
+        if(len(nodes)>0):
+            print('Parallel Whens merged: ',node.head.value)
+            self.rules.append(node)
+        for child,label in nodes:
+            if(child.head.value == 'END-EVALUATE'):
+                continue
+            # node.children.remove((child,label))
+            # node.children += child.children
+            # if node in self.rules:
+            #     self.rules.remove(node)
+            if child in self.rules:
+                self.rules.remove(child)
+            node.head.properties['name'].add('rule')
+            temp = node.head
+            visited = []
+            while len(temp.properties['children']) > 0 and temp not in visited:
+                visited.append(temp)
+                temp = temp.properties['children'][0][0]
+            temp.properties['children'].append((child.head,label))
+            node.head.properties['name'] = node.head.properties['name'].union(child.head.properties['name'])
+            node.primarySet = node.primarySet.union(child.primarySet)
+            node.secondarySet = node.secondarySet.union(child.secondarySet)
+            node.properties['source_variables'] = node.properties['source_variables'].union(child.properties['source_variables'])        
+            node.properties['target_variables'] = node.properties['target_variables'].union(child.properties['target_variables'])        
+            node.properties['conditional_variables'] = node.properties['conditional_variables'].union(child.properties['conditional_variables'])
+        return node
+
+    def _when_variable_based_merging_(self,node):
+        var = set()
+        new_children = []
+        vec = []
+        for child,_ in node.children:
+            # Making child to be the statement just after the when
+            ch = child.children[0][0]
+
+            while ch.head.value != 'END-EVALUATE':
+                ch_vars = ch.primarySet.union(ch.secondarySet)
+                ch = ch.children[0][0]
+            
+            self.__make_one_in_branch__(child)
+            var = var.intersection(ch_vars)
+            vec.append(child)
+
+            if len(var) == 0:
+                new_children.append(vec)
+                vec = []
+        
+        if(len(node.children) == len(new_children)):
+            return False
+        node.children = []
+        for CH in new_children:
+            node.children.append((self.__make_parallel_sequential_when__(CH),'when'))
+        return True
+
+    def _make_one_when_rule(self,node):
+        end_eval = None
+        for child,label in node.children:
+            node.head.properties['children'].append((child.head,label))
+            child.head.properties['parents'].append(node.head)
+            end_eval = child.children
+        node.children = end_eval[0][0].children
+    
     def can_form_rule_when(self,node):
-        print('when - triggered :: ',node.head.value," => ",node.children[0][0].head.value)
+        '''
+            Here the evaluate would come which is going to have multiple children and now we need to work on those branches but before we move we need to make sure when the
+            when block gets over, for which I think I need to go to main of CFG.
+        '''
+        if(self._check_multiple_branching_(node)):
+            print('Evaluate - when separate trigger: ',node.head.value)
+        elif (self._when_variable_based_merging_(node)):
+            print()
+        else:
+            self._make_one_when_rule(node)
+            print('Entire when one rule: ',node.head.value)
+            self.rules.append(node)
+        node.head.properties['name'].add('ruled')
     
     def is_candidate_sequential_merge(self,node):
         if len(node.children) != 1 or len(node.children[0][0].parent) != 1 or ('if' in node.head.properties['name'] and 'rule' not in node.head.properties['name']):
@@ -387,7 +503,7 @@ class ruleHelper():
     
     def can_form_sequential_rule(self,node):
         child,_ = node.children[0]
-        if ('if' in child.head.properties['name'] and 'rule' not in child.head.properties['name']) or 'evaluate' in child.head.properties['name'] or 'when' in node.head.properties['name']:
+        if ('if' in child.head.properties['name'] and 'rule' not in child.head.properties['name']) or 'evaluate' in child.head.properties['name'] or 'when' in node.head.properties['name'] or 'end-evaluate' in node.head.properties['name']:
             return False
         w_1 = node.properties['target_variables']
         r_1 = node.properties['source_variables']
