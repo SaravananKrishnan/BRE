@@ -1,3 +1,5 @@
 my_env
 __pycache__
 COBREX-CLI/output
+.vscode
+COBREX-CLI/tests

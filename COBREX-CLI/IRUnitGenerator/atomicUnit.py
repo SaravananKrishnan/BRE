@@ -1,5 +1,7 @@
 from baseUnit import Unit
 
+count = 0
+
 class AtomicUnit(Unit):
     '''
         Atomic Unit by definition is that peice of code which does not have any
@@ -14,8 +16,10 @@ class AtomicUnit(Unit):
         return 'AU {}'.format(self.getUID())
     
     def getUID(self):
+        global count
         if self.uniqueID == "":
-            self.uniqueID = '{} AU {} {}'.format(self.fileName,self.startLine['Number'],self.endLine['Number'])
+            self.uniqueID = '{} AU {} {} {}'.format(self.fileName,self.startLine['Number'],self.endLine['Number'],count)
+            count+=1
         return self.uniqueID
     
     def mergeNode(self,node):

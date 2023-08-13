@@ -39,8 +39,8 @@ class IR():
             n2.properties['parents'].append(n1)
     
     def checkMergable(self,parentNode,childNode):
-        if len(parentNode.properties['children']) == 1 and len(childNode.properties['parents']) == 1 and "end-if" not in parentNode.properties['name']:
-            if "paragraphName" not in childNode.properties['name'] and "end-if" not in childNode.properties['name'] and str(childNode)[:2] != "PC" and str(parentNode)[:2] != "PC":
+        if len(parentNode.properties['children']) == 1 and len(childNode.properties['parents']) == 1 and "end-if" not in parentNode.properties['name'] and "end-evaluate" not in parentNode.properties['name']:
+            if "paragraphName" not in childNode.properties['name'] and "end-if" not in childNode.properties['name'] and "end-evaluate" not in childNode.properties['name'] and str(childNode)[:2] != "PC" and str(parentNode)[:2] != "PC":
                 return True
         return False
     
@@ -70,17 +70,6 @@ class IR():
                     self.dfs_run(n,visited)
             if flag == False:
                 break
-        return
-    
-    def removeBackedges(self,ir_json):
-        edges = []
-        for e in ir_json['edges']:
-            src_num = e['sourceUID'].split(' ')[2]
-            tgt_num = e['targetUID'].split(' ')[2]
-            if src_num < tgt_num:
-                edges.append(e)
-        
-        ir_json['edges'] = edges
         return
 
     def buildIR(self,cfg,fileName):

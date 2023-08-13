@@ -996,6 +996,7 @@ class CFGBuilder(Cobol85Visitor):
             self.add_exit(next_when_block,after_evaluate)
 
         self.current_block = after_evaluate
+        self.current_block.statements.append(Statement('END-EVALUATE','end-evaluate'))
         self.evaluate_stack.pop()
         self.evaluate_when_stack = old_evaluate_when_stack
 
