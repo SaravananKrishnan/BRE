@@ -128,9 +128,13 @@ class BRDriver():
         
         visited.append(node)
 
-        if self.rule.is_candidate_perform_merge(node,visited):
+        x = self.rule.is_candidate_perform_merge(node,visited)
+        if x == 1:
             b1 = self.rule.perform_loop_merge(node)
             self.ruleForm = self.ruleForm or b1
+        elif x == 2:
+            b2 = self.rule.perform_para_merge(node)
+            self.ruleForm = self.ruleForm or b2
         
         for child,_ in node.children:
             self._perform_merge_rule_(child,visited)

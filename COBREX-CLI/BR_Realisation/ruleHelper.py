@@ -288,7 +288,7 @@ class ruleHelper():
             if self.if_mergable_one_goto(l_rule[0],r_rule[0],node):
                 self.merge_one_goto(node,l_rule,r_rule)
                 return True
-        elif "end-if" in r_rule[0].children[0][0].head.properties['name'] and len(r_rule[0].children) == 1 and "end-if" in l_rule[0].children[0][0].head.properties['name'] and len(l_rule[0].children) == 1:
+        elif "END-IF" == r_rule[0].children[0][0].head.value and len(r_rule[0].children) == 1 and "end-if" in l_rule[0].children[0][0].head.properties['name'] and len(l_rule[0].children) == 1:
             # Both the sub-rules are encountering end-if so apply the rule1
             if self.if_mergable_none_goto(l_rule[0],r_rule[0],node):
                 self.merge_none_goto(node,l_rule,r_rule)
@@ -313,7 +313,7 @@ class ruleHelper():
     
     def is_candidate_perform_merge(self,node,visited):
         if len(node.children) == 0 or (len(node.children)!=0 and node.children[0][0] in visited) or 'rule' in node.head.properties['name']:
-            return False
+            return 0
         child,_ = node.children[0]
         if _ != "iteration" and len(node.children) > 1:
             child,_ = node.children[1]
@@ -321,10 +321,17 @@ class ruleHelper():
         if node.head.properties['name'].issubset(p_safe) and _ == "iteration":
             while child != node:
                 if len(set(child.children))>1 or len(child.children) == 0:
-                    return False
+                    return 0
                 child,_ = child.children[0]
-            return True
-        return False
+            return 1
+        if(_ == 'procedure call'):
+            # Need to see if all the children of the child are sequential or it involves any jumps
+            while child != node:
+                if len(child.children) != 1:
+                    return 0
+                child = child.children[0][0]
+            return 2
+        return 0
     
     def perform_loop_merge(self,node):
         print("Loop rule :: ",node.head.value)
@@ -377,8 +384,64 @@ class ruleHelper():
             child,_ = child.children[0]
         return True
 
+    def perform_para_merge(self,node):
+        print('Para Merge: ',node.head.value)
+
+        child,_ = node.children[0]
+        if _ != "iteration":
+            child,_ = node.children[1]
+        
+        self.rules.append(node)
+        node.head.properties['name'].add('rule')
+        
+        prev = node.head.properties['children']
+        
+        while child != node:
+            
+            if child in self.rules:
+                self.rules.remove(child)
+            
+            node.children.remove((child,_))
+            
+            for ch in child.children:
+                node.children.append((ch[0],ch[1]))
+                try:
+                    ch[0].parent.remove(child)
+                    ch[0].parent.append(node)
+                except:
+                    pass
+                try:
+                    node.properties['child_to_head'][ch[0]] = child.properties['child_to_head'][ch[0]]
+                except:
+                    node.properties['child_to_head'][ch[0]] = child.head
+
+            prev.append((child.head,_))
+            child.head.properties['parents'].append(node.head)
+
+            node.head.properties['name'] = node.head.properties['name'].union(child.head.properties['name'])
+
+            node.primarySet = node.primarySet.union(child.primarySet)
+            node.secondarySet = node.secondarySet.union(child.secondarySet)
+            
+            node.properties['source_variables'] = node.properties['source_variables'].union(child.properties['source_variables'])        
+            node.properties['target_variables'] = node.properties['target_variables'].union(child.properties['target_variables'])        
+            node.properties['conditional_variables'] = node.properties['conditional_variables'].union(child.properties['conditional_variables'])
+            
+            # prev = getLeaf(prev[0][0]).properties['children']
+            prev = node.properties['child_to_head'][child.children[0][0]].properties['children']
+            
+            if child.children[0][0] == node:
+                prev.append((node.head,child.children[0][1]))
+                node.children.remove((node,child.children[0][1]))
+                if node in node.parent:
+                    node.parent.remove(node)
+            child,_ = child.children[0]           
+        return True
+
     def _check_multiple_branching_(self,node):
         for child,_ in node.children:
+            if _ != 'evaluate when' and _ != 'false':
+                return True
             child = child.children[0][0]
             # We need to see that every child should have exactly one children
             while child.head.value != 'END-EVALUATE':
@@ -503,7 +566,7 @@ class ruleHelper():
     
     def can_form_sequential_rule(self,node):
         child,_ = node.children[0]
-        if ('if' in child.head.properties['name'] and 'rule' not in child.head.properties['name']) or 'evaluate' in child.head.properties['name'] or 'when' in node.head.properties['name'] or 'end-evaluate' in node.head.properties['name']:
+        if ('if' in child.head.properties['name'] and 'rule' not in child.head.properties['name']) or 'evaluate' in child.head.properties['name'] or 'when' in node.head.properties['name'] or 'end-evaluate' in node.head.properties['name'] or 'end-if' in node.head.properties['name']:
             return False
         w_1 = node.properties['target_variables']
         r_1 = node.properties['source_variables']
