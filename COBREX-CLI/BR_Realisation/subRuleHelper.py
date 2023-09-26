@@ -47,7 +47,7 @@ class subRuleHelper():
         '''
             This method merges all the possible, rules.
         '''
-        print("subrule :: {}".format(node.head.value))
+        # print("subrule :: {}".format(node.head.value))
         self.subRules.append(node)
         node.head.properties['name'].add('rule')
         lchild = node.children[0]

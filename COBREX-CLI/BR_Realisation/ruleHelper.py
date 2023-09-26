@@ -39,7 +39,7 @@ class ruleHelper():
         return True
     
     def merge_both_goto(self,node,left,right):
-        print("Both goto rule :: ",node.head.value)
+        # print("Both goto rule :: ",node.head.value)
         
         if left in self.rules:
             self.rules.remove(left)
@@ -92,7 +92,7 @@ class ruleHelper():
         del r
 
     def merge_one_goto(self,node,withGoto,withoutGoto):
-        print("One Goto rule :: ",node.head.value)
+        # print("One Goto rule :: ",node.head.value)
 
         if withGoto in self.rules:
             self.rules.remove(withGoto)
@@ -147,7 +147,7 @@ class ruleHelper():
 
     def merge_none_goto(self,node,left,right):
         
-        print("None Goto rule :: ",node.head.value)
+        # print("None Goto rule :: ",node.head.value)
         
         left,l1 = left
         right,r1 = right
@@ -190,7 +190,7 @@ class ruleHelper():
         node.head.properties['name'].add('rule')
 
     def merge_simple_if(self,node,withRule,outChild):
-        print('simple-if rule :: ',node.head.value)
+        # print('simple-if rule :: ',node.head.value)
 
         if withRule in self.rules:
             self.rules.remove(withRule)
@@ -334,7 +334,7 @@ class ruleHelper():
         return 0
     
     def perform_loop_merge(self,node):
-        print("Loop rule :: ",node.head.value)
+        # print("Loop rule :: ",node.head.value)
 
         child,_ = node.children[0]
         if _ != "iteration":
@@ -385,7 +385,7 @@ class ruleHelper():
         return True
 
     def perform_para_merge(self,node):
-        print('Para Merge: ',node.head.value)
+        # print('Para Merge: ',node.head.value)
 
         child,_ = node.children[0]
         if _ != "iteration":
@@ -483,7 +483,7 @@ class ruleHelper():
         node = nodes[0]
         nodes.remove(node)
         if(len(nodes)>0):
-            print('Parallel Whens merged: ',node.head.value)
+            # print('Parallel Whens merged: ',node.head.value)
             self.rules.append(node)
         for child,label in nodes:
             if(child.head.value == 'END-EVALUATE'):
@@ -552,7 +552,7 @@ class ruleHelper():
         if(self._check_multiple_branching_(node)):
             print('Evaluate - when separate trigger: ',node.head.value)
         elif (self._when_variable_based_merging_(node)):
-            print()
+            print('variable based merging')
         else:
             self._make_one_when_rule(node)
             print('Entire when one rule: ',node.head.value)
@@ -594,7 +594,7 @@ class ruleHelper():
         # There is one more rule but we will see it later based on how much is it feasible
 
     def merge_sequential_rules(self,node):
-        print('Seq rule :: ',node.head.value)
+        # print('Seq rule :: ',node.head.value)
         child,label = node.children[0]
         node.children.remove((child,label))
         node.children += child.children

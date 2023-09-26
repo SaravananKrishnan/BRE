@@ -171,7 +171,8 @@ def doBRR(rootNode):
     br.formSubRules()
     # Merge subRules
     br.formRules()
-    print(len(br.sub_rule.subRules),len(br.rule.rules))
+    print("Total Number of Subrules: ",len(br.sub_rule.subRules))
+    print("Total Number of Rules: ",len(br.rule.rules))
     make_graph(br.head)
 
 if __name__ == '__main__':
