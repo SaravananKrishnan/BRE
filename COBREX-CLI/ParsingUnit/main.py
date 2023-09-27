@@ -63,7 +63,7 @@ def extractor(file_path, cobol_file_name,actual_file_path, output_directory):
     makeLineMap(actual_file_path, cobol_file_name,cobol_analyzer.statements)
 
     cobol_analyzer.cfg.build_visual(os.path.join(output_directory, 'CFG_'+cobol_file_name), format='pdf', calls=False)
-    cfg_json = cobol_analyzer.cfg.build_cfg_json(cobol_file_name)
+    cfg_json,cyclomatic_complexity = cobol_analyzer.cfg.build_cfg_json(cobol_file_name)
 
     # business_rules_extractor = BusinessRulesExtractor(cobol_analyzer.cfg,
     #  cobol_analyzer.business_variables)
@@ -80,7 +80,7 @@ def extractor(file_path, cobol_file_name,actual_file_path, output_directory):
     #     json.dump(br_json, outfile)
 
     # return  cfg_json, br_json
-    return cfg_json
+    return cfg_json,cyclomatic_complexity
 
 
 

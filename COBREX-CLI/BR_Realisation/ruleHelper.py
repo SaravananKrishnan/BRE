@@ -9,6 +9,7 @@ class ruleHelper():
     def __init__(self,file_name):
         self.rules = []
         self.file_name = file_name
+        self.construct_logic = {}
 
     def if_mergable_both_goto(self,left,right,parent):
         '''
@@ -86,7 +87,13 @@ class ruleHelper():
         
         self.rules.append(node)
         node.head.properties['name'].add('rule')
-        
+ 
+        for cns in node.head.properties['name']:
+            if cns in self.construct_logic.keys():
+                self.construct_logic[cns].add('Branch-Logic')
+            else:
+                self.construct_logic[cns] = set(['Branch-Logic'])
+
         l,r = left[0],right[0]
         del l
         del r
@@ -142,6 +149,12 @@ class ruleHelper():
         node.properties['target_variables'] = node.properties['target_variables'].union(withoutGoto.properties['target_variables'])
         node.properties['conditional_variables'] = node.properties['conditional_variables'].union(withoutGoto.properties['conditional_variables'])
 
+        for cns in node.head.properties['name']:
+            if cns in self.construct_logic.keys():
+                self.construct_logic[cns].add('Branch-Logic')
+            else:
+                self.construct_logic[cns] = set(['Branch-Logic'])
+
         self.rules.append(node)
         node.head.properties['name'].add('rule')
 
@@ -186,6 +199,12 @@ class ruleHelper():
         node.properties['target_variables'] = node.properties['target_variables'].union(right.properties['target_variables'])
         node.properties['conditional_variables'] = node.properties['conditional_variables'].union(right.properties['conditional_variables'])
 
+        for cns in node.head.properties['name']:
+            if cns in self.construct_logic.keys():
+                self.construct_logic[cns].add('Branch-Logic')
+            else:
+                self.construct_logic[cns] = set(['Branch-Logic'])
+
         self.rules.append(node)
         node.head.properties['name'].add('rule')
 
@@ -228,6 +247,12 @@ class ruleHelper():
         node.properties['source_variables'] = node.properties['source_variables'].union(withRule[0].properties['source_variables'])
         node.properties['target_variables'] = node.properties['target_variables'].union(withRule[0].properties['target_variables'])
         node.properties['conditional_variables'] = node.properties['conditional_variables'].union(withRule[0].properties['conditional_variables'])
+
+        for cns in node.head.properties['name']:
+            if cns in self.construct_logic.keys():
+                self.construct_logic[cns].add('Branch-Logic')
+            else:
+                self.construct_logic[cns] = set(['Branch-Logic'])
 
         self.rules.append(node)
         node.head.properties['name'].add('rule')
@@ -382,6 +407,13 @@ class ruleHelper():
                 if node in node.parent:
                     node.parent.remove(node)
             child,_ = child.children[0]
+
+        for cns in node.head.properties['name']:
+            if cns in self.construct_logic.keys():
+                self.construct_logic[cns].add('Loop-Logic')
+            else:
+                self.construct_logic[cns] = set(['Loop-Logic'])
+
         return True
 
     def perform_para_merge(self,node):
@@ -435,7 +467,8 @@ class ruleHelper():
                 node.children.remove((node,child.children[0][1]))
                 if node in node.parent:
                     node.parent.remove(node)
-            child,_ = child.children[0]           
+            child,_ = child.children[0]
+
         return True
 
     def _check_multiple_branching_(self,node):
@@ -549,14 +582,17 @@ class ruleHelper():
             Here the evaluate would come which is going to have multiple children and now we need to work on those branches but before we move we need to make sure when the
             when block gets over, for which I think I need to go to main of CFG.
         '''
-        if(self._check_multiple_branching_(node)):
-            print('Evaluate - when separate trigger: ',node.head.value)
-        elif (self._when_variable_based_merging_(node)):
-            print('variable based merging')
-        else:
-            self._make_one_when_rule(node)
-            print('Entire when one rule: ',node.head.value)
-            self.rules.append(node)
+        path = './output/COBOL_{}/when-result.txt'.format(node.head.fileName)
+        with open(path,"a") as fp:
+            if(self._check_multiple_branching_(node)):
+                fp.write('Evaluate - when separate trigger: {}\n\n'.format(node.head.value))
+            elif (self._when_variable_based_merging_(node)):
+                fp.write('variable based merging\n\n')
+            else:
+                self._make_one_when_rule(node)
+                fp.write('Entire when one rule: {}\n\n'.format(node.head.value))
+                self.rules.append(node)
+        
         node.head.properties['name'].add('ruled')
     
     def is_candidate_sequential_merge(self,node):
@@ -615,6 +651,13 @@ class ruleHelper():
         node.properties['source_variables'] = node.properties['source_variables'].union(child.properties['source_variables'])        
         node.properties['target_variables'] = node.properties['target_variables'].union(child.properties['target_variables'])        
         node.properties['conditional_variables'] = node.properties['conditional_variables'].union(child.properties['conditional_variables'])
+        
+        for cns in node.head.properties['name']:
+            if cns in self.construct_logic.keys():
+                self.construct_logic[cns].add('Sequential-Logic')
+            else:
+                self.construct_logic[cns] = set(['Sequential-Logic'])
+        
         self.rules.append(node)
 
 def getLeaf(node):

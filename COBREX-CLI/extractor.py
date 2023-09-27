@@ -37,10 +37,22 @@ def extract_business_rules(file_path):
         cmd = 'mkdir ./output/COBOL_{}'.format(file_name)
         os.system(cmd)
     # cfg_json, br_json =  extractor(preprocessed_file_path,file_name,file_path, 'output')
-    cfg_json = extractor(preprocessed_file_path,file_name,file_path, 'output')
+    cfg_json,cyclomatic_complexity = extractor(preprocessed_file_path,file_name,file_path, 'output')
     os.remove("clean_output.cbl")
     # return cfg_json, br_json
-    runIR(file_name)
+    allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules = runIR(file_name)
+
+    # f = open('./output/COBOL_{}/analysis.txt'.format(file_name),"w")
+    # f.write('Cyclomatic complexity: {}\n'.format(cyclomatic_complexity))
+    # f.write('Number of Subrules: {}\n'.format(num_subrules))
+    # f.write('Number of Rules: {}\n'.format(num_rules))
+    # f.write('Constructs Addressed: {}\n'.format(constructs_addressed))
+    # f.write('Constructs UnAddressed: {}\n'.format(set(allConstructs)-constructs_addressed))
+    # f.write('# of unique constructs: {}\n'.format(len(set(allConstructs))))
+    # f.write('# of constructs: {}\n'.format(len(allConstructs)))
+    # f.write('Construct-Logic Mapping: {}\n'.format(construct_logic_map))
+    # f.close()
+    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map]
 
 
 
@@ -96,4 +108,4 @@ if __name__ == '__main__':
     except:
         file_name = "./tests/BELTLEN.cbl"
 
-    extract_business_rules(file_name)
+    ans = extract_business_rules(file_name)

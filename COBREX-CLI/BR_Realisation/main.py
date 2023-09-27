@@ -27,6 +27,7 @@ class BRDriver():
         self.rule = ruleHelper(self.file_name)
         self.sub_rule = subRuleHelper(self.file_name)
         self.ruleForm = True
+        self.constructs_addressed = set()
 
     def _make_same(self,ir_node,visited,ir_to_br):
         
@@ -171,9 +172,13 @@ def doBRR(rootNode):
     br.formSubRules()
     # Merge subRules
     br.formRules()
-    print("Total Number of Subrules: ",len(br.sub_rule.subRules))
-    print("Total Number of Rules: ",len(br.rule.rules))
+    # print("Total Number of Subrules: ",len(br.sub_rule.subRules))
+    # print("Total Number of Rules: ",len(br.rule.rules))
+    for r in br.rule.rules:
+        br.constructs_addressed = br.constructs_addressed.union(r.head.properties['name'])
     make_graph(br.head)
+    # print("All the constructs to logic map: ",br.rule.construct_logic)
+    return br.constructs_addressed,br.rule.construct_logic,len(br.sub_rule.subRules),len(br.rule.rules)
 
 if __name__ == '__main__':
     print('Hi there!')

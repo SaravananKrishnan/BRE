@@ -12,10 +12,18 @@ class IR():
     def __init__(self):
         self.fileName = ""
         self.rootNode = None
+        self.allConstructs = []
 
+    def addConstruct(self,s):
+        if s == "when" or s == "end-if" or s == "end-evaluate" or s == "exit":
+            return
+        self.allConstructs.append(s); 
+        return
+    
     def makeNodes(self,nodes):
         id_to_obj = {}
         for node in nodes:
+            self.addConstruct(node['name'])
             if node['name'] == "if" or node['name'] == "when" or node['name'] == "evaluate"  :
                 # Make a PC
                 pc = PC(self.fileName)
@@ -171,7 +179,11 @@ def runIR(fileName):
         os.system(cmd)
     ir_json = ir.getJSON(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}.json'.format(fileName)))
     ir.getPDF(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}'.format(fileName)),ir_json,'pdf')
-    doBRR(ir.rootNode)
+    constructs_addressed,construct_logic_map,num_subrules,num_rules = doBRR(ir.rootNode)
+    # print("All the addressed constructs",constructs_addressed)
+    # print("All the constructs present",ir.allConstructs)
+    # print("Construct to logic map: ",construct_logic_map)
+    return ir.allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules
 
 if __name__ == '__main__':
     try:

@@ -1,2 +1,9 @@
-0
-0
+4
+total-cost
+annual-interest
+annual-worth
+Annual-term
+3
+monthly-interest
+loan-term-months
+Present-value
