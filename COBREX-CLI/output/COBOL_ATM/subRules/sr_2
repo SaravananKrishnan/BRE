@@ -1,0 +1,11 @@
+digraph cluster1 {
+	"PC ATM PC 23 23 169" [label="IF PIN-NUMBER = 1234"]
+	"AU ATM AU 24 24 877" [label="MOVE 'Y' TO VALID"]
+	"AU ATM AU 28 28 878" [label="END-IF"]
+	"AU ATM AU 24 24 877" -> "AU ATM AU 28 28 878" [label="sequential next"]
+	"PC ATM PC 23 23 169" -> "AU ATM AU 24 24 877" [label=true]
+	"AU ATM AU 26 27 879" [label="DISPLAY \"INVALID PIN NUMBER\"
+MOVE 'N' TO VALID"]
+	"AU ATM AU 26 27 879" -> "AU ATM AU 28 28 878" [label="sequential next"]
+	"PC ATM PC 23 23 169" -> "AU ATM AU 26 27 879" [label=false]
+}

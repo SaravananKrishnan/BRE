@@ -1,0 +1,216 @@
+digraph {
+	"AU LOANPYMT AU 0 0 233" [label=Begin]
+	subgraph "Node 10" {
+	}
+	"AU LOANPYMT AU 0 0 233" -> "AU LOANPYMT AU 77 86 234" [label=start]
+	"AU LOANPYMT AU 77 86 234" [label="display-title-screen .
+ 
+display spaces
+display \"* MONTHLY LOAN PAYMENT CALCULATOR UTILITY BEGINS *\"
+display \"Written by, Clifford A. Chipman, EMIT\"
+display \"June 18, 2020\"
+display spaces
+display \"in Enterprise COBOL v6.3 for z/OS\"
+display spaces
+display \"Enter zero for any parameter to end the program.\"
+display spaces"]
+	subgraph "Node 11" {
+	}
+	"AU LOANPYMT AU 77 86 234" -> "AU LOANPYMT AU 88 90 235" [label="sequential next"]
+	"AU LOANPYMT AU 88 90 235" [label="present-value-data-entry .
+ 
+display \"Enter principal $: \" with no advancing
+accept pv-in"]
+	subgraph "Node 12" {
+	}
+	"AU LOANPYMT AU 88 90 235" -> "PC LOANPYMT PC 93 93 22" [label="sequential next"]
+	"PC LOANPYMT PC 93 93 22" [label="if function test-numval ( pv-in ) IS NOT EQUAL ZERO"]
+	"PC LOANPYMT PC 93 93 22" -> "AU LOANPYMT AU 94 96 206" [label=true]
+	"PC LOANPYMT PC 93 93 22" -> "AU LOANPYMT AU 98 98 207" [label=false]
+	"AU LOANPYMT AU 98 98 207" [label="compute present-value = function numval ( pv-in )"]
+	"AU LOANPYMT AU 98 98 207" -> "AU LOANPYMT AU 0 2 208" [label="sequential next"]
+	"AU LOANPYMT AU 0 2 208" [label="END-IF"]
+	"AU LOANPYMT AU 94 96 206" [label="display \"Principal\" not-numeric
+display spaces
+go to present-value-data-entry"]
+	subgraph "Node 13" {
+	}
+	"PC LOANPYMT PC 93 93 22" -> "AU LOANPYMT AU 88 90 235" [label="procedure call"]
+	"PC LOANPYMT PC 93 93 22" -> "PC LOANPYMT PC 101 101 23" [label="sequential next"]
+	"PC LOANPYMT PC 101 101 23" [label="if present-value IS EQUAL ZERO"]
+	"PC LOANPYMT PC 101 101 23" -> "AU LOANPYMT AU 102 102 209" [label=true]
+	"PC LOANPYMT PC 101 101 23" -> "AU LOANPYMT AU 0 32 210" [label="outside-if"]
+	"AU LOANPYMT AU 0 32 210" [label="END-IF"]
+	"AU LOANPYMT AU 102 102 209" [label="go to end-program"]
+	subgraph "Node 14" {
+	}
+	"PC LOANPYMT PC 101 101 23" -> "AU LOANPYMT AU 223 227 236" [label="procedure call"]
+	"AU LOANPYMT AU 223 227 236" [label="end-program .
+ 
+display spaces
+display \"** MONTHLY LOAN PAYMENT CALCULATOR UTILITY ENDS **\"
+display spaces
+stop run"]
+	subgraph "Node 15" {
+	}
+	"PC LOANPYMT PC 101 101 23" -> "PC LOANPYMT PC 105 105 24" [label="sequential next"]
+	"PC LOANPYMT PC 105 105 24" [label="if present-value > max-val"]
+	"PC LOANPYMT PC 105 105 24" -> "AU LOANPYMT AU 106 108 211" [label=true]
+	"PC LOANPYMT PC 105 105 24" -> "AU LOANPYMT AU 0 35 212" [label="outside-if"]
+	"AU LOANPYMT AU 0 35 212" [label="END-IF"]
+	"AU LOANPYMT AU 106 108 211" [label="display quantity-too-much
+display spaces
+go to present-value-data-entry"]
+	subgraph "Node 16" {
+	}
+	"PC LOANPYMT PC 105 105 24" -> "AU LOANPYMT AU 88 90 235" [label="procedure call"]
+	"PC LOANPYMT PC 105 105 24" -> "PC LOANPYMT PC 111 111 25" [label="sequential next"]
+	"PC LOANPYMT PC 111 111 25" [label="if present-value < min-val"]
+	"PC LOANPYMT PC 111 111 25" -> "AU LOANPYMT AU 112 114 213" [label=true]
+	"PC LOANPYMT PC 111 111 25" -> "AU LOANPYMT AU 0 37 214" [label="outside-if"]
+	"AU LOANPYMT AU 0 37 214" [label="END-IF"]
+	"AU LOANPYMT AU 112 114 213" [label="display quantity-too-small
+display spaces
+go to present-value-data-entry"]
+	subgraph "Node 17" {
+	}
+	"PC LOANPYMT PC 111 111 25" -> "AU LOANPYMT AU 88 90 235" [label="procedure call"]
+	"PC LOANPYMT PC 111 111 25" -> "AU LOANPYMT AU 117 117 237" [label="sequential next"]
+	"AU LOANPYMT AU 117 117 237" [label="move present-value to pv-out"]
+	subgraph "Node 18" {
+	}
+	"AU LOANPYMT AU 117 117 237" -> "AU LOANPYMT AU 119 121 238" [label="sequential next"]
+	"AU LOANPYMT AU 119 121 238" [label="interest-rate-data-entry .
+ 
+display \"Enter annual interest rate %: \" with no advancing
+accept int-in"]
+	subgraph "Node 19" {
+	}
+	"AU LOANPYMT AU 119 121 238" -> "PC LOANPYMT PC 124 124 26" [label="sequential next"]
+	"PC LOANPYMT PC 124 124 26" [label="if function test-numval ( int-in ) IS NOT EQUAL ZERO"]
+	"PC LOANPYMT PC 124 124 26" -> "AU LOANPYMT AU 125 127 215" [label=true]
+	"PC LOANPYMT PC 124 124 26" -> "AU LOANPYMT AU 129 129 216" [label=false]
+	"AU LOANPYMT AU 129 129 216" [label="compute annual-interest = function numval ( int-in )"]
+	"AU LOANPYMT AU 129 129 216" -> "AU LOANPYMT AU 0 38 217" [label="sequential next"]
+	"AU LOANPYMT AU 0 38 217" [label="END-IF"]
+	"AU LOANPYMT AU 125 127 215" [label="display \"Interest Rate\" not-numeric
+display spaces
+go to interest-rate-data-entry"]
+	subgraph "Node 20" {
+	}
+	"PC LOANPYMT PC 124 124 26" -> "AU LOANPYMT AU 119 121 238" [label="procedure call"]
+	"PC LOANPYMT PC 124 124 26" -> "PC LOANPYMT PC 132 132 27" [label="sequential next"]
+	"PC LOANPYMT PC 132 132 27" [label="if annual-interest > max-int"]
+	"PC LOANPYMT PC 132 132 27" -> "AU LOANPYMT AU 133 135 218" [label=true]
+	"PC LOANPYMT PC 132 132 27" -> "AU LOANPYMT AU 0 39 219" [label="outside-if"]
+	"AU LOANPYMT AU 0 39 219" [label="END-IF"]
+	"AU LOANPYMT AU 133 135 218" [label="display interest-too-much
+display spaces
+go to interest-rate-data-entry"]
+	subgraph "Node 21" {
+	}
+	"PC LOANPYMT PC 132 132 27" -> "AU LOANPYMT AU 119 121 238" [label="procedure call"]
+	"PC LOANPYMT PC 132 132 27" -> "PC LOANPYMT PC 138 138 28" [label="sequential next"]
+	"PC LOANPYMT PC 138 138 28" [label="if annual-interest IS LESS THAN ZERO"]
+	"PC LOANPYMT PC 138 138 28" -> "AU LOANPYMT AU 139 141 220" [label=true]
+	"PC LOANPYMT PC 138 138 28" -> "AU LOANPYMT AU 0 40 221" [label="outside-if"]
+	"AU LOANPYMT AU 0 40 221" [label="END-IF"]
+	"AU LOANPYMT AU 139 141 220" [label="display interest-too-small
+display spaces
+go to interest-rate-data-entry"]
+	subgraph "Node 22" {
+	}
+	"PC LOANPYMT PC 138 138 28" -> "AU LOANPYMT AU 119 121 238" [label="procedure call"]
+	"PC LOANPYMT PC 138 138 28" -> "PC LOANPYMT PC 144 144 29" [label="sequential next"]
+	"PC LOANPYMT PC 144 144 29" [label="if annual-interest IS EQUAL ZERO"]
+	"PC LOANPYMT PC 144 144 29" -> "AU LOANPYMT AU 145 145 222" [label=true]
+	"PC LOANPYMT PC 144 144 29" -> "AU LOANPYMT AU 0 41 223" [label="outside-if"]
+	"AU LOANPYMT AU 0 41 223" [label="END-IF"]
+	"AU LOANPYMT AU 145 145 222" [label="go to end-program"]
+	subgraph "Node 23" {
+	}
+	"PC LOANPYMT PC 144 144 29" -> "AU LOANPYMT AU 223 227 236" [label="procedure call"]
+	"PC LOANPYMT PC 144 144 29" -> "AU LOANPYMT AU 148 149 239" [label="sequential next"]
+	"AU LOANPYMT AU 148 149 239" [label="move annual-interest to interest-rate
+divide annual-interest by 100 giving annual-interest"]
+	subgraph "Node 24" {
+	}
+	"AU LOANPYMT AU 148 149 239" -> "AU LOANPYMT AU 151 153 240" [label="sequential next"]
+	"AU LOANPYMT AU 151 153 240" [label="term-data-entry .
+ 
+display \"Enter term in years: \" with no advancing
+accept term-in"]
+	subgraph "Node 25" {
+	}
+	"AU LOANPYMT AU 151 153 240" -> "PC LOANPYMT PC 156 156 30" [label="sequential next"]
+	"PC LOANPYMT PC 156 156 30" [label="if function test-numval ( term-in ) IS NOT EQUAL ZERO"]
+	"PC LOANPYMT PC 156 156 30" -> "AU LOANPYMT AU 157 159 224" [label=true]
+	"PC LOANPYMT PC 156 156 30" -> "AU LOANPYMT AU 161 161 225" [label=false]
+	"AU LOANPYMT AU 161 161 225" [label="compute annual-term = function numval ( term-in )"]
+	"AU LOANPYMT AU 161 161 225" -> "AU LOANPYMT AU 0 42 226" [label="sequential next"]
+	"AU LOANPYMT AU 0 42 226" [label="END-IF"]
+	"AU LOANPYMT AU 157 159 224" [label="display \"Term\" not-numeric
+display spaces
+go to term-data-entry"]
+	subgraph "Node 26" {
+	}
+	"PC LOANPYMT PC 156 156 30" -> "AU LOANPYMT AU 151 153 240" [label="procedure call"]
+	"PC LOANPYMT PC 156 156 30" -> "PC LOANPYMT PC 164 164 31" [label="sequential next"]
+	"PC LOANPYMT PC 164 164 31" [label="if annual-term IS EQUAL ZERO"]
+	"PC LOANPYMT PC 164 164 31" -> "AU LOANPYMT AU 165 165 227" [label=true]
+	"PC LOANPYMT PC 164 164 31" -> "AU LOANPYMT AU 0 46 228" [label="outside-if"]
+	"AU LOANPYMT AU 0 46 228" [label="END-IF"]
+	"AU LOANPYMT AU 165 165 227" [label="go to end-program"]
+	subgraph "Node 27" {
+	}
+	"PC LOANPYMT PC 164 164 31" -> "AU LOANPYMT AU 223 227 236" [label="procedure call"]
+	"PC LOANPYMT PC 164 164 31" -> "PC LOANPYMT PC 168 168 32" [label="sequential next"]
+	"PC LOANPYMT PC 168 168 32" [label="if annual-term > max-term"]
+	"PC LOANPYMT PC 168 168 32" -> "AU LOANPYMT AU 169 171 229" [label=true]
+	"PC LOANPYMT PC 168 168 32" -> "AU LOANPYMT AU 0 47 230" [label="outside-if"]
+	"AU LOANPYMT AU 0 47 230" [label="END-IF"]
+	"AU LOANPYMT AU 169 171 229" [label="display term-too-long
+display spaces
+go to term-data-entry"]
+	subgraph "Node 28" {
+	}
+	"PC LOANPYMT PC 168 168 32" -> "AU LOANPYMT AU 151 153 240" [label="procedure call"]
+	"PC LOANPYMT PC 168 168 32" -> "PC LOANPYMT PC 174 174 33" [label="sequential next"]
+	"PC LOANPYMT PC 174 174 33" [label="if annual-term < min-term"]
+	"PC LOANPYMT PC 174 174 33" -> "AU LOANPYMT AU 175 177 231" [label=true]
+	"PC LOANPYMT PC 174 174 33" -> "AU LOANPYMT AU 0 48 232" [label="outside-if"]
+	"AU LOANPYMT AU 0 48 232" [label="END-IF"]
+	"AU LOANPYMT AU 175 177 231" [label="display term-too-short
+display spaces
+go to term-data-entry"]
+	subgraph "Node 29" {
+	}
+	"PC LOANPYMT PC 174 174 33" -> "AU LOANPYMT AU 151 153 240" [label="procedure call"]
+	"PC LOANPYMT PC 174 174 33" -> "AU LOANPYMT AU 180 180 241" [label="sequential next"]
+	"AU LOANPYMT AU 180 180 241" [label="move annual-term to term-out"]
+	subgraph "Node 30" {
+	}
+	"AU LOANPYMT AU 180 180 241" -> "AU LOANPYMT AU 182 221 242" [label="sequential next"]
+	"AU LOANPYMT AU 182 221 242" [label="calculate-it .
+ 
+multiply annual-term by 12 giving LOAN-TERM-MONTHS
+divide annual-interest by 12 giving MONTHLY-INTEREST
+compute denominator = ( 1 + monthly-interest ) ** loan-term-months - 1
+compute numerator = monthly-interest * ( 1 + monthly-interest ) ** loan-term-months
+compute ANNUAL-WORTH = present-value * ( numerator / denominator )
+multiply annual-worth by loan-term-months giving total-cost
+move total-cost to total-cost-out
+move annual-worth to aw-out
+move loan-term-months to months-out
+display spaces
+display \"Principal: \" pv-out
+display \"Interest Rate: \" interest-rate \"%\"
+display \"Term: \" term-out \" years (\" months-out \" months )\"
+display \"Monthly Payment: \" aw-out
+display \"Total Cost of Loan Payments: \" total-cost-out"]
+	subgraph "Node 31" {
+	}
+	"AU LOANPYMT AU 182 221 242" -> "AU LOANPYMT AU 223 227 236" [label="sequential next"]
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}

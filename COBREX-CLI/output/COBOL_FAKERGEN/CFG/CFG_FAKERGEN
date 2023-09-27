@@ -1,0 +1,246 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="MAIN .
+ 
+"]
+	2 [label="PERFORM SUB-1000-START-UP THRU SUB-1000-EXIT
+"]
+	4 [label="PERFORM SUB-2000-PROCESS THRU SUB-2000-EXIT 1000 TIMES
+"]
+	6 [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT
+"]
+	8 [label="MAIN-EXIT .
+ 
+"]
+	9 [label="STOP RUN
+"]
+	8 -> 9 [label="sequential next"]
+	6 -> 8 [label="perform-exit"]
+	86 [label="SUB-3000-SHUT-DOWN .
+ 
+"]
+	87 [label="CLOSE GNRTFILE
+"]
+	88 [label="MOVE W-GNRTFILE-RECS TO W-DISP-NUM
+"]
+	89 [label="DISPLAY 'GNRTFILE records written: ' W-DISP-NUM
+"]
+	90 [label="DISPLAY 'FAKERGEN completed'
+"]
+	92 [label="SUB-3000-EXIT .
+ 
+"]
+	93 [label=EXIT
+]
+	93 -> 6 [label="procedure backward call"]
+	92 -> 93 [label="sequential next"]
+	90 -> 92 [label="sequential next"]
+	89 -> 90 [label="sequential next"]
+	88 -> 89 [label="sequential next"]
+	87 -> 88 [label="sequential next"]
+	86 -> 87 [label="sequential next"]
+	6 -> 86 [label="procedure call"]
+	4 -> 6 [label="perform-exit"]
+	19 [label="SUB-2000-PROCESS .
+ 
+"]
+	20 [label="ADD 1 TO W-GNRTFILE-RECS
+"]
+	21 [label="MOVE SPACES TO GNRTFILE-REC
+"]
+	22 [label="MOVE W-GNRTFILE-RECS TO W-SEED-REC-NO
+"]
+	23 [label="MOVE W-SEED-TEXT TO FAKER-SEED-TEXT
+"]
+	24 [label="SET TAXID-SSN-HYPHEN TO TRUE
+"]
+	25 [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT
+"]
+	27 [label="IF FAKER-RESPONSE-GOOD
+" shape=diamond]
+	28 [label="MOVE FAKER-RESULT TO G-TAXID-SSN
+"]
+	29 [label="END-IF
+"]
+	33 [label="SET PERSON-NAME TO TRUE
+"]
+	34 [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT
+"]
+	36 [label="IF FAKER-RESPONSE-GOOD
+" shape=diamond]
+	37 [label="MOVE FAKER-PERSON-PREFIX TO G-PERSON-PREFIX
+"]
+	40 [label="MOVE FAKER-PERSON-FIRST-NAME TO G-PERSON-FIRST-NAME
+"]
+	41 [label="MOVE FAKER-PERSON-LAST-NAME TO G-PERSON-LAST-NAME
+"]
+	42 [label="MOVE FAKER-PERSON-SUFFIX TO G-PERSON-SUFFIX
+"]
+	38 [label="END-IF
+"]
+	45 [label="SET ADDRESS-ADDRESS TO TRUE
+"]
+	46 [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT
+"]
+	48 [label="IF FAKER-RESPONSE-GOOD
+" shape=diamond]
+	49 [label="MOVE FAKER-ADDRESS-STREET TO G-ADDRESS-STREET
+"]
+	52 [label="MOVE FAKER-ADDRESS-CITY TO G-ADDRESS-CITY
+"]
+	53 [label="MOVE FAKER-ADDRESS-STATE TO G-ADDRESS-STATE
+"]
+	54 [label="MOVE FAKER-ADDRESS-POSTCODE TO G-ADDRESS-POSTCODE
+"]
+	50 [label="END-IF
+"]
+	57 [label="SET TELEPHONE TO TRUE
+"]
+	58 [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT
+"]
+	60 [label="IF FAKER-RESPONSE-GOOD
+" shape=diamond]
+	61 [label="MOVE FAKER-TELEPHONE-AREA-CODE TO G-TELEPHONE-AREA-CODE
+"]
+	64 [label="MOVE FAKER-TELEPHONE-PREFIX TO G-TELEPHONE-PREFIX
+"]
+	65 [label="MOVE FAKER-TELEPHONE-SUFFIX TO G-TELEPHONE-SUFFIX
+"]
+	66 [label="MOVE FAKER-TELEPHONE-EXTENSION TO G-TELEPHONE-EXTENSION
+"]
+	62 [label="END-IF
+"]
+	69 [label="PERFORM SUB-9100-WRITE-GNRTFILE THRU SUB-9100-EXIT
+"]
+	95 [label="SUB-9100-WRITE-GNRTFILE .
+ 
+"]
+	96 [label="WRITE GNRTFILE-REC
+"]
+	98 [label="SUB-9100-EXIT .
+ 
+"]
+	99 [label=EXIT
+]
+	99 -> 69 [label="procedure backward call"]
+	98 -> 99 [label="sequential next"]
+	96 -> 98 [label="sequential next"]
+	95 -> 96 [label="sequential next"]
+	69 -> 95 [label="procedure call"]
+	72 [label="SUB-2000-EXIT .
+ 
+"]
+	73 [label=EXIT
+]
+	73 -> 4 [label="procedure backward call"]
+	72 -> 73 [label="sequential next"]
+	69 -> 72 [label="sequential next"]
+	62 -> 69 [label="sequential next"]
+	66 -> 62 [label="sequential next"]
+	65 -> 66 [label="sequential next"]
+	64 -> 65 [label="sequential next"]
+	61 -> 64 [label="sequential next"]
+	60 -> 61 [label=true]
+	63 [label="MOVE FAKER-RESPONSE-MSG TO G-TELEPHONE
+"]
+	63 -> 62 [label="sequential next"]
+	60 -> 63 [label=false]
+	58 -> 60 [label="perform-exit"]
+	75 [label="SUB-2100-CALL-FAKER .
+ 
+"]
+	76 [label="CALL W-FAKER-PROG USING W-FAKER-PARAMETER
+"]
+	77 [label="IF NOT FAKER-RESPONSE-GOOD
+" shape=diamond]
+	78 [label="DISPLAY W-ERROR-MSG FAKER-RESPONSE-CODE ' - ' FAKER-RESPONSE-MSG
+"]
+	83 [label="SUB-2100-EXIT .
+ 
+"]
+	84 [label=EXIT
+]
+	84 -> 25 [label="procedure backward call"]
+	84 -> 34 [label="procedure backward call"]
+	84 -> 46 [label="procedure backward call"]
+	84 -> 58 [label="procedure backward call"]
+	83 -> 84 [label="sequential next"]
+	78 -> 83 [label="sequential next"]
+	78 -> 83 [label="sequential next"]
+	78 -> 83 [label="sequential next"]
+	78 -> 83 [label="sequential next"]
+	79 [label="END-IF
+"]
+	78 -> 79 [label="sequential next"]
+	77 -> 78 [label=true]
+	77 -> 79 [label="outside-if"]
+	76 -> 77 [label="sequential next"]
+	75 -> 76 [label="sequential next"]
+	58 -> 75 [label="procedure call"]
+	57 -> 58 [label="sequential next"]
+	50 -> 57 [label="sequential next"]
+	54 -> 50 [label="sequential next"]
+	53 -> 54 [label="sequential next"]
+	52 -> 53 [label="sequential next"]
+	49 -> 52 [label="sequential next"]
+	48 -> 49 [label=true]
+	51 [label="MOVE FAKER-RESPONSE-MSG TO G-ADDRESS
+"]
+	51 -> 50 [label="sequential next"]
+	48 -> 51 [label=false]
+	46 -> 48 [label="perform-exit"]
+	46 -> 75 [label="procedure call"]
+	45 -> 46 [label="sequential next"]
+	38 -> 45 [label="sequential next"]
+	42 -> 38 [label="sequential next"]
+	41 -> 42 [label="sequential next"]
+	40 -> 41 [label="sequential next"]
+	37 -> 40 [label="sequential next"]
+	36 -> 37 [label=true]
+	39 [label="MOVE FAKER-RESPONSE-MSG TO G-PERSON
+"]
+	39 -> 38 [label="sequential next"]
+	36 -> 39 [label=false]
+	34 -> 36 [label="perform-exit"]
+	34 -> 75 [label="procedure call"]
+	33 -> 34 [label="sequential next"]
+	29 -> 33 [label="sequential next"]
+	28 -> 29 [label="sequential next"]
+	27 -> 28 [label=true]
+	30 [label="MOVE 'ERROR' TO G-TAXID-SSN
+"]
+	30 -> 29 [label="sequential next"]
+	27 -> 30 [label=false]
+	25 -> 27 [label="perform-exit"]
+	25 -> 75 [label="procedure call"]
+	24 -> 25 [label="sequential next"]
+	23 -> 24 [label="sequential next"]
+	22 -> 23 [label="sequential next"]
+	21 -> 22 [label="sequential next"]
+	20 -> 21 [label="sequential next"]
+	19 -> 20 [label="sequential next"]
+	4 -> 19 [label="procedure call"]
+	2 -> 4 [label="perform-exit"]
+	11 [label="SUB-1000-START-UP .
+ 
+"]
+	12 [label="MOVE FUNCTION WHEN-COMPILED TO W-COMPILED-DATE
+"]
+	13 [label="DISPLAY 'FAKERGEN compiled on ' W-COMPILED-DATE-YYYY '/' W-COMPILED-DATE-MM '/' W-COMPILED-DATE-DD ' at ' W-COMPILED-TIME-HH ':' W-COMPILED-TIME-MM ':' W-COMPILED-TIME-SS
+"]
+	14 [label="OPEN OUTPUT GNRTFILE
+"]
+	16 [label="SUB-1000-EXIT .
+ 
+"]
+	17 [label=EXIT
+]
+	17 -> 2 [label="procedure backward call"]
+	16 -> 17 [label="sequential next"]
+	14 -> 16 [label="sequential next"]
+	13 -> 14 [label="sequential next"]
+	12 -> 13 [label="sequential next"]
+	11 -> 12 [label="sequential next"]
+	2 -> 11 [label="procedure call"]
+	1 -> 2 [label="sequential next"]
+}

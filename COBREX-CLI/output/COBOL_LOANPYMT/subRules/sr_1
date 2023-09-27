@@ -1,0 +1,11 @@
+digraph cluster0 {
+	"PC LOANPYMT PC 93 93 22" [label="if function test-numval ( pv-in ) IS NOT EQUAL ZERO"]
+	"AU LOANPYMT AU 94 96 206" [label="display \"Principal\" not-numeric
+display spaces
+go to present-value-data-entry"]
+	"PC LOANPYMT PC 93 93 22" -> "AU LOANPYMT AU 94 96 206" [label=true]
+	"AU LOANPYMT AU 98 98 207" [label="compute present-value = function numval ( pv-in )"]
+	"AU LOANPYMT AU 0 2 208" [label="END-IF"]
+	"AU LOANPYMT AU 98 98 207" -> "AU LOANPYMT AU 0 2 208" [label="sequential next"]
+	"PC LOANPYMT PC 93 93 22" -> "AU LOANPYMT AU 98 98 207" [label=false]
+}

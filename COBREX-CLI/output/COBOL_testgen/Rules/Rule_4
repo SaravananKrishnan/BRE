@@ -1,0 +1,10 @@
+digraph cluster3 {
+	"AU testgen AU 31 12 684" [label="call 'csvgen_closefile' using by value csvhandle returning bool"]
+	"PC testgen PC 86 86 134" [label="if failure"]
+	"AU testgen AU 37 37 668" [label="display 'Cannot close test.csv.'"]
+	"AU testgen AU 0 0 669" [label="END-IF"]
+	"AU testgen AU 37 37 668" -> "AU testgen AU 0 0 669" [label="sequential next"]
+	"PC testgen PC 86 86 134" -> "AU testgen AU 37 37 668" [label=true]
+	"PC testgen PC 86 86 134" -> "AU testgen AU 0 0 669" [label="outside-if"]
+	"AU testgen AU 31 12 684" -> "PC testgen PC 86 86 134" [label="sequential next"]
+}

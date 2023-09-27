@@ -1,0 +1,23 @@
+digraph {
+	"AU knuth-shuffle AU 0 0 627" [label=Begin]
+	subgraph "Node 114" {
+	}
+	"AU knuth-shuffle AU 0 0 627" -> "AU knuth-shuffle AU 18 18 624" [label=start]
+	"AU knuth-shuffle AU 18 18 624" [label="MOVE FUNCTION RANDOM ( FUNCTION CURRENT-DATE ( 11 : 6 ) ) TO i"]
+	"AU knuth-shuffle AU 18 18 624" -> "AU knuth-shuffle AU 20 20 625" [label="sequential next"]
+	"AU knuth-shuffle AU 20 20 625" [label="PERFORM VARYING i FROM Table-Len BY -1 UNTIL i = 0"]
+	"AU knuth-shuffle AU 20 20 625" -> "AU knuth-shuffle AU 0 26 626" [label=iteration]
+	"AU knuth-shuffle AU 0 26 626" [label="COMPUTE j = FUNCTION MOD ( FUNCTION RANDOM * 10000 Table-Len ) + 1
+MOVE ttable ( i ) TO temp
+MOVE ttable ( j ) TO ttable ( i )
+MOVE temp TO ttable ( j )"]
+	"AU knuth-shuffle AU 0 26 626" -> "AU knuth-shuffle AU 20 20 625" [label="sequential next"]
+	subgraph "Node 115" {
+	}
+	"AU knuth-shuffle AU 18 18 624" -> "AU knuth-shuffle AU 29 29 628" [label="perform-exit"]
+	"AU knuth-shuffle AU 29 29 628" [label=GOBACK]
+	subgraph "Node 116" {
+	}
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}

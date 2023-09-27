@@ -1,0 +1,7 @@
+digraph cluster5 {
+	"PC IB4OP01 PC 357 357 574" [label="IF TI-TRAN = 'UA'"]
+	"PC IB4OP01 PC 358 358 575" [label="IF TA-UNITS-STARTED-X NOT = SPACE"]
+	"PC IB4OP01 PC 357 357 574" -> "PC IB4OP01 PC 358 358 575" [label=true]
+	"AU IB4OP01 AU 356 356 3623" [label="END-IF"]
+	"PC IB4OP01 PC 357 357 574" -> "AU IB4OP01 AU 356 356 3623" [label="outside-if"]
+}

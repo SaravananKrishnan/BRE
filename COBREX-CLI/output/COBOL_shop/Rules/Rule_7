@@ -1,0 +1,10 @@
+digraph cluster6 {
+	"AU shop AU 118 118 1056" [label="CHECK .
+ "]
+	"PC shop PC 119 119 193" [label="IF MONEY <= 0 OR BAG >= MAX-CAP"]
+	"AU shop AU 120 120 1046" [label="GO TO PRINT"]
+	"PC shop PC 119 119 193" -> "AU shop AU 120 120 1046" [label=true]
+	"AU shop AU 122 122 1047" [label="GO TO BUY-VEG"]
+	"PC shop PC 119 119 193" -> "AU shop AU 122 122 1047" [label=false]
+	"AU shop AU 118 118 1056" -> "PC shop PC 119 119 193" [label="sequential next"]
+}

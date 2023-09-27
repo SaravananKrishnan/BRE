@@ -1,0 +1,9 @@
+digraph cluster10 {
+	"PC LOANPYMT PC 168 168 32" [label="if annual-term > max-term"]
+	"AU LOANPYMT AU 169 171 229" [label="display term-too-long
+display spaces
+go to term-data-entry"]
+	"PC LOANPYMT PC 168 168 32" -> "AU LOANPYMT AU 169 171 229" [label=true]
+	"AU LOANPYMT AU 0 47 230" [label="END-IF"]
+	"PC LOANPYMT PC 168 168 32" -> "AU LOANPYMT AU 0 47 230" [label="outside-if"]
+}

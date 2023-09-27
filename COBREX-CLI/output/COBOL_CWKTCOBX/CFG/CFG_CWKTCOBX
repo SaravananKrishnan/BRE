@@ -1,0 +1,765 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="0000-MAINLINE .
+ 
+"]
+	2 [label="PERFORM 9000-OPEN
+"]
+	4 [label="PERFORM 9100-CHECK-PARM
+"]
+	10 [label="IF GOOD-PARM
+" shape=diamond]
+	37 [label="PERFORM 9200-INIT
+"]
+	41 [label="PERFORM 8000-READ-INPUT UNTIL RECORDS-READ = START-NUMBER OR END-OF-FILE
+"]
+	62 [label="PERFORM 1000-PROCESS-DATA UNTIL END-OF-FILE
+"]
+	70 [label="PERFORM 6000-PRINT-EMPLOYEE-REPORT
+"]
+	194 [label="MOVE 1 TO REGION-SUB
+"]
+	256 [label="IF END-OF-MONTH
+" shape=diamond]
+	257 [label="PERFORM 7000-PRINT-REGION-REPORT UNTIL REGION-SUB > 4
+"]
+	262 [label="7000-PRINT-REGION-REPORT .
+ 
+"]
+	263 [label="IF REG-LINE-COUNT GREATER THAN 55
+" shape=diamond]
+	264 [label="PERFORM 7100-PRINT-REGION-HEADERS
+"]
+	269 [label="7100-PRINT-REGION-HEADERS .
+ 
+"]
+	270 [label="MOVE PAGE-COUNT TO REG-PAGE
+"]
+	271 [label="MOVE DATE-YY TO REG-RUN-YEAR
+"]
+	272 [label="MOVE DATE-MM TO REG-RUN-MONTH
+"]
+	273 [label="MOVE DATE-DD TO REG-RUN-DAY
+"]
+	274 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	275 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	276 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	277 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	278 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	279 [label="WRITE REPORT-RECORD FROM REGION-HDR1
+"]
+	280 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	281 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	282 [label="WRITE REPORT-RECORD FROM REGION-HDR2
+"]
+	283 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	284 [label="ADD 1 TO PAGE-COUNT
+"]
+	285 [label="MOVE 4 TO REG-LINE-COUNT
+"]
+	285 -> 264 [label="sequential next"]
+	284 -> 285 [label="sequential next"]
+	283 -> 284 [label="sequential next"]
+	282 -> 283 [label="sequential next"]
+	281 -> 282 [label="sequential next"]
+	280 -> 281 [label="sequential next"]
+	279 -> 280 [label="sequential next"]
+	278 -> 279 [label="sequential next"]
+	277 -> 278 [label="sequential next"]
+	276 -> 277 [label="sequential next"]
+	275 -> 276 [label="sequential next"]
+	274 -> 275 [label="sequential next"]
+	273 -> 274 [label="sequential next"]
+	272 -> 273 [label="sequential next"]
+	271 -> 272 [label="sequential next"]
+	270 -> 271 [label="sequential next"]
+	269 -> 270 [label="sequential next"]
+	264 -> 269 [label="procedure call"]
+	265 [label="END-IF
+"]
+	287 [label="MOVE SPACES TO REGION-DETAIL
+"]
+	288 [label="MOVE REGION-NAME ( REGION-SUB ) TO REG-DTL-REGION
+"]
+	289 [label="MOVE REGION-MANAGER ( REGION-SUB ) TO REG-DTL-MANAGER
+"]
+	290 [label="MOVE REGION-SALARY ( REGION-SUB ) TO REG-DTL-SALARY
+"]
+	291 [label="MOVE REGION-SALES ( REGION-SUB ) TO REG-DTL-SALES
+"]
+	292 [label="MOVE REGION-SALES ( REGION-SUB ) TO CALC-SALES
+"]
+	293 [label="MOVE REGION-COMMENT ( REGION-SUB ) TO REG-DTL-COMMENT
+"]
+	294 [label="MOVE 'M' TO EMP-TYPE
+"]
+	295 [label="CALL 'CWKTSUBC' USING EMP-TYPE CALC-SALES CALC-COMMISSION
+"]
+	296 [label="MOVE CALC-COMMISSION TO REG-DTL-COMM
+"]
+	297 [label="COMPUTE MGMT-COMPENSATION = CALC-COMMISSION + REGION-SALARY ( REGION-SUB )
+"]
+	298 [label="ADD MGMT-COMPENSATION TO GRAND-TOTAL-MGMT
+"]
+	299 [label="MOVE MGMT-COMPENSATION TO REG-DTL-TOTAL
+"]
+	300 [label="WRITE REPORT-RECORD FROM REGION-DETAIL
+"]
+	301 [label="IF REGION-SUB = 4
+" shape=diamond]
+	302 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	305 [label="MOVE GRAND-TOTAL-MGMT TO MGMT-GRAND-TOTAL
+"]
+	306 [label="WRITE REPORT-RECORD FROM MGMT-TOTAL-DTL
+"]
+	303 [label="END-IF
+"]
+	308 [label="ADD 1 TO REG-LINE-COUNT
+"]
+	309 [label="ADD 1 TO REGION-SUB
+"]
+	309 -> 257 [label="sequential next"]
+	308 -> 309 [label="sequential next"]
+	303 -> 308 [label="sequential next"]
+	306 -> 303 [label="sequential next"]
+	305 -> 306 [label="sequential next"]
+	302 -> 305 [label="sequential next"]
+	301 -> 302 [label=true]
+	301 -> 303 [label="outside-if"]
+	300 -> 301 [label="sequential next"]
+	299 -> 300 [label="sequential next"]
+	298 -> 299 [label="sequential next"]
+	297 -> 298 [label="sequential next"]
+	296 -> 297 [label="sequential next"]
+	295 -> 296 [label="sequential next"]
+	294 -> 295 [label="sequential next"]
+	293 -> 294 [label="sequential next"]
+	292 -> 293 [label="sequential next"]
+	291 -> 292 [label="sequential next"]
+	290 -> 291 [label="sequential next"]
+	289 -> 290 [label="sequential next"]
+	288 -> 289 [label="sequential next"]
+	287 -> 288 [label="sequential next"]
+	265 -> 287 [label="sequential next"]
+	264 -> 265 [label="perform-exit"]
+	263 -> 264 [label=true]
+	263 -> 265 [label="outside-if"]
+	262 -> 263 [label="sequential next"]
+	257 -> 262 [label="procedure call"]
+	258 [label="END-IF
+"]
+	38 [label="END-IF
+"]
+	312 [label="MOVE RECORDS-READ TO TOTAL-RECORD
+"]
+	313 [label="MOVE EMP-GRAND-TOTAL TO GRAND-TOTAL
+"]
+	314 [label="PERFORM 9900-CLOSE
+"]
+	316 [label=GOBACK
+]
+	314 -> 316 [label="perform-exit"]
+	317 [label="9900-CLOSE .
+ 
+"]
+	318 [label="CLOSE EMPLOYEE-FILE
+"]
+	319 [label="CLOSE REPORT-FILE
+"]
+	319 -> 314 [label="sequential next"]
+	318 -> 319 [label="sequential next"]
+	317 -> 318 [label="sequential next"]
+	314 -> 317 [label="procedure call"]
+	313 -> 314 [label="sequential next"]
+	312 -> 313 [label="sequential next"]
+	38 -> 312 [label="sequential next"]
+	258 -> 38 [label="sequential next"]
+	257 -> 258 [label="perform-exit"]
+	256 -> 257 [label=true]
+	256 -> 258 [label="outside-if"]
+	194 -> 256 [label="sequential next"]
+	70 -> 194 [label="perform-exit"]
+	195 [label="6000-PRINT-EMPLOYEE-REPORT .
+ 
+"]
+	196 [label="SET REG-IX TO 1
+"]
+	197 [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > NORTH-COUNT
+"]
+	199 [label="SET REG-IX TO 2
+"]
+	241 [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > SOUTH-COUNT
+"]
+	243 [label="SET REG-IX TO 3
+"]
+	245 [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > EAST-COUNT
+"]
+	247 [label="SET REG-IX TO 4
+"]
+	249 [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > WEST-COUNT
+"]
+	251 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	253 [label="MOVE GRAND-TOTAL-EMP TO EMP-GRAND-TOTAL
+"]
+	254 [label="WRITE REPORT-RECORD FROM EMP-TOTAL-DTL
+"]
+	254 -> 70 [label="sequential next"]
+	253 -> 254 [label="sequential next"]
+	251 -> 253 [label="sequential next"]
+	249 -> 251 [label="perform-exit"]
+	200 [label="6100-PRINT-EMPLOYEE-DETAIL .
+ 
+"]
+	201 [label="IF EMP-LINE-COUNT GREATER THAN 55
+" shape=diamond]
+	202 [label="PERFORM 6200-PRINT-EMPLOYEE-HEADERS
+"]
+	207 [label="6200-PRINT-EMPLOYEE-HEADERS .
+ 
+"]
+	208 [label="MOVE PAGE-COUNT TO EMP-PAGE
+"]
+	209 [label="MOVE DATE-YY TO EMP-RUN-YY
+"]
+	210 [label="MOVE DATE-MM TO EMP-RUN-MM
+"]
+	211 [label="MOVE DATE-DD TO EMP-RUN-DD
+"]
+	212 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	213 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	214 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	215 [label="WRITE REPORT-RECORD FROM EMPLOYEE-HDR1
+"]
+	216 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	217 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	218 [label="WRITE REPORT-RECORD FROM EMPLOYEE-HDR2
+"]
+	219 [label="WRITE REPORT-RECORD FROM EMPLOYEE-HDR3
+"]
+	220 [label="WRITE REPORT-RECORD FROM BLANK-LINE
+"]
+	221 [label="ADD 1 TO PAGE-COUNT
+"]
+	222 [label="MOVE 5 TO EMP-LINE-COUNT
+"]
+	222 -> 202 [label="sequential next"]
+	221 -> 222 [label="sequential next"]
+	220 -> 221 [label="sequential next"]
+	219 -> 220 [label="sequential next"]
+	218 -> 219 [label="sequential next"]
+	217 -> 218 [label="sequential next"]
+	216 -> 217 [label="sequential next"]
+	215 -> 216 [label="sequential next"]
+	214 -> 215 [label="sequential next"]
+	213 -> 214 [label="sequential next"]
+	212 -> 213 [label="sequential next"]
+	211 -> 212 [label="sequential next"]
+	210 -> 211 [label="sequential next"]
+	209 -> 210 [label="sequential next"]
+	208 -> 209 [label="sequential next"]
+	207 -> 208 [label="sequential next"]
+	202 -> 207 [label="procedure call"]
+	203 [label="END-IF
+"]
+	224 [label="MOVE HOLD-NAME ( REG-IX HOLD-IX ) TO EMP-DTL-NAME
+"]
+	225 [label="MOVE HOLD-REGION ( REG-IX HOLD-IX ) TO EMP-DTL-REGION
+"]
+	226 [label="MOVE HOLD-TYPE ( REG-IX HOLD-IX ) TO EMP-DTL-TYPE
+"]
+	227 [label="MOVE HOLD-HIRE-MM ( REG-IX HOLD-IX ) TO EMP-DTL-HIRE-MM
+"]
+	228 [label="MOVE '/' TO EMP-DTL-SLASH1
+"]
+	229 [label="MOVE HOLD-HIRE-DD ( REG-IX HOLD-IX ) TO EMP-DTL-HIRE-DD
+"]
+	230 [label="MOVE '/' TO EMP-DTL-SLASH2
+"]
+	231 [label="MOVE HOLD-HIRE-YY ( REG-IX HOLD-IX ) TO EMP-DTL-HIRE-YY
+"]
+	232 [label="MOVE HOLD-YEARS ( REG-IX HOLD-IX ) TO EMP-DTL-YRS-OF-SERVICE
+"]
+	233 [label="MOVE HOLD-WAGES ( REG-IX HOLD-IX ) TO EMP-DTL-WAGES
+"]
+	234 [label="MOVE HOLD-OT ( REG-IX HOLD-IX ) TO EMP-DTL-OT
+"]
+	235 [label="MOVE HOLD-COMM ( REG-IX HOLD-IX ) TO EMP-DTL-COMM
+"]
+	236 [label="MOVE HOLD-TOTAL ( REG-IX HOLD-IX ) TO EMP-DTL-TOTAL
+"]
+	237 [label="WRITE REPORT-RECORD FROM EMPLOYEE-DTL AFTER ADVANCING 1 LINE
+"]
+	238 [label="ADD 1 TO EMP-LINE-COUNT
+"]
+	239 [label="MOVE SPACES TO EMPLOYEE-DTL
+"]
+	239 -> 241 [label=backward]
+	239 -> 245 [label=backward]
+	239 -> 249 [label=backward]
+	239 -> 197 [label="sequential next"]
+	238 -> 239 [label="sequential next"]
+	237 -> 238 [label="sequential next"]
+	236 -> 237 [label="sequential next"]
+	235 -> 236 [label="sequential next"]
+	234 -> 235 [label="sequential next"]
+	233 -> 234 [label="sequential next"]
+	232 -> 233 [label="sequential next"]
+	231 -> 232 [label="sequential next"]
+	230 -> 231 [label="sequential next"]
+	229 -> 230 [label="sequential next"]
+	228 -> 229 [label="sequential next"]
+	227 -> 228 [label="sequential next"]
+	226 -> 227 [label="sequential next"]
+	225 -> 226 [label="sequential next"]
+	224 -> 225 [label="sequential next"]
+	203 -> 224 [label="sequential next"]
+	202 -> 203 [label="perform-exit"]
+	201 -> 202 [label=true]
+	201 -> 203 [label="outside-if"]
+	200 -> 201 [label="sequential next"]
+	249 -> 200 [label="procedure call"]
+	247 -> 249 [label="sequential next"]
+	245 -> 247 [label="perform-exit"]
+	245 -> 200 [label="procedure call"]
+	243 -> 245 [label="sequential next"]
+	241 -> 243 [label="perform-exit"]
+	241 -> 200 [label="procedure call"]
+	199 -> 241 [label="sequential next"]
+	197 -> 199 [label="perform-exit"]
+	197 -> 200 [label="procedure call"]
+	196 -> 197 [label="sequential next"]
+	195 -> 196 [label="sequential next"]
+	70 -> 195 [label="procedure call"]
+	62 -> 70 [label="perform-exit"]
+	71 [label="1000-PROCESS-DATA .
+ 
+"]
+	72 [label="IF HOURLY
+" shape=diamond]
+	73 [label="PERFORM 2000-PROCESS-HOURLY
+"]
+	78 [label="2000-PROCESS-HOURLY .
+ 
+"]
+	79 [label="MOVE ZERO TO OT-AMOUNT
+"]
+	80 [label="IF WA-EMP-HOURS GREATER THAN 40
+" shape=diamond]
+	81 [label="COMPUTE EMP-WAGES = WA-EMP-RATE * 40
+"]
+	84 [label="COMPUTE OT-HOURS = WA-EMP-HOURS - 40
+"]
+	85 [label="COMPUTE OT-AMOUNT = OT-HOURS * ( WA-EMP-RATE * 1.5 )
+"]
+	82 [label="END-IF
+"]
+	88 [label="COMPUTE EMP-COMPENSATION = EMP-WAGES + OT-AMOUNT
+"]
+	89 [label="ADD EMP-COMPENSATION TO GRAND-TOTAL-EMP
+"]
+	90 [label="CALL 'CWKTDATE' USING END-OF-MONTH-SW YRS-OF-SERVICE TODAYS-DATE WA-EMP-HIRE-DATE
+"]
+	91 [label="PERFORM 5000-STORE-EMPLOYEE-DETAIL
+"]
+	93 [label="SET HOLD-IX UP BY 1
+"]
+	93 -> 73 [label="sequential next"]
+	91 -> 93 [label="perform-exit"]
+	94 [label="5000-STORE-EMPLOYEE-DETAIL .
+ 
+"]
+	95 [label="PERFORM 5100-SET-INDEX
+"]
+	97 [label="IF VALID-REGION
+" shape=diamond]
+	131 [label="MOVE WA-EMP-NAME TO HOLD-NAME ( REG-IX HOLD-IX )
+"]
+	134 [label="MOVE REGION-ID ( WA-EMP-REGION ) TO HOLD-REGION ( REG-IX HOLD-IX )
+"]
+	135 [label="MOVE WA-EMP-TYPE TO HOLD-TYPE ( REG-IX HOLD-IX )
+"]
+	136 [label="MOVE WA-EMP-HIRE-DATE TO HOLD-HIRE-DATE ( REG-IX HOLD-IX )
+"]
+	137 [label="MOVE YRS-OF-SERVICE TO HOLD-YEARS ( REG-IX HOLD-IX )
+"]
+	138 [label="MOVE EMP-COMPENSATION TO HOLD-TOTAL ( REG-IX HOLD-IX )
+"]
+	139 [label="IF HOURLY
+" shape=diamond]
+	140 [label="MOVE EMP-WAGES TO HOLD-WAGES ( REG-IX HOLD-IX )
+"]
+	143 [label="MOVE OT-AMOUNT TO HOLD-OT ( REG-IX HOLD-IX )
+"]
+	144 [label="MOVE ZEROS TO HOLD-COMM ( REG-IX HOLD-IX )
+"]
+	141 [label="END-IF
+"]
+	132 [label="END-IF
+"]
+	132 -> 91 [label="sequential next"]
+	141 -> 132 [label="sequential next"]
+	144 -> 141 [label="sequential next"]
+	143 -> 144 [label="sequential next"]
+	140 -> 143 [label="sequential next"]
+	139 -> 140 [label=true]
+	142 [label="MOVE WA-SALES-SALARY TO HOLD-WAGES ( REG-IX HOLD-IX )
+"]
+	146 [label="MOVE CALC-COMMISSION TO HOLD-COMM ( REG-IX HOLD-IX )
+"]
+	147 [label="MOVE ZERO TO HOLD-OT ( REG-IX HOLD-IX )
+"]
+	147 -> 141 [label="sequential next"]
+	146 -> 147 [label="sequential next"]
+	142 -> 146 [label="sequential next"]
+	139 -> 142 [label=false]
+	138 -> 139 [label="sequential next"]
+	137 -> 138 [label="sequential next"]
+	136 -> 137 [label="sequential next"]
+	135 -> 136 [label="sequential next"]
+	134 -> 135 [label="sequential next"]
+	131 -> 134 [label="sequential next"]
+	97 -> 131 [label=true]
+	97 -> 132 [label="outside-if"]
+	171 [label="PERFORM 5000-STORE-EMPLOYEE-DETAIL
+"]
+	173 [label="SET HOLD-IX UP BY 1
+"]
+	152 [label="PERFORM 3000-PROCESS-SALES
+"]
+	157 [label="3000-PROCESS-SALES .
+ 
+"]
+	158 [label="IF WA-SALES-AMOUNT > 0
+" shape=diamond]
+	159 [label="ADD WA-SALES-AMOUNT TO REGION-SALES ( WA-EMP-REGION )
+"]
+	162 [label="MOVE WA-SALES-AMOUNT TO CALC-SALES
+"]
+	163 [label="MOVE 0 TO CALC-COMMISSION
+"]
+	164 [label="MOVE 'S' TO EMP-TYPE
+"]
+	165 [label="CALL 'CWKTSUBC' USING EMP-TYPE CALC-SALES CALC-COMMISSION
+"]
+	160 [label="END-IF
+"]
+	168 [label="COMPUTE EMP-COMPENSATION = WA-SALES-SALARY + CALC-COMMISSION
+"]
+	169 [label="ADD EMP-COMPENSATION TO GRAND-TOTAL-EMP
+"]
+	170 [label="CALL 'CWKTDATE' USING END-OF-MONTH-SW YRS-OF-SERVICE TODAYS-DATE WA-EMP-HIRE-DATE
+"]
+	170 -> 171 [label="sequential next"]
+	169 -> 170 [label="sequential next"]
+	168 -> 169 [label="sequential next"]
+	160 -> 168 [label="sequential next"]
+	165 -> 160 [label="sequential next"]
+	164 -> 165 [label="sequential next"]
+	163 -> 164 [label="sequential next"]
+	162 -> 163 [label="sequential next"]
+	159 -> 162 [label="sequential next"]
+	158 -> 159 [label=true]
+	161 [label="MOVE 'UH-OH' TO REGION-COMMENT ( WA-EMP-REGION )
+"]
+	161 -> 160 [label="sequential next"]
+	158 -> 161 [label=false]
+	157 -> 158 [label="sequential next"]
+	152 -> 157 [label="procedure call"]
+	153 [label="END-IF
+"]
+	74 [label="END-IF
+"]
+	189 [label="PERFORM 8000-READ-INPUT
+"]
+	63 [label="8000-READ-INPUT .
+ 
+"]
+	64 [label="READ EMPLOYEE-FILE INTO EMPLOYEE-WORK-AREA
+"]
+	65 [label="ADD 1 TO RECORDS-READ
+"]
+	65 -> 189 [label=backward]
+	65 -> 41 [label="sequential next"]
+	64 -> 65 [label="sequential next"]
+	66 [label="MOVE 'Y' TO EOF-SW
+"]
+	66 -> 65 [label="sequential next"]
+	64 -> 66 [label=AtEnd]
+	63 -> 64 [label="sequential next"]
+	189 -> 63 [label="procedure call"]
+	189 -> 62 [label="perform-exit"]
+	74 -> 189 [label="sequential next"]
+	153 -> 74 [label="sequential next"]
+	152 -> 153 [label="perform-exit"]
+	173 -> 152 [label="sequential next"]
+	171 -> 173 [label="perform-exit"]
+	171 -> 94 [label="procedure call"]
+	97 -> 171 [label=backward]
+	95 -> 97 [label="perform-exit"]
+	98 [label="5100-SET-INDEX .
+ 
+"]
+	99 [label="MOVE 'N' TO REGION-ERROR-SW
+"]
+	100 [label="IF NORTH
+" shape=diamond]
+	101 [label="ADD 1 TO NORTH-COUNT
+"]
+	104 [label="SET HOLD-IX TO NORTH-COUNT
+"]
+	102 [label="END-IF
+"]
+	125 [label="IF VALID-REGION
+" shape=diamond]
+	126 [label="SET REG-IX TO WA-EMP-REGION
+"]
+	127 [label="END-IF
+"]
+	127 -> 95 [label="sequential next"]
+	126 -> 127 [label="sequential next"]
+	125 -> 126 [label=true]
+	125 -> 127 [label="outside-if"]
+	102 -> 125 [label="sequential next"]
+	104 -> 102 [label="sequential next"]
+	101 -> 104 [label="sequential next"]
+	100 -> 101 [label=true]
+	103 [label="IF SOUTH
+" shape=diamond]
+	106 [label="ADD 1 TO SOUTH-COUNT
+"]
+	109 [label="SET HOLD-IX TO SOUTH-COUNT
+"]
+	107 [label="END-IF
+"]
+	107 -> 102 [label="sequential next"]
+	109 -> 107 [label="sequential next"]
+	106 -> 109 [label="sequential next"]
+	103 -> 106 [label=true]
+	108 [label="IF EAST
+" shape=diamond]
+	111 [label="ADD 1 TO EAST-COUNT
+"]
+	114 [label="SET HOLD-IX TO EAST-COUNT
+"]
+	112 [label="END-IF
+"]
+	112 -> 107 [label="sequential next"]
+	114 -> 112 [label="sequential next"]
+	111 -> 114 [label="sequential next"]
+	108 -> 111 [label=true]
+	113 [label="IF WEST
+" shape=diamond]
+	116 [label="ADD 1 TO WEST-COUNT
+"]
+	119 [label="SET HOLD-IX TO WEST-COUNT
+"]
+	117 [label="END-IF
+"]
+	117 -> 112 [label="sequential next"]
+	119 -> 117 [label="sequential next"]
+	116 -> 119 [label="sequential next"]
+	113 -> 116 [label=true]
+	118 [label="MOVE 'Y' TO REGION-ERROR-SW
+"]
+	118 -> 117 [label="sequential next"]
+	113 -> 118 [label=false]
+	108 -> 113 [label=false]
+	103 -> 108 [label=false]
+	100 -> 103 [label=false]
+	99 -> 100 [label="sequential next"]
+	98 -> 99 [label="sequential next"]
+	95 -> 98 [label="procedure call"]
+	94 -> 95 [label="sequential next"]
+	91 -> 94 [label="procedure call"]
+	90 -> 91 [label="sequential next"]
+	89 -> 90 [label="sequential next"]
+	88 -> 89 [label="sequential next"]
+	82 -> 88 [label="sequential next"]
+	85 -> 82 [label="sequential next"]
+	84 -> 85 [label="sequential next"]
+	81 -> 84 [label="sequential next"]
+	80 -> 81 [label=true]
+	83 [label="COMPUTE EMP-WAGES = WA-EMP-HOURS * WA-EMP-RATE
+"]
+	83 -> 82 [label="sequential next"]
+	80 -> 83 [label=false]
+	79 -> 80 [label="sequential next"]
+	78 -> 79 [label="sequential next"]
+	73 -> 78 [label="procedure call"]
+	73 -> 74 [label="perform-exit"]
+	72 -> 73 [label=true]
+	75 [label="IF SALES
+" shape=diamond]
+	75 -> 152 [label=true]
+	154 [label="IF MANAGEMENT
+" shape=diamond]
+	176 [label="PERFORM 4000-PROCESS-MANAGEMENT
+"]
+	181 [label="4000-PROCESS-MANAGEMENT .
+ 
+"]
+	182 [label="MOVE WA-EMP-NAME TO REGION-MANAGER ( WA-EMP-REGION )
+"]
+	183 [label="MOVE WA-MGMT-SALARY TO REGION-SALARY ( WA-EMP-REGION )
+"]
+	183 -> 176 [label="sequential next"]
+	182 -> 183 [label="sequential next"]
+	181 -> 182 [label="sequential next"]
+	176 -> 181 [label="procedure call"]
+	177 [label="END-IF
+"]
+	177 -> 153 [label="sequential next"]
+	176 -> 177 [label="perform-exit"]
+	154 -> 176 [label=true]
+	178 [label="MOVE ' INVALID EMPLOYEE TYPE ' TO ERROR-LINE
+"]
+	185 [label="WRITE REPORT-RECORD FROM ERROR-LINE
+"]
+	185 -> 177 [label="sequential next"]
+	178 -> 185 [label="sequential next"]
+	154 -> 178 [label=false]
+	75 -> 154 [label=false]
+	72 -> 75 [label=false]
+	71 -> 72 [label="sequential next"]
+	62 -> 71 [label="procedure call"]
+	41 -> 62 [label="perform-exit"]
+	41 -> 63 [label="procedure call"]
+	37 -> 41 [label="perform-exit"]
+	42 [label="9200-INIT .
+ 
+"]
+	43 [label="MOVE 'NORTH' TO REGION-NAME ( 1 )
+"]
+	44 [label="MOVE 'SOUTH' TO REGION-NAME ( 2 )
+"]
+	45 [label="MOVE 'EAST ' TO REGION-NAME ( 3 )
+"]
+	46 [label="MOVE 'WEST ' TO REGION-NAME ( 4 )
+"]
+	47 [label="MOVE 1 TO REGION-SUB
+"]
+	48 [label="PERFORM 9300-INITIALIZE-REGION-TABLE UNTIL REGION-SUB > 4
+"]
+	50 [label="SET HOLD-IX TO 1
+"]
+	58 [label="ACCEPT TODAYS-DATE FROM DATE
+"]
+	59 [label="CALL 'CWKTDATE' USING END-OF-MONTH-SW YRS-OF-SERVICE TODAYS-DATE WA-EMP-HIRE-DATE
+"]
+	59 -> 37 [label="sequential next"]
+	58 -> 59 [label="sequential next"]
+	50 -> 58 [label="sequential next"]
+	48 -> 50 [label="perform-exit"]
+	51 [label="9300-INITIALIZE-REGION-TABLE .
+ 
+"]
+	52 [label="MOVE SPACES TO REGION-MANAGER ( REGION-SUB )
+"]
+	53 [label="MOVE SPACES TO REGION-COMMENT ( REGION-SUB )
+"]
+	54 [label="MOVE 0 TO REGION-SALARY ( REGION-SUB )
+"]
+	55 [label="MOVE 0 TO REGION-SALES ( REGION-SUB )
+"]
+	56 [label="ADD 1 TO REGION-SUB
+"]
+	56 -> 48 [label="sequential next"]
+	55 -> 56 [label="sequential next"]
+	54 -> 55 [label="sequential next"]
+	53 -> 54 [label="sequential next"]
+	52 -> 53 [label="sequential next"]
+	51 -> 52 [label="sequential next"]
+	48 -> 51 [label="procedure call"]
+	47 -> 48 [label="sequential next"]
+	46 -> 47 [label="sequential next"]
+	45 -> 46 [label="sequential next"]
+	44 -> 45 [label="sequential next"]
+	43 -> 44 [label="sequential next"]
+	42 -> 43 [label="sequential next"]
+	37 -> 42 [label="procedure call"]
+	10 -> 37 [label=true]
+	10 -> 38 [label="outside-if"]
+	4 -> 10 [label="perform-exit"]
+	11 [label="9100-CHECK-PARM .
+ 
+"]
+	12 [label="IF PARM-LTH = 5
+" shape=diamond]
+	13 [label="IF PARM-DATA IS NUMERIC
+" shape=diamond]
+	16 [label="MOVE PARM-DATA TO START-NUMBER
+"]
+	17 [label="END-IF
+"]
+	14 [label="END-IF
+"]
+	14 -> 4 [label="sequential next"]
+	17 -> 14 [label="sequential next"]
+	16 -> 17 [label="sequential next"]
+	13 -> 16 [label=true]
+	18 [label="PERFORM 9800-BAD-PARM
+"]
+	22 [label="9800-BAD-PARM .
+ 
+"]
+	23 [label="MOVE 'Y' TO PARM-ERROR-SW
+"]
+	24 [label="MOVE '   PARAMETER LENGTH OR DATA IS INCORRECT   ' TO ERROR-LINE
+"]
+	25 [label="WRITE REPORT-RECORD FROM ERROR-LINE
+"]
+	30 [label="PERFORM 9800-BAD-PARM
+"]
+	30 -> 22 [label="procedure call"]
+	29 [label="END-IF
+"]
+	29 -> 14 [label="sequential next"]
+	30 -> 29 [label="perform-exit"]
+	25 -> 30 [label=backward]
+	25 -> 18 [label="sequential next"]
+	24 -> 25 [label="sequential next"]
+	23 -> 24 [label="sequential next"]
+	22 -> 23 [label="sequential next"]
+	18 -> 22 [label="procedure call"]
+	18 -> 17 [label="perform-exit"]
+	13 -> 18 [label=false]
+	12 -> 13 [label=true]
+	15 [label="IF PARM-LTH = 0
+" shape=diamond]
+	28 [label="MOVE 1 TO START-NUMBER
+"]
+	28 -> 29 [label="sequential next"]
+	15 -> 28 [label=true]
+	15 -> 30 [label=false]
+	12 -> 15 [label=false]
+	11 -> 12 [label="sequential next"]
+	4 -> 11 [label="procedure call"]
+	2 -> 4 [label="perform-exit"]
+	5 [label="9000-OPEN .
+ 
+"]
+	6 [label="OPEN INPUT EMPLOYEE-FILE
+"]
+	7 [label="OPEN OUTPUT REPORT-FILE
+"]
+	7 -> 2 [label="sequential next"]
+	6 -> 7 [label="sequential next"]
+	5 -> 6 [label="sequential next"]
+	2 -> 5 [label="procedure call"]
+	1 -> 2 [label="sequential next"]
+}

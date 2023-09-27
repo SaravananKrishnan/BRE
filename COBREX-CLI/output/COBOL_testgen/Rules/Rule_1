@@ -1,0 +1,16 @@
+digraph cluster0 {
+	"AU testgen AU 78 78 678" [label="perform 002-genfield1"]
+	"AU testgen AU 44 5 679" [label="002-genfield1 .
+ 
+string 'Foo' x'00' delimited by size into buffer
+call 'csvgen_putfield' using by value csvhandle by reference buffer returning bool"]
+	"PC testgen PC 52 52 138" [label="if failure"]
+	"AU testgen AU 65 65 676" [label="display 'Cannot begin row.'"]
+	"AU testgen AU 0 0 677" [label="END-IF"]
+	"AU testgen AU 0 0 677" -> "AU testgen AU 78 78 678" [label="sequential next"]
+	"AU testgen AU 65 65 676" -> "AU testgen AU 0 0 677" [label="sequential next"]
+	"PC testgen PC 52 52 138" -> "AU testgen AU 65 65 676" [label=true]
+	"PC testgen PC 52 52 138" -> "AU testgen AU 0 0 677" [label="outside-if"]
+	"AU testgen AU 44 5 679" -> "PC testgen PC 52 52 138" [label="sequential next"]
+	"AU testgen AU 78 78 678" -> "AU testgen AU 44 5 679" [label="procedure call"]
+}

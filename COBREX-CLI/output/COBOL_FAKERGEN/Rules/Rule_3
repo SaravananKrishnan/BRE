@@ -1,0 +1,9 @@
+digraph cluster2 {
+	"AU FAKERGEN AU 433 436 2822" [label="SUB-9100-WRITE-GNRTFILE .
+ 
+WRITE GNRTFILE-REC"]
+	"AU FAKERGEN AU 438 439 2823" [label="SUB-9100-EXIT .
+ 
+EXIT"]
+	"AU FAKERGEN AU 433 436 2822" -> "AU FAKERGEN AU 438 439 2823" [label="sequential next"]
+}

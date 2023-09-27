@@ -1,0 +1,8 @@
+digraph cluster0 {
+	"PC worker PC 48 48 150" [label="IF PLAYER-CHOICE = COMPUTER-CHOICE"]
+	"AU worker AU 49 49 762" [label="MOVE \"tie\" TO RESULT"]
+	"AU worker AU 56 56 763" [label="END-IF"]
+	"AU worker AU 49 49 762" -> "AU worker AU 56 56 763" [label="sequential next"]
+	"PC worker PC 48 48 150" -> "AU worker AU 49 49 762" [label=true]
+	"PC worker PC 48 48 150" -> "AU worker AU 56 56 763" [label="outside-if"]
+}

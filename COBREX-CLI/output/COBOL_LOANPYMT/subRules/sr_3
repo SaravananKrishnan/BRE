@@ -1,0 +1,9 @@
+digraph cluster2 {
+	"PC LOANPYMT PC 105 105 24" [label="if present-value > max-val"]
+	"AU LOANPYMT AU 106 108 211" [label="display quantity-too-much
+display spaces
+go to present-value-data-entry"]
+	"PC LOANPYMT PC 105 105 24" -> "AU LOANPYMT AU 106 108 211" [label=true]
+	"AU LOANPYMT AU 0 35 212" [label="END-IF"]
+	"PC LOANPYMT PC 105 105 24" -> "AU LOANPYMT AU 0 35 212" [label="outside-if"]
+}

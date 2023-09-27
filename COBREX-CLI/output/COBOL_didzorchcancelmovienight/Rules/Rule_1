@@ -1,0 +1,7 @@
+digraph cluster0 {
+	"AU didzorchcancelmovienight AU 0 0 600" [label=Begin]
+	"AU didzorchcancelmovienight AU 17 18 601" [label="START-HERE .
+ 
+ACCEPT TODAY FROM DAY-OF-WEEK"]
+	"AU didzorchcancelmovienight AU 0 0 600" -> "AU didzorchcancelmovienight AU 17 18 601" [label=start]
+}

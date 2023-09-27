@@ -1,0 +1,112 @@
+digraph {
+	"AU didzorchcancelmovienight AU 0 0 600" [label=Begin]
+	"AU didzorchcancelmovienight AU 0 0 600" -> "AU didzorchcancelmovienight AU 17 18 601" [label=start]
+	"AU didzorchcancelmovienight AU 17 18 601" [label="START-HERE .
+ 
+ACCEPT TODAY FROM DAY-OF-WEEK"]
+	subgraph "Node 97" {
+	}
+	"AU didzorchcancelmovienight AU 0 0 600" -> "PC didzorchcancelmovienight PC 20 20 126" [label="sequential next"]
+	"PC didzorchcancelmovienight PC 20 20 126" [label="IF TODAY EQUAL 6"]
+	subgraph "Node 98" {
+	}
+	"PC didzorchcancelmovienight PC 20 20 126" -> "AU didzorchcancelmovienight AU 21 22 603" [label=true]
+	"AU didzorchcancelmovienight AU 21 22 603" [label="DISPLAY \"It is saturday!\"
+DISPLAY \"Should there be a movie night? (y/n)\""]
+	subgraph "Node 99" {
+	}
+	"AU didzorchcancelmovienight AU 21 22 603" -> "AU didzorchcancelmovienight AU 23 23 604" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 23 23 604" [label="PERFORM RECEIVE-USER-USER-INPUT"]
+	subgraph "Node 100" {
+	}
+	"AU didzorchcancelmovienight AU 23 23 604" -> "PC didzorchcancelmovienight PC 24 24 122" [label="perform-exit"]
+	"PC didzorchcancelmovienight PC 24 24 122" [label="IF INPUT-RESULT IS NOT EQUAL SPACE AND LOW-VALUE"]
+	"PC didzorchcancelmovienight PC 24 24 122" -> "AU didzorchcancelmovienight AU 25 25 591" [label=true]
+	"PC didzorchcancelmovienight PC 24 24 122" -> "AU didzorchcancelmovienight AU 33 33 592" [label="outside-if"]
+	"AU didzorchcancelmovienight AU 33 33 592" [label="END-IF"]
+	"AU didzorchcancelmovienight AU 25 25 591" [label="MOVE INPUT-RESULT TO ISMOVIENIGHT"]
+	"AU didzorchcancelmovienight AU 25 25 591" -> "AU didzorchcancelmovienight AU 33 33 592" [label="sequential next"]
+	subgraph "Node 101" {
+	}
+	"PC didzorchcancelmovienight PC 24 24 122" -> "PC didzorchcancelmovienight PC 28 28 127" [label="sequential next"]
+	"PC didzorchcancelmovienight PC 28 28 127" [label="IF ISMOVIENIGHT EQUAL 'y'"]
+	subgraph "Node 102" {
+	}
+	"PC didzorchcancelmovienight PC 28 28 127" -> "AU didzorchcancelmovienight AU 29 29 605" [label=true]
+	"AU didzorchcancelmovienight AU 29 29 605" [label="DISPLAY \"Was ist cancelled? (y/n)\""]
+	subgraph "Node 103" {
+	}
+	"AU didzorchcancelmovienight AU 29 29 605" -> "AU didzorchcancelmovienight AU 30 30 606" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 30 30 606" [label="PERFORM RECEIVE-USER-USER-INPUT"]
+	subgraph "Node 104" {
+	}
+	"AU didzorchcancelmovienight AU 30 30 606" -> "PC didzorchcancelmovienight PC 31 31 123" [label="perform-exit"]
+	"PC didzorchcancelmovienight PC 31 31 123" [label="IF INPUT-RESULT IS NOT EQUAL SPACE AND LOW-VALUE"]
+	"PC didzorchcancelmovienight PC 31 31 123" -> "AU didzorchcancelmovienight AU 32 32 593" [label=true]
+	"PC didzorchcancelmovienight PC 31 31 123" -> "AU didzorchcancelmovienight AU 39 39 594" [label="outside-if"]
+	"AU didzorchcancelmovienight AU 39 39 594" [label="END-IF"]
+	"AU didzorchcancelmovienight AU 32 32 593" [label="MOVE INPUT-RESULT TO ISCANCELLED"]
+	"AU didzorchcancelmovienight AU 32 32 593" -> "AU didzorchcancelmovienight AU 39 39 594" [label="sequential next"]
+	subgraph "Node 105" {
+	}
+	"PC didzorchcancelmovienight PC 31 31 123" -> "PC didzorchcancelmovienight PC 35 35 124" [label="sequential next"]
+	"PC didzorchcancelmovienight PC 35 35 124" [label="IF ISCANCELLED EQUAL 'y'"]
+	"PC didzorchcancelmovienight PC 35 35 124" -> "AU didzorchcancelmovienight AU 36 36 595" [label=true]
+	"PC didzorchcancelmovienight PC 35 35 124" -> "AU didzorchcancelmovienight AU 38 38 597" [label=false]
+	"AU didzorchcancelmovienight AU 38 38 597" [label="DISPLAY \"See ya at movie night! :)\""]
+	"AU didzorchcancelmovienight AU 38 38 597" -> "AU didzorchcancelmovienight AU 43 43 596" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 43 43 596" [label="END-IF"]
+	"AU didzorchcancelmovienight AU 36 36 595" [label="DISPLAY \"NOT AGAIN, ZORCH! >:(\""]
+	"AU didzorchcancelmovienight AU 36 36 595" -> "AU didzorchcancelmovienight AU 43 43 596" [label="sequential next"]
+	subgraph "Node 106" {
+	}
+	"PC didzorchcancelmovienight PC 35 35 124" -> "AU didzorchcancelmovienight AU 47 47 607" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 47 47 607" [label="END-IF"]
+	subgraph "Node 107" {
+	}
+	"AU didzorchcancelmovienight AU 47 47 607" -> "AU didzorchcancelmovienight AU 57 57 608" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 57 57 608" [label="END-IF"]
+	subgraph "Node 108" {
+	}
+	"AU didzorchcancelmovienight AU 57 57 608" -> "AU didzorchcancelmovienight AU 48 48 609" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 48 48 609" [label="STOP RUN"]
+	subgraph "Node 109" {
+	}
+	"AU didzorchcancelmovienight AU 30 30 606" -> "AU didzorchcancelmovienight AU 50 54 602" [label="procedure call"]
+	"AU didzorchcancelmovienight AU 50 54 602" [label="RECEIVE-USER-USER-INPUT .
+ 
+MOVE SPACE TO USER-INPUT
+MOVE SPACE TO INPUT-RESULT
+ACCEPT USER-INPUT
+MOVE FUNCTION LOWER-CASE ( USER-INPUT ) TO USER-INPUT"]
+	"AU didzorchcancelmovienight AU 50 54 602" -> "PC didzorchcancelmovienight PC 55 55 125" [label="sequential next"]
+	"PC didzorchcancelmovienight PC 55 55 125" [label="IF USER-INPUT IS NOT EQUAL 'y'"]
+	"PC didzorchcancelmovienight PC 55 55 125" -> "AU didzorchcancelmovienight AU 56 56 598" [label=true]
+	"PC didzorchcancelmovienight PC 55 55 125" -> "AU didzorchcancelmovienight AU 26 26 599" [label="outside-if"]
+	"AU didzorchcancelmovienight AU 26 26 599" [label="END-IF"]
+	"AU didzorchcancelmovienight AU 56 56 598" [label="MOVE USER-INPUT TO INPUT-RESULT"]
+	"AU didzorchcancelmovienight AU 56 56 598" -> "AU didzorchcancelmovienight AU 26 26 599" [label="sequential next"]
+	subgraph "Node 110" {
+	}
+	"AU didzorchcancelmovienight AU 50 54 602" -> "AU didzorchcancelmovienight AU 58 58 610" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 58 58 610" [label=EXIT]
+	subgraph "Node 111" {
+	}
+	"AU didzorchcancelmovienight AU 58 58 610" -> "AU didzorchcancelmovienight AU 30 30 606" [label=backward]
+	"AU didzorchcancelmovienight AU 58 58 610" -> "AU didzorchcancelmovienight AU 23 23 604" [label="sequential next"]
+	"PC didzorchcancelmovienight PC 28 28 127" -> "AU didzorchcancelmovienight AU 41 42 611" [label=false]
+	"AU didzorchcancelmovienight AU 41 42 611" [label="DISPLAY \"Then there is no movie night!\"
+DISPLAY \"Try again next saturday!\""]
+	subgraph "Node 112" {
+	}
+	"AU didzorchcancelmovienight AU 41 42 611" -> "AU didzorchcancelmovienight AU 47 47 607" [label="sequential next"]
+	"AU didzorchcancelmovienight AU 23 23 604" -> "AU didzorchcancelmovienight AU 50 54 602" [label="procedure call"]
+	"PC didzorchcancelmovienight PC 20 20 126" -> "AU didzorchcancelmovienight AU 45 46 612" [label=false]
+	"AU didzorchcancelmovienight AU 45 46 612" [label="DISPLAY \"It is not saturday!\"
+DISPLAY \"Try again tomorrow!\""]
+	subgraph "Node 113" {
+	}
+	"AU didzorchcancelmovienight AU 45 46 612" -> "AU didzorchcancelmovienight AU 57 57 608" [label="sequential next"]
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}

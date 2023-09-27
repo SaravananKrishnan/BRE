@@ -1,0 +1,9 @@
+digraph cluster6 {
+	"PC LOANPYMT PC 138 138 28" [label="if annual-interest IS LESS THAN ZERO"]
+	"AU LOANPYMT AU 139 141 220" [label="display interest-too-small
+display spaces
+go to interest-rate-data-entry"]
+	"PC LOANPYMT PC 138 138 28" -> "AU LOANPYMT AU 139 141 220" [label=true]
+	"AU LOANPYMT AU 0 40 221" [label="END-IF"]
+	"PC LOANPYMT PC 138 138 28" -> "AU LOANPYMT AU 0 40 221" [label="outside-if"]
+}

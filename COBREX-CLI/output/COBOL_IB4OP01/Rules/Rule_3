@@ -1,0 +1,7 @@
+digraph cluster2 {
+	"PC IB4OP01 PC 334 334 570" [label="IF TI-TRAN = 'UB'"]
+	"PC IB4OP01 PC 335 335 571" [label="IF TB-PO-QTY-X NOT = SPACE"]
+	"PC IB4OP01 PC 334 334 570" -> "PC IB4OP01 PC 335 335 571" [label=true]
+	"AU IB4OP01 AU 341 341 3620" [label="END-IF"]
+	"PC IB4OP01 PC 334 334 570" -> "AU IB4OP01 AU 341 341 3620" [label="outside-if"]
+}

@@ -1,0 +1,12 @@
+digraph cluster4 {
+	"AU testgen AU 68 3 685" [label="003-genline .
+ 
+call 'csvgen_beginrow' using by value csvhandle returning bool"]
+	"PC testgen PC 36 36 135" [label="if failure"]
+	"AU testgen AU 53 53 670" [label="display 'Cannot begin row.'"]
+	"AU testgen AU 0 0 671" [label="END-IF"]
+	"AU testgen AU 53 53 670" -> "AU testgen AU 0 0 671" [label="sequential next"]
+	"PC testgen PC 36 36 135" -> "AU testgen AU 53 53 670" [label=true]
+	"PC testgen PC 36 36 135" -> "AU testgen AU 0 0 671" [label="outside-if"]
+	"AU testgen AU 68 3 685" -> "PC testgen PC 36 36 135" [label="sequential next"]
+}

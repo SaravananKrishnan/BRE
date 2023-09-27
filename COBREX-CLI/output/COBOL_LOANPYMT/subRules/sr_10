@@ -1,0 +1,7 @@
+digraph cluster9 {
+	"PC LOANPYMT PC 164 164 31" [label="if annual-term IS EQUAL ZERO"]
+	"AU LOANPYMT AU 165 165 227" [label="go to end-program"]
+	"PC LOANPYMT PC 164 164 31" -> "AU LOANPYMT AU 165 165 227" [label=true]
+	"AU LOANPYMT AU 0 46 228" [label="END-IF"]
+	"PC LOANPYMT PC 164 164 31" -> "AU LOANPYMT AU 0 46 228" [label="outside-if"]
+}

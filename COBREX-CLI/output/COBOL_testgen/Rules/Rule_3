@@ -1,0 +1,8 @@
+digraph cluster2 {
+	"AU testgen AU 0 0 682" [label=Begin]
+	"AU testgen AU 20 2 683" [label="001-open .
+ 
+string 'generated.csv' x'00' delimited by size into filename
+call 'csvgen_createfile' using by reference csvhandle by reference filename by value 2 returning bool"]
+	"AU testgen AU 0 0 682" -> "AU testgen AU 20 2 683" [label=start]
+}

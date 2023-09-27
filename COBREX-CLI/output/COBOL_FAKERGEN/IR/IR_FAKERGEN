@@ -1,0 +1,147 @@
+digraph cluster {
+	"FAKERGEN AU 0 0 2766" [label=Begin fillcolor=lightblue style=filled]
+	"FAKERGEN AU 276 276 2767" [label="MAIN .
+ " fillcolor=lightblue style=filled]
+	"FAKERGEN AU 279 279 2768" [label="PERFORM SUB-1000-START-UP THRU SUB-1000-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 281 8 2769" [label="PERFORM SUB-2000-PROCESS THRU SUB-2000-EXIT 1000 TIMES" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 284 284 2770" [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 286 287 2771" [label="MAIN-EXIT .
+ 
+STOP RUN" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 419 428 2772" [label="SUB-3000-SHUT-DOWN .
+ 
+CLOSE GNRTFILE
+MOVE W-GNRTFILE-RECS TO W-DISP-NUM
+DISPLAY 'GNRTFILE records written: ' W-DISP-NUM
+DISPLAY 'FAKERGEN completed'" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 430 431 2773" [label="SUB-3000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 308 319 2774" [label="SUB-2000-PROCESS .
+ 
+ADD 1 TO W-GNRTFILE-RECS
+MOVE SPACES TO GNRTFILE-REC
+MOVE W-GNRTFILE-RECS TO W-SEED-REC-NO
+MOVE W-SEED-TEXT TO FAKER-SEED-TEXT
+SET TAXID-SSN-HYPHEN TO TRUE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 321 321 2775" [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN PC 323 323 449" [label="IF FAKER-RESPONSE-GOOD" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 324 324 2776" [label="MOVE FAKER-RESULT TO G-TAXID-SSN" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 327 327 2777" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 331 331 2778" [label="SET PERSON-NAME TO TRUE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 333 333 2779" [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN PC 335 335 450" [label="IF FAKER-RESPONSE-GOOD" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 336 19 2780" [label="MOVE FAKER-PERSON-PREFIX TO G-PERSON-PREFIX
+MOVE FAKER-PERSON-FIRST-NAME TO G-PERSON-FIRST-NAME
+MOVE FAKER-PERSON-LAST-NAME TO G-PERSON-LAST-NAME
+MOVE FAKER-PERSON-SUFFIX TO G-PERSON-SUFFIX" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 347 347 2781" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 351 351 2782" [label="SET ADDRESS-ADDRESS TO TRUE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 353 353 2783" [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN PC 355 355 451" [label="IF FAKER-RESPONSE-GOOD" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 356 2 2784" [label="MOVE FAKER-ADDRESS-STREET TO G-ADDRESS-STREET
+MOVE FAKER-ADDRESS-CITY TO G-ADDRESS-CITY
+MOVE FAKER-ADDRESS-STATE TO G-ADDRESS-STATE
+MOVE FAKER-ADDRESS-POSTCODE TO G-ADDRESS-POSTCODE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 367 367 2785" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 371 371 2786" [label="SET TELEPHONE TO TRUE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 373 373 2787" [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN PC 375 375 452" [label="IF FAKER-RESPONSE-GOOD" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 376 42 2788" [label="MOVE FAKER-TELEPHONE-AREA-CODE TO G-TELEPHONE-AREA-CODE
+MOVE FAKER-TELEPHONE-PREFIX TO G-TELEPHONE-PREFIX
+MOVE FAKER-TELEPHONE-SUFFIX TO G-TELEPHONE-SUFFIX
+MOVE FAKER-TELEPHONE-EXTENSION TO G-TELEPHONE-EXTENSION" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 387 387 2789" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 389 389 2790" [label="PERFORM SUB-9100-WRITE-GNRTFILE THRU SUB-9100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 433 436 2791" [label="SUB-9100-WRITE-GNRTFILE .
+ 
+WRITE GNRTFILE-REC" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 438 439 2792" [label="SUB-9100-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 391 392 2793" [label="SUB-2000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 385 33 2794" [label="MOVE FAKER-RESPONSE-MSG TO G-TELEPHONE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 394 397 2795" [label="SUB-2100-CALL-FAKER .
+ 
+CALL W-FAKER-PROG USING W-FAKER-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKERGEN PC 399 399 448" [label="IF NOT FAKER-RESPONSE-GOOD" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 400 36 2796" [label="DISPLAY W-ERROR-MSG FAKER-RESPONSE-CODE ' - ' FAKER-RESPONSE-MSG" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 416 417 2797" [label="SUB-2100-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 404 404 2798" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 365 20 2799" [label="MOVE FAKER-RESPONSE-MSG TO G-ADDRESS" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 345 22 2800" [label="MOVE FAKER-RESPONSE-MSG TO G-PERSON" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 326 326 2801" [label="MOVE 'ERROR' TO G-TAXID-SSN" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 289 303 2802" [label="SUB-1000-START-UP .
+ 
+MOVE FUNCTION WHEN-COMPILED TO W-COMPILED-DATE
+DISPLAY 'FAKERGEN compiled on ' W-COMPILED-DATE-YYYY '/' W-COMPILED-DATE-MM '/' W-COMPILED-DATE-DD ' at ' W-COMPILED-TIME-HH ':' W-COMPILED-TIME-MM ':' W-COMPILED-TIME-SS
+OPEN OUTPUT GNRTFILE" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 305 306 2803" [label="SUB-1000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERGEN AU 284 284 2770" -> "FAKERGEN AU 286 287 2771" [label="perform-exit"]
+	"FAKERGEN AU 430 431 2773" -> "FAKERGEN AU 284 284 2770" [label="procedure backward call"]
+	"FAKERGEN AU 419 428 2772" -> "FAKERGEN AU 430 431 2773" [label="sequential next"]
+	"FAKERGEN AU 284 284 2770" -> "FAKERGEN AU 419 428 2772" [label="procedure call"]
+	"FAKERGEN AU 281 8 2769" -> "FAKERGEN AU 284 284 2770" [label="perform-exit"]
+	"FAKERGEN AU 438 439 2792" -> "FAKERGEN AU 389 389 2790" [label="procedure backward call"]
+	"FAKERGEN AU 433 436 2791" -> "FAKERGEN AU 438 439 2792" [label="sequential next"]
+	"FAKERGEN AU 389 389 2790" -> "FAKERGEN AU 433 436 2791" [label="procedure call"]
+	"FAKERGEN AU 391 392 2793" -> "FAKERGEN AU 281 8 2769" [label="procedure backward call"]
+	"FAKERGEN AU 389 389 2790" -> "FAKERGEN AU 391 392 2793" [label="sequential next"]
+	"FAKERGEN AU 387 387 2789" -> "FAKERGEN AU 389 389 2790" [label="sequential next"]
+	"FAKERGEN AU 376 42 2788" -> "FAKERGEN AU 387 387 2789" [label="sequential next"]
+	"FAKERGEN PC 375 375 452" -> "FAKERGEN AU 376 42 2788" [label=true]
+	"FAKERGEN AU 385 33 2794" -> "FAKERGEN AU 387 387 2789" [label="sequential next"]
+	"FAKERGEN PC 375 375 452" -> "FAKERGEN AU 385 33 2794" [label=false]
+	"FAKERGEN AU 373 373 2787" -> "FAKERGEN PC 375 375 452" [label="perform-exit"]
+	"FAKERGEN AU 416 417 2797" -> "FAKERGEN AU 321 321 2775" [label="procedure backward call"]
+	"FAKERGEN AU 416 417 2797" -> "FAKERGEN AU 333 333 2779" [label="procedure backward call"]
+	"FAKERGEN AU 416 417 2797" -> "FAKERGEN AU 353 353 2783" [label="procedure backward call"]
+	"FAKERGEN AU 416 417 2797" -> "FAKERGEN AU 373 373 2787" [label="procedure backward call"]
+	"FAKERGEN AU 400 36 2796" -> "FAKERGEN AU 416 417 2797" [label="sequential next"]
+	"FAKERGEN AU 400 36 2796" -> "FAKERGEN AU 416 417 2797" [label="sequential next"]
+	"FAKERGEN AU 400 36 2796" -> "FAKERGEN AU 416 417 2797" [label="sequential next"]
+	"FAKERGEN AU 400 36 2796" -> "FAKERGEN AU 416 417 2797" [label="sequential next"]
+	"FAKERGEN AU 400 36 2796" -> "FAKERGEN AU 404 404 2798" [label="sequential next"]
+	"FAKERGEN PC 399 399 448" -> "FAKERGEN AU 400 36 2796" [label=true]
+	"FAKERGEN PC 399 399 448" -> "FAKERGEN AU 404 404 2798" [label="outside-if"]
+	"FAKERGEN AU 394 397 2795" -> "FAKERGEN PC 399 399 448" [label="sequential next"]
+	"FAKERGEN AU 373 373 2787" -> "FAKERGEN AU 394 397 2795" [label="procedure call"]
+	"FAKERGEN AU 371 371 2786" -> "FAKERGEN AU 373 373 2787" [label="sequential next"]
+	"FAKERGEN AU 367 367 2785" -> "FAKERGEN AU 371 371 2786" [label="sequential next"]
+	"FAKERGEN AU 356 2 2784" -> "FAKERGEN AU 367 367 2785" [label="sequential next"]
+	"FAKERGEN PC 355 355 451" -> "FAKERGEN AU 356 2 2784" [label=true]
+	"FAKERGEN AU 365 20 2799" -> "FAKERGEN AU 367 367 2785" [label="sequential next"]
+	"FAKERGEN PC 355 355 451" -> "FAKERGEN AU 365 20 2799" [label=false]
+	"FAKERGEN AU 353 353 2783" -> "FAKERGEN PC 355 355 451" [label="perform-exit"]
+	"FAKERGEN AU 353 353 2783" -> "FAKERGEN AU 394 397 2795" [label="procedure call"]
+	"FAKERGEN AU 351 351 2782" -> "FAKERGEN AU 353 353 2783" [label="sequential next"]
+	"FAKERGEN AU 347 347 2781" -> "FAKERGEN AU 351 351 2782" [label="sequential next"]
+	"FAKERGEN AU 336 19 2780" -> "FAKERGEN AU 347 347 2781" [label="sequential next"]
+	"FAKERGEN PC 335 335 450" -> "FAKERGEN AU 336 19 2780" [label=true]
+	"FAKERGEN AU 345 22 2800" -> "FAKERGEN AU 347 347 2781" [label="sequential next"]
+	"FAKERGEN PC 335 335 450" -> "FAKERGEN AU 345 22 2800" [label=false]
+	"FAKERGEN AU 333 333 2779" -> "FAKERGEN PC 335 335 450" [label="perform-exit"]
+	"FAKERGEN AU 333 333 2779" -> "FAKERGEN AU 394 397 2795" [label="procedure call"]
+	"FAKERGEN AU 331 331 2778" -> "FAKERGEN AU 333 333 2779" [label="sequential next"]
+	"FAKERGEN AU 327 327 2777" -> "FAKERGEN AU 331 331 2778" [label="sequential next"]
+	"FAKERGEN AU 324 324 2776" -> "FAKERGEN AU 327 327 2777" [label="sequential next"]
+	"FAKERGEN PC 323 323 449" -> "FAKERGEN AU 324 324 2776" [label=true]
+	"FAKERGEN AU 326 326 2801" -> "FAKERGEN AU 327 327 2777" [label="sequential next"]
+	"FAKERGEN PC 323 323 449" -> "FAKERGEN AU 326 326 2801" [label=false]
+	"FAKERGEN AU 321 321 2775" -> "FAKERGEN PC 323 323 449" [label="perform-exit"]
+	"FAKERGEN AU 321 321 2775" -> "FAKERGEN AU 394 397 2795" [label="procedure call"]
+	"FAKERGEN AU 308 319 2774" -> "FAKERGEN AU 321 321 2775" [label="sequential next"]
+	"FAKERGEN AU 281 8 2769" -> "FAKERGEN AU 308 319 2774" [label="procedure call"]
+	"FAKERGEN AU 279 279 2768" -> "FAKERGEN AU 281 8 2769" [label="perform-exit"]
+	"FAKERGEN AU 305 306 2803" -> "FAKERGEN AU 279 279 2768" [label="procedure backward call"]
+	"FAKERGEN AU 289 303 2802" -> "FAKERGEN AU 305 306 2803" [label="sequential next"]
+	"FAKERGEN AU 279 279 2768" -> "FAKERGEN AU 289 303 2802" [label="procedure call"]
+	"FAKERGEN AU 276 276 2767" -> "FAKERGEN AU 279 279 2768" [label="sequential next"]
+	"FAKERGEN AU 0 0 2766" -> "FAKERGEN AU 276 276 2767" [label=start]
+}

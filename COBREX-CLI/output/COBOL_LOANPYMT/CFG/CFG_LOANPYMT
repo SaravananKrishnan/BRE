@@ -1,0 +1,323 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="display-title-screen .
+ 
+"]
+	2 [label="display spaces
+"]
+	3 [label="display \"* MONTHLY LOAN PAYMENT CALCULATOR UTILITY BEGINS *\"
+"]
+	4 [label="display \"Written by, Clifford A. Chipman, EMIT\"
+"]
+	5 [label="display \"June 18, 2020\"
+"]
+	6 [label="display spaces
+"]
+	7 [label="display \"in Enterprise COBOL v6.3 for z/OS\"
+"]
+	8 [label="display spaces
+"]
+	9 [label="display \"Enter zero for any parameter to end the program.\"
+"]
+	10 [label="display spaces
+"]
+	11 [label="present-value-data-entry .
+ 
+"]
+	12 [label="display \"Enter principal $: \" with no advancing
+"]
+	13 [label="accept pv-in
+"]
+	14 [label="if function test-numval ( pv-in ) IS NOT EQUAL ZERO
+" shape=diamond]
+	15 [label="display \"Principal\" not-numeric
+"]
+	18 [label="display spaces
+"]
+	19 [label="go to present-value-data-entry
+"]
+	19 -> 11 [label="procedure call"]
+	18 -> 19 [label="sequential next"]
+	15 -> 18 [label="sequential next"]
+	14 -> 15 [label=true]
+	17 [label="compute present-value = function numval ( pv-in )
+"]
+	16 [label="END-IF
+"]
+	22 [label="if present-value IS EQUAL ZERO
+" shape=diamond]
+	23 [label="go to end-program
+"]
+	121 [label="end-program .
+ 
+"]
+	122 [label="display spaces
+"]
+	123 [label="display \"** MONTHLY LOAN PAYMENT CALCULATOR UTILITY ENDS **\"
+"]
+	124 [label="display spaces
+"]
+	125 [label="stop run
+"]
+	124 -> 125 [label="sequential next"]
+	123 -> 124 [label="sequential next"]
+	122 -> 123 [label="sequential next"]
+	121 -> 122 [label="sequential next"]
+	23 -> 121 [label="procedure call"]
+	22 -> 23 [label=true]
+	24 [label="END-IF
+"]
+	27 [label="if present-value > max-val
+" shape=diamond]
+	28 [label="display quantity-too-much
+"]
+	31 [label="display spaces
+"]
+	32 [label="go to present-value-data-entry
+"]
+	32 -> 11 [label="procedure call"]
+	31 -> 32 [label="sequential next"]
+	28 -> 31 [label="sequential next"]
+	27 -> 28 [label=true]
+	29 [label="END-IF
+"]
+	34 [label="if present-value < min-val
+" shape=diamond]
+	35 [label="display quantity-too-small
+"]
+	38 [label="display spaces
+"]
+	39 [label="go to present-value-data-entry
+"]
+	39 -> 11 [label="procedure call"]
+	38 -> 39 [label="sequential next"]
+	35 -> 38 [label="sequential next"]
+	34 -> 35 [label=true]
+	36 [label="END-IF
+"]
+	41 [label="move present-value to pv-out
+"]
+	42 [label="interest-rate-data-entry .
+ 
+"]
+	43 [label="display \"Enter annual interest rate %: \" with no advancing
+"]
+	44 [label="accept int-in
+"]
+	45 [label="if function test-numval ( int-in ) IS NOT EQUAL ZERO
+" shape=diamond]
+	46 [label="display \"Interest Rate\" not-numeric
+"]
+	49 [label="display spaces
+"]
+	50 [label="go to interest-rate-data-entry
+"]
+	50 -> 42 [label="procedure call"]
+	49 -> 50 [label="sequential next"]
+	46 -> 49 [label="sequential next"]
+	45 -> 46 [label=true]
+	48 [label="compute annual-interest = function numval ( int-in )
+"]
+	47 [label="END-IF
+"]
+	53 [label="if annual-interest > max-int
+" shape=diamond]
+	54 [label="display interest-too-much
+"]
+	57 [label="display spaces
+"]
+	58 [label="go to interest-rate-data-entry
+"]
+	58 -> 42 [label="procedure call"]
+	57 -> 58 [label="sequential next"]
+	54 -> 57 [label="sequential next"]
+	53 -> 54 [label=true]
+	55 [label="END-IF
+"]
+	60 [label="if annual-interest IS LESS THAN ZERO
+" shape=diamond]
+	61 [label="display interest-too-small
+"]
+	64 [label="display spaces
+"]
+	65 [label="go to interest-rate-data-entry
+"]
+	65 -> 42 [label="procedure call"]
+	64 -> 65 [label="sequential next"]
+	61 -> 64 [label="sequential next"]
+	60 -> 61 [label=true]
+	62 [label="END-IF
+"]
+	67 [label="if annual-interest IS EQUAL ZERO
+" shape=diamond]
+	68 [label="go to end-program
+"]
+	68 -> 121 [label="procedure call"]
+	67 -> 68 [label=true]
+	69 [label="END-IF
+"]
+	72 [label="move annual-interest to interest-rate
+"]
+	73 [label="divide annual-interest by 100 giving annual-interest
+"]
+	74 [label="term-data-entry .
+ 
+"]
+	75 [label="display \"Enter term in years: \" with no advancing
+"]
+	76 [label="accept term-in
+"]
+	77 [label="if function test-numval ( term-in ) IS NOT EQUAL ZERO
+" shape=diamond]
+	78 [label="display \"Term\" not-numeric
+"]
+	81 [label="display spaces
+"]
+	82 [label="go to term-data-entry
+"]
+	82 -> 74 [label="procedure call"]
+	81 -> 82 [label="sequential next"]
+	78 -> 81 [label="sequential next"]
+	77 -> 78 [label=true]
+	80 [label="compute annual-term = function numval ( term-in )
+"]
+	79 [label="END-IF
+"]
+	85 [label="if annual-term IS EQUAL ZERO
+" shape=diamond]
+	86 [label="go to end-program
+"]
+	86 -> 121 [label="procedure call"]
+	85 -> 86 [label=true]
+	87 [label="END-IF
+"]
+	90 [label="if annual-term > max-term
+" shape=diamond]
+	91 [label="display term-too-long
+"]
+	94 [label="display spaces
+"]
+	95 [label="go to term-data-entry
+"]
+	95 -> 74 [label="procedure call"]
+	94 -> 95 [label="sequential next"]
+	91 -> 94 [label="sequential next"]
+	90 -> 91 [label=true]
+	92 [label="END-IF
+"]
+	97 [label="if annual-term < min-term
+" shape=diamond]
+	98 [label="display term-too-short
+"]
+	101 [label="display spaces
+"]
+	102 [label="go to term-data-entry
+"]
+	102 -> 74 [label="procedure call"]
+	101 -> 102 [label="sequential next"]
+	98 -> 101 [label="sequential next"]
+	97 -> 98 [label=true]
+	99 [label="END-IF
+"]
+	104 [label="move annual-term to term-out
+"]
+	105 [label="calculate-it .
+ 
+"]
+	106 [label="multiply annual-term by 12 giving LOAN-TERM-MONTHS
+"]
+	107 [label="divide annual-interest by 12 giving MONTHLY-INTEREST
+"]
+	108 [label="compute denominator = ( 1 + monthly-interest ) ** loan-term-months - 1
+"]
+	109 [label="compute numerator = monthly-interest * ( 1 + monthly-interest ) ** loan-term-months
+"]
+	110 [label="compute ANNUAL-WORTH = present-value * ( numerator / denominator )
+"]
+	111 [label="multiply annual-worth by loan-term-months giving total-cost
+"]
+	112 [label="move total-cost to total-cost-out
+"]
+	113 [label="move annual-worth to aw-out
+"]
+	114 [label="move loan-term-months to months-out
+"]
+	115 [label="display spaces
+"]
+	116 [label="display \"Principal: \" pv-out
+"]
+	117 [label="display \"Interest Rate: \" interest-rate \"%\"
+"]
+	118 [label="display \"Term: \" term-out \" years (\" months-out \" months )\"
+"]
+	119 [label="display \"Monthly Payment: \" aw-out
+"]
+	120 [label="display \"Total Cost of Loan Payments: \" total-cost-out
+"]
+	120 -> 121 [label="sequential next"]
+	119 -> 120 [label="sequential next"]
+	118 -> 119 [label="sequential next"]
+	117 -> 118 [label="sequential next"]
+	116 -> 117 [label="sequential next"]
+	115 -> 116 [label="sequential next"]
+	114 -> 115 [label="sequential next"]
+	113 -> 114 [label="sequential next"]
+	112 -> 113 [label="sequential next"]
+	111 -> 112 [label="sequential next"]
+	110 -> 111 [label="sequential next"]
+	109 -> 110 [label="sequential next"]
+	108 -> 109 [label="sequential next"]
+	107 -> 108 [label="sequential next"]
+	106 -> 107 [label="sequential next"]
+	105 -> 106 [label="sequential next"]
+	104 -> 105 [label="sequential next"]
+	99 -> 104 [label="sequential next"]
+	97 -> 99 [label="outside-if"]
+	92 -> 97 [label="sequential next"]
+	90 -> 92 [label="outside-if"]
+	87 -> 90 [label="sequential next"]
+	85 -> 87 [label="outside-if"]
+	79 -> 85 [label="sequential next"]
+	80 -> 79 [label="sequential next"]
+	77 -> 80 [label=false]
+	76 -> 77 [label="sequential next"]
+	75 -> 76 [label="sequential next"]
+	74 -> 75 [label="sequential next"]
+	73 -> 74 [label="sequential next"]
+	72 -> 73 [label="sequential next"]
+	69 -> 72 [label="sequential next"]
+	67 -> 69 [label="outside-if"]
+	62 -> 67 [label="sequential next"]
+	60 -> 62 [label="outside-if"]
+	55 -> 60 [label="sequential next"]
+	53 -> 55 [label="outside-if"]
+	47 -> 53 [label="sequential next"]
+	48 -> 47 [label="sequential next"]
+	45 -> 48 [label=false]
+	44 -> 45 [label="sequential next"]
+	43 -> 44 [label="sequential next"]
+	42 -> 43 [label="sequential next"]
+	41 -> 42 [label="sequential next"]
+	36 -> 41 [label="sequential next"]
+	34 -> 36 [label="outside-if"]
+	29 -> 34 [label="sequential next"]
+	27 -> 29 [label="outside-if"]
+	24 -> 27 [label="sequential next"]
+	22 -> 24 [label="outside-if"]
+	16 -> 22 [label="sequential next"]
+	17 -> 16 [label="sequential next"]
+	14 -> 17 [label=false]
+	13 -> 14 [label="sequential next"]
+	12 -> 13 [label="sequential next"]
+	11 -> 12 [label="sequential next"]
+	10 -> 11 [label="sequential next"]
+	9 -> 10 [label="sequential next"]
+	8 -> 9 [label="sequential next"]
+	7 -> 8 [label="sequential next"]
+	6 -> 7 [label="sequential next"]
+	5 -> 6 [label="sequential next"]
+	4 -> 5 [label="sequential next"]
+	3 -> 4 [label="sequential next"]
+	2 -> 3 [label="sequential next"]
+	1 -> 2 [label="sequential next"]
+}

@@ -1,0 +1,11 @@
+digraph cluster0 {
+	"AU FAKCOMP AU 522 522 2619" [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT"]
+	"AU FAKCOMP AU 718 718 2620" [label="SUB-3000-SHUT-DOWN .
+ "]
+	"AU FAKCOMP AU 733 734 2621" [label="SUB-3000-EXIT .
+ 
+EXIT"]
+	"AU FAKCOMP AU 733 734 2621" -> "AU FAKCOMP AU 522 522 2619" [label="procedure backward call"]
+	"AU FAKCOMP AU 718 718 2620" -> "AU FAKCOMP AU 733 734 2621" [label="sequential next"]
+	"AU FAKCOMP AU 522 522 2619" -> "AU FAKCOMP AU 718 718 2620" [label="procedure call"]
+}

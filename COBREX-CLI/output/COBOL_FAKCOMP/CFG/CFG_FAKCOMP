@@ -1,0 +1,644 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="MAIN .
+ 
+"]
+	2 [label="PERFORM SUB-1000-START-UP THRU SUB-1000-EXIT
+"]
+	4 [label="PERFORM SUB-2000-PROCESS THRU SUB-2000-EXIT
+"]
+	6 [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT
+"]
+	8 [label="MAIN-EXIT .
+ 
+"]
+	9 [label=GOBACK
+]
+	8 -> 9 [label="sequential next"]
+	6 -> 8 [label="perform-exit"]
+	139 [label="SUB-3000-SHUT-DOWN .
+ 
+"]
+	141 [label="SUB-3000-EXIT .
+ 
+"]
+	142 [label=EXIT
+]
+	142 -> 6 [label="procedure backward call"]
+	141 -> 142 [label="sequential next"]
+	139 -> 141 [label="sequential next"]
+	6 -> 139 [label="procedure call"]
+	4 -> 6 [label="perform-exit"]
+	34 [label="SUB-2000-PROCESS .
+ 
+"]
+	35 [label="MOVE 0 TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	36 [label="MOVE LOW-VALUES TO FAKER-INFO-OCCS IN L-PARAMETER
+"]
+	37 [label="EVALUATE TRUE
+" shape=diamond]
+	39 [label="WHEN COMPANY-COMPANY IN L-PARAMETER
+" shape=diamond]
+	40 [label="PERFORM SUB-9010-COMPANY THRU SUB-9010-EXIT
+"]
+	182 [label="SUB-9010-COMPANY .
+ 
+"]
+	183 [label="MOVE 'FORMATS-COMPANY' TO W-TABLE-1
+"]
+	184 [label="SET ADDRESS OF L-FORMAT-TABLE-1 TO ADDRESS OF FORMATS-COMPANY
+"]
+	186 [label="SUB-9010-EXIT .
+ 
+"]
+	187 [label=EXIT
+]
+	187 -> 40 [label="procedure backward call"]
+	186 -> 187 [label="sequential next"]
+	184 -> 186 [label="sequential next"]
+	183 -> 184 [label="sequential next"]
+	182 -> 183 [label="sequential next"]
+	40 -> 182 [label="procedure call"]
+	38 [label="END-EVALUATE
+"]
+	53 [label="ADD 1 TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	54 [label="SET FI-DX TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	55 [label="MOVE W-TABLE-1 TO FAKER-TABLE IN L-PARAMETER ( FI-DX )
+"]
+	56 [label="IF W-TABLE-1 ( 1 : 8 ) = 'FORMATS-'
+" shape=diamond]
+	57 [label="PERFORM SUB-2100-FORMAT THRU SUB-2100-EXIT
+"]
+	61 [label="IF NOT FAKER-RESPONSE-GOOD IN L-PARAMETER
+" shape=diamond]
+	62 [label="GO TO SUB-2000-EXIT
+"]
+	71 [label="SUB-2000-EXIT .
+ 
+"]
+	72 [label=EXIT
+]
+	72 -> 4 [label="procedure backward call"]
+	71 -> 72 [label="sequential next"]
+	62 -> 71 [label="procedure call"]
+	61 -> 62 [label=true]
+	63 [label="END-IF
+"]
+	58 [label="END-IF
+"]
+	63 -> 58 [label="sequential next"]
+	61 -> 63 [label="outside-if"]
+	57 -> 61 [label="perform-exit"]
+	74 [label="SUB-2100-FORMAT .
+ 
+"]
+	75 [label="PERFORM SUB-9700-FIND-RANDOM-FORMAT THRU SUB-9700-EXIT
+"]
+	77 [label="MOVE W-FAKER-FORMAT TO W-RECURSED-FORMAT
+"]
+	78 [label="MOVE 1 TO W-SUB-1
+"]
+	79 [label="PERFORM SUB-2110-RECURSE-FORMATS THRU SUB-2110-EXIT UNTIL W-SUB-1 > LENGTH OF W-RECURSED-FORMAT OR NOT FAKER-RESPONSE-GOOD IN L-PARAMETER
+"]
+	81 [label="IF NOT FAKER-RESPONSE-GOOD IN L-PARAMETER
+" shape=diamond]
+	82 [label="GO TO SUB-2100-EXIT
+"]
+	91 [label="SUB-2100-EXIT .
+ 
+"]
+	92 [label=EXIT
+]
+	92 -> 57 [label="procedure backward call"]
+	91 -> 92 [label="sequential next"]
+	82 -> 91 [label="procedure call"]
+	81 -> 82 [label=true]
+	83 [label="END-IF
+"]
+	86 [label="MOVE SPACES TO FAKER-RESULT IN L-PARAMETER
+"]
+	87 [label="MOVE 1 TO W-SUB-1 W-SUB-2
+"]
+	88 [label="PERFORM SUB-2120-PROCESS-FORMATS THRU SUB-2120-EXIT UNTIL W-SUB-1 > LENGTH OF W-RECURSED-FORMAT OR W-SUB-2 > LENGTH OF FAKER-RESULT IN L-PARAMETER OR W-RECURSED-FORMAT ( W-SUB-1 : ) = SPACES
+"]
+	123 [label="SUB-2120-PROCESS-FORMATS .
+ 
+"]
+	124 [label="IF W-RECURSED-FORMAT-CHAR ( W-SUB-1 ) = W-FORMAT-START
+" shape=diamond]
+	125 [label="ADD 1 TO W-SUB-1
+"]
+	128 [label="UNSTRING W-RECURSED-FORMAT DELIMITED W-FORMAT-END INTO W-FORMAT-ENTRY POINTER W-SUB-1
+"]
+	129 [label="PERFORM SUB-9000-EXAMINE-FIND-FORMAT THRU SUB-9000-EXIT
+"]
+	131 [label="STRING W-FAKER-RESULT DELIMITED '  ' INTO FAKER-RESULT IN L-PARAMETER POINTER W-SUB-2
+"]
+	126 [label="END-IF
+"]
+	131 -> 126 [label="sequential next"]
+	129 -> 131 [label="perform-exit"]
+	144 [label="SUB-9000-EXAMINE-FIND-FORMAT .
+ 
+"]
+	145 [label="EVALUATE W-FORMAT-ENTRY
+" shape=diamond]
+	147 [label="WHEN 'CS'
+" shape=diamond]
+	148 [label="PERFORM SUB-9020-SUFFIX THRU SUB-9020-EXIT
+"]
+	189 [label="SUB-9020-SUFFIX .
+ 
+"]
+	190 [label="MOVE 'COMPANY-SUFFIXES' TO W-TABLE-1
+"]
+	191 [label="SET ADDRESS OF L-COMPANY-TABLE-1 TO ADDRESS OF COMPANY-SUFFIXES
+"]
+	193 [label="SUB-9020-EXIT .
+ 
+"]
+	194 [label=EXIT
+]
+	45 [label="PERFORM SUB-9020-SUFFIX THRU SUB-9020-EXIT
+"]
+	45 -> 189 [label="procedure call"]
+	45 -> 38 [label="perform-exit"]
+	194 -> 45 [label="procedure backward call"]
+	194 -> 148 [label="procedure backward call"]
+	193 -> 194 [label="sequential next"]
+	191 -> 193 [label="sequential next"]
+	191 -> 193 [label="sequential next"]
+	190 -> 191 [label="sequential next"]
+	189 -> 190 [label="sequential next"]
+	148 -> 189 [label="procedure call"]
+	146 [label="END-EVALUATE
+"]
+	162 [label="ADD 1 TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	163 [label="SET FI-DX TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	164 [label="MOVE W-TABLE-1 TO FAKER-TABLE IN L-PARAMETER ( FI-DX )
+"]
+	165 [label="EVALUATE TRUE
+" shape=diamond]
+	167 [label="WHEN W-TABLE-1 ( 1 : 8 ) = 'FORMATS-'
+" shape=diamond]
+	168 [label="PERFORM SUB-9700-FIND-RANDOM-FORMAT THRU SUB-9700-EXIT
+"]
+	204 [label="SUB-9700-FIND-RANDOM-FORMAT .
+ 
+"]
+	205 [label="PERFORM SUB-9901-CALL-FAKRAND
+"]
+	207 [label="IF W-TABLE-2 = SPACES
+" shape=diamond]
+	212 [label="COMPUTE W-RANDOM-NO = FAKRAND-RANDOM-NO * L-FORMAT-WEIGHT-TOT-1
+"]
+	213 [label="END-IF
+"]
+	217 [label="MOVE W-RANDOM-NO TO FAKER-RANDOM-NO-SUB IN L-PARAMETER ( FI-DX )
+"]
+	218 [label="MOVE 0 TO W-FOUND-DX
+"]
+	219 [label="PERFORM SUB-9710-FIND-FORMAT THRU SUB-9710-EXIT VARYING L-F-DX-1 FROM 1 BY 1 UNTIL W-FOUND-DX > 0 OR L-F-DX-1 > L-FORMAT-ENTRY-CNT-1
+"]
+	221 [label="EVALUATE TRUE
+" shape=diamond]
+	223 [label="WHEN W-FOUND-DX > 0
+" shape=diamond]
+	224 [label="MOVE L-FORMAT-ENTRY-1 ( W-FOUND-DX ) TO W-FAKER-FORMAT
+"]
+	222 [label="END-EVALUATE
+"]
+	224 -> 222 [label="sequential next"]
+	223 -> 224 [label=true]
+	221 -> 223 [label="evaluate when"]
+	227 [label="WHEN W-TABLE-2 NOT = SPACES
+" shape=diamond]
+	228 [label="ADD 1 TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	230 [label="SET FI-DX TO FAKER-INFO-CNT IN L-PARAMETER
+"]
+	231 [label="MOVE W-TABLE-2 TO FAKER-TABLE IN L-PARAMETER ( FI-DX )
+"]
+	232 [label="MOVE W-RANDOM-NO TO FAKER-RANDOM-NO-SUB IN L-PARAMETER ( FI-DX )
+"]
+	233 [label="MOVE 0 TO W-FOUND-DX
+"]
+	234 [label="PERFORM SUB-9720-FIND-FORMAT THRU SUB-9720-EXIT VARYING L-F-DX-2 FROM 1 BY 1 UNTIL W-FOUND-DX > 0 OR L-F-DX-2 > L-FORMAT-ENTRY-CNT-2
+"]
+	236 [label="IF W-FOUND-DX > 0
+" shape=diamond]
+	237 [label="MOVE L-FORMAT-ENTRY-2 ( W-FOUND-DX ) TO W-FAKER-FORMAT
+"]
+	238 [label="END-IF
+"]
+	238 -> 222 [label="sequential next"]
+	237 -> 238 [label="sequential next"]
+	236 -> 237 [label=true]
+	239 [label="MOVE 'Random format not found' TO W-FAKER-FORMAT
+"]
+	239 -> 238 [label="sequential next"]
+	236 -> 239 [label=false]
+	234 -> 236 [label="perform-exit"]
+	260 [label="SUB-9720-FIND-FORMAT .
+ 
+"]
+	261 [label="IF W-RANDOM-NO <= L-FORMAT-WEIGHT-2 ( L-F-DX-2 )
+" shape=diamond]
+	262 [label="SET W-FOUND-DX TO L-F-DX-2
+"]
+	265 [label="MOVE W-FOUND-DX TO FAKER-TABLE-ENTRY IN L-PARAMETER ( FI-DX )
+"]
+	263 [label="END-IF
+"]
+	265 -> 263 [label="sequential next"]
+	262 -> 265 [label="sequential next"]
+	261 -> 262 [label=true]
+	264 [label="SUBTRACT L-FORMAT-WEIGHT-2 ( L-F-DX-2 ) FROM W-RANDOM-NO
+"]
+	269 [label="SUB-9720-EXIT .
+ 
+"]
+	270 [label=EXIT
+]
+	270 -> 234 [label="procedure backward call"]
+	269 -> 270 [label="sequential next"]
+	264 -> 269 [label="sequential next"]
+	264 -> 263 [label="sequential next"]
+	261 -> 264 [label=false]
+	260 -> 261 [label="sequential next"]
+	234 -> 260 [label="procedure call"]
+	233 -> 234 [label="sequential next"]
+	232 -> 233 [label="sequential next"]
+	231 -> 232 [label="sequential next"]
+	230 -> 231 [label="sequential next"]
+	228 -> 230 [label="sequential next"]
+	227 -> 228 [label=true]
+	221 -> 227 [label="evaluate when"]
+	243 [label="MOVE 'Random format not found' TO W-FAKER-FORMAT
+"]
+	243 -> 222 [label="sequential next"]
+	221 -> 243 [label=false]
+	219 -> 221 [label="perform-exit"]
+	248 [label="SUB-9710-FIND-FORMAT .
+ 
+"]
+	249 [label="IF W-RANDOM-NO <= L-FORMAT-WEIGHT-1 ( L-F-DX-1 )
+" shape=diamond]
+	250 [label="SET W-FOUND-DX TO L-F-DX-1
+"]
+	253 [label="MOVE W-FOUND-DX TO FAKER-TABLE-ENTRY IN L-PARAMETER ( FI-DX )
+"]
+	251 [label="END-IF
+"]
+	253 -> 251 [label="sequential next"]
+	250 -> 253 [label="sequential next"]
+	249 -> 250 [label=true]
+	252 [label="SUBTRACT L-FORMAT-WEIGHT-1 ( L-F-DX-1 ) FROM W-RANDOM-NO
+"]
+	257 [label="SUB-9710-EXIT .
+ 
+"]
+	258 [label=EXIT
+]
+	258 -> 219 [label="procedure backward call"]
+	257 -> 258 [label="sequential next"]
+	252 -> 257 [label="sequential next"]
+	252 -> 251 [label="sequential next"]
+	249 -> 252 [label=false]
+	248 -> 249 [label="sequential next"]
+	219 -> 248 [label="procedure call"]
+	218 -> 219 [label="sequential next"]
+	217 -> 218 [label="sequential next"]
+	213 -> 217 [label="sequential next"]
+	212 -> 213 [label="sequential next"]
+	207 -> 212 [label=true]
+	214 [label="COMPUTE W-RANDOM-NO = FAKRAND-RANDOM-NO * ( L-FORMAT-WEIGHT-TOT-1 + L-FORMAT-WEIGHT-TOT-2 )
+"]
+	214 -> 213 [label="sequential next"]
+	207 -> 214 [label=false]
+	205 -> 207 [label="perform-exit"]
+	208 [label="SUB-9901-CALL-FAKRAND .
+ 
+"]
+	209 [label="CALL W-FAKRAND-PROG USING W-FAKRAND-PARAMETER
+"]
+	283 [label="SUB-9901-EXIT .
+ 
+"]
+	284 [label=EXIT
+]
+	273 [label="PERFORM SUB-9901-CALL-FAKRAND THRU SUB-9901-EXIT
+"]
+	275 [label="COMPUTE W-RANDOM-SUB = FAKRAND-RANDOM-NO * L-COMPANY-ENTRY-CNT-1 + 1
+"]
+	276 [label="MOVE W-RANDOM-SUB TO FAKER-RANDOM-NO-SUB IN L-PARAMETER ( FI-DX ) W-FOUND-DX FAKER-TABLE-ENTRY IN L-PARAMETER ( FI-DX )
+"]
+	277 [label="MOVE L-COMPANY-ENTRY-1 ( W-FOUND-DX ) TO W-FAKER-RESULT
+"]
+	279 [label="SUB-9800-EXIT .
+ 
+"]
+	280 [label=EXIT
+]
+	59 [label="PERFORM SUB-9800-FIND-RANDOM-COMPANY THRU SUB-9800-EXIT
+"]
+	68 [label="MOVE W-FAKER-RESULT TO FAKER-RESULT IN L-PARAMETER
+"]
+	68 -> 71 [label="sequential next"]
+	68 -> 58 [label="sequential next"]
+	59 -> 68 [label="perform-exit"]
+	272 [label="SUB-9800-FIND-RANDOM-COMPANY .
+ 
+"]
+	272 -> 273 [label="sequential next"]
+	59 -> 272 [label="procedure call"]
+	280 -> 59 [label="procedure backward call"]
+	176 [label="PERFORM SUB-9800-FIND-RANDOM-COMPANY THRU SUB-9800-EXIT
+"]
+	176 -> 272 [label="procedure call"]
+	179 [label="SUB-9000-EXIT .
+ 
+"]
+	180 [label=EXIT
+]
+	109 [label="PERFORM SUB-9000-EXAMINE-FIND-FORMAT THRU SUB-9000-EXIT
+"]
+	111 [label="IF NOT FAKER-RESPONSE-GOOD IN L-PARAMETER
+" shape=diamond]
+	112 [label="GO TO SUB-2110-EXIT
+"]
+	120 [label="SUB-2110-EXIT .
+ 
+"]
+	121 [label=EXIT
+]
+	121 -> 79 [label="procedure backward call"]
+	120 -> 121 [label="sequential next"]
+	112 -> 120 [label="procedure call"]
+	111 -> 112 [label=true]
+	113 [label="END-IF
+"]
+	116 [label="STRING W-FAKER-FORMAT DELIMITED '  ' INTO W-RECURSED-FORMAT POINTER W-SUB-1-SAVE
+"]
+	117 [label="MOVE W-RECURSED-FORMAT-REST TO W-RECURSED-FORMAT ( W-SUB-1-SAVE : )
+"]
+	117 -> 120 [label="sequential next"]
+	106 [label="END-IF
+"]
+	117 -> 106 [label="sequential next"]
+	116 -> 117 [label="sequential next"]
+	113 -> 116 [label="sequential next"]
+	111 -> 113 [label="outside-if"]
+	109 -> 111 [label="perform-exit"]
+	109 -> 144 [label="procedure call"]
+	180 -> 109 [label="procedure backward call"]
+	180 -> 129 [label="procedure backward call"]
+	179 -> 180 [label="sequential next"]
+	176 -> 179 [label="sequential next"]
+	176 -> 179 [label="sequential next"]
+	166 [label="END-EVALUATE
+"]
+	176 -> 166 [label="perform-exit"]
+	280 -> 176 [label="procedure backward call"]
+	279 -> 280 [label="sequential next"]
+	277 -> 279 [label="sequential next"]
+	277 -> 279 [label="sequential next"]
+	276 -> 277 [label="sequential next"]
+	275 -> 276 [label="sequential next"]
+	273 -> 275 [label="perform-exit"]
+	273 -> 208 [label="procedure call"]
+	284 -> 273 [label="procedure backward call"]
+	283 -> 284 [label="sequential next"]
+	209 -> 283 [label="sequential next"]
+	208 -> 209 [label="sequential next"]
+	205 -> 208 [label="procedure call"]
+	245 [label="SUB-9700-EXIT .
+ 
+"]
+	246 [label=EXIT
+]
+	246 -> 75 [label="procedure backward call"]
+	246 -> 168 [label="procedure backward call"]
+	245 -> 246 [label="sequential next"]
+	205 -> 245 [label="sequential next"]
+	205 -> 245 [label="sequential next"]
+	204 -> 205 [label="sequential next"]
+	168 -> 204 [label="procedure call"]
+	168 -> 166 [label="perform-exit"]
+	167 -> 168 [label=true]
+	165 -> 167 [label="evaluate when"]
+	172 [label="WHEN W-TABLE-1 = 'FIRST-NAME' OR 'LAST-NAME'
+" shape=diamond]
+	173 [label="MOVE FAKER-RESULT IN W-FAKER-PARAMETER TO W-FAKER-RESULT
+"]
+	173 -> 166 [label="sequential next"]
+	172 -> 173 [label=true]
+	165 -> 172 [label="evaluate when"]
+	165 -> 176 [label=false]
+	164 -> 165 [label="sequential next"]
+	163 -> 164 [label="sequential next"]
+	162 -> 163 [label="sequential next"]
+	146 -> 162 [label="sequential next"]
+	148 -> 146 [label="perform-exit"]
+	147 -> 148 [label=true]
+	145 -> 147 [label="evaluate when"]
+	152 [label="WHEN 'LN'
+" shape=diamond]
+	153 [label="PERFORM SUB-9200-LAST-NAME THRU SUB-9200-EXIT
+"]
+	196 [label="SUB-9200-LAST-NAME .
+ 
+"]
+	197 [label="MOVE 'LAST-NAME' TO W-TABLE-1
+"]
+	198 [label="SET PERSON-LAST-NAME IN W-FAKER-PARAMETER TO TRUE
+"]
+	199 [label="CALL W-FAKPERS-PROG USING W-FAKER-PARAMETER
+"]
+	201 [label="SUB-9200-EXIT .
+ 
+"]
+	202 [label=EXIT
+]
+	202 -> 153 [label="procedure backward call"]
+	201 -> 202 [label="sequential next"]
+	199 -> 201 [label="sequential next"]
+	198 -> 199 [label="sequential next"]
+	197 -> 198 [label="sequential next"]
+	196 -> 197 [label="sequential next"]
+	153 -> 196 [label="procedure call"]
+	153 -> 146 [label="perform-exit"]
+	152 -> 153 [label=true]
+	145 -> 152 [label="evaluate when"]
+	157 [label="MOVE SPACES TO W-TABLE-1
+"]
+	158 [label="SET FAKER-UNKNOWN-FORMAT IN L-PARAMETER TO TRUE
+"]
+	159 [label="STRING 'Unknown FAKCOMP format \"' W-FORMAT-ENTRY '\"' DELIMITED SIZE INTO FAKER-RESPONSE-MSG IN L-PARAMETER
+"]
+	160 [label="GO TO SUB-9000-EXIT
+"]
+	160 -> 179 [label="procedure call"]
+	159 -> 160 [label="sequential next"]
+	158 -> 159 [label="sequential next"]
+	157 -> 158 [label="sequential next"]
+	145 -> 157 [label=false]
+	144 -> 145 [label="sequential next"]
+	129 -> 144 [label="procedure call"]
+	128 -> 129 [label="sequential next"]
+	125 -> 128 [label="sequential next"]
+	124 -> 125 [label=true]
+	127 [label="MOVE W-RECURSED-FORMAT-CHAR ( W-SUB-1 ) TO FAKER-RESULT IN L-PARAMETER ( W-SUB-2 : 1 )
+"]
+	133 [label="ADD 1 TO W-SUB-1 W-SUB-2
+"]
+	136 [label="SUB-2120-EXIT .
+ 
+"]
+	137 [label=EXIT
+]
+	137 -> 88 [label="procedure backward call"]
+	136 -> 137 [label="sequential next"]
+	133 -> 136 [label="sequential next"]
+	133 -> 126 [label="sequential next"]
+	127 -> 133 [label="sequential next"]
+	124 -> 127 [label=false]
+	123 -> 124 [label="sequential next"]
+	88 -> 123 [label="procedure call"]
+	88 -> 91 [label="sequential next"]
+	87 -> 88 [label="sequential next"]
+	86 -> 87 [label="sequential next"]
+	83 -> 86 [label="sequential next"]
+	81 -> 83 [label="outside-if"]
+	79 -> 81 [label="perform-exit"]
+	94 [label="SUB-2110-RECURSE-FORMATS .
+ 
+"]
+	95 [label="IF W-RECURSED-FORMAT-CHAR ( W-SUB-1 ) NOT = W-FORMAT-START
+" shape=diamond]
+	96 [label="ADD 1 TO W-SUB-1
+"]
+	99 [label="GO TO SUB-2110-EXIT
+"]
+	99 -> 120 [label="procedure call"]
+	96 -> 99 [label="sequential next"]
+	95 -> 96 [label=true]
+	97 [label="END-IF
+"]
+	101 [label="MOVE W-SUB-1 TO W-SUB-1-SAVE
+"]
+	102 [label="ADD 1 TO W-SUB-1
+"]
+	103 [label="UNSTRING W-RECURSED-FORMAT DELIMITED W-FORMAT-END INTO W-FORMAT-ENTRY POINTER W-SUB-1
+"]
+	104 [label="IF W-FORMAT-ENTRY-IS-FORMAT
+" shape=diamond]
+	105 [label="MOVE W-RECURSED-FORMAT ( W-SUB-1 : ) TO W-RECURSED-FORMAT-REST
+"]
+	108 [label="MOVE W-SUB-1-SAVE TO W-SUB-1
+"]
+	108 -> 109 [label="sequential next"]
+	105 -> 108 [label="sequential next"]
+	104 -> 105 [label=true]
+	104 -> 106 [label="outside-if"]
+	103 -> 104 [label="sequential next"]
+	102 -> 103 [label="sequential next"]
+	101 -> 102 [label="sequential next"]
+	97 -> 101 [label="sequential next"]
+	95 -> 97 [label="outside-if"]
+	94 -> 95 [label="sequential next"]
+	79 -> 94 [label="procedure call"]
+	78 -> 79 [label="sequential next"]
+	77 -> 78 [label="sequential next"]
+	75 -> 77 [label="perform-exit"]
+	75 -> 204 [label="procedure call"]
+	74 -> 75 [label="sequential next"]
+	57 -> 74 [label="procedure call"]
+	56 -> 57 [label=true]
+	56 -> 59 [label=false]
+	55 -> 56 [label="sequential next"]
+	54 -> 55 [label="sequential next"]
+	53 -> 54 [label="sequential next"]
+	38 -> 53 [label="sequential next"]
+	40 -> 38 [label="perform-exit"]
+	39 -> 40 [label=true]
+	37 -> 39 [label="evaluate when"]
+	44 [label="WHEN COMPANY-SUFFIX IN L-PARAMETER
+" shape=diamond]
+	44 -> 45 [label=true]
+	37 -> 44 [label="evaluate when"]
+	49 [label="SET FAKER-UNKNOWN-FUNCTION IN L-PARAMETER TO TRUE
+"]
+	50 [label="STRING 'Unknown FAKCOMP function \"' FAKER-PROVIDER-FUNCTION IN L-PARAMETER '\"' DELIMITED SIZE INTO FAKER-RESPONSE-MSG IN L-PARAMETER
+"]
+	51 [label="GO TO SUB-2000-EXIT
+"]
+	51 -> 71 [label="procedure call"]
+	50 -> 51 [label="sequential next"]
+	49 -> 50 [label="sequential next"]
+	37 -> 49 [label=false]
+	36 -> 37 [label="sequential next"]
+	35 -> 36 [label="sequential next"]
+	34 -> 35 [label="sequential next"]
+	4 -> 34 [label="procedure call"]
+	2 -> 4 [label="perform-exit"]
+	11 [label="SUB-1000-START-UP .
+ 
+"]
+	12 [label="IF W-NOT-FIRST-CALL
+" shape=diamond]
+	13 [label="GO TO SUB-1000-EXIT
+"]
+	23 [label="SUB-1000-EXIT .
+ 
+"]
+	24 [label=EXIT
+]
+	24 -> 2 [label="procedure backward call"]
+	23 -> 24 [label="sequential next"]
+	13 -> 23 [label="procedure call"]
+	12 -> 13 [label=true]
+	14 [label="END-IF
+"]
+	17 [label="SET W-NOT-FIRST-CALL TO TRUE
+"]
+	18 [label="MOVE FUNCTION WHEN-COMPILED TO W-COMPILED-DATE
+"]
+	19 [label="DISPLAY 'FAKCOMP  compiled on ' W-COMPILED-DATE-YYYY '/' W-COMPILED-DATE-MM '/' W-COMPILED-DATE-DD ' at ' W-COMPILED-TIME-HH ':' W-COMPILED-TIME-MM ':' W-COMPILED-TIME-SS
+"]
+	20 [label="PERFORM SUB-1100-SUM-WEIGHTS THRU SUB-1100-EXIT
+"]
+	26 [label="SUB-1100-SUM-WEIGHTS .
+ 
+"]
+	27 [label="PERFORM VARYING FC-DX FROM 1 BY 1 UNTIL FC-DX > FORMAT-COMPANY-CNT
+"]
+	28 [label="ADD FORMAT-COMPANY-WEIGHT ( FC-DX ) TO FORMAT-COMPANY-WEIGHT-TOT
+"]
+	31 [label="SUB-1100-EXIT .
+ 
+"]
+	32 [label=EXIT
+]
+	32 -> 20 [label="procedure backward call"]
+	31 -> 32 [label="sequential next"]
+	28 -> 31 [label="sequential next"]
+	28 -> 27 [label="sequential next"]
+	27 -> 28 [label=iteration]
+	26 -> 27 [label="sequential next"]
+	20 -> 26 [label="procedure call"]
+	20 -> 23 [label="sequential next"]
+	19 -> 20 [label="sequential next"]
+	18 -> 19 [label="sequential next"]
+	17 -> 18 [label="sequential next"]
+	14 -> 17 [label="sequential next"]
+	12 -> 14 [label="outside-if"]
+	11 -> 12 [label="sequential next"]
+	2 -> 11 [label="procedure call"]
+	1 -> 2 [label="sequential next"]
+}

@@ -1,0 +1,170 @@
+digraph cluster {
+	"LOANPYMT AU 0 0 169" [label=Begin fillcolor=lightblue style=filled]
+	"LOANPYMT AU 77 86 170" [label="display-title-screen .
+ 
+display spaces
+display \"* MONTHLY LOAN PAYMENT CALCULATOR UTILITY BEGINS *\"
+display \"Written by, Clifford A. Chipman, EMIT\"
+display \"June 18, 2020\"
+display spaces
+display \"in Enterprise COBOL v6.3 for z/OS\"
+display spaces
+display \"Enter zero for any parameter to end the program.\"
+display spaces" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 88 90 171" [label="present-value-data-entry .
+ 
+display \"Enter principal $: \" with no advancing
+accept pv-in" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 93 93 10" [label="if function test-numval ( pv-in ) IS NOT EQUAL ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 94 96 172" [label="display \"Principal\" not-numeric
+display spaces
+go to present-value-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 98 98 173" [label="compute present-value = function numval ( pv-in )" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 2 174" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 101 101 13" [label="if present-value IS EQUAL ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 102 102 175" [label="go to end-program" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 223 227 176" [label="end-program .
+ 
+display spaces
+display \"** MONTHLY LOAN PAYMENT CALCULATOR UTILITY ENDS **\"
+display spaces
+stop run" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 32 177" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 105 105 14" [label="if present-value > max-val" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 106 108 178" [label="display quantity-too-much
+display spaces
+go to present-value-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 35 179" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 111 111 15" [label="if present-value < min-val" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 112 114 180" [label="display quantity-too-small
+display spaces
+go to present-value-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 37 181" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 117 117 182" [label="move present-value to pv-out" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 119 121 183" [label="interest-rate-data-entry .
+ 
+display \"Enter annual interest rate %: \" with no advancing
+accept int-in" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 124 124 11" [label="if function test-numval ( int-in ) IS NOT EQUAL ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 125 127 184" [label="display \"Interest Rate\" not-numeric
+display spaces
+go to interest-rate-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 129 129 185" [label="compute annual-interest = function numval ( int-in )" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 38 186" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 132 132 16" [label="if annual-interest > max-int" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 133 135 187" [label="display interest-too-much
+display spaces
+go to interest-rate-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 39 188" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 138 138 17" [label="if annual-interest IS LESS THAN ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 139 141 189" [label="display interest-too-small
+display spaces
+go to interest-rate-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 40 190" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 144 144 18" [label="if annual-interest IS EQUAL ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 145 145 191" [label="go to end-program" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 41 192" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 148 149 193" [label="move annual-interest to interest-rate
+divide annual-interest by 100 giving annual-interest" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 151 153 194" [label="term-data-entry .
+ 
+display \"Enter term in years: \" with no advancing
+accept term-in" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 156 156 12" [label="if function test-numval ( term-in ) IS NOT EQUAL ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 157 159 195" [label="display \"Term\" not-numeric
+display spaces
+go to term-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 161 161 196" [label="compute annual-term = function numval ( term-in )" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 42 197" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 164 164 19" [label="if annual-term IS EQUAL ZERO" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 165 165 198" [label="go to end-program" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 46 199" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 168 168 20" [label="if annual-term > max-term" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 169 171 200" [label="display term-too-long
+display spaces
+go to term-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 47 201" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT PC 174 174 21" [label="if annual-term < min-term" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 175 177 202" [label="display term-too-short
+display spaces
+go to term-data-entry" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 0 48 203" [label="END-IF" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 180 180 204" [label="move annual-term to term-out" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 182 221 205" [label="calculate-it .
+ 
+multiply annual-term by 12 giving LOAN-TERM-MONTHS
+divide annual-interest by 12 giving MONTHLY-INTEREST
+compute denominator = ( 1 + monthly-interest ) ** loan-term-months - 1
+compute numerator = monthly-interest * ( 1 + monthly-interest ) ** loan-term-months
+compute ANNUAL-WORTH = present-value * ( numerator / denominator )
+multiply annual-worth by loan-term-months giving total-cost
+move total-cost to total-cost-out
+move annual-worth to aw-out
+move loan-term-months to months-out
+display spaces
+display \"Principal: \" pv-out
+display \"Interest Rate: \" interest-rate \"%\"
+display \"Term: \" term-out \" years (\" months-out \" months )\"
+display \"Monthly Payment: \" aw-out
+display \"Total Cost of Loan Payments: \" total-cost-out" fillcolor=lightblue style=filled]
+	"LOANPYMT AU 94 96 172" -> "LOANPYMT AU 88 90 171" [label="procedure call"]
+	"LOANPYMT PC 93 93 10" -> "LOANPYMT AU 94 96 172" [label=true]
+	"LOANPYMT AU 102 102 175" -> "LOANPYMT AU 223 227 176" [label="procedure call"]
+	"LOANPYMT PC 101 101 13" -> "LOANPYMT AU 102 102 175" [label=true]
+	"LOANPYMT AU 106 108 178" -> "LOANPYMT AU 88 90 171" [label="procedure call"]
+	"LOANPYMT PC 105 105 14" -> "LOANPYMT AU 106 108 178" [label=true]
+	"LOANPYMT AU 112 114 180" -> "LOANPYMT AU 88 90 171" [label="procedure call"]
+	"LOANPYMT PC 111 111 15" -> "LOANPYMT AU 112 114 180" [label=true]
+	"LOANPYMT AU 125 127 184" -> "LOANPYMT AU 119 121 183" [label="procedure call"]
+	"LOANPYMT PC 124 124 11" -> "LOANPYMT AU 125 127 184" [label=true]
+	"LOANPYMT AU 133 135 187" -> "LOANPYMT AU 119 121 183" [label="procedure call"]
+	"LOANPYMT PC 132 132 16" -> "LOANPYMT AU 133 135 187" [label=true]
+	"LOANPYMT AU 139 141 189" -> "LOANPYMT AU 119 121 183" [label="procedure call"]
+	"LOANPYMT PC 138 138 17" -> "LOANPYMT AU 139 141 189" [label=true]
+	"LOANPYMT AU 145 145 191" -> "LOANPYMT AU 223 227 176" [label="procedure call"]
+	"LOANPYMT PC 144 144 18" -> "LOANPYMT AU 145 145 191" [label=true]
+	"LOANPYMT AU 157 159 195" -> "LOANPYMT AU 151 153 194" [label="procedure call"]
+	"LOANPYMT PC 156 156 12" -> "LOANPYMT AU 157 159 195" [label=true]
+	"LOANPYMT AU 165 165 198" -> "LOANPYMT AU 223 227 176" [label="procedure call"]
+	"LOANPYMT PC 164 164 19" -> "LOANPYMT AU 165 165 198" [label=true]
+	"LOANPYMT AU 169 171 200" -> "LOANPYMT AU 151 153 194" [label="procedure call"]
+	"LOANPYMT PC 168 168 20" -> "LOANPYMT AU 169 171 200" [label=true]
+	"LOANPYMT AU 175 177 202" -> "LOANPYMT AU 151 153 194" [label="procedure call"]
+	"LOANPYMT PC 174 174 21" -> "LOANPYMT AU 175 177 202" [label=true]
+	"LOANPYMT AU 182 221 205" -> "LOANPYMT AU 223 227 176" [label="sequential next"]
+	"LOANPYMT AU 180 180 204" -> "LOANPYMT AU 182 221 205" [label="sequential next"]
+	"LOANPYMT AU 0 48 203" -> "LOANPYMT AU 180 180 204" [label="sequential next"]
+	"LOANPYMT PC 174 174 21" -> "LOANPYMT AU 0 48 203" [label="outside-if"]
+	"LOANPYMT AU 0 47 201" -> "LOANPYMT PC 174 174 21" [label="sequential next"]
+	"LOANPYMT PC 168 168 20" -> "LOANPYMT AU 0 47 201" [label="outside-if"]
+	"LOANPYMT AU 0 46 199" -> "LOANPYMT PC 168 168 20" [label="sequential next"]
+	"LOANPYMT PC 164 164 19" -> "LOANPYMT AU 0 46 199" [label="outside-if"]
+	"LOANPYMT AU 0 42 197" -> "LOANPYMT PC 164 164 19" [label="sequential next"]
+	"LOANPYMT AU 161 161 196" -> "LOANPYMT AU 0 42 197" [label="sequential next"]
+	"LOANPYMT PC 156 156 12" -> "LOANPYMT AU 161 161 196" [label=false]
+	"LOANPYMT AU 151 153 194" -> "LOANPYMT PC 156 156 12" [label="sequential next"]
+	"LOANPYMT AU 148 149 193" -> "LOANPYMT AU 151 153 194" [label="sequential next"]
+	"LOANPYMT AU 0 41 192" -> "LOANPYMT AU 148 149 193" [label="sequential next"]
+	"LOANPYMT PC 144 144 18" -> "LOANPYMT AU 0 41 192" [label="outside-if"]
+	"LOANPYMT AU 0 40 190" -> "LOANPYMT PC 144 144 18" [label="sequential next"]
+	"LOANPYMT PC 138 138 17" -> "LOANPYMT AU 0 40 190" [label="outside-if"]
+	"LOANPYMT AU 0 39 188" -> "LOANPYMT PC 138 138 17" [label="sequential next"]
+	"LOANPYMT PC 132 132 16" -> "LOANPYMT AU 0 39 188" [label="outside-if"]
+	"LOANPYMT AU 0 38 186" -> "LOANPYMT PC 132 132 16" [label="sequential next"]
+	"LOANPYMT AU 129 129 185" -> "LOANPYMT AU 0 38 186" [label="sequential next"]
+	"LOANPYMT PC 124 124 11" -> "LOANPYMT AU 129 129 185" [label=false]
+	"LOANPYMT AU 119 121 183" -> "LOANPYMT PC 124 124 11" [label="sequential next"]
+	"LOANPYMT AU 117 117 182" -> "LOANPYMT AU 119 121 183" [label="sequential next"]
+	"LOANPYMT AU 0 37 181" -> "LOANPYMT AU 117 117 182" [label="sequential next"]
+	"LOANPYMT PC 111 111 15" -> "LOANPYMT AU 0 37 181" [label="outside-if"]
+	"LOANPYMT AU 0 35 179" -> "LOANPYMT PC 111 111 15" [label="sequential next"]
+	"LOANPYMT PC 105 105 14" -> "LOANPYMT AU 0 35 179" [label="outside-if"]
+	"LOANPYMT AU 0 32 177" -> "LOANPYMT PC 105 105 14" [label="sequential next"]
+	"LOANPYMT PC 101 101 13" -> "LOANPYMT AU 0 32 177" [label="outside-if"]
+	"LOANPYMT AU 0 2 174" -> "LOANPYMT PC 101 101 13" [label="sequential next"]
+	"LOANPYMT AU 98 98 173" -> "LOANPYMT AU 0 2 174" [label="sequential next"]
+	"LOANPYMT PC 93 93 10" -> "LOANPYMT AU 98 98 173" [label=false]
+	"LOANPYMT AU 88 90 171" -> "LOANPYMT PC 93 93 10" [label="sequential next"]
+	"LOANPYMT AU 77 86 170" -> "LOANPYMT AU 88 90 171" [label="sequential next"]
+	"LOANPYMT AU 0 0 169" -> "LOANPYMT AU 77 86 170" [label=start]
+}

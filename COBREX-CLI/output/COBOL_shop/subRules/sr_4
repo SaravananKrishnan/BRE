@@ -1,0 +1,11 @@
+digraph cluster3 {
+	"PC shop PC 91 91 191" [label="IF MONEY > PR-MILK AND BAG < MAX-CAP"]
+	"AU shop AU 92 94 1040" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-MILK
+SUBTRACT 1 FROM QT-MILK"]
+	"AU shop AU 97 97 1041" [label="END-IF"]
+	"AU shop AU 92 94 1040" -> "AU shop AU 97 97 1041" [label="sequential next"]
+	"PC shop PC 91 91 191" -> "AU shop AU 92 94 1040" [label=true]
+	"AU shop AU 96 96 1042" [label="GO TO PRINT"]
+	"PC shop PC 91 91 191" -> "AU shop AU 96 96 1042" [label=false]
+}
