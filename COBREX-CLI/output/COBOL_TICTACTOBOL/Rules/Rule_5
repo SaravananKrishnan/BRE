@@ -1,5 +1,0 @@
-digraph cluster4 {
-	"AU TICTACTOBOL AU 0 0 519" [label=Begin]
-	"AU TICTACTOBOL AU 115 115 520" [label="MOVE \"X\" TO WS-PLAYER"]
-	"AU TICTACTOBOL AU 0 0 519" -> "AU TICTACTOBOL AU 115 115 520" [label=start]
-}

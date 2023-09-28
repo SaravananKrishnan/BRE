@@ -1,5 +1,0 @@
-digraph cluster0 {
-	"AU worker AU 0 0 776" [label=Begin]
-	"AU worker AU 27 27 777" [label="CALL \"get_http_form\" USING ARG-NAME RETURNING ARG-VALUE"]
-	"AU worker AU 0 0 776" -> "AU worker AU 27 27 777" [label=start]
-}

@@ -1,8 +1,0 @@
-digraph cluster0 {
-	"PC testgen PC 86 86 134" [label="if failure"]
-	"AU testgen AU 37 37 668" [label="display 'Cannot close test.csv.'"]
-	"AU testgen AU 0 0 669" [label="END-IF"]
-	"AU testgen AU 37 37 668" -> "AU testgen AU 0 0 669" [label="sequential next"]
-	"PC testgen PC 86 86 134" -> "AU testgen AU 37 37 668" [label=true]
-	"PC testgen PC 86 86 134" -> "AU testgen AU 0 0 669" [label="outside-if"]
-}

@@ -1,8 +1,0 @@
-digraph cluster3 {
-	"PC didzorchcancelmovienight PC 55 55 125" [label="IF USER-INPUT IS NOT EQUAL 'y'"]
-	"AU didzorchcancelmovienight AU 56 56 598" [label="MOVE USER-INPUT TO INPUT-RESULT"]
-	"AU didzorchcancelmovienight AU 26 26 599" [label="END-IF"]
-	"AU didzorchcancelmovienight AU 56 56 598" -> "AU didzorchcancelmovienight AU 26 26 599" [label="sequential next"]
-	"PC didzorchcancelmovienight PC 55 55 125" -> "AU didzorchcancelmovienight AU 56 56 598" [label=true]
-	"PC didzorchcancelmovienight PC 55 55 125" -> "AU didzorchcancelmovienight AU 26 26 599" [label="outside-if"]
-}

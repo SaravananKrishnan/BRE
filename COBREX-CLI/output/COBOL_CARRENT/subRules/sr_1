@@ -1,8 +1,0 @@
-digraph cluster0 {
-	"PC CARRENT PC 99 99 5" [label="IF KILOMETERS IS GREATER THAN 75 OR EQUAL TO 75"]
-	"AU CARRENT AU 100 100 50" [label="COMPUTE KILOMETERS = KILOMETERS - 75"]
-	"AU CARRENT AU 0 2 51" [label="END-IF"]
-	"AU CARRENT AU 100 100 50" -> "AU CARRENT AU 0 2 51" [label="sequential next"]
-	"PC CARRENT PC 99 99 5" -> "AU CARRENT AU 100 100 50" [label=true]
-	"PC CARRENT PC 99 99 5" -> "AU CARRENT AU 0 2 51" [label="outside-if"]
-}

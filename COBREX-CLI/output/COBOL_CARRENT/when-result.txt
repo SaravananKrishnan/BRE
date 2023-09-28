@@ -1,4 +1,0 @@
-Entire when one rule: EVALUATE CAR_TYPE
-
-Entire when one rule: EVALUATE CAR_TYPE
-
