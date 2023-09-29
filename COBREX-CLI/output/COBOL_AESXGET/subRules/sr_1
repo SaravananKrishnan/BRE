@@ -1,8 +1,0 @@
-digraph cluster0 {
-	"PC AESXGET PC 101 101 338" [label="IF FS-DAT-EOF"]
-	"AU AESXGET AU 102 102 1778" [label="MOVE 'EOF' TO LXG-STATUS"]
-	"AU AESXGET AU 161 161 1779" [label="END-IF"]
-	"AU AESXGET AU 102 102 1778" -> "AU AESXGET AU 161 161 1779" [label="sequential next"]
-	"PC AESXGET PC 101 101 338" -> "AU AESXGET AU 102 102 1778" [label=true]
-	"PC AESXGET PC 101 101 338" -> "AU AESXGET AU 161 161 1779" [label="outside-if"]
-}

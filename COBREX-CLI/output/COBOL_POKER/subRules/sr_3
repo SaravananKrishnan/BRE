@@ -1,0 +1,8 @@
+digraph cluster2 {
+	"PC POKER PC 51 51 21" [label="IF CARD-VALUE ( I ) = CARD-VALUE ( J )"]
+	"AU POKER AU 52 52 72" [label="ADD 1 TO K"]
+	"AU POKER AU 53 53 73" [label="END-IF"]
+	"AU POKER AU 52 52 72" -> "AU POKER AU 53 53 73" [label="sequential next"]
+	"PC POKER PC 51 51 21" -> "AU POKER AU 52 52 72" [label=true]
+	"PC POKER PC 51 51 21" -> "AU POKER AU 53 53 73" [label="outside-if"]
+}

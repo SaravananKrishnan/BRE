@@ -1,8 +1,0 @@
-digraph cluster21 {
-	"PC IB4OP01 PC 392 392 559" [label="IF TI-TRAN NOT = 'Q '"]
-	"AU IB4OP01 AU 393 393 3599" [label="MOVE 'GHU ' TO ACTION"]
-	"AU IB4OP01 AU 409 409 3600" [label="END-IF"]
-	"AU IB4OP01 AU 393 393 3599" -> "AU IB4OP01 AU 409 409 3600" [label="sequential next"]
-	"PC IB4OP01 PC 392 392 559" -> "AU IB4OP01 AU 393 393 3599" [label=true]
-	"PC IB4OP01 PC 392 392 559" -> "AU IB4OP01 AU 409 409 3600" [label="outside-if"]
-}

@@ -1,8 +1,0 @@
-digraph cluster13 {
-	"PC IB4OP01 PC 635 635 551" [label="IF R-CC = 'T'"]
-	"AU IB4OP01 AU 636 636 3583" [label="MOVE 0 TO ADV-LINES"]
-	"AU IB4OP01 AU 370 370 3584" [label="END-IF"]
-	"AU IB4OP01 AU 636 636 3583" -> "AU IB4OP01 AU 370 370 3584" [label="sequential next"]
-	"PC IB4OP01 PC 635 635 551" -> "AU IB4OP01 AU 636 636 3583" [label=true]
-	"PC IB4OP01 PC 635 635 551" -> "AU IB4OP01 AU 370 370 3584" [label="outside-if"]
-}

@@ -1,0 +1,11 @@
+digraph cluster0 {
+	"AU POKER AU 76 76 76" [label="PERFORM VARYING I FROM 2 BY 1 UNTIL I > 6"]
+	"PC POKER PC 77 77 19" [label="IF CARD-SUIT ( I ) NOT = CARD-SUIT ( I - 1 )"]
+	"AU POKER AU 79 79 70" [label="END-IF"]
+	"AU POKER AU 78 78 77" [label=EXIT]
+	"AU POKER AU 78 78 77" -> "AU POKER AU 76 76 76" [label="sequential next"]
+	"AU POKER AU 79 79 70" -> "AU POKER AU 78 78 77" [label="sequential next"]
+	"PC POKER PC 77 77 19" -> "AU POKER AU 79 79 70" [label="outside-if"]
+	"PC POKER PC 77 77 19" -> "AU POKER AU 79 79 70" [label=true]
+	"AU POKER AU 76 76 76" -> "PC POKER PC 77 77 19" [label=iteration]
+}

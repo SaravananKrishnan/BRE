@@ -1,0 +1,6 @@
+digraph cluster0 {
+	"PC POKER PC 77 77 19" [label="IF CARD-SUIT ( I ) NOT = CARD-SUIT ( I - 1 )"]
+	"AU POKER AU 79 79 70" [label="END-IF"]
+	"PC POKER PC 77 77 19" -> "AU POKER AU 79 79 70" [label="outside-if"]
+	"PC POKER PC 77 77 19" -> "AU POKER AU 79 79 70" [label=true]
+}

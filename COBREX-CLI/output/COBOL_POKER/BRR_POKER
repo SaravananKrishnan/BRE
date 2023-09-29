@@ -1,0 +1,239 @@
+digraph {
+	"AU POKER AU 0 0 81" [label=Begin]
+	"AU POKER AU 0 0 81" -> "AU POKER AU 24 25 82" [label=start]
+	"AU POKER AU 24 25 82" [label="MAIN-SECTION .
+ 
+ACCEPT CARD-TABLE"]
+	subgraph "Node 0" {
+	}
+	"AU POKER AU 0 0 81" -> "AU POKER AU 26 26 95" [label="sequential next"]
+	"AU POKER AU 26 26 95" [label="PERFORM SORT-CARDS"]
+	subgraph "Node 1" {
+	}
+	"AU POKER AU 26 26 95" -> "AU POKER AU 27 27 96" [label="perform-exit"]
+	"AU POKER AU 27 27 96" [label="PERFORM COUNT-HANDS"]
+	subgraph "Node 2" {
+	}
+	"AU POKER AU 27 27 96" -> "AU POKER AU 28 28 97" [label="perform-exit"]
+	"AU POKER AU 28 28 97" [label="PERFORM CHECK-STRAIGHT"]
+	subgraph "Node 3" {
+	}
+	"AU POKER AU 28 28 97" -> "AU POKER AU 29 29 98" [label="perform-exit"]
+	"AU POKER AU 29 29 98" [label="PERFORM CHECK-FLUSH"]
+	subgraph "Node 4" {
+	}
+	"AU POKER AU 29 29 98" -> "AU POKER AU 30 30 99" [label="perform-exit"]
+	"AU POKER AU 30 30 99" [label="PERFORM DETERMINE-RANKING"]
+	subgraph "Node 5" {
+	}
+	"AU POKER AU 30 30 99" -> "AU POKER AU 31 32 100" [label="perform-exit"]
+	"AU POKER AU 31 32 100" [label="DISPLAY HAND-RANKING
+STOP RUN"]
+	subgraph "Node 6" {
+	}
+	"AU POKER AU 30 30 99" -> "AU POKER AU 83 83 101" [label="procedure call"]
+	"AU POKER AU 83 83 101" [label="DETERMINE-RANKING SECTION"]
+	subgraph "Node 7" {
+	}
+	"AU POKER AU 83 83 101" -> "PC POKER PC 84 84 23" [label="sequential next"]
+	"PC POKER PC 84 84 23" [label="EVALUATE TRUE"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 85 4 24" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 88 88 25" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 90 90 26" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 92 92 27" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 94 94 28" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 96 96 29" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 98 98 30" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 100 100 31" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "PC POKER PC 102 102 32" [label="evaluate when"]
+	"PC POKER PC 84 84 23" -> "AU POKER AU 105 105 94" [label=false]
+	"AU POKER AU 105 105 94" [label="MOVE \"HIGH CARD\" TO HAND-RANKING"]
+	"PC POKER PC 102 102 32" [label="WHEN PAIR-COUNT = ONE"]
+	"PC POKER PC 102 102 32" -> "AU POKER AU 103 103 93" [label=true]
+	"AU POKER AU 103 103 93" [label="MOVE \"ONE PAIR\" TO HAND-RANKING"]
+	"PC POKER PC 100 100 31" [label="WHEN PAIR-COUNT = TWO"]
+	"PC POKER PC 100 100 31" -> "AU POKER AU 101 101 92" [label=true]
+	"AU POKER AU 101 101 92" [label="MOVE \"TWO PAIR\" TO HAND-RANKING"]
+	"PC POKER PC 98 98 30" [label="WHEN THREE-COUNT = ONE"]
+	"PC POKER PC 98 98 30" -> "AU POKER AU 99 99 91" [label=true]
+	"AU POKER AU 99 99 91" [label="MOVE \"THREE OF A KIND\" TO HAND-RANKING"]
+	"PC POKER PC 96 96 29" [label="WHEN STRAIGHT-FLAG = ONE"]
+	"PC POKER PC 96 96 29" -> "AU POKER AU 97 97 90" [label=true]
+	"AU POKER AU 97 97 90" [label="MOVE \"STRAIGHT\" TO HAND-RANKING"]
+	"PC POKER PC 94 94 28" [label="WHEN FLUSH-FLAG = ONE"]
+	"PC POKER PC 94 94 28" -> "AU POKER AU 95 95 89" [label=true]
+	"AU POKER AU 95 95 89" [label="MOVE \"FLUSH\" TO HAND-RANKING"]
+	"PC POKER PC 92 92 27" [label="WHEN THREE-COUNT = ONE AND PAIR-COUNT = ONE"]
+	"PC POKER PC 92 92 27" -> "AU POKER AU 93 93 88" [label=true]
+	"AU POKER AU 93 93 88" [label="MOVE \"FULL HOUSE\" TO HAND-RANKING"]
+	"PC POKER PC 90 90 26" [label="WHEN FOUR-COUNT = ONE"]
+	"PC POKER PC 90 90 26" -> "AU POKER AU 91 91 87" [label=true]
+	"AU POKER AU 91 91 87" [label="MOVE \"FOUR OF A KIND\" TO HAND-RANKING"]
+	"PC POKER PC 88 88 25" [label="WHEN STRAIGHT-FLAG = ONE AND FLUSH-FLAG = ONE"]
+	"PC POKER PC 88 88 25" -> "AU POKER AU 89 89 86" [label=true]
+	"AU POKER AU 89 89 86" [label="MOVE \"STRAIGHT FLUSH\" TO HAND-RANKING"]
+	"PC POKER PC 85 4 24" [label="WHEN STRAIGHT-FLAG = ONE AND FLUSH-FLAG = ONE AND CARD-VALUE ( 6 ) = \"A\""]
+	"PC POKER PC 85 4 24" -> "AU POKER AU 87 87 85" [label=true]
+	"AU POKER AU 87 87 85" [label="MOVE \"ROYAL FLUSH\" TO HAND-RANKING"]
+	subgraph "Node 8" {
+	}
+	"PC POKER PC 84 84 23" -> "AU POKER AU 30 30 99" [label=backward]
+	"AU POKER AU 29 29 98" -> "AU POKER AU 75 75 102" [label="procedure call"]
+	"AU POKER AU 75 75 102" [label="CHECK-FLUSH SECTION"]
+	subgraph "Node 9" {
+	}
+	"AU POKER AU 75 75 102" -> "AU POKER AU 76 76 76" [label="sequential next"]
+	"AU POKER AU 76 76 76" [label="PERFORM VARYING I FROM 2 BY 1 UNTIL I > 6"]
+	"AU POKER AU 76 76 76" -> "PC POKER PC 77 77 19" [label=iteration]
+	"PC POKER PC 77 77 19" [label="IF CARD-SUIT ( I ) NOT = CARD-SUIT ( I - 1 )"]
+	"PC POKER PC 77 77 19" -> "AU POKER AU 79 79 70" [label="outside-if"]
+	"PC POKER PC 77 77 19" -> "AU POKER AU 79 79 70" [label=true]
+	"AU POKER AU 79 79 70" [label="END-IF"]
+	"AU POKER AU 79 79 70" -> "AU POKER AU 78 78 77" [label="sequential next"]
+	"AU POKER AU 78 78 77" [label=EXIT]
+	"AU POKER AU 78 78 77" -> "AU POKER AU 76 76 76" [label="sequential next"]
+	subgraph "Node 10" {
+	}
+	"AU POKER AU 76 76 76" -> "AU POKER AU 81 81 103" [label="perform-exit"]
+	"AU POKER AU 81 81 103" [label="MOVE ONE TO FLUSH-FLAG"]
+	subgraph "Node 11" {
+	}
+	"AU POKER AU 81 81 103" -> "AU POKER AU 0 12 104" [label="sequential next"]
+	"AU POKER AU 0 12 104" [label="DETERMINE-RANKING SECTION"]
+	subgraph "Node 12" {
+	}
+	"AU POKER AU 81 81 103" -> "AU POKER AU 29 29 98" [label="sequential next"]
+	"AU POKER AU 28 28 97" -> "AU POKER AU 65 65 105" [label="procedure call"]
+	"AU POKER AU 65 65 105" [label="CHECK-STRAIGHT SECTION"]
+	subgraph "Node 13" {
+	}
+	"AU POKER AU 65 65 105" -> "AU POKER AU 66 66 78" [label="sequential next"]
+	"AU POKER AU 66 66 78" [label="PERFORM VARYING I FROM 2 BY 1 UNTIL I > 6"]
+	"AU POKER AU 66 66 78" -> "PC POKER PC 67 8 20" [label=iteration]
+	"PC POKER PC 67 8 20" [label="IF CARD-VALUE ( I ) NOT = CARD-VALUE ( I - 1 ) + 1 AND NOT ( CARD-VALUE ( I ) = \"A\" AND CARD-VALUE ( I - 1 ) = \"5\" )"]
+	"PC POKER PC 67 8 20" -> "AU POKER AU 71 71 71" [label="outside-if"]
+	"PC POKER PC 67 8 20" -> "AU POKER AU 71 71 71" [label=true]
+	"AU POKER AU 71 71 71" [label="END-IF"]
+	"AU POKER AU 71 71 71" -> "AU POKER AU 70 70 79" [label="sequential next"]
+	"AU POKER AU 70 70 79" [label=EXIT]
+	"AU POKER AU 70 70 79" -> "AU POKER AU 66 66 78" [label="sequential next"]
+	subgraph "Node 14" {
+	}
+	"AU POKER AU 66 66 78" -> "AU POKER AU 73 73 106" [label="perform-exit"]
+	"AU POKER AU 73 73 106" [label="MOVE ONE TO STRAIGHT-FLAG"]
+	subgraph "Node 15" {
+	}
+	"AU POKER AU 73 73 106" -> "AU POKER AU 0 11 107" [label="sequential next"]
+	"AU POKER AU 0 11 107" [label="CHECK-FLUSH SECTION"]
+	subgraph "Node 16" {
+	}
+	"AU POKER AU 73 73 106" -> "AU POKER AU 28 28 97" [label="sequential next"]
+	"AU POKER AU 27 27 96" -> "AU POKER AU 48 48 108" [label="procedure call"]
+	"AU POKER AU 48 48 108" [label="COUNT-HANDS SECTION"]
+	subgraph "Node 17" {
+	}
+	"AU POKER AU 48 48 108" -> "AU POKER AU 49 49 109" [label="sequential next"]
+	"AU POKER AU 49 49 109" [label="PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5"]
+	subgraph "Node 18" {
+	}
+	"AU POKER AU 49 49 109" -> "AU POKER AU 50 50 80" [label=iteration]
+	"AU POKER AU 50 50 80" [label="PERFORM VARYING J FROM I + 1 BY 1 UNTIL J > 6"]
+	"AU POKER AU 50 50 80" -> "PC POKER PC 51 51 21" [label=iteration]
+	"PC POKER PC 51 51 21" [label="IF CARD-VALUE ( I ) = CARD-VALUE ( J )"]
+	"PC POKER PC 51 51 21" -> "AU POKER AU 52 52 72" [label=true]
+	"PC POKER PC 51 51 21" -> "AU POKER AU 53 53 73" [label="outside-if"]
+	"AU POKER AU 53 53 73" [label="END-IF"]
+	"AU POKER AU 53 53 73" -> "AU POKER AU 50 50 80" [label="sequential next"]
+	"AU POKER AU 52 52 72" [label="ADD 1 TO K"]
+	"AU POKER AU 52 52 72" -> "AU POKER AU 53 53 73" [label="sequential next"]
+	subgraph "Node 19" {
+	}
+	"AU POKER AU 50 50 80" -> "PC POKER PC 55 55 33" [label="perform-exit"]
+	"PC POKER PC 55 55 33" [label="EVALUATE K"]
+	subgraph "Node 20" {
+	}
+	"PC POKER PC 55 55 33" -> "PC POKER PC 56 56 34" [label="evaluate when"]
+	"PC POKER PC 56 56 34" [label="WHEN ZERO"]
+	subgraph "Node 21" {
+	}
+	"PC POKER PC 56 56 34" -> "AU POKER AU 0 1 110" [label=true]
+	"AU POKER AU 0 1 110" [label=CONTINUE]
+	subgraph "Node 22" {
+	}
+	"AU POKER AU 0 1 110" -> "AU POKER AU 49 49 109" [label="sequential next"]
+	"PC POKER PC 55 55 33" -> "PC POKER PC 57 57 35" [label="evaluate when"]
+	"PC POKER PC 57 57 35" [label="WHEN ONE"]
+	subgraph "Node 23" {
+	}
+	"PC POKER PC 57 57 35" -> "AU POKER AU 0 2 111" [label=true]
+	"AU POKER AU 0 2 111" [label="ADD 1 TO PAIR-COUNT"]
+	subgraph "Node 24" {
+	}
+	"AU POKER AU 0 2 111" -> "AU POKER AU 0 0 112" [label="sequential next"]
+	"AU POKER AU 0 0 112" [label="END-EVALUATE"]
+	subgraph "Node 25" {
+	}
+	"AU POKER AU 0 0 112" -> "AU POKER AU 62 62 113" [label="sequential next"]
+	"AU POKER AU 62 62 113" [label="MOVE ZERO TO K"]
+	subgraph "Node 26" {
+	}
+	"AU POKER AU 62 62 113" -> "AU POKER AU 49 49 109" [label="sequential next"]
+	"PC POKER PC 55 55 33" -> "PC POKER PC 58 58 36" [label="evaluate when"]
+	"PC POKER PC 58 58 36" [label="WHEN TWO"]
+	subgraph "Node 27" {
+	}
+	"PC POKER PC 58 58 36" -> "AU POKER AU 0 5 114" [label=true]
+	"AU POKER AU 0 5 114" [label="ADD -1 TO PAIR-COUNT
+ADD 1 TO THREE-COUNT"]
+	subgraph "Node 28" {
+	}
+	"AU POKER AU 0 5 114" -> "AU POKER AU 0 0 112" [label="sequential next"]
+	"PC POKER PC 55 55 33" -> "PC POKER PC 59 59 37" [label="evaluate when"]
+	"PC POKER PC 59 59 37" [label="WHEN THREE"]
+	subgraph "Node 29" {
+	}
+	"PC POKER PC 59 59 37" -> "AU POKER AU 0 7 115" [label=true]
+	"AU POKER AU 0 7 115" [label="ADD -2 TO PAIR-COUNT
+ADD -1 TO THREE-COUNT
+ADD 1 TO FOUR-COUNT"]
+	subgraph "Node 30" {
+	}
+	"AU POKER AU 0 7 115" -> "AU POKER AU 0 0 112" [label="sequential next"]
+	"PC POKER PC 59 59 37" -> "AU POKER AU 0 0 112" [label="sequential next"]
+	"AU POKER AU 49 49 109" -> "AU POKER AU 0 13 116" [label="sequential next"]
+	"AU POKER AU 0 13 116" [label="CHECK-STRAIGHT SECTION"]
+	subgraph "Node 31" {
+	}
+	"AU POKER AU 49 49 109" -> "AU POKER AU 27 27 96" [label="perform-exit"]
+	"AU POKER AU 26 26 95" -> "AU POKER AU 34 34 117" [label="procedure call"]
+	"AU POKER AU 34 34 117" [label="SORT-CARDS SECTION"]
+	subgraph "Node 32" {
+	}
+	"AU POKER AU 34 34 117" -> "AU POKER AU 35 35 83" [label="sequential next"]
+	"AU POKER AU 35 35 83" [label="PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5"]
+	"AU POKER AU 35 35 83" -> "AU POKER AU 36 36 84" [label=iteration]
+	"AU POKER AU 36 36 84" [label="PERFORM VARYING J FROM I + 1 BY 1 UNTIL J > 6"]
+	"AU POKER AU 36 36 84" -> "PC POKER PC 37 37 22" [label=iteration]
+	"AU POKER AU 36 36 84" -> "AU POKER AU 35 35 83" [label="perform-exit"]
+	"PC POKER PC 37 37 22" [label="IF CARD-VALUE ( I ) < CARD-VALUE ( J )"]
+	"PC POKER PC 37 37 22" -> "AU POKER AU 38 43 74" [label=true]
+	"PC POKER PC 37 37 22" -> "AU POKER AU 44 44 75" [label="outside-if"]
+	"AU POKER AU 44 44 75" [label="END-IF"]
+	"AU POKER AU 44 44 75" -> "AU POKER AU 36 36 84" [label="sequential next"]
+	"AU POKER AU 38 43 74" [label="MOVE CARD-VALUE ( I ) TO TEMP-VALUE
+MOVE CARD-SUIT ( I ) TO TEMP-SUIT
+MOVE CARD-VALUE ( J ) TO CARD-VALUE ( I )
+MOVE CARD-SUIT ( J ) TO CARD-SUIT ( I )
+MOVE TEMP-VALUE TO CARD-VALUE ( J )
+MOVE TEMP-SUIT TO CARD-SUIT ( J )"]
+	"AU POKER AU 38 43 74" -> "AU POKER AU 44 44 75" [label="sequential next"]
+	subgraph "Node 33" {
+	}
+	"AU POKER AU 35 35 83" -> "AU POKER AU 0 10 118" [label="sequential next"]
+	"AU POKER AU 0 10 118" [label="COUNT-HANDS SECTION"]
+	subgraph "Node 34" {
+	}
+	"AU POKER AU 35 35 83" -> "AU POKER AU 26 26 95" [label="perform-exit"]
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}
