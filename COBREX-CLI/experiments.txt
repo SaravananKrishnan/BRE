@@ -42,7 +42,7 @@ LOANPYMT.cbl as we are just able to capture only the conditional types of rules 
 enough it needs to be recognised as a rule.
 
 4. Measuring the coverage of the business rules based on the golden truth in terms of LOCs per rule
-= We would be see the percentage based on (# of lines of each rule of GT - that are present in the extracted rules{these can be in one rule or multiple}) / (Total lines present in that particular rule)
+= We would be see the percentage based on (# of lines that are extracted as a part of rule {these lines can span over multiple extracted rules} / Total lines in the relevant Golden Truth)
 
 Ex1: POKER.cbl (low recall) || We can give example of AESMAIN as well which also has a similar case
 - R1: 12/12
@@ -52,5 +52,6 @@ Ex1: POKER.cbl (low recall) || We can give example of AESMAIN as well which also
 - R5: 5/5   (Realised as a bigger set though)
 - R6-10,12: 2/2 (Realised as a bigger set though)
 - R11: 4/4  (Realised as a bigger set though)
-
-Ex:2 
+Number of lines of all GT = 58
+Number of lines of extracted rule = 53
+= 91.37 %
