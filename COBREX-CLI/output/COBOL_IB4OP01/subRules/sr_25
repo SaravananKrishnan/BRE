@@ -1,0 +1,8 @@
+digraph cluster24 {
+	"PC IB4OP01 PC 675 675 562" [label="IF E-CC = '0'"]
+	"AU IB4OP01 AU 676 676 3605" [label="MOVE 2 TO ADV-LINES"]
+	"AU IB4OP01 AU 640 640 3606" [label="END-IF"]
+	"AU IB4OP01 AU 676 676 3605" -> "AU IB4OP01 AU 640 640 3606" [label="sequential next"]
+	"PC IB4OP01 PC 675 675 562" -> "AU IB4OP01 AU 676 676 3605" [label=true]
+	"PC IB4OP01 PC 675 675 562" -> "AU IB4OP01 AU 640 640 3606" [label="outside-if"]
+}

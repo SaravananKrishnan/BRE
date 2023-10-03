@@ -29,6 +29,25 @@ class BRDriver():
         self.ruleForm = True
         self.constructs_addressed = set()
 
+    def countRBBs(self):
+        count = 0
+        visited = set()
+        stack = [self.head]
+
+        while stack:
+            vertex = stack.pop()
+            if vertex not in visited:
+                visited.add(vertex)
+                count += 1
+                if set(['start']) == vertex.head.properties['name'] or set(['stop','close','exit','paragraphName','evaluate','sectionHeader']) & vertex.head.properties['name'] or set(['display']) == vertex.head.properties['name'] or set(['perform']) == vertex.head.properties['name'] or set(['end-if']) == vertex.head.properties['name'] or set(['end-evaluate']) == vertex.head.properties['name']:
+                    count-=1
+                else:
+                    print(vertex.head.properties['name'])
+                for neighbor,_ in vertex.children:
+                    if neighbor not in visited:
+                        stack.append(neighbor)
+        return count
+
     def _make_same(self,ir_node,visited,ir_to_br):
         
         if ir_node in visited:
@@ -170,6 +189,10 @@ def doBRR(rootNode):
     br = BRDriver(rootNode,p,s)
     # Form subRules
     br.formSubRules()
+
+    # This is the place where we would try to realise the RBBs count
+    num_RBB = br.countRBBs()
+
     # Merge subRules
     br.formRules()
     # print("Total Number of Subrules: ",len(br.sub_rule.subRules))
@@ -178,7 +201,7 @@ def doBRR(rootNode):
         br.constructs_addressed = br.constructs_addressed.union(r.head.properties['name'])
     make_graph(br.head)
     # print("All the constructs to logic map: ",br.rule.construct_logic)
-    return br.constructs_addressed,br.rule.construct_logic,len(br.sub_rule.subRules),len(br.rule.rules)
+    return br.constructs_addressed,br.rule.construct_logic,len(br.sub_rule.subRules),len(br.rule.rules),num_RBB
 
 if __name__ == '__main__':
     print('Hi there!')

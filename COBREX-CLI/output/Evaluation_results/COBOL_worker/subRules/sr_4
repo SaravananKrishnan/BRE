@@ -1,0 +1,8 @@
+digraph cluster3 {
+	"PC worker PC 57 57 153" [label="IF PLAYER-CHOICE = 'paper' AND COMPUTER-CHOICE = 'rock'"]
+	"AU worker AU 58 58 768" [label="MOVE \"win\" TO RESULT"]
+	"AU worker AU 87 87 769" [label="END-IF"]
+	"AU worker AU 58 58 768" -> "AU worker AU 87 87 769" [label="sequential next"]
+	"PC worker PC 57 57 153" -> "AU worker AU 58 58 768" [label=true]
+	"PC worker PC 57 57 153" -> "AU worker AU 87 87 769" [label="outside-if"]
+}

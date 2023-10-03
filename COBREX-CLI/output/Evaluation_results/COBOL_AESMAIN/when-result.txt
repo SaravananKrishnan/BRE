@@ -1,0 +1,16 @@
+Evaluate - when separate trigger: EVALUATE LXG-STATUS
+
+Evaluate - when separate trigger: EVALUATE LXP-STATUS
+
+Entire when one rule: EVALUATE WS-MODE
+
+Evaluate - when separate trigger: EVALUATE WS-MODE ALSO WS-ACTION
+
+Evaluate - when separate trigger: EVALUATE WS-MODE ALSO WS-ACTION
+
+Entire when one rule: EVALUATE W2D-A
+
+Entire when one rule: EVALUATE WS-C ( HA-I )
+
+Evaluate - when separate trigger: EVALUATE LDG-STATUS
+

@@ -1,0 +1,128 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="001-open .
+ 
+"]
+	2 [label="string 'generated.csv' x'00' delimited by size into filename
+"]
+	3 [label="call 'csvgen_createfile' using by reference csvhandle by reference filename by value 2 returning bool
+"]
+	4 [label="if success
+" shape=diamond]
+	5 [label="perform 004-genfile
+"]
+	9 [label="call 'csvgen_closefile' using by value csvhandle returning bool
+"]
+	50 [label="if failure
+" shape=diamond]
+	51 [label="display 'Cannot close test.csv.'
+"]
+	52 [label="END-IF
+"]
+	6 [label="END-IF
+"]
+	57 [label=goback
+]
+	6 -> 57 [label="sequential next"]
+	52 -> 6 [label="sequential next"]
+	51 -> 52 [label="sequential next"]
+	50 -> 51 [label=true]
+	50 -> 52 [label="outside-if"]
+	9 -> 50 [label="sequential next"]
+	5 -> 9 [label="perform-exit"]
+	10 [label="004-genfile .
+ 
+"]
+	11 [label="perform 003-genline
+"]
+	14 [label="003-genline .
+ 
+"]
+	15 [label="call 'csvgen_beginrow' using by value csvhandle returning bool
+"]
+	16 [label="if failure
+" shape=diamond]
+	17 [label="display 'Cannot begin row.'
+"]
+	18 [label="END-IF
+"]
+	21 [label="perform 002-genfield1
+"]
+	23 [label="perform 002-genfield2
+"]
+	34 [label="call 'csvgen_endrow' using by value csvhandle returning bool
+"]
+	44 [label="if failure
+" shape=diamond]
+	45 [label="display 'Cannot end row.'
+"]
+	46 [label="END-IF
+"]
+	46 -> 11 [label="sequential next"]
+	45 -> 46 [label="sequential next"]
+	44 -> 45 [label=true]
+	44 -> 46 [label="outside-if"]
+	34 -> 44 [label="sequential next"]
+	23 -> 34 [label="perform-exit"]
+	35 [label="002-genfield2 .
+ 
+"]
+	36 [label="string 'Bar,Baz' x'00' delimited by size into buffer
+"]
+	37 [label="call 'csvgen_putfield' using by value csvhandle by reference buffer returning bool
+"]
+	38 [label="if failure
+" shape=diamond]
+	39 [label="display 'Cannot begin row.'
+"]
+	40 [label="END-IF
+"]
+	40 -> 23 [label="sequential next"]
+	39 -> 40 [label="sequential next"]
+	38 -> 39 [label=true]
+	38 -> 40 [label="outside-if"]
+	37 -> 38 [label="sequential next"]
+	36 -> 37 [label="sequential next"]
+	35 -> 36 [label="sequential next"]
+	23 -> 35 [label="procedure call"]
+	21 -> 23 [label="perform-exit"]
+	24 [label="002-genfield1 .
+ 
+"]
+	25 [label="string 'Foo' x'00' delimited by size into buffer
+"]
+	26 [label="call 'csvgen_putfield' using by value csvhandle by reference buffer returning bool
+"]
+	27 [label="if failure
+" shape=diamond]
+	28 [label="display 'Cannot begin row.'
+"]
+	29 [label="END-IF
+"]
+	29 -> 21 [label="sequential next"]
+	28 -> 29 [label="sequential next"]
+	27 -> 28 [label=true]
+	27 -> 29 [label="outside-if"]
+	26 -> 27 [label="sequential next"]
+	25 -> 26 [label="sequential next"]
+	24 -> 25 [label="sequential next"]
+	21 -> 24 [label="procedure call"]
+	18 -> 21 [label="sequential next"]
+	17 -> 18 [label="sequential next"]
+	16 -> 17 [label=true]
+	16 -> 18 [label="outside-if"]
+	15 -> 16 [label="sequential next"]
+	14 -> 15 [label="sequential next"]
+	11 -> 14 [label="procedure call"]
+	11 -> 5 [label="perform-exit"]
+	10 -> 11 [label="sequential next"]
+	5 -> 10 [label="procedure call"]
+	4 -> 5 [label=true]
+	7 [label="display 'Cannot create test.csv.'
+"]
+	7 -> 6 [label="sequential next"]
+	4 -> 7 [label=false]
+	3 -> 4 [label="sequential next"]
+	2 -> 3 [label="sequential next"]
+	1 -> 2 [label="sequential next"]
+}

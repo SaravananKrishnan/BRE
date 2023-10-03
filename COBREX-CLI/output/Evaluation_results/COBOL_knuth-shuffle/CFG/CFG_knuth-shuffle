@@ -1,0 +1,24 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="MOVE FUNCTION RANDOM ( FUNCTION CURRENT-DATE ( 11 : 6 ) ) TO i
+"]
+	2 [label="PERFORM VARYING i FROM Table-Len BY -1 UNTIL i = 0
+"]
+	3 [label="COMPUTE j = FUNCTION MOD ( FUNCTION RANDOM * 10000 Table-Len ) + 1
+"]
+	5 [label="MOVE ttable ( i ) TO temp
+"]
+	6 [label="MOVE ttable ( j ) TO ttable ( i )
+"]
+	7 [label="MOVE temp TO ttable ( j )
+"]
+	7 -> 2 [label="sequential next"]
+	6 -> 7 [label="sequential next"]
+	5 -> 6 [label="sequential next"]
+	3 -> 5 [label="sequential next"]
+	2 -> 3 [label=iteration]
+	4 [label=GOBACK
+]
+	2 -> 4 [label="perform-exit"]
+	1 -> 2 [label="sequential next"]
+}

@@ -1,0 +1,401 @@
+digraph cluster {
+	"FAKCOMP AU 0 0 2500" [label=Begin fillcolor=lightblue style=filled]
+	"FAKCOMP AU 515 515 2501" [label="MAIN .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP AU 518 518 2502" [label="PERFORM SUB-1000-START-UP THRU SUB-1000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 520 520 2503" [label="PERFORM SUB-2000-PROCESS THRU SUB-2000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 522 522 2504" [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 524 525 2505" [label="MAIN-EXIT .
+ 
+GOBACK" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 718 718 2506" [label="SUB-3000-SHUT-DOWN .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP AU 733 734 2507" [label="SUB-3000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 566 14 2508" [label="SUB-2000-PROCESS .
+ 
+MOVE 0 TO FAKER-INFO-CNT IN L-PARAMETER
+MOVE LOW-VALUES TO FAKER-INFO-OCCS IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 574 574 400" [label="EVALUATE TRUE" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 575 575 413" [label="WHEN COMPANY-COMPANY IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 576 576 2509" [label="PERFORM SUB-9010-COMPANY THRU SUB-9010-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 782 8 2510" [label="SUB-9010-COMPANY .
+ 
+MOVE 'FORMATS-COMPANY' TO W-TABLE-1
+SET ADDRESS OF L-FORMAT-TABLE-1 TO ADDRESS OF FORMATS-COMPANY" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 790 791 2511" [label="SUB-9010-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 0 2512" [label="END-EVALUATE" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 31 2513" [label="ADD 1 TO FAKER-INFO-CNT IN L-PARAMETER
+SET FI-DX TO FAKER-INFO-CNT IN L-PARAMETER
+MOVE W-TABLE-1 TO FAKER-TABLE IN L-PARAMETER ( FI-DX )" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 601 601 401" [label="IF W-TABLE-1 ( 1 : 8 ) = 'FORMATS-'" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 602 602 2514" [label="PERFORM SUB-2100-FORMAT THRU SUB-2100-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 604 26 414" [label="IF NOT FAKER-RESPONSE-GOOD IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 606 606 2515" [label="GO TO SUB-2000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 615 616 2516" [label="SUB-2000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 607 607 2517" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 613 613 2518" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 618 618 2519" [label="SUB-2100-FORMAT .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP AU 621 621 2520" [label="PERFORM SUB-9700-FIND-RANDOM-FORMAT THRU SUB-9700-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 623 624 2521" [label="MOVE W-FAKER-FORMAT TO W-RECURSED-FORMAT
+MOVE 1 TO W-SUB-1" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 626 34 2522" [label="PERFORM SUB-2110-RECURSE-FORMATS THRU SUB-2110-EXIT UNTIL W-SUB-1 > LENGTH OF W-RECURSED-FORMAT OR NOT FAKER-RESPONSE-GOOD IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 631 40 415" [label="IF NOT FAKER-RESPONSE-GOOD IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 633 633 2523" [label="GO TO SUB-2100-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 647 648 2524" [label="SUB-2100-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 634 634 2525" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 41 2526" [label="MOVE SPACES TO FAKER-RESULT IN L-PARAMETER
+MOVE 1 TO W-SUB-1 W-SUB-2" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 641 7 2527" [label="PERFORM SUB-2120-PROCESS-FORMATS THRU SUB-2120-EXIT UNTIL W-SUB-1 > LENGTH OF W-RECURSED-FORMAT OR W-SUB-2 > LENGTH OF FAKER-RESULT IN L-PARAMETER OR W-RECURSED-FORMAT ( W-SUB-1 : ) = SPACES" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 690 690 2528" [label="SUB-2120-PROCESS-FORMATS .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP PC 693 693 402" [label="IF W-RECURSED-FORMAT-CHAR ( W-SUB-1 ) = W-FORMAT-START" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 694 58 2529" [label="ADD 1 TO W-SUB-1
+UNSTRING W-RECURSED-FORMAT DELIMITED W-FORMAT-END INTO W-FORMAT-ENTRY POINTER W-SUB-1" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 701 701 2530" [label="PERFORM SUB-9000-EXAMINE-FIND-FORMAT THRU SUB-9000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 703 49 2531" [label="STRING W-FAKER-RESULT DELIMITED '  ' INTO FAKER-RESULT IN L-PARAMETER POINTER W-SUB-2" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 713 713 2532" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 736 736 2533" [label="SUB-9000-EXAMINE-FIND-FORMAT .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP PC 739 739 403" [label="EVALUATE W-FORMAT-ENTRY" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 740 740 416" [label="WHEN 'CS'" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 741 741 2534" [label="PERFORM SUB-9020-SUFFIX THRU SUB-9020-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 793 61 2535" [label="SUB-9020-SUFFIX .
+ 
+MOVE 'COMPANY-SUFFIXES' TO W-TABLE-1
+SET ADDRESS OF L-COMPANY-TABLE-1 TO ADDRESS OF COMPANY-SUFFIXES" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 801 802 2536" [label="SUB-9020-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 579 579 2537" [label="PERFORM SUB-9020-SUFFIX THRU SUB-9020-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 0 2538" [label="END-EVALUATE" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 52 2539" [label="ADD 1 TO FAKER-INFO-CNT IN L-PARAMETER
+SET FI-DX TO FAKER-INFO-CNT IN L-PARAMETER
+MOVE W-TABLE-1 TO FAKER-TABLE IN L-PARAMETER ( FI-DX )" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 766 766 404" [label="EVALUATE TRUE" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 767 767 417" [label="WHEN W-TABLE-1 ( 1 : 8 ) = 'FORMATS-'" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 768 768 2540" [label="PERFORM SUB-9700-FIND-RANDOM-FORMAT THRU SUB-9700-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 816 819 2541" [label="SUB-9700-FIND-RANDOM-FORMAT .
+ 
+PERFORM SUB-9901-CALL-FAKRAND" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 821 821 418" [label="IF W-TABLE-2 = SPACES" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 822 64 2542" [label="COMPUTE W-RANDOM-NO = FAKRAND-RANDOM-NO * L-FORMAT-WEIGHT-TOT-1" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 731 731 2543" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 830 832 2544" [label="MOVE W-RANDOM-NO TO FAKER-RANDOM-NO-SUB IN L-PARAMETER ( FI-DX )
+MOVE 0 TO W-FOUND-DX" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 834 23 2545" [label="PERFORM SUB-9710-FIND-FORMAT THRU SUB-9710-EXIT VARYING L-F-DX-1 FROM 1 BY 1 UNTIL W-FOUND-DX > 0 OR L-F-DX-1 > L-FORMAT-ENTRY-CNT-1" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 839 839 419" [label="EVALUATE TRUE" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 840 840 405" [label="WHEN W-FOUND-DX > 0" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 841 66 2424" [label="MOVE L-FORMAT-ENTRY-1 ( W-FOUND-DX ) TO W-FAKER-FORMAT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 0 2546" [label="END-EVALUATE" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 844 844 406" [label="WHEN W-TABLE-2 NOT = SPACES" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 855 2547" [label="ADD 1 TO FAKER-INFO-CNT IN L-PARAMETER
+SET FI-DX TO FAKER-INFO-CNT IN L-PARAMETER
+MOVE W-TABLE-2 TO FAKER-TABLE IN L-PARAMETER ( FI-DX )
+MOVE W-RANDOM-NO TO FAKER-RANDOM-NO-SUB IN L-PARAMETER ( FI-DX )
+MOVE 0 TO W-FOUND-DX" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 857 67 2548" [label="PERFORM SUB-9720-FIND-FORMAT THRU SUB-9720-EXIT VARYING L-F-DX-2 FROM 1 BY 1 UNTIL W-FOUND-DX > 0 OR L-F-DX-2 > L-FORMAT-ENTRY-CNT-2" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 862 862 420" [label="IF W-FOUND-DX > 0" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 863 68 2549" [label="MOVE L-FORMAT-ENTRY-2 ( W-FOUND-DX ) TO W-FAKER-FORMAT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 828 828 2550" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 866 73 2551" [label="MOVE 'Random format not found' TO W-FAKER-FORMAT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 893 893 2552" [label="SUB-9720-FIND-FORMAT .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP PC 896 896 407" [label="IF W-RANDOM-NO <= L-FORMAT-WEIGHT-2 ( L-F-DX-2 )" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 897 81 2553" [label="SET W-FOUND-DX TO L-F-DX-2
+MOVE W-FOUND-DX TO FAKER-TABLE-ENTRY IN L-PARAMETER ( FI-DX )" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 888 888 2554" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 901 83 2555" [label="SUBTRACT L-FORMAT-WEIGHT-2 ( L-F-DX-2 ) FROM W-RANDOM-NO" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 905 906 2556" [label="SUB-9720-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 871 77 2557" [label="MOVE 'Random format not found' TO W-FAKER-FORMAT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 878 878 2558" [label="SUB-9710-FIND-FORMAT .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP PC 881 881 408" [label="IF W-RANDOM-NO <= L-FORMAT-WEIGHT-1 ( L-F-DX-1 )" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 882 80 2559" [label="SET W-FOUND-DX TO L-F-DX-1
+MOVE W-FOUND-DX TO FAKER-TABLE-ENTRY IN L-PARAMETER ( FI-DX )" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 868 868 2560" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 886 69 2561" [label="SUBTRACT L-FORMAT-WEIGHT-1 ( L-F-DX-1 ) FROM W-RANDOM-NO" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 890 891 2562" [label="SUB-9710-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 825 65 2563" [label="COMPUTE W-RANDOM-NO = FAKRAND-RANDOM-NO * ( L-FORMAT-WEIGHT-TOT-1 + L-FORMAT-WEIGHT-TOT-2 )" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 929 932 2564" [label="SUB-9901-CALL-FAKRAND .
+ 
+CALL W-FAKRAND-PROG USING W-FAKRAND-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 934 935 2565" [label="SUB-9901-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 911 911 2566" [label="PERFORM SUB-9901-CALL-FAKRAND THRU SUB-9901-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 913 88 2567" [label="COMPUTE W-RANDOM-SUB = FAKRAND-RANDOM-NO * L-COMPANY-ENTRY-CNT-1 + 1
+MOVE W-RANDOM-SUB TO FAKER-RANDOM-NO-SUB IN L-PARAMETER ( FI-DX ) W-FOUND-DX FAKER-TABLE-ENTRY IN L-PARAMETER ( FI-DX )
+MOVE L-COMPANY-ENTRY-1 ( W-FOUND-DX ) TO W-FAKER-RESULT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 926 927 2568" [label="SUB-9800-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 609 609 2569" [label="PERFORM SUB-9800-FIND-RANDOM-COMPANY THRU SUB-9800-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 611 29 2570" [label="MOVE W-FAKER-RESULT TO FAKER-RESULT IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 908 908 2571" [label="SUB-9800-FIND-RANDOM-COMPANY .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP AU 776 776 2572" [label="PERFORM SUB-9800-FIND-RANDOM-COMPANY THRU SUB-9800-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 779 780 2573" [label="SUB-9000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 671 671 2574" [label="PERFORM SUB-9000-EXAMINE-FIND-FORMAT THRU SUB-9000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 673 42 421" [label="IF NOT FAKER-RESPONSE-GOOD IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 675 675 2575" [label="GO TO SUB-2110-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 687 688 2576" [label="SUB-2110-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 676 676 2577" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 678 44 2578" [label="STRING W-FAKER-FORMAT DELIMITED '  ' INTO W-RECURSED-FORMAT POINTER W-SUB-1-SAVE
+MOVE W-RECURSED-FORMAT-REST TO W-RECURSED-FORMAT ( W-SUB-1-SAVE : )" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 685 685 2579" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 0 0 2580" [label="END-EVALUATE" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 875 876 2581" [label="SUB-9700-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 770 53 409" [label="WHEN W-TABLE-1 = 'FIRST-NAME' OR 'LAST-NAME'" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 772 54 2459" [label="MOVE FAKER-RESULT IN W-FAKER-PARAMETER TO W-FAKER-RESULT" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 743 743 422" [label="WHEN 'LN'" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 744 744 2582" [label="PERFORM SUB-9200-LAST-NAME THRU SUB-9200-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 804 811 2583" [label="SUB-9200-LAST-NAME .
+ 
+MOVE 'LAST-NAME' TO W-TABLE-1
+SET PERSON-LAST-NAME IN W-FAKER-PARAMETER TO TRUE
+CALL W-FAKPERS-PROG USING W-FAKER-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 813 814 2584" [label="SUB-9200-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 747 756 2585" [label="MOVE SPACES TO W-TABLE-1
+SET FAKER-UNKNOWN-FORMAT IN L-PARAMETER TO TRUE
+STRING 'Unknown FAKCOMP format \"' W-FORMAT-ENTRY '\"' DELIMITED SIZE INTO FAKER-RESPONSE-MSG IN L-PARAMETER
+GO TO SUB-9000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 709 46 2586" [label="MOVE W-RECURSED-FORMAT-CHAR ( W-SUB-1 ) TO FAKER-RESULT IN L-PARAMETER ( W-SUB-2 : 1 )
+ADD 1 TO W-SUB-1 W-SUB-2" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 715 716 2587" [label="SUB-2120-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 650 650 2588" [label="SUB-2110-RECURSE-FORMATS .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP PC 653 653 410" [label="IF W-RECURSED-FORMAT-CHAR ( W-SUB-1 ) NOT = W-FORMAT-START" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 654 655 2589" [label="ADD 1 TO W-SUB-1
+GO TO SUB-2110-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 656 656 2590" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 658 57 2591" [label="MOVE W-SUB-1 TO W-SUB-1-SAVE
+ADD 1 TO W-SUB-1
+UNSTRING W-RECURSED-FORMAT DELIMITED W-FORMAT-END INTO W-FORMAT-ENTRY POINTER W-SUB-1" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 666 666 411" [label="IF W-FORMAT-ENTRY-IS-FORMAT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 667 669 2592" [label="MOVE W-RECURSED-FORMAT ( W-SUB-1 : ) TO W-RECURSED-FORMAT-REST
+MOVE W-SUB-1-SAVE TO W-SUB-1" fillcolor=lightblue style=filled]
+	"FAKCOMP PC 578 578 423" [label="WHEN COMPANY-SUFFIX IN L-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 582 591 2593" [label="SET FAKER-UNKNOWN-FUNCTION IN L-PARAMETER TO TRUE
+STRING 'Unknown FAKCOMP function \"' FAKER-PROVIDER-FUNCTION IN L-PARAMETER '\"' DELIMITED SIZE INTO FAKER-RESPONSE-MSG IN L-PARAMETER
+GO TO SUB-2000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 527 527 2594" [label="SUB-1000-START-UP .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP PC 530 530 412" [label="IF W-NOT-FIRST-CALL" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 531 531 2595" [label="GO TO SUB-1000-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 548 549 2596" [label="SUB-1000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 532 532 2597" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 534 1 2598" [label="SET W-NOT-FIRST-CALL TO TRUE
+MOVE FUNCTION WHEN-COMPILED TO W-COMPILED-DATE
+DISPLAY 'FAKCOMP  compiled on ' W-COMPILED-DATE-YYYY '/' W-COMPILED-DATE-MM '/' W-COMPILED-DATE-DD ' at ' W-COMPILED-TIME-HH ':' W-COMPILED-TIME-MM ':' W-COMPILED-TIME-SS" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 546 546 2599" [label="PERFORM SUB-1100-SUM-WEIGHTS THRU SUB-1100-EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 551 551 2600" [label="SUB-1100-SUM-WEIGHTS .
+ " fillcolor=lightblue style=filled]
+	"FAKCOMP AU 554 2 2601" [label="PERFORM VARYING FC-DX FROM 1 BY 1 UNTIL FC-DX > FORMAT-COMPANY-CNT
+ADD FORMAT-COMPANY-WEIGHT ( FC-DX ) TO FORMAT-COMPANY-WEIGHT-TOT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 563 564 2602" [label="SUB-1100-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKCOMP AU 522 522 2504" -> "FAKCOMP AU 524 525 2505" [label="perform-exit"]
+	"FAKCOMP AU 733 734 2507" -> "FAKCOMP AU 522 522 2504" [label="procedure backward call"]
+	"FAKCOMP AU 718 718 2506" -> "FAKCOMP AU 733 734 2507" [label="sequential next"]
+	"FAKCOMP AU 522 522 2504" -> "FAKCOMP AU 718 718 2506" [label="procedure call"]
+	"FAKCOMP AU 520 520 2503" -> "FAKCOMP AU 522 522 2504" [label="perform-exit"]
+	"FAKCOMP AU 790 791 2511" -> "FAKCOMP AU 576 576 2509" [label="procedure backward call"]
+	"FAKCOMP AU 782 8 2510" -> "FAKCOMP AU 790 791 2511" [label="sequential next"]
+	"FAKCOMP AU 576 576 2509" -> "FAKCOMP AU 782 8 2510" [label="procedure call"]
+	"FAKCOMP AU 615 616 2516" -> "FAKCOMP AU 520 520 2503" [label="procedure backward call"]
+	"FAKCOMP AU 606 606 2515" -> "FAKCOMP AU 615 616 2516" [label="procedure call"]
+	"FAKCOMP PC 604 26 414" -> "FAKCOMP AU 606 606 2515" [label=true]
+	"FAKCOMP AU 607 607 2517" -> "FAKCOMP AU 613 613 2518" [label="sequential next"]
+	"FAKCOMP PC 604 26 414" -> "FAKCOMP AU 607 607 2517" [label="outside-if"]
+	"FAKCOMP AU 602 602 2514" -> "FAKCOMP PC 604 26 414" [label="perform-exit"]
+	"FAKCOMP AU 647 648 2524" -> "FAKCOMP AU 602 602 2514" [label="procedure backward call"]
+	"FAKCOMP AU 633 633 2523" -> "FAKCOMP AU 647 648 2524" [label="procedure call"]
+	"FAKCOMP PC 631 40 415" -> "FAKCOMP AU 633 633 2523" [label=true]
+	"FAKCOMP AU 703 49 2531" -> "FAKCOMP AU 713 713 2532" [label="sequential next"]
+	"FAKCOMP AU 701 701 2530" -> "FAKCOMP AU 703 49 2531" [label="perform-exit"]
+	"FAKCOMP AU 579 579 2537" -> "FAKCOMP AU 793 61 2535" [label="procedure call"]
+	"FAKCOMP AU 579 579 2537" -> "FAKCOMP AU 0 0 2512" [label="perform-exit"]
+	"FAKCOMP AU 801 802 2536" -> "FAKCOMP AU 579 579 2537" [label="procedure backward call"]
+	"FAKCOMP AU 801 802 2536" -> "FAKCOMP AU 741 741 2534" [label="procedure backward call"]
+	"FAKCOMP AU 793 61 2535" -> "FAKCOMP AU 801 802 2536" [label="sequential next"]
+	"FAKCOMP AU 793 61 2535" -> "FAKCOMP AU 801 802 2536" [label="sequential next"]
+	"FAKCOMP AU 741 741 2534" -> "FAKCOMP AU 793 61 2535" [label="procedure call"]
+	"FAKCOMP AU 841 66 2424" -> "FAKCOMP AU 0 0 2546" [label="sequential next"]
+	"FAKCOMP PC 840 840 405" -> "FAKCOMP AU 841 66 2424" [label=true]
+	"FAKCOMP PC 839 839 419" -> "FAKCOMP PC 840 840 405" [label="evaluate when"]
+	"FAKCOMP AU 828 828 2550" -> "FAKCOMP AU 0 0 2546" [label="sequential next"]
+	"FAKCOMP AU 863 68 2549" -> "FAKCOMP AU 828 828 2550" [label="sequential next"]
+	"FAKCOMP PC 862 862 420" -> "FAKCOMP AU 863 68 2549" [label=true]
+	"FAKCOMP AU 866 73 2551" -> "FAKCOMP AU 828 828 2550" [label="sequential next"]
+	"FAKCOMP PC 862 862 420" -> "FAKCOMP AU 866 73 2551" [label=false]
+	"FAKCOMP AU 857 67 2548" -> "FAKCOMP PC 862 862 420" [label="perform-exit"]
+	"FAKCOMP AU 897 81 2553" -> "FAKCOMP AU 888 888 2554" [label="sequential next"]
+	"FAKCOMP PC 896 896 407" -> "FAKCOMP AU 897 81 2553" [label=true]
+	"FAKCOMP AU 905 906 2556" -> "FAKCOMP AU 857 67 2548" [label="procedure backward call"]
+	"FAKCOMP AU 901 83 2555" -> "FAKCOMP AU 905 906 2556" [label="sequential next"]
+	"FAKCOMP AU 901 83 2555" -> "FAKCOMP AU 888 888 2554" [label="sequential next"]
+	"FAKCOMP PC 896 896 407" -> "FAKCOMP AU 901 83 2555" [label=false]
+	"FAKCOMP AU 893 893 2552" -> "FAKCOMP PC 896 896 407" [label="sequential next"]
+	"FAKCOMP AU 857 67 2548" -> "FAKCOMP AU 893 893 2552" [label="procedure call"]
+	"FAKCOMP AU 0 855 2547" -> "FAKCOMP AU 857 67 2548" [label="sequential next"]
+	"FAKCOMP PC 844 844 406" -> "FAKCOMP AU 0 855 2547" [label=true]
+	"FAKCOMP PC 839 839 419" -> "FAKCOMP PC 844 844 406" [label="evaluate when"]
+	"FAKCOMP AU 871 77 2557" -> "FAKCOMP AU 0 0 2546" [label="sequential next"]
+	"FAKCOMP PC 839 839 419" -> "FAKCOMP AU 871 77 2557" [label=false]
+	"FAKCOMP AU 834 23 2545" -> "FAKCOMP PC 839 839 419" [label="perform-exit"]
+	"FAKCOMP AU 882 80 2559" -> "FAKCOMP AU 868 868 2560" [label="sequential next"]
+	"FAKCOMP PC 881 881 408" -> "FAKCOMP AU 882 80 2559" [label=true]
+	"FAKCOMP AU 890 891 2562" -> "FAKCOMP AU 834 23 2545" [label="procedure backward call"]
+	"FAKCOMP AU 886 69 2561" -> "FAKCOMP AU 890 891 2562" [label="sequential next"]
+	"FAKCOMP AU 886 69 2561" -> "FAKCOMP AU 868 868 2560" [label="sequential next"]
+	"FAKCOMP PC 881 881 408" -> "FAKCOMP AU 886 69 2561" [label=false]
+	"FAKCOMP AU 878 878 2558" -> "FAKCOMP PC 881 881 408" [label="sequential next"]
+	"FAKCOMP AU 834 23 2545" -> "FAKCOMP AU 878 878 2558" [label="procedure call"]
+	"FAKCOMP AU 830 832 2544" -> "FAKCOMP AU 834 23 2545" [label="sequential next"]
+	"FAKCOMP AU 731 731 2543" -> "FAKCOMP AU 830 832 2544" [label="sequential next"]
+	"FAKCOMP AU 822 64 2542" -> "FAKCOMP AU 731 731 2543" [label="sequential next"]
+	"FAKCOMP PC 821 821 418" -> "FAKCOMP AU 822 64 2542" [label=true]
+	"FAKCOMP AU 825 65 2563" -> "FAKCOMP AU 731 731 2543" [label="sequential next"]
+	"FAKCOMP PC 821 821 418" -> "FAKCOMP AU 825 65 2563" [label=false]
+	"FAKCOMP AU 816 819 2541" -> "FAKCOMP PC 821 821 418" [label="perform-exit"]
+	"FAKCOMP AU 611 29 2570" -> "FAKCOMP AU 615 616 2516" [label="sequential next"]
+	"FAKCOMP AU 611 29 2570" -> "FAKCOMP AU 613 613 2518" [label="sequential next"]
+	"FAKCOMP AU 609 609 2569" -> "FAKCOMP AU 611 29 2570" [label="perform-exit"]
+	"FAKCOMP AU 908 908 2571" -> "FAKCOMP AU 911 911 2566" [label="sequential next"]
+	"FAKCOMP AU 609 609 2569" -> "FAKCOMP AU 908 908 2571" [label="procedure call"]
+	"FAKCOMP AU 926 927 2568" -> "FAKCOMP AU 609 609 2569" [label="procedure backward call"]
+	"FAKCOMP AU 776 776 2572" -> "FAKCOMP AU 908 908 2571" [label="procedure call"]
+	"FAKCOMP AU 687 688 2576" -> "FAKCOMP AU 626 34 2522" [label="procedure backward call"]
+	"FAKCOMP AU 675 675 2575" -> "FAKCOMP AU 687 688 2576" [label="procedure call"]
+	"FAKCOMP PC 673 42 421" -> "FAKCOMP AU 675 675 2575" [label=true]
+	"FAKCOMP AU 678 44 2578" -> "FAKCOMP AU 687 688 2576" [label="sequential next"]
+	"FAKCOMP AU 678 44 2578" -> "FAKCOMP AU 685 685 2579" [label="sequential next"]
+	"FAKCOMP AU 676 676 2577" -> "FAKCOMP AU 678 44 2578" [label="sequential next"]
+	"FAKCOMP PC 673 42 421" -> "FAKCOMP AU 676 676 2577" [label="outside-if"]
+	"FAKCOMP AU 671 671 2574" -> "FAKCOMP PC 673 42 421" [label="perform-exit"]
+	"FAKCOMP AU 671 671 2574" -> "FAKCOMP AU 736 736 2533" [label="procedure call"]
+	"FAKCOMP AU 779 780 2573" -> "FAKCOMP AU 671 671 2574" [label="procedure backward call"]
+	"FAKCOMP AU 779 780 2573" -> "FAKCOMP AU 701 701 2530" [label="procedure backward call"]
+	"FAKCOMP AU 776 776 2572" -> "FAKCOMP AU 779 780 2573" [label="sequential next"]
+	"FAKCOMP AU 776 776 2572" -> "FAKCOMP AU 779 780 2573" [label="sequential next"]
+	"FAKCOMP AU 776 776 2572" -> "FAKCOMP AU 0 0 2580" [label="perform-exit"]
+	"FAKCOMP AU 926 927 2568" -> "FAKCOMP AU 776 776 2572" [label="procedure backward call"]
+	"FAKCOMP AU 913 88 2567" -> "FAKCOMP AU 926 927 2568" [label="sequential next"]
+	"FAKCOMP AU 913 88 2567" -> "FAKCOMP AU 926 927 2568" [label="sequential next"]
+	"FAKCOMP AU 911 911 2566" -> "FAKCOMP AU 913 88 2567" [label="perform-exit"]
+	"FAKCOMP AU 911 911 2566" -> "FAKCOMP AU 929 932 2564" [label="procedure call"]
+	"FAKCOMP AU 934 935 2565" -> "FAKCOMP AU 911 911 2566" [label="procedure backward call"]
+	"FAKCOMP AU 929 932 2564" -> "FAKCOMP AU 934 935 2565" [label="sequential next"]
+	"FAKCOMP AU 816 819 2541" -> "FAKCOMP AU 929 932 2564" [label="procedure call"]
+	"FAKCOMP AU 875 876 2581" -> "FAKCOMP AU 621 621 2520" [label="procedure backward call"]
+	"FAKCOMP AU 875 876 2581" -> "FAKCOMP AU 768 768 2540" [label="procedure backward call"]
+	"FAKCOMP AU 816 819 2541" -> "FAKCOMP AU 875 876 2581" [label="sequential next"]
+	"FAKCOMP AU 816 819 2541" -> "FAKCOMP AU 875 876 2581" [label="sequential next"]
+	"FAKCOMP AU 768 768 2540" -> "FAKCOMP AU 816 819 2541" [label="procedure call"]
+	"FAKCOMP AU 768 768 2540" -> "FAKCOMP AU 0 0 2580" [label="perform-exit"]
+	"FAKCOMP PC 767 767 417" -> "FAKCOMP AU 768 768 2540" [label=true]
+	"FAKCOMP PC 766 766 404" -> "FAKCOMP PC 767 767 417" [label="evaluate when"]
+	"FAKCOMP AU 772 54 2459" -> "FAKCOMP AU 0 0 2580" [label="sequential next"]
+	"FAKCOMP PC 770 53 409" -> "FAKCOMP AU 772 54 2459" [label=true]
+	"FAKCOMP PC 766 766 404" -> "FAKCOMP PC 770 53 409" [label="evaluate when"]
+	"FAKCOMP PC 766 766 404" -> "FAKCOMP AU 776 776 2572" [label=false]
+	"FAKCOMP AU 0 52 2539" -> "FAKCOMP PC 766 766 404" [label="sequential next"]
+	"FAKCOMP AU 0 0 2538" -> "FAKCOMP AU 0 52 2539" [label="sequential next"]
+	"FAKCOMP AU 741 741 2534" -> "FAKCOMP AU 0 0 2538" [label="perform-exit"]
+	"FAKCOMP PC 740 740 416" -> "FAKCOMP AU 741 741 2534" [label=true]
+	"FAKCOMP PC 739 739 403" -> "FAKCOMP PC 740 740 416" [label="evaluate when"]
+	"FAKCOMP AU 813 814 2584" -> "FAKCOMP AU 744 744 2582" [label="procedure backward call"]
+	"FAKCOMP AU 804 811 2583" -> "FAKCOMP AU 813 814 2584" [label="sequential next"]
+	"FAKCOMP AU 744 744 2582" -> "FAKCOMP AU 804 811 2583" [label="procedure call"]
+	"FAKCOMP AU 744 744 2582" -> "FAKCOMP AU 0 0 2538" [label="perform-exit"]
+	"FAKCOMP PC 743 743 422" -> "FAKCOMP AU 744 744 2582" [label=true]
+	"FAKCOMP PC 739 739 403" -> "FAKCOMP PC 743 743 422" [label="evaluate when"]
+	"FAKCOMP AU 747 756 2585" -> "FAKCOMP AU 779 780 2573" [label="procedure call"]
+	"FAKCOMP PC 739 739 403" -> "FAKCOMP AU 747 756 2585" [label=false]
+	"FAKCOMP AU 736 736 2533" -> "FAKCOMP PC 739 739 403" [label="sequential next"]
+	"FAKCOMP AU 701 701 2530" -> "FAKCOMP AU 736 736 2533" [label="procedure call"]
+	"FAKCOMP AU 694 58 2529" -> "FAKCOMP AU 701 701 2530" [label="sequential next"]
+	"FAKCOMP PC 693 693 402" -> "FAKCOMP AU 694 58 2529" [label=true]
+	"FAKCOMP AU 715 716 2587" -> "FAKCOMP AU 641 7 2527" [label="procedure backward call"]
+	"FAKCOMP AU 709 46 2586" -> "FAKCOMP AU 715 716 2587" [label="sequential next"]
+	"FAKCOMP AU 709 46 2586" -> "FAKCOMP AU 713 713 2532" [label="sequential next"]
+	"FAKCOMP PC 693 693 402" -> "FAKCOMP AU 709 46 2586" [label=false]
+	"FAKCOMP AU 690 690 2528" -> "FAKCOMP PC 693 693 402" [label="sequential next"]
+	"FAKCOMP AU 641 7 2527" -> "FAKCOMP AU 690 690 2528" [label="procedure call"]
+	"FAKCOMP AU 641 7 2527" -> "FAKCOMP AU 647 648 2524" [label="sequential next"]
+	"FAKCOMP AU 0 41 2526" -> "FAKCOMP AU 641 7 2527" [label="sequential next"]
+	"FAKCOMP AU 634 634 2525" -> "FAKCOMP AU 0 41 2526" [label="sequential next"]
+	"FAKCOMP PC 631 40 415" -> "FAKCOMP AU 634 634 2525" [label="outside-if"]
+	"FAKCOMP AU 626 34 2522" -> "FAKCOMP PC 631 40 415" [label="perform-exit"]
+	"FAKCOMP AU 654 655 2589" -> "FAKCOMP AU 687 688 2576" [label="procedure call"]
+	"FAKCOMP PC 653 653 410" -> "FAKCOMP AU 654 655 2589" [label=true]
+	"FAKCOMP AU 667 669 2592" -> "FAKCOMP AU 671 671 2574" [label="sequential next"]
+	"FAKCOMP PC 666 666 411" -> "FAKCOMP AU 667 669 2592" [label=true]
+	"FAKCOMP PC 666 666 411" -> "FAKCOMP AU 685 685 2579" [label="outside-if"]
+	"FAKCOMP AU 658 57 2591" -> "FAKCOMP PC 666 666 411" [label="sequential next"]
+	"FAKCOMP AU 656 656 2590" -> "FAKCOMP AU 658 57 2591" [label="sequential next"]
+	"FAKCOMP PC 653 653 410" -> "FAKCOMP AU 656 656 2590" [label="outside-if"]
+	"FAKCOMP AU 650 650 2588" -> "FAKCOMP PC 653 653 410" [label="sequential next"]
+	"FAKCOMP AU 626 34 2522" -> "FAKCOMP AU 650 650 2588" [label="procedure call"]
+	"FAKCOMP AU 623 624 2521" -> "FAKCOMP AU 626 34 2522" [label="sequential next"]
+	"FAKCOMP AU 621 621 2520" -> "FAKCOMP AU 623 624 2521" [label="perform-exit"]
+	"FAKCOMP AU 621 621 2520" -> "FAKCOMP AU 816 819 2541" [label="procedure call"]
+	"FAKCOMP AU 618 618 2519" -> "FAKCOMP AU 621 621 2520" [label="sequential next"]
+	"FAKCOMP AU 602 602 2514" -> "FAKCOMP AU 618 618 2519" [label="procedure call"]
+	"FAKCOMP PC 601 601 401" -> "FAKCOMP AU 602 602 2514" [label=true]
+	"FAKCOMP PC 601 601 401" -> "FAKCOMP AU 609 609 2569" [label=false]
+	"FAKCOMP AU 0 31 2513" -> "FAKCOMP PC 601 601 401" [label="sequential next"]
+	"FAKCOMP AU 0 0 2512" -> "FAKCOMP AU 0 31 2513" [label="sequential next"]
+	"FAKCOMP AU 576 576 2509" -> "FAKCOMP AU 0 0 2512" [label="perform-exit"]
+	"FAKCOMP PC 575 575 413" -> "FAKCOMP AU 576 576 2509" [label=true]
+	"FAKCOMP PC 574 574 400" -> "FAKCOMP PC 575 575 413" [label="evaluate when"]
+	"FAKCOMP PC 578 578 423" -> "FAKCOMP AU 579 579 2537" [label=true]
+	"FAKCOMP PC 574 574 400" -> "FAKCOMP PC 578 578 423" [label="evaluate when"]
+	"FAKCOMP AU 582 591 2593" -> "FAKCOMP AU 615 616 2516" [label="procedure call"]
+	"FAKCOMP PC 574 574 400" -> "FAKCOMP AU 582 591 2593" [label=false]
+	"FAKCOMP AU 566 14 2508" -> "FAKCOMP PC 574 574 400" [label="sequential next"]
+	"FAKCOMP AU 520 520 2503" -> "FAKCOMP AU 566 14 2508" [label="procedure call"]
+	"FAKCOMP AU 518 518 2502" -> "FAKCOMP AU 520 520 2503" [label="perform-exit"]
+	"FAKCOMP AU 548 549 2596" -> "FAKCOMP AU 518 518 2502" [label="procedure backward call"]
+	"FAKCOMP AU 531 531 2595" -> "FAKCOMP AU 548 549 2596" [label="procedure call"]
+	"FAKCOMP PC 530 530 412" -> "FAKCOMP AU 531 531 2595" [label=true]
+	"FAKCOMP AU 563 564 2602" -> "FAKCOMP AU 546 546 2599" [label="procedure backward call"]
+	"FAKCOMP AU 554 2 2601" -> "FAKCOMP AU 563 564 2602" [label="sequential next"]
+	"FAKCOMP AU 554 2 2601" -> "FAKCOMP AU 554 2 2601" [label="sequential next"]
+	"FAKCOMP AU 551 551 2600" -> "FAKCOMP AU 554 2 2601" [label="sequential next"]
+	"FAKCOMP AU 546 546 2599" -> "FAKCOMP AU 551 551 2600" [label="procedure call"]
+	"FAKCOMP AU 546 546 2599" -> "FAKCOMP AU 548 549 2596" [label="sequential next"]
+	"FAKCOMP AU 534 1 2598" -> "FAKCOMP AU 546 546 2599" [label="sequential next"]
+	"FAKCOMP AU 532 532 2597" -> "FAKCOMP AU 534 1 2598" [label="sequential next"]
+	"FAKCOMP PC 530 530 412" -> "FAKCOMP AU 532 532 2597" [label="outside-if"]
+	"FAKCOMP AU 527 527 2594" -> "FAKCOMP PC 530 530 412" [label="sequential next"]
+	"FAKCOMP AU 518 518 2502" -> "FAKCOMP AU 527 527 2594" [label="procedure call"]
+	"FAKCOMP AU 515 515 2501" -> "FAKCOMP AU 518 518 2502" [label="sequential next"]
+	"FAKCOMP AU 0 0 2500" -> "FAKCOMP AU 515 515 2501" [label=start]
+}

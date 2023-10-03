@@ -1,0 +1,7 @@
+digraph cluster10 {
+	"PC IB4OP01 PC 0 3 580" [label="IF TI-TRAN = 'UA' OR 'UB' OR 'D ' OR 'Q '"]
+	"AU IB4OP01 AU 391 391 3631" [label="MOVE 'GU  ' TO ACTION"]
+	"PC IB4OP01 PC 0 3 580" -> "AU IB4OP01 AU 391 391 3631" [label=true]
+	"AU IB4OP01 AU 472 472 3632" [label="END-IF"]
+	"PC IB4OP01 PC 0 3 580" -> "AU IB4OP01 AU 472 472 3632" [label="outside-if"]
+}

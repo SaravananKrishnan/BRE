@@ -1,0 +1,12 @@
+digraph cluster4 {
+	"PC worker PC 73 73 154" [label="IF PLAYER-CHOICE = ZERO"]
+	"AU worker AU 74 74 770" [label="CALL \"append_http_body\" USING \"null\""]
+	"AU worker AU 50 50 771" [label="END-IF"]
+	"AU worker AU 74 74 770" -> "AU worker AU 50 50 771" [label="sequential next"]
+	"PC worker PC 73 73 154" -> "AU worker AU 74 74 770" [label=true]
+	"AU worker AU 76 78 772" [label="CALL \"append_http_body\" USING '\"'
+CALL \"append_http_body\" USING PLAYER-CHOICE
+CALL \"append_http_body\" USING '\"'"]
+	"AU worker AU 76 78 772" -> "AU worker AU 50 50 771" [label="sequential next"]
+	"PC worker PC 73 73 154" -> "AU worker AU 76 78 772" [label=false]
+}

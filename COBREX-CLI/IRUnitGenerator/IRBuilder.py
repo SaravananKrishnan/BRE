@@ -179,11 +179,11 @@ def runIR(fileName):
         os.system(cmd)
     ir_json = ir.getJSON(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}.json'.format(fileName)))
     ir.getPDF(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}'.format(fileName)),ir_json,'pdf')
-    constructs_addressed,construct_logic_map,num_subrules,num_rules = doBRR(ir.rootNode)
+    constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = doBRR(ir.rootNode)
     # print("All the addressed constructs",constructs_addressed)
     # print("All the constructs present",ir.allConstructs)
     # print("Construct to logic map: ",construct_logic_map)
-    return ir.allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules
+    return ir.allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs
 
 if __name__ == '__main__':
     try:

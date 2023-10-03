@@ -1,0 +1,15 @@
+digraph cluster1 {
+	"AU didzorchcancelmovienight AU 50 54 602" [label="RECEIVE-USER-USER-INPUT .
+ 
+MOVE SPACE TO USER-INPUT
+MOVE SPACE TO INPUT-RESULT
+ACCEPT USER-INPUT
+MOVE FUNCTION LOWER-CASE ( USER-INPUT ) TO USER-INPUT"]
+	"PC didzorchcancelmovienight PC 55 55 125" [label="IF USER-INPUT IS NOT EQUAL 'y'"]
+	"AU didzorchcancelmovienight AU 56 56 598" [label="MOVE USER-INPUT TO INPUT-RESULT"]
+	"AU didzorchcancelmovienight AU 26 26 599" [label="END-IF"]
+	"AU didzorchcancelmovienight AU 56 56 598" -> "AU didzorchcancelmovienight AU 26 26 599" [label="sequential next"]
+	"PC didzorchcancelmovienight PC 55 55 125" -> "AU didzorchcancelmovienight AU 56 56 598" [label=true]
+	"PC didzorchcancelmovienight PC 55 55 125" -> "AU didzorchcancelmovienight AU 26 26 599" [label="outside-if"]
+	"AU didzorchcancelmovienight AU 50 54 602" -> "PC didzorchcancelmovienight PC 55 55 125" [label="sequential next"]
+}

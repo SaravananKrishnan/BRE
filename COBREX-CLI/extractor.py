@@ -40,7 +40,7 @@ def extract_business_rules(file_path):
     cfg_json,cyclomatic_complexity = extractor(preprocessed_file_path,file_name,file_path, 'output')
     os.remove("clean_output.cbl")
     # return cfg_json, br_json
-    allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules = runIR(file_name)
+    allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = runIR(file_name)
 
     # f = open('./output/COBOL_{}/analysis.txt'.format(file_name),"w")
     # f.write('Cyclomatic complexity: {}\n'.format(cyclomatic_complexity))
@@ -52,7 +52,7 @@ def extract_business_rules(file_path):
     # f.write('# of constructs: {}\n'.format(len(allConstructs)))
     # f.write('Construct-Logic Mapping: {}\n'.format(construct_logic_map))
     # f.close()
-    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map]
+    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map,num_RBBs]
 
 
 

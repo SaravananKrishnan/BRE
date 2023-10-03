@@ -1,0 +1,19 @@
+digraph cluster4 {
+	"AU POKER AU 35 35 326" [label="PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5"]
+	"AU POKER AU 36 36 327" [label="PERFORM VARYING J FROM I + 1 BY 1 UNTIL J > 6"]
+	"PC POKER PC 37 37 56" [label="IF CARD-VALUE ( I ) < CARD-VALUE ( J )"]
+	"AU POKER AU 38 43 317" [label="MOVE CARD-VALUE ( I ) TO TEMP-VALUE
+MOVE CARD-SUIT ( I ) TO TEMP-SUIT
+MOVE CARD-VALUE ( J ) TO CARD-VALUE ( I )
+MOVE CARD-SUIT ( J ) TO CARD-SUIT ( I )
+MOVE TEMP-VALUE TO CARD-VALUE ( J )
+MOVE TEMP-SUIT TO CARD-SUIT ( J )"]
+	"AU POKER AU 44 44 318" [label="END-IF"]
+	"AU POKER AU 44 44 318" -> "AU POKER AU 36 36 327" [label="sequential next"]
+	"AU POKER AU 38 43 317" -> "AU POKER AU 44 44 318" [label="sequential next"]
+	"PC POKER PC 37 37 56" -> "AU POKER AU 38 43 317" [label=true]
+	"PC POKER PC 37 37 56" -> "AU POKER AU 44 44 318" [label="outside-if"]
+	"AU POKER AU 36 36 327" -> "PC POKER PC 37 37 56" [label=iteration]
+	"AU POKER AU 36 36 327" -> "AU POKER AU 35 35 326" [label="perform-exit"]
+	"AU POKER AU 35 35 326" -> "AU POKER AU 36 36 327" [label=iteration]
+}

@@ -1,0 +1,294 @@
+digraph {
+	"AU shop AU 0 0 1057" [label=Begin]
+	subgraph "Node 181" {
+	}
+	"AU shop AU 0 0 1057" -> "AU shop AU 30 30 1058" [label=start]
+	"AU shop AU 30 30 1058" [label="INIT .
+ "]
+	subgraph "Node 182" {
+	}
+	"AU shop AU 30 30 1058" -> "PC shop PC 32 32 199" [label="sequential next"]
+	"PC shop PC 32 32 199" [label="IF OP = 1"]
+	subgraph "Node 183" {
+	}
+	"PC shop PC 32 32 199" -> "AU shop AU 33 33 1059" [label=true]
+	"AU shop AU 33 33 1059" [label="DISPLAY \"SHOP IS OPEN\""]
+	subgraph "Node 184" {
+	}
+	"AU shop AU 33 33 1059" -> "AU shop AU 34 34 1053" [label="sequential next"]
+	"AU shop AU 34 34 1053" [label="PERFORM INIT-PRD THROUGH INIT-PRD-FN"]
+	"AU shop AU 34 34 1053" -> "AU shop AU 138 148 1054" [label="procedure call"]
+	"AU shop AU 138 148 1054" [label="INIT-PRD .
+ 
+COMPUTE QT-VEG = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-MEAT = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-BREAD = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-MILK = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-FRUIT = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE PR-VEG = FUNCTION RANDOM ( 1 ) * 10 + 3
+COMPUTE PR-MEAT = FUNCTION RANDOM ( 1 ) * 10 + 5
+COMPUTE PR-BREAD = FUNCTION RANDOM ( 1 ) * 10 + 1
+COMPUTE PR-MILK = FUNCTION RANDOM ( 1 ) * 10 + 2
+COMPUTE PR-FRUIT = FUNCTION RANDOM ( 1 ) * 10 + 1"]
+	"AU shop AU 138 148 1054" -> "AU shop AU 151 152 1055" [label="sequential next"]
+	"AU shop AU 151 152 1055" [label="INIT-PRD-FN .
+ 
+EXIT"]
+	"AU shop AU 151 152 1055" -> "AU shop AU 34 34 1053" [label="procedure backward call"]
+	subgraph "Node 185" {
+	}
+	"AU shop AU 34 34 1053" -> "AU shop AU 35 35 1060" [label="perform-exit"]
+	"AU shop AU 35 35 1060" [label="GO TO INIT-FN"]
+	subgraph "Node 186" {
+	}
+	"AU shop AU 35 35 1060" -> "AU shop AU 41 42 1061" [label="procedure call"]
+	"AU shop AU 41 42 1061" [label="INIT-FN .
+ 
+EXIT"]
+	subgraph "Node 187" {
+	}
+	"AU shop AU 41 42 1061" -> "AU shop AU 43 43 1062" [label="sequential next"]
+	"AU shop AU 43 43 1062" [label="BUY-VEG .
+ "]
+	subgraph "Node 188" {
+	}
+	"AU shop AU 43 43 1062" -> "AU shop AU 44 44 1063" [label="sequential next"]
+	"AU shop AU 44 44 1063" [label="PERFORM ISNEEDED THROUGH ISNEEDED-FN"]
+	subgraph "Node 189" {
+	}
+	"AU shop AU 44 44 1063" -> "PC shop PC 45 45 194" [label="perform-exit"]
+	"PC shop PC 45 45 194" [label="IF NEED = 1 AND QT-VEG > 0"]
+	"PC shop PC 45 45 194" -> "PC shop PC 46 46 188" [label=true]
+	"PC shop PC 45 45 194" -> "AU shop AU 54 54 1048" [label=false]
+	"AU shop AU 54 54 1048" [label="GO TO BUY-MEAT"]
+	"PC shop PC 46 46 188" [label="IF MONEY > PR-VEG AND BAG < MAX-CAP"]
+	"PC shop PC 46 46 188" -> "AU shop AU 47 49 1031" [label=true]
+	"PC shop PC 46 46 188" -> "AU shop AU 51 51 1033" [label=false]
+	"AU shop AU 51 51 1033" [label="GO TO PRINT"]
+	"AU shop AU 47 49 1031" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-VEG
+SUBTRACT 1 FROM QT-VEG"]
+	"AU shop AU 47 49 1031" -> "AU shop AU 52 52 1032" [label="sequential next"]
+	"AU shop AU 52 52 1032" [label="END-IF"]
+	subgraph "Node 190" {
+	}
+	"PC shop PC 45 45 194" -> "AU shop AU 55 55 1064" [label="sequential next"]
+	"AU shop AU 55 55 1064" [label="END-IF"]
+	subgraph "Node 191" {
+	}
+	"AU shop AU 55 55 1064" -> "AU shop AU 56 57 1065" [label="sequential next"]
+	"AU shop AU 56 57 1065" [label="BUY-VEG-FN .
+ 
+EXIT"]
+	subgraph "Node 192" {
+	}
+	"AU shop AU 56 57 1065" -> "AU shop AU 58 58 1066" [label="sequential next"]
+	"AU shop AU 58 58 1066" [label="BUY-MEAT .
+ "]
+	subgraph "Node 193" {
+	}
+	"AU shop AU 58 58 1066" -> "AU shop AU 59 59 1067" [label="sequential next"]
+	"AU shop AU 59 59 1067" [label="PERFORM ISNEEDED THROUGH ISNEEDED-FN"]
+	subgraph "Node 194" {
+	}
+	"AU shop AU 59 59 1067" -> "PC shop PC 60 60 195" [label="perform-exit"]
+	"PC shop PC 60 60 195" [label="IF NEED = 1 AND QT-MEAT > 0"]
+	"PC shop PC 60 60 195" -> "PC shop PC 61 61 189" [label=true]
+	"PC shop PC 60 60 195" -> "AU shop AU 69 69 1049" [label=false]
+	"AU shop AU 69 69 1049" [label="GO TO BUY-BREAD"]
+	"PC shop PC 61 61 189" [label="IF MONEY > PR-MEAT AND BAG < MAX-CAP"]
+	"PC shop PC 61 61 189" -> "AU shop AU 62 64 1034" [label=true]
+	"PC shop PC 61 61 189" -> "AU shop AU 66 66 1036" [label=false]
+	"AU shop AU 66 66 1036" [label="GO TO PRINT"]
+	"AU shop AU 62 64 1034" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-MEAT
+SUBTRACT 1 FROM QT-MEAT"]
+	"AU shop AU 62 64 1034" -> "AU shop AU 67 67 1035" [label="sequential next"]
+	"AU shop AU 67 67 1035" [label="END-IF"]
+	subgraph "Node 195" {
+	}
+	"PC shop PC 60 60 195" -> "AU shop AU 70 70 1068" [label="sequential next"]
+	"AU shop AU 70 70 1068" [label="END-IF"]
+	subgraph "Node 196" {
+	}
+	"AU shop AU 70 70 1068" -> "AU shop AU 71 72 1069" [label="sequential next"]
+	"AU shop AU 71 72 1069" [label="BUY-MEAT-FN .
+ 
+EXIT"]
+	subgraph "Node 197" {
+	}
+	"AU shop AU 71 72 1069" -> "AU shop AU 73 73 1070" [label="sequential next"]
+	"AU shop AU 73 73 1070" [label="BUY-BREAD .
+ "]
+	subgraph "Node 198" {
+	}
+	"AU shop AU 73 73 1070" -> "AU shop AU 74 74 1071" [label="sequential next"]
+	"AU shop AU 74 74 1071" [label="PERFORM ISNEEDED THROUGH ISNEEDED-FN"]
+	subgraph "Node 199" {
+	}
+	"AU shop AU 74 74 1071" -> "PC shop PC 75 75 196" [label="perform-exit"]
+	"PC shop PC 75 75 196" [label="IF NEED = 1 AND QT-BREAD > 0"]
+	"PC shop PC 75 75 196" -> "PC shop PC 76 76 190" [label=true]
+	"PC shop PC 75 75 196" -> "AU shop AU 84 84 1050" [label=false]
+	"AU shop AU 84 84 1050" [label="GO TO BUY-MILK"]
+	"PC shop PC 76 76 190" [label="IF MONEY > PR-BREAD AND BAG < MAX-CAP"]
+	"PC shop PC 76 76 190" -> "AU shop AU 77 79 1037" [label=true]
+	"PC shop PC 76 76 190" -> "AU shop AU 81 81 1039" [label=false]
+	"AU shop AU 81 81 1039" [label="GO TO PRINT"]
+	"AU shop AU 77 79 1037" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-BREAD
+SUBTRACT 1 FROM QT-BREAD"]
+	"AU shop AU 77 79 1037" -> "AU shop AU 82 82 1038" [label="sequential next"]
+	"AU shop AU 82 82 1038" [label="END-IF"]
+	subgraph "Node 200" {
+	}
+	"PC shop PC 75 75 196" -> "AU shop AU 85 85 1072" [label="sequential next"]
+	"AU shop AU 85 85 1072" [label="END-IF"]
+	subgraph "Node 201" {
+	}
+	"AU shop AU 85 85 1072" -> "AU shop AU 86 87 1073" [label="sequential next"]
+	"AU shop AU 86 87 1073" [label="BUY-BREAD-FN .
+ 
+EXIT"]
+	subgraph "Node 202" {
+	}
+	"AU shop AU 86 87 1073" -> "AU shop AU 88 88 1074" [label="sequential next"]
+	"AU shop AU 88 88 1074" [label="BUY-MILK .
+ "]
+	subgraph "Node 203" {
+	}
+	"AU shop AU 88 88 1074" -> "AU shop AU 89 89 1075" [label="sequential next"]
+	"AU shop AU 89 89 1075" [label="PERFORM ISNEEDED THRU ISNEEDED-FN"]
+	subgraph "Node 204" {
+	}
+	"AU shop AU 89 89 1075" -> "PC shop PC 90 90 197" [label="perform-exit"]
+	"PC shop PC 90 90 197" [label="IF NEED = 1 AND QT-MILK > 0"]
+	"PC shop PC 90 90 197" -> "PC shop PC 91 91 191" [label=true]
+	"PC shop PC 90 90 197" -> "AU shop AU 99 99 1051" [label=false]
+	"AU shop AU 99 99 1051" [label="GO TO BUY-FRUIT"]
+	"PC shop PC 91 91 191" [label="IF MONEY > PR-MILK AND BAG < MAX-CAP"]
+	"PC shop PC 91 91 191" -> "AU shop AU 92 94 1040" [label=true]
+	"PC shop PC 91 91 191" -> "AU shop AU 96 96 1042" [label=false]
+	"AU shop AU 96 96 1042" [label="GO TO PRINT"]
+	"AU shop AU 92 94 1040" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-MILK
+SUBTRACT 1 FROM QT-MILK"]
+	"AU shop AU 92 94 1040" -> "AU shop AU 97 97 1041" [label="sequential next"]
+	"AU shop AU 97 97 1041" [label="END-IF"]
+	subgraph "Node 205" {
+	}
+	"PC shop PC 90 90 197" -> "AU shop AU 100 100 1076" [label="sequential next"]
+	"AU shop AU 100 100 1076" [label="END-IF"]
+	subgraph "Node 206" {
+	}
+	"AU shop AU 100 100 1076" -> "AU shop AU 101 102 1077" [label="sequential next"]
+	"AU shop AU 101 102 1077" [label="BUY-MILK-FN .
+ 
+EXIT"]
+	subgraph "Node 207" {
+	}
+	"AU shop AU 101 102 1077" -> "AU shop AU 103 103 1078" [label="sequential next"]
+	"AU shop AU 103 103 1078" [label="BUY-FRUIT .
+ "]
+	subgraph "Node 208" {
+	}
+	"AU shop AU 103 103 1078" -> "AU shop AU 104 104 1079" [label="sequential next"]
+	"AU shop AU 104 104 1079" [label="PERFORM ISNEEDED THRU ISNEEDED-FN"]
+	subgraph "Node 209" {
+	}
+	"AU shop AU 104 104 1079" -> "PC shop PC 105 105 198" [label="perform-exit"]
+	"PC shop PC 105 105 198" [label="IF NEED = 1 AND QT-FRUIT > 0"]
+	"PC shop PC 105 105 198" -> "PC shop PC 106 106 192" [label=true]
+	"PC shop PC 105 105 198" -> "AU shop AU 114 114 1052" [label=false]
+	"AU shop AU 114 114 1052" [label="GO TO CHECK"]
+	"PC shop PC 106 106 192" [label="IF MONEY > PR-FRUIT AND BAG < MAX-CAP"]
+	"PC shop PC 106 106 192" -> "AU shop AU 107 109 1043" [label=true]
+	"PC shop PC 106 106 192" -> "AU shop AU 111 111 1045" [label=false]
+	"AU shop AU 111 111 1045" [label="GO TO PRINT"]
+	"AU shop AU 107 109 1043" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-FRUIT
+SUBTRACT 1 FROM QT-FRUIT"]
+	"AU shop AU 107 109 1043" -> "AU shop AU 112 112 1044" [label="sequential next"]
+	"AU shop AU 112 112 1044" [label="END-IF"]
+	subgraph "Node 210" {
+	}
+	"PC shop PC 105 105 198" -> "AU shop AU 115 115 1080" [label="sequential next"]
+	"AU shop AU 115 115 1080" [label="END-IF"]
+	subgraph "Node 211" {
+	}
+	"AU shop AU 115 115 1080" -> "AU shop AU 116 117 1081" [label="sequential next"]
+	"AU shop AU 116 117 1081" [label="BUY-FRUIT-FN .
+ 
+EXIT"]
+	subgraph "Node 212" {
+	}
+	"AU shop AU 116 117 1081" -> "AU shop AU 118 118 1056" [label="sequential next"]
+	"AU shop AU 118 118 1056" [label="CHECK .
+ "]
+	"AU shop AU 118 118 1056" -> "PC shop PC 119 119 193" [label="sequential next"]
+	"PC shop PC 119 119 193" [label="IF MONEY <= 0 OR BAG >= MAX-CAP"]
+	"PC shop PC 119 119 193" -> "AU shop AU 120 120 1046" [label=true]
+	"PC shop PC 119 119 193" -> "AU shop AU 122 122 1047" [label=false]
+	"AU shop AU 122 122 1047" [label="GO TO BUY-VEG"]
+	"AU shop AU 120 120 1046" [label="GO TO PRINT"]
+	subgraph "Node 213" {
+	}
+	"AU shop AU 118 118 1056" -> "AU shop AU 126 129 1082" [label="procedure call"]
+	"AU shop AU 126 129 1082" [label="PRINT .
+ 
+MOVE MONEY TO REST
+DISPLAY \"REST:\" MONEY
+DISPLAY \"NB OF PRODUCTS:\" BAG"]
+	subgraph "Node 214" {
+	}
+	"AU shop AU 126 129 1082" -> "AU shop AU 130 131 1083" [label="sequential next"]
+	"AU shop AU 130 131 1083" [label="FIN .
+ 
+STOP RUN"]
+	subgraph "Node 215" {
+	}
+	"AU shop AU 118 118 1056" -> "AU shop AU 43 43 1062" [label="procedure call"]
+	"PC shop PC 105 105 198" -> "AU shop AU 126 129 1082" [label="procedure call"]
+	"PC shop PC 105 105 198" -> "AU shop AU 118 118 1056" [label="procedure call"]
+	"AU shop AU 104 104 1079" -> "AU shop AU 133 134 1084" [label="procedure call"]
+	"AU shop AU 133 134 1084" [label="ISNEEDED .
+ 
+COMPUTE NEED = FUNCTION RANDOM ( 1 ) * 2"]
+	subgraph "Node 216" {
+	}
+	"AU shop AU 133 134 1084" -> "AU shop AU 135 136 1085" [label="sequential next"]
+	"AU shop AU 135 136 1085" [label="ISNEEDED-FN .
+ 
+EXIT"]
+	subgraph "Node 217" {
+	}
+	"AU shop AU 135 136 1085" -> "AU shop AU 44 44 1063" [label="procedure backward call"]
+	"AU shop AU 135 136 1085" -> "AU shop AU 59 59 1067" [label="procedure backward call"]
+	"AU shop AU 135 136 1085" -> "AU shop AU 74 74 1071" [label="procedure backward call"]
+	"AU shop AU 135 136 1085" -> "AU shop AU 89 89 1075" [label="procedure backward call"]
+	"AU shop AU 135 136 1085" -> "AU shop AU 104 104 1079" [label="procedure backward call"]
+	"AU shop AU 133 134 1084" -> "AU shop AU 135 136 1085" [label="sequential next"]
+	"AU shop AU 133 134 1084" -> "AU shop AU 135 136 1085" [label="sequential next"]
+	"AU shop AU 133 134 1084" -> "AU shop AU 135 136 1085" [label="sequential next"]
+	"AU shop AU 133 134 1084" -> "AU shop AU 135 136 1085" [label="sequential next"]
+	"PC shop PC 90 90 197" -> "AU shop AU 126 129 1082" [label="procedure call"]
+	"PC shop PC 90 90 197" -> "AU shop AU 103 103 1078" [label="procedure call"]
+	"AU shop AU 89 89 1075" -> "AU shop AU 133 134 1084" [label="procedure call"]
+	"PC shop PC 75 75 196" -> "AU shop AU 126 129 1082" [label="procedure call"]
+	"PC shop PC 75 75 196" -> "AU shop AU 88 88 1074" [label="procedure call"]
+	"AU shop AU 74 74 1071" -> "AU shop AU 133 134 1084" [label="procedure call"]
+	"PC shop PC 60 60 195" -> "AU shop AU 126 129 1082" [label="procedure call"]
+	"PC shop PC 60 60 195" -> "AU shop AU 73 73 1070" [label="procedure call"]
+	"AU shop AU 59 59 1067" -> "AU shop AU 133 134 1084" [label="procedure call"]
+	"PC shop PC 45 45 194" -> "AU shop AU 126 129 1082" [label="procedure call"]
+	"PC shop PC 45 45 194" -> "AU shop AU 58 58 1066" [label="procedure call"]
+	"AU shop AU 44 44 1063" -> "AU shop AU 133 134 1084" [label="procedure call"]
+	"PC shop PC 32 32 199" -> "AU shop AU 37 38 1086" [label=false]
+	"AU shop AU 37 38 1086" [label="DISPLAY \"SHOP IS CLOSED\"
+GO TO INIT"]
+	subgraph "Node 218" {
+	}
+	"AU shop AU 37 38 1086" -> "AU shop AU 30 30 1058" [label="procedure call"]
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}
