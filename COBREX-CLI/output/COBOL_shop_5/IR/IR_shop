@@ -1,0 +1,216 @@
+digraph cluster {
+	"shop AU 0 0 68" [label=Begin fillcolor=lightblue style=filled]
+	"shop AU 30 30 69" [label="INIT .
+ " fillcolor=lightblue style=filled]
+	"shop PC 32 32 0" [label="IF OP = 1" fillcolor=lightblue style=filled]
+	"shop AU 33 33 70" [label="DISPLAY \"SHOP IS OPEN\"" fillcolor=lightblue style=filled]
+	"shop AU 34 34 71" [label="PERFORM INIT-PRD THROUGH INIT-PRD-FN" fillcolor=lightblue style=filled]
+	"shop AU 35 35 72" [label="GO TO INIT-FN" fillcolor=lightblue style=filled]
+	"shop AU 41 42 73" [label="INIT-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 43 43 74" [label="BUY-VEG .
+ " fillcolor=lightblue style=filled]
+	"shop AU 44 44 75" [label="PERFORM ISNEEDED THROUGH ISNEEDED-FN" fillcolor=lightblue style=filled]
+	"shop PC 45 45 2" [label="IF NEED = 1 AND QT-VEG > 0" fillcolor=lightblue style=filled]
+	"shop PC 46 46 3" [label="IF MONEY > PR-VEG AND BAG < MAX-CAP" fillcolor=lightblue style=filled]
+	"shop AU 47 49 76" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-VEG
+SUBTRACT 1 FROM QT-VEG" fillcolor=lightblue style=filled]
+	"shop AU 52 52 77" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 55 55 78" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 56 57 79" [label="BUY-VEG-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 58 58 80" [label="BUY-MEAT .
+ " fillcolor=lightblue style=filled]
+	"shop AU 59 59 81" [label="PERFORM ISNEEDED THROUGH ISNEEDED-FN" fillcolor=lightblue style=filled]
+	"shop PC 60 60 4" [label="IF NEED = 1 AND QT-MEAT > 0" fillcolor=lightblue style=filled]
+	"shop PC 61 61 5" [label="IF MONEY > PR-MEAT AND BAG < MAX-CAP" fillcolor=lightblue style=filled]
+	"shop AU 62 64 82" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-MEAT
+SUBTRACT 1 FROM QT-MEAT" fillcolor=lightblue style=filled]
+	"shop AU 67 67 83" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 70 70 84" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 71 72 85" [label="BUY-MEAT-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 73 73 86" [label="BUY-BREAD .
+ " fillcolor=lightblue style=filled]
+	"shop AU 74 74 87" [label="PERFORM ISNEEDED THROUGH ISNEEDED-FN" fillcolor=lightblue style=filled]
+	"shop PC 75 75 6" [label="IF NEED = 1 AND QT-BREAD > 0" fillcolor=lightblue style=filled]
+	"shop PC 76 76 7" [label="IF MONEY > PR-BREAD AND BAG < MAX-CAP" fillcolor=lightblue style=filled]
+	"shop AU 77 79 88" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-BREAD
+SUBTRACT 1 FROM QT-BREAD" fillcolor=lightblue style=filled]
+	"shop AU 82 82 89" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 85 85 90" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 86 87 91" [label="BUY-BREAD-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 88 88 92" [label="BUY-MILK .
+ " fillcolor=lightblue style=filled]
+	"shop AU 89 89 93" [label="PERFORM ISNEEDED THRU ISNEEDED-FN" fillcolor=lightblue style=filled]
+	"shop PC 90 90 8" [label="IF NEED = 1 AND QT-MILK > 0" fillcolor=lightblue style=filled]
+	"shop PC 91 91 9" [label="IF MONEY > PR-MILK AND BAG < MAX-CAP" fillcolor=lightblue style=filled]
+	"shop AU 92 94 94" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-MILK
+SUBTRACT 1 FROM QT-MILK" fillcolor=lightblue style=filled]
+	"shop AU 97 97 95" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 100 100 96" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 101 102 97" [label="BUY-MILK-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 103 103 98" [label="BUY-FRUIT .
+ " fillcolor=lightblue style=filled]
+	"shop AU 104 104 99" [label="PERFORM ISNEEDED THRU ISNEEDED-FN" fillcolor=lightblue style=filled]
+	"shop PC 105 105 10" [label="IF NEED = 1 AND QT-FRUIT > 0" fillcolor=lightblue style=filled]
+	"shop PC 106 106 11" [label="IF MONEY > PR-FRUIT AND BAG < MAX-CAP" fillcolor=lightblue style=filled]
+	"shop AU 107 109 100" [label="ADD 1 TO BAG
+COMPUTE MONEY = MONEY - PR-FRUIT
+SUBTRACT 1 FROM QT-FRUIT" fillcolor=lightblue style=filled]
+	"shop AU 112 112 101" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 115 115 102" [label="END-IF" fillcolor=lightblue style=filled]
+	"shop AU 116 117 103" [label="BUY-FRUIT-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 118 118 104" [label="CHECK .
+ " fillcolor=lightblue style=filled]
+	"shop PC 119 119 1" [label="IF MONEY <= 0 OR BAG >= MAX-CAP" fillcolor=lightblue style=filled]
+	"shop AU 120 120 105" [label="GO TO PRINT" fillcolor=lightblue style=filled]
+	"shop AU 126 129 106" [label="PRINT .
+ 
+MOVE MONEY TO REST
+DISPLAY \"REST:\" MONEY
+DISPLAY \"NB OF PRODUCTS:\" BAG" fillcolor=lightblue style=filled]
+	"shop AU 130 131 107" [label="FIN .
+ 
+STOP RUN" fillcolor=lightblue style=filled]
+	"shop AU 122 122 108" [label="GO TO BUY-VEG" fillcolor=lightblue style=filled]
+	"shop AU 111 111 109" [label="GO TO PRINT" fillcolor=lightblue style=filled]
+	"shop AU 114 114 110" [label="GO TO CHECK" fillcolor=lightblue style=filled]
+	"shop AU 133 134 111" [label="ISNEEDED .
+ 
+COMPUTE NEED = FUNCTION RANDOM ( 1 ) * 2" fillcolor=lightblue style=filled]
+	"shop AU 135 136 112" [label="ISNEEDED-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 96 96 113" [label="GO TO PRINT" fillcolor=lightblue style=filled]
+	"shop AU 99 99 114" [label="GO TO BUY-FRUIT" fillcolor=lightblue style=filled]
+	"shop AU 81 81 115" [label="GO TO PRINT" fillcolor=lightblue style=filled]
+	"shop AU 84 84 116" [label="GO TO BUY-MILK" fillcolor=lightblue style=filled]
+	"shop AU 66 66 117" [label="GO TO PRINT" fillcolor=lightblue style=filled]
+	"shop AU 69 69 118" [label="GO TO BUY-BREAD" fillcolor=lightblue style=filled]
+	"shop AU 51 51 119" [label="GO TO PRINT" fillcolor=lightblue style=filled]
+	"shop AU 54 54 120" [label="GO TO BUY-MEAT" fillcolor=lightblue style=filled]
+	"shop AU 138 148 121" [label="INIT-PRD .
+ 
+COMPUTE QT-VEG = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-MEAT = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-BREAD = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-MILK = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-FRUIT = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE PR-VEG = FUNCTION RANDOM ( 1 ) * 10 + 3
+COMPUTE PR-MEAT = FUNCTION RANDOM ( 1 ) * 10 + 5
+COMPUTE PR-BREAD = FUNCTION RANDOM ( 1 ) * 10 + 1
+COMPUTE PR-MILK = FUNCTION RANDOM ( 1 ) * 10 + 2
+COMPUTE PR-FRUIT = FUNCTION RANDOM ( 1 ) * 10 + 1" fillcolor=lightblue style=filled]
+	"shop AU 151 152 122" [label="INIT-PRD-FN .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"shop AU 37 38 123" [label="DISPLAY \"SHOP IS CLOSED\"
+GO TO INIT" fillcolor=lightblue style=filled]
+	"shop AU 126 129 106" -> "shop AU 130 131 107" [label="sequential next"]
+	"shop AU 120 120 105" -> "shop AU 126 129 106" [label="procedure call"]
+	"shop PC 119 119 1" -> "shop AU 120 120 105" [label=true]
+	"shop AU 122 122 108" -> "shop AU 43 43 74" [label="procedure call"]
+	"shop PC 119 119 1" -> "shop AU 122 122 108" [label=false]
+	"shop AU 118 118 104" -> "shop PC 119 119 1" [label="sequential next"]
+	"shop AU 116 117 103" -> "shop AU 118 118 104" [label="sequential next"]
+	"shop AU 115 115 102" -> "shop AU 116 117 103" [label="sequential next"]
+	"shop AU 112 112 101" -> "shop AU 115 115 102" [label="sequential next"]
+	"shop AU 107 109 100" -> "shop AU 112 112 101" [label="sequential next"]
+	"shop PC 106 106 11" -> "shop AU 107 109 100" [label=true]
+	"shop AU 111 111 109" -> "shop AU 126 129 106" [label="procedure call"]
+	"shop PC 106 106 11" -> "shop AU 111 111 109" [label=false]
+	"shop PC 105 105 10" -> "shop PC 106 106 11" [label=true]
+	"shop AU 114 114 110" -> "shop AU 118 118 104" [label="procedure call"]
+	"shop PC 105 105 10" -> "shop AU 114 114 110" [label=false]
+	"shop AU 104 104 99" -> "shop PC 105 105 10" [label="perform-exit"]
+	"shop AU 135 136 112" -> "shop AU 44 44 75" [label="procedure backward call"]
+	"shop AU 135 136 112" -> "shop AU 59 59 81" [label="procedure backward call"]
+	"shop AU 135 136 112" -> "shop AU 74 74 87" [label="procedure backward call"]
+	"shop AU 135 136 112" -> "shop AU 89 89 93" [label="procedure backward call"]
+	"shop AU 135 136 112" -> "shop AU 104 104 99" [label="procedure backward call"]
+	"shop AU 133 134 111" -> "shop AU 135 136 112" [label="sequential next"]
+	"shop AU 133 134 111" -> "shop AU 135 136 112" [label="sequential next"]
+	"shop AU 133 134 111" -> "shop AU 135 136 112" [label="sequential next"]
+	"shop AU 133 134 111" -> "shop AU 135 136 112" [label="sequential next"]
+	"shop AU 133 134 111" -> "shop AU 135 136 112" [label="sequential next"]
+	"shop AU 104 104 99" -> "shop AU 133 134 111" [label="procedure call"]
+	"shop AU 103 103 98" -> "shop AU 104 104 99" [label="sequential next"]
+	"shop AU 101 102 97" -> "shop AU 103 103 98" [label="sequential next"]
+	"shop AU 100 100 96" -> "shop AU 101 102 97" [label="sequential next"]
+	"shop AU 97 97 95" -> "shop AU 100 100 96" [label="sequential next"]
+	"shop AU 92 94 94" -> "shop AU 97 97 95" [label="sequential next"]
+	"shop PC 91 91 9" -> "shop AU 92 94 94" [label=true]
+	"shop AU 96 96 113" -> "shop AU 126 129 106" [label="procedure call"]
+	"shop PC 91 91 9" -> "shop AU 96 96 113" [label=false]
+	"shop PC 90 90 8" -> "shop PC 91 91 9" [label=true]
+	"shop AU 99 99 114" -> "shop AU 103 103 98" [label="procedure call"]
+	"shop PC 90 90 8" -> "shop AU 99 99 114" [label=false]
+	"shop AU 89 89 93" -> "shop PC 90 90 8" [label="perform-exit"]
+	"shop AU 89 89 93" -> "shop AU 133 134 111" [label="procedure call"]
+	"shop AU 88 88 92" -> "shop AU 89 89 93" [label="sequential next"]
+	"shop AU 86 87 91" -> "shop AU 88 88 92" [label="sequential next"]
+	"shop AU 85 85 90" -> "shop AU 86 87 91" [label="sequential next"]
+	"shop AU 82 82 89" -> "shop AU 85 85 90" [label="sequential next"]
+	"shop AU 77 79 88" -> "shop AU 82 82 89" [label="sequential next"]
+	"shop PC 76 76 7" -> "shop AU 77 79 88" [label=true]
+	"shop AU 81 81 115" -> "shop AU 126 129 106" [label="procedure call"]
+	"shop PC 76 76 7" -> "shop AU 81 81 115" [label=false]
+	"shop PC 75 75 6" -> "shop PC 76 76 7" [label=true]
+	"shop AU 84 84 116" -> "shop AU 88 88 92" [label="procedure call"]
+	"shop PC 75 75 6" -> "shop AU 84 84 116" [label=false]
+	"shop AU 74 74 87" -> "shop PC 75 75 6" [label="perform-exit"]
+	"shop AU 74 74 87" -> "shop AU 133 134 111" [label="procedure call"]
+	"shop AU 73 73 86" -> "shop AU 74 74 87" [label="sequential next"]
+	"shop AU 71 72 85" -> "shop AU 73 73 86" [label="sequential next"]
+	"shop AU 70 70 84" -> "shop AU 71 72 85" [label="sequential next"]
+	"shop AU 67 67 83" -> "shop AU 70 70 84" [label="sequential next"]
+	"shop AU 62 64 82" -> "shop AU 67 67 83" [label="sequential next"]
+	"shop PC 61 61 5" -> "shop AU 62 64 82" [label=true]
+	"shop AU 66 66 117" -> "shop AU 126 129 106" [label="procedure call"]
+	"shop PC 61 61 5" -> "shop AU 66 66 117" [label=false]
+	"shop PC 60 60 4" -> "shop PC 61 61 5" [label=true]
+	"shop AU 69 69 118" -> "shop AU 73 73 86" [label="procedure call"]
+	"shop PC 60 60 4" -> "shop AU 69 69 118" [label=false]
+	"shop AU 59 59 81" -> "shop PC 60 60 4" [label="perform-exit"]
+	"shop AU 59 59 81" -> "shop AU 133 134 111" [label="procedure call"]
+	"shop AU 58 58 80" -> "shop AU 59 59 81" [label="sequential next"]
+	"shop AU 56 57 79" -> "shop AU 58 58 80" [label="sequential next"]
+	"shop AU 55 55 78" -> "shop AU 56 57 79" [label="sequential next"]
+	"shop AU 52 52 77" -> "shop AU 55 55 78" [label="sequential next"]
+	"shop AU 47 49 76" -> "shop AU 52 52 77" [label="sequential next"]
+	"shop PC 46 46 3" -> "shop AU 47 49 76" [label=true]
+	"shop AU 51 51 119" -> "shop AU 126 129 106" [label="procedure call"]
+	"shop PC 46 46 3" -> "shop AU 51 51 119" [label=false]
+	"shop PC 45 45 2" -> "shop PC 46 46 3" [label=true]
+	"shop AU 54 54 120" -> "shop AU 58 58 80" [label="procedure call"]
+	"shop PC 45 45 2" -> "shop AU 54 54 120" [label=false]
+	"shop AU 44 44 75" -> "shop PC 45 45 2" [label="perform-exit"]
+	"shop AU 44 44 75" -> "shop AU 133 134 111" [label="procedure call"]
+	"shop AU 43 43 74" -> "shop AU 44 44 75" [label="sequential next"]
+	"shop AU 41 42 73" -> "shop AU 43 43 74" [label="sequential next"]
+	"shop AU 35 35 72" -> "shop AU 41 42 73" [label="procedure call"]
+	"shop AU 34 34 71" -> "shop AU 35 35 72" [label="perform-exit"]
+	"shop AU 151 152 122" -> "shop AU 34 34 71" [label="procedure backward call"]
+	"shop AU 138 148 121" -> "shop AU 151 152 122" [label="sequential next"]
+	"shop AU 34 34 71" -> "shop AU 138 148 121" [label="procedure call"]
+	"shop AU 33 33 70" -> "shop AU 34 34 71" [label="sequential next"]
+	"shop PC 32 32 0" -> "shop AU 33 33 70" [label=true]
+	"shop AU 37 38 123" -> "shop AU 30 30 69" [label="procedure call"]
+	"shop PC 32 32 0" -> "shop AU 37 38 123" [label=false]
+	"shop AU 30 30 69" -> "shop PC 32 32 0" [label="sequential next"]
+	"shop AU 0 0 68" -> "shop AU 30 30 69" [label=start]
+}

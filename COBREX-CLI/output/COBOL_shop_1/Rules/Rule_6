@@ -1,0 +1,21 @@
+digraph cluster5 {
+	"AU shop AU 34 34 146" [label="PERFORM INIT-PRD THROUGH INIT-PRD-FN"]
+	"AU shop AU 138 148 147" [label="INIT-PRD .
+ 
+COMPUTE QT-VEG = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-MEAT = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-BREAD = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-MILK = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE QT-FRUIT = FUNCTION RANDOM ( 1 ) * 10
+COMPUTE PR-VEG = FUNCTION RANDOM ( 1 ) * 10 + 3
+COMPUTE PR-MEAT = FUNCTION RANDOM ( 1 ) * 10 + 5
+COMPUTE PR-BREAD = FUNCTION RANDOM ( 1 ) * 10 + 1
+COMPUTE PR-MILK = FUNCTION RANDOM ( 1 ) * 10 + 2
+COMPUTE PR-FRUIT = FUNCTION RANDOM ( 1 ) * 10 + 1"]
+	"AU shop AU 151 152 148" [label="INIT-PRD-FN .
+ 
+EXIT"]
+	"AU shop AU 151 152 148" -> "AU shop AU 34 34 146" [label="procedure backward call"]
+	"AU shop AU 138 148 147" -> "AU shop AU 151 152 148" [label="sequential next"]
+	"AU shop AU 34 34 146" -> "AU shop AU 138 148 147" [label="procedure call"]
+}
