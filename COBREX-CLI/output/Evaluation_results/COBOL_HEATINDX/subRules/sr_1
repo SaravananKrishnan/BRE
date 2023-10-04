@@ -1,0 +1,11 @@
+digraph cluster0 {
+	"PC HEATINDX PC 136 8 23" [label="if function test-numval ( relative-humidity-in ) IS NOT EQUAL ZERO"]
+	"AU HEATINDX AU 138 140 215" [label="display \"Relative humidity \" not-numeric
+display spaces
+go to relative-humidity-data-entry"]
+	"PC HEATINDX PC 136 8 23" -> "AU HEATINDX AU 138 140 215" [label=true]
+	"AU HEATINDX AU 142 4 216" [label="compute relative-humidity = function numval ( relative-humidity-in )"]
+	"AU HEATINDX AU 0 189 217" [label="END-IF"]
+	"AU HEATINDX AU 142 4 216" -> "AU HEATINDX AU 0 189 217" [label="sequential next"]
+	"PC HEATINDX PC 136 8 23" -> "AU HEATINDX AU 142 4 216" [label=false]
+}

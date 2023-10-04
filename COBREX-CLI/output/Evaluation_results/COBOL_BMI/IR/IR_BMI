@@ -1,0 +1,66 @@
+digraph cluster {
+	"BMI AU 0 0 472" [label=Begin fillcolor=lightblue style=filled]
+	"BMI AU 22 39 506" [label="MAIN-LOGIC SECTION
+DISPLAY \"Enter your name: \"
+ACCEPT NAME FROM CONSOLE
+DISPLAY \"Enter your height in meters: \"
+ACCEPT HEIGHTT FROM CONSOLE
+DISPLAY \"Enter your weight in kilograms: \"
+ACCEPT WEIGHT FROM CONSOLE
+DISPLAY \"Enter your age: \"
+ACCEPT AGE FROM CONSOLE
+DISPLAY \"Enter your gender (M/F): \"
+ACCEPT GENDER FROM CONSOLE
+COMPUTE BMI = WEIGHT / ( HEIGHTT ** 2 )" fillcolor=lightblue style=filled]
+	"BMI PC 41 41 66" [label="EVALUATE TRUE" fillcolor=lightblue style=filled]
+	"BMI PC 42 42 67" [label="WHEN BMI < 18.5" fillcolor=lightblue style=filled]
+	"BMI AU 43 43 494" [label="MOVE \"Underweight\" TO COMMENT" fillcolor=lightblue style=filled]
+	"BMI AU 0 0 507" [label="END-EVALUATE" fillcolor=lightblue style=filled]
+	"BMI AU 54 61 508" [label="DISPLAY \"Your BMI is: \" BMI
+DISPLAY \"Your weight status is: \" COMMENT
+COMPUTE HEART-RATE = MAX-HEART-RATE - AGE
+DISPLAY \"Your maximum heart\" \"rate is: \" HEART-RATE \" beats per minute\"" fillcolor=lightblue style=filled]
+	"BMI PC 63 63 68" [label="IF GENDER = 'M' OR GENDER = 'm'" fillcolor=lightblue style=filled]
+	"BMI AU 64 64 509" [label="COMPUTE BLOOD-PRESSURE = MIN-BLOOD-PRESSURE + AGE" fillcolor=lightblue style=filled]
+	"BMI AU 0 1 510" [label="END-IF" fillcolor=lightblue style=filled]
+	"BMI AU 71 73 511" [label="DISPLAY \"Your blood pressure is: \" BLOOD-PRESSURE \" mmHg\"
+STOP RUN" fillcolor=lightblue style=filled]
+	"BMI PC 65 65 72" [label="IF GENDER = 'F' OR GENDER = 'f'" fillcolor=lightblue style=filled]
+	"BMI AU 66 66 512" [label="COMPUTE BLOOD-PRESSURE = MAX-BLOOD-PRESSURE - AGE" fillcolor=lightblue style=filled]
+	"BMI AU 69 69 513" [label="END-IF" fillcolor=lightblue style=filled]
+	"BMI AU 68 68 514" [label="MOVE ZEROES TO BLOOD-PRESSURE" fillcolor=lightblue style=filled]
+	"BMI PC 44 44 69" [label="WHEN BMI >= 18.5 AND BMI < 25" fillcolor=lightblue style=filled]
+	"BMI AU 45 45 503" [label="MOVE \"Normal weight\" TO COMMENT" fillcolor=lightblue style=filled]
+	"BMI PC 46 46 70" [label="WHEN BMI >= 25 AND BMI < 30" fillcolor=lightblue style=filled]
+	"BMI AU 47 47 504" [label="MOVE \"Overweight\" TO COMMENT" fillcolor=lightblue style=filled]
+	"BMI PC 48 48 71" [label="WHEN BMI >= 30" fillcolor=lightblue style=filled]
+	"BMI AU 49 49 505" [label="MOVE \"Obese\" TO COMMENT" fillcolor=lightblue style=filled]
+	"BMI AU 51 51 515" [label="MOVE \"Invalid input\" TO COMMENT" fillcolor=lightblue style=filled]
+	"BMI AU 0 1 510" -> "BMI AU 71 73 511" [label="sequential next"]
+	"BMI AU 64 64 509" -> "BMI AU 0 1 510" [label="sequential next"]
+	"BMI PC 63 63 68" -> "BMI AU 64 64 509" [label=true]
+	"BMI AU 69 69 513" -> "BMI AU 0 1 510" [label="sequential next"]
+	"BMI AU 66 66 512" -> "BMI AU 69 69 513" [label="sequential next"]
+	"BMI PC 65 65 72" -> "BMI AU 66 66 512" [label=true]
+	"BMI AU 68 68 514" -> "BMI AU 69 69 513" [label="sequential next"]
+	"BMI PC 65 65 72" -> "BMI AU 68 68 514" [label=false]
+	"BMI PC 63 63 68" -> "BMI PC 65 65 72" [label=false]
+	"BMI AU 54 61 508" -> "BMI PC 63 63 68" [label="sequential next"]
+	"BMI AU 0 0 507" -> "BMI AU 54 61 508" [label="sequential next"]
+	"BMI AU 43 43 494" -> "BMI AU 0 0 507" [label="sequential next"]
+	"BMI PC 42 42 67" -> "BMI AU 43 43 494" [label=true]
+	"BMI PC 41 41 66" -> "BMI PC 42 42 67" [label="evaluate when"]
+	"BMI AU 45 45 503" -> "BMI AU 0 0 507" [label="sequential next"]
+	"BMI PC 44 44 69" -> "BMI AU 45 45 503" [label=true]
+	"BMI PC 41 41 66" -> "BMI PC 44 44 69" [label="evaluate when"]
+	"BMI AU 47 47 504" -> "BMI AU 0 0 507" [label="sequential next"]
+	"BMI PC 46 46 70" -> "BMI AU 47 47 504" [label=true]
+	"BMI PC 41 41 66" -> "BMI PC 46 46 70" [label="evaluate when"]
+	"BMI AU 49 49 505" -> "BMI AU 0 0 507" [label="sequential next"]
+	"BMI PC 48 48 71" -> "BMI AU 49 49 505" [label=true]
+	"BMI PC 41 41 66" -> "BMI PC 48 48 71" [label="evaluate when"]
+	"BMI AU 51 51 515" -> "BMI AU 0 0 507" [label="sequential next"]
+	"BMI PC 41 41 66" -> "BMI AU 51 51 515" [label=false]
+	"BMI AU 22 39 506" -> "BMI PC 41 41 66" [label="sequential next"]
+	"BMI AU 0 0 472" -> "BMI AU 22 39 506" [label=start]
+}

@@ -1,0 +1,8 @@
+digraph cluster2 {
+	"PC LUHN PC 63 63 5" [label="IF DBL-DIGIT ( EVEN-IDX ) IS GREATER THAN 9"]
+	"AU LUHN AU 64 64 44" [label="SUBTRACT 9 FROM DBL-DIGIT ( EVEN-IDX )"]
+	"AU LUHN AU 65 65 45" [label="END-IF"]
+	"AU LUHN AU 64 64 44" -> "AU LUHN AU 65 65 45" [label="sequential next"]
+	"PC LUHN PC 63 63 5" -> "AU LUHN AU 64 64 44" [label=true]
+	"PC LUHN PC 63 63 5" -> "AU LUHN AU 65 65 45" [label="outside-if"]
+}

@@ -1,0 +1,44 @@
+digraph cluster1 {
+	"AU CALC AU 81 83 398" [label="TAX-PARAGRAPH .
+ 
+DISPLAY \"Enter your income: \"
+ACCEPT INCOME"]
+	"PC CALC PC 84 84 53" [label="IF INCOME < 250000"]
+	"AU CALC AU 85 87 399" [label="MOVE ZERO TO TAX
+MOVE ZERO TO GST
+DISPLAY \"You are exempted from tax and GST.\""]
+	"AU CALC AU 0 4 400" [label="END-IF"]
+	"AU CALC AU 85 87 399" -> "AU CALC AU 0 4 400" [label="sequential next"]
+	"PC CALC PC 84 84 53" -> "AU CALC AU 85 87 399" [label=true]
+	"PC CALC PC 88 88 54" [label="IF INCOME < 500000"]
+	"AU CALC AU 89 94 401" [label="COMPUTE TAX = INCOME * 0.05
+COMPUTE GST = TAX * 0.18
+DISPLAY \"Your tax amount is: \" TAX
+DISPLAY \"Your GST amount is: \" GST
+COMPUTE RESULT = INCOME - TAX - GST
+DISPLAY \"Your net income is: \" RESULT"]
+	"AU CALC AU 0 1 402" [label="END-IF"]
+	"AU CALC AU 89 94 401" -> "AU CALC AU 0 1 402" [label="sequential next"]
+	"PC CALC PC 88 88 54" -> "AU CALC AU 89 94 401" [label=true]
+	"PC CALC PC 95 95 52" [label="IF INCOME < 1000000"]
+	"AU CALC AU 96 101 394" [label="COMPUTE TAX = INCOME * 0.20
+COMPUTE GST = TAX * 0.18
+DISPLAY \"Your tax amount is: \" TAX
+DISPLAY \"Your GST amount is: \" GST
+COMPUTE RESULT = INCOME - TAX - GST
+DISPLAY \"Your net income is: \" RESULT"]
+	"AU CALC AU 109 109 395" [label="END-IF"]
+	"AU CALC AU 96 101 394" -> "AU CALC AU 109 109 395" [label="sequential next"]
+	"PC CALC PC 95 95 52" -> "AU CALC AU 96 101 394" [label=true]
+	"AU CALC AU 103 108 396" [label="COMPUTE TAX = INCOME * 0.30
+COMPUTE GST = TAX * 0.18
+DISPLAY \"Your tax amount is: \" TAX
+DISPLAY \"Your GST amount is: \" GST
+COMPUTE RESULT = INCOME - TAX - GST
+DISPLAY \"Your net income is: \" RESULT"]
+	"AU CALC AU 103 108 396" -> "AU CALC AU 109 109 395" [label="sequential next"]
+	"PC CALC PC 95 95 52" -> "AU CALC AU 103 108 396" [label=false]
+	"PC CALC PC 88 88 54" -> "PC CALC PC 95 95 52" [label=false]
+	"PC CALC PC 84 84 53" -> "PC CALC PC 88 88 54" [label=false]
+	"AU CALC AU 81 83 398" -> "PC CALC PC 84 84 53" [label="sequential next"]
+}

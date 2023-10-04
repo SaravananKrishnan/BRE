@@ -1,0 +1,9 @@
+digraph cluster2 {
+	"PC HEATINDX PC 157 3 25" [label="if relative-humidity > max-rh"]
+	"AU HEATINDX AU 152 154 220" [label="display \"Relative humidity \" too-much max-rh \"%.\"
+display spaces
+go to relative-humidity-data-entry"]
+	"PC HEATINDX PC 157 3 25" -> "AU HEATINDX AU 152 154 220" [label=true]
+	"AU HEATINDX AU 0 191 221" [label="END-IF"]
+	"PC HEATINDX PC 157 3 25" -> "AU HEATINDX AU 0 191 221" [label="outside-if"]
+}

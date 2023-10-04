@@ -1,0 +1,284 @@
+digraph {
+	"AU HEATINDX AU 0 0 236" [label=Begin]
+	subgraph "Node 5" {
+	}
+	"AU HEATINDX AU 0 0 236" -> "AU HEATINDX AU 79 79 237" [label=start]
+	"AU HEATINDX AU 79 79 237" [label="main-para .
+ "]
+	subgraph "Node 6" {
+	}
+	"AU HEATINDX AU 79 79 237" -> "AU HEATINDX AU 80 80 238" [label="sequential next"]
+	"AU HEATINDX AU 80 80 238" [label="perform display-title-screen"]
+	subgraph "Node 7" {
+	}
+	"AU HEATINDX AU 80 80 238" -> "AU HEATINDX AU 81 81 239" [label="perform-exit"]
+	"AU HEATINDX AU 81 81 239" [label="perform outside-temp-data-entry"]
+	subgraph "Node 8" {
+	}
+	"AU HEATINDX AU 81 81 239" -> "AU HEATINDX AU 82 82 240" [label="perform-exit"]
+	"AU HEATINDX AU 82 82 240" [label="perform relative-humidity-data-entry"]
+	subgraph "Node 9" {
+	}
+	"AU HEATINDX AU 82 82 240" -> "AU HEATINDX AU 83 83 241" [label="perform-exit"]
+	"AU HEATINDX AU 83 83 241" [label="perform calculate-it"]
+	subgraph "Node 10" {
+	}
+	"AU HEATINDX AU 83 83 241" -> "AU HEATINDX AU 84 84 242" [label="perform-exit"]
+	"AU HEATINDX AU 84 84 242" [label="perform display-results"]
+	subgraph "Node 11" {
+	}
+	"AU HEATINDX AU 84 84 242" -> "AU HEATINDX AU 148 148 243" [label="perform-exit"]
+	"AU HEATINDX AU 148 148 243" [label="go to end-program"]
+	subgraph "Node 12" {
+	}
+	"AU HEATINDX AU 148 148 243" -> "AU HEATINDX AU 326 330 244" [label="procedure call"]
+	"AU HEATINDX AU 326 330 244" [label="end-program .
+ 
+display spaces
+display \"*********** HEAT INDEX CALCULATOR ENDS ***********\"
+display spaces
+stop run"]
+	subgraph "Node 13" {
+	}
+	"AU HEATINDX AU 84 84 242" -> "AU HEATINDX AU 288 292 245" [label="procedure call"]
+	"AU HEATINDX AU 288 292 245" [label="display-results .
+ 
+display spaces
+display \"Outdoor Temperature: \" outside-temp-out \" degF\"
+display \"Relative Humidity: \" relative-humidity-out \"%\"
+display \"Heat Index: \" heat-index-out \" degF\""]
+	subgraph "Node 14" {
+	}
+	"AU HEATINDX AU 288 292 245" -> "PC HEATINDX PC 0 28 35" [label="sequential next"]
+	"PC HEATINDX PC 0 28 35" [label="evaluate TRUE"]
+	subgraph "Node 15" {
+	}
+	"PC HEATINDX PC 0 28 35" -> "PC HEATINDX PC 295 295 36" [label="evaluate when"]
+	"PC HEATINDX PC 295 295 36" [label="when heat-index > 79 AND heat-index < 90"]
+	subgraph "Node 16" {
+	}
+	"PC HEATINDX PC 295 295 36" -> "AU HEATINDX AU 242 300 246" [label=true]
+	"AU HEATINDX AU 242 300 246" [label="display spaces
+display \"************************************************\"
+display \"** CAUTION - Fatigue possible with prolonged  **\"
+display \"** exposure and/or physical activity.         **\"
+display \"************************************************\""]
+	subgraph "Node 17" {
+	}
+	"AU HEATINDX AU 242 300 246" -> "AU HEATINDX AU 0 0 247" [label="sequential next"]
+	"AU HEATINDX AU 0 0 247" [label="END-EVALUATE"]
+	subgraph "Node 18" {
+	}
+	"AU HEATINDX AU 0 0 247" -> "AU HEATINDX AU 84 84 242" [label=backward]
+	"PC HEATINDX PC 0 28 35" -> "PC HEATINDX PC 301 301 37" [label="evaluate when"]
+	"PC HEATINDX PC 301 301 37" [label="when heat-index >= 90 AND heat-index < 105"]
+	subgraph "Node 19" {
+	}
+	"PC HEATINDX PC 301 301 37" -> "AU HEATINDX AU 263 308 248" [label=true]
+	"AU HEATINDX AU 263 308 248" [label="display spaces
+display \"************************************************\"
+display \"*** EXTREME CAUTION - Sunstroke, muscle      ***\"
+display \"*** cramps, and/or heat exhaustion possible  ***\"
+display \"*** with prolonged exposure and/or physical  ***\"
+display \"*** activity.                                ***\"
+display \"************************************************\""]
+	subgraph "Node 20" {
+	}
+	"AU HEATINDX AU 263 308 248" -> "AU HEATINDX AU 0 0 247" [label="sequential next"]
+	"PC HEATINDX PC 0 28 35" -> "PC HEATINDX PC 309 309 38" [label="evaluate when"]
+	"PC HEATINDX PC 309 309 38" [label="when heat-index >= 105 AND heat-index < 130"]
+	subgraph "Node 21" {
+	}
+	"PC HEATINDX PC 309 309 38" -> "AU HEATINDX AU 289 316 249" [label=true]
+	"AU HEATINDX AU 289 316 249" [label="display spaces
+display \"************************************************\"
+display \"**** DANGER - Sunstroke, muscle cramps,     ****\"
+display \"**** and/or heat exhaustion likely.         ****\"
+display \"**** Heatstroke possible with prolonged     ****\"
+display \"**** exposure and/or physical activity.     ****\"
+display \"************************************************\""]
+	subgraph "Node 22" {
+	}
+	"AU HEATINDX AU 289 316 249" -> "AU HEATINDX AU 0 0 247" [label="sequential next"]
+	"PC HEATINDX PC 0 28 35" -> "PC HEATINDX PC 317 317 39" [label="evaluate when"]
+	"PC HEATINDX PC 317 317 39" [label="when heat-index >= 130"]
+	subgraph "Node 23" {
+	}
+	"PC HEATINDX PC 317 317 39" -> "AU HEATINDX AU 296 321 250" [label=true]
+	"AU HEATINDX AU 296 321 250" [label="display spaces
+display \"************************************************\"
+display \"***** EXTREME DANGER - Heat stroke likely. *****\"
+display \"************************************************\""]
+	subgraph "Node 24" {
+	}
+	"AU HEATINDX AU 296 321 250" -> "AU HEATINDX AU 0 0 247" [label="sequential next"]
+	"PC HEATINDX PC 0 28 35" -> "AU HEATINDX AU 302 302 251" [label=false]
+	"AU HEATINDX AU 302 302 251" [label="display spaces"]
+	subgraph "Node 25" {
+	}
+	"AU HEATINDX AU 302 302 251" -> "AU HEATINDX AU 0 0 247" [label="sequential next"]
+	"PC HEATINDX PC 0 28 35" -> "AU HEATINDX AU 326 330 244" [label="sequential next"]
+	"AU HEATINDX AU 83 83 241" -> "AU HEATINDX AU 165 7 252" [label="procedure call"]
+	"AU HEATINDX AU 165 7 252" [label="calculate-it .
+ 
+compute heat-index rounded = 0.5 * ( outside-temp + 61.0 + ( ( outside-temp - 68.0 ) * 1.2 ) + relative-humidity * 0.094 )
+compute heat-index rounded = function mean ( heat-index outside-temp )"]
+	subgraph "Node 26" {
+	}
+	"AU HEATINDX AU 165 7 252" -> "PC HEATINDX PC 294 294 31" [label="sequential next"]
+	"PC HEATINDX PC 294 294 31" [label="evaluate TRUE"]
+	"PC HEATINDX PC 294 294 31" -> "PC HEATINDX PC 0 11 32" [label="evaluate when"]
+	"PC HEATINDX PC 294 294 31" -> "PC HEATINDX PC 220 17 33" [label="evaluate when"]
+	"PC HEATINDX PC 294 294 31" -> "PC HEATINDX PC 249 249 34" [label="evaluate when"]
+	"PC HEATINDX PC 249 249 34" [label="when heat-index IS GREATER THAN 80"]
+	"PC HEATINDX PC 249 249 34" -> "AU HEATINDX AU 250 27 235" [label=true]
+	"AU HEATINDX AU 250 27 235" [label="compute heat-index rounded = negative-one * cf1 + cf2 * outside-temp + cf3 * relative-humidity - cf4 * outside-temp * relative-humidity - cf5 * outside-temp ** 2 - cf6 * relative-humidity ** 2 + cf7 * outside-temp ** 2 * relative-humidity + cf8 * outside-temp * relative-humidity ** 2 - cf9 * outside-temp ** 2 * relative-humidity ** 2"]
+	"PC HEATINDX PC 220 17 33" [label="when relative-humidity IS GREATER THAN 85 AND outside-temp IS GREATER THAN OR EQUAL TO 80 AND outside-temp IS LESS THAN OR EQUAL TO 87"]
+	"PC HEATINDX PC 220 17 33" -> "AU HEATINDX AU 224 240 234" [label=true]
+	"AU HEATINDX AU 224 240 234" [label="compute heat-index rounded = negative-one * cf1 + cf2 * outside-temp + cf3 * relative-humidity - cf4 * outside-temp * relative-humidity - cf5 * outside-temp ** 2 - cf6 * relative-humidity ** 2 + cf7 * outside-temp ** 2 * relative-humidity + cf8 * outside-temp * relative-humidity ** 2 - cf9 * outside-temp ** 2 * relative-humidity ** 2
+compute adjustment rounded = ( ( relative-humidity - 85 ) / 10 ) * ( ( 87 - outside-temp ) / 5 )
+add adjustment to heat-index"]
+	"PC HEATINDX PC 0 11 32" [label="when outside-temp IS GREATER THAN OR EQUAL TO 80 AND outside-temp IS LESS THAN OR EQUAL TO 112 AND relative-humidity IS LESS THAN 13"]
+	"PC HEATINDX PC 0 11 32" -> "AU HEATINDX AU 194 211 233" [label=true]
+	"AU HEATINDX AU 194 211 233" [label="compute heat-index rounded = negative-one * cf1 + cf2 * outside-temp + cf3 * relative-humidity - cf4 * outside-temp * relative-humidity - cf5 * outside-temp ** 2 - cf6 * relative-humidity ** 2 + cf7 * outside-temp ** 2 * relative-humidity + cf8 * outside-temp * relative-humidity ** 2 - cf9 * outside-temp ** 2 * relative-humidity ** 2
+compute adjustment rounded = ( ( 13 - relative-humidity ) / 4 ) * function sqrt ( ( 17 - function abs ( outside-temp - 95 ) ) / 17 )
+subtract adjustment from heat-index"]
+	subgraph "Node 27" {
+	}
+	"PC HEATINDX PC 294 294 31" -> "AU HEATINDX AU 269 269 253" [label="sequential next"]
+	"AU HEATINDX AU 269 269 253" [label="move heat-index to heat-index-out"]
+	subgraph "Node 28" {
+	}
+	"AU HEATINDX AU 269 269 253" -> "AU HEATINDX AU 288 292 245" [label="sequential next"]
+	"AU HEATINDX AU 269 269 253" -> "AU HEATINDX AU 83 83 241" [label="sequential next"]
+	"AU HEATINDX AU 82 82 240" -> "AU HEATINDX AU 130 133 254" [label="procedure call"]
+	"AU HEATINDX AU 130 133 254" [label="relative-humidity-data-entry .
+ 
+display \"Enter relative humidity as % \" with no advancing
+display \"(nnn.n): \" with no advancing
+accept relative-humidity-in"]
+	subgraph "Node 29" {
+	}
+	"AU HEATINDX AU 130 133 254" -> "PC HEATINDX PC 136 8 23" [label="sequential next"]
+	"PC HEATINDX PC 136 8 23" [label="if function test-numval ( relative-humidity-in ) IS NOT EQUAL ZERO"]
+	"PC HEATINDX PC 136 8 23" -> "AU HEATINDX AU 138 140 215" [label=true]
+	"PC HEATINDX PC 136 8 23" -> "AU HEATINDX AU 142 4 216" [label=false]
+	"AU HEATINDX AU 142 4 216" [label="compute relative-humidity = function numval ( relative-humidity-in )"]
+	"AU HEATINDX AU 142 4 216" -> "AU HEATINDX AU 0 189 217" [label="sequential next"]
+	"AU HEATINDX AU 0 189 217" [label="END-IF"]
+	"AU HEATINDX AU 138 140 215" [label="display \"Relative humidity \" not-numeric
+display spaces
+go to relative-humidity-data-entry"]
+	subgraph "Node 30" {
+	}
+	"PC HEATINDX PC 136 8 23" -> "AU HEATINDX AU 130 133 254" [label="procedure call"]
+	"PC HEATINDX PC 136 8 23" -> "PC HEATINDX PC 151 2 24" [label="sequential next"]
+	"PC HEATINDX PC 151 2 24" [label="if relative-humidity IS EQUAL ZERO"]
+	"PC HEATINDX PC 151 2 24" -> "AU HEATINDX AU 115 115 218" [label=true]
+	"PC HEATINDX PC 151 2 24" -> "AU HEATINDX AU 0 190 219" [label="outside-if"]
+	"AU HEATINDX AU 0 190 219" [label="END-IF"]
+	"AU HEATINDX AU 115 115 218" [label="go to end-program"]
+	subgraph "Node 31" {
+	}
+	"PC HEATINDX PC 151 2 24" -> "AU HEATINDX AU 326 330 244" [label="procedure call"]
+	"PC HEATINDX PC 151 2 24" -> "PC HEATINDX PC 157 3 25" [label="sequential next"]
+	"PC HEATINDX PC 157 3 25" [label="if relative-humidity > max-rh"]
+	"PC HEATINDX PC 157 3 25" -> "AU HEATINDX AU 152 154 220" [label=true]
+	"PC HEATINDX PC 157 3 25" -> "AU HEATINDX AU 0 191 221" [label="outside-if"]
+	"AU HEATINDX AU 0 191 221" [label="END-IF"]
+	"AU HEATINDX AU 152 154 220" [label="display \"Relative humidity \" too-much max-rh \"%.\"
+display spaces
+go to relative-humidity-data-entry"]
+	subgraph "Node 32" {
+	}
+	"PC HEATINDX PC 157 3 25" -> "AU HEATINDX AU 130 133 254" [label="procedure call"]
+	"PC HEATINDX PC 157 3 25" -> "PC HEATINDX PC 0 9 26" [label="sequential next"]
+	"PC HEATINDX PC 0 9 26" [label="if relative-humidity < min-rh"]
+	"PC HEATINDX PC 0 9 26" -> "AU HEATINDX AU 158 160 222" [label=true]
+	"PC HEATINDX PC 0 9 26" -> "AU HEATINDX AU 0 192 223" [label="outside-if"]
+	"AU HEATINDX AU 0 192 223" [label="END-IF"]
+	"AU HEATINDX AU 158 160 222" [label="display \"Relative humidity \" too-small min-rh \"%.\"
+display spaces
+go to relative-humidity-data-entry"]
+	subgraph "Node 33" {
+	}
+	"PC HEATINDX PC 0 9 26" -> "AU HEATINDX AU 130 133 254" [label="procedure call"]
+	"PC HEATINDX PC 0 9 26" -> "AU HEATINDX AU 163 163 255" [label="sequential next"]
+	"AU HEATINDX AU 163 163 255" [label="move relative-humidity to relative-humidity-out"]
+	subgraph "Node 34" {
+	}
+	"AU HEATINDX AU 163 163 255" -> "AU HEATINDX AU 165 7 252" [label="sequential next"]
+	"AU HEATINDX AU 163 163 255" -> "AU HEATINDX AU 82 82 240" [label="sequential next"]
+	"AU HEATINDX AU 81 81 239" -> "AU HEATINDX AU 97 102 256" [label="procedure call"]
+	"AU HEATINDX AU 97 102 256" [label="outside-temp-data-entry .
+ 
+display spaces
+display \"Enter outdoor dry bulb temperature in degF \" with no advancing
+display \"(nnn.n): \" with no advancing
+accept outside-temp-in"]
+	subgraph "Node 35" {
+	}
+	"AU HEATINDX AU 97 102 256" -> "PC HEATINDX PC 105 105 27" [label="sequential next"]
+	"PC HEATINDX PC 105 105 27" [label="if function test-numval ( outside-temp-in ) IS NOT EQUAL ZERO"]
+	"PC HEATINDX PC 105 105 27" -> "AU HEATINDX AU 107 108 224" [label=true]
+	"PC HEATINDX PC 105 105 27" -> "AU HEATINDX AU 110 110 225" [label=false]
+	"AU HEATINDX AU 110 110 225" [label="compute outside-temp = function numval ( outside-temp-in )"]
+	"AU HEATINDX AU 110 110 225" -> "AU HEATINDX AU 0 113 226" [label="sequential next"]
+	"AU HEATINDX AU 0 113 226" [label="END-IF"]
+	"AU HEATINDX AU 107 108 224" [label="display \"Temperature \" not-numeric
+go to outside-temp-data-entry"]
+	subgraph "Node 36" {
+	}
+	"PC HEATINDX PC 105 105 27" -> "AU HEATINDX AU 97 102 256" [label="procedure call"]
+	"PC HEATINDX PC 105 105 27" -> "PC HEATINDX PC 0 1 28" [label="sequential next"]
+	"PC HEATINDX PC 0 1 28" [label="if outside-temp IS EQUAL ZERO"]
+	"PC HEATINDX PC 0 1 28" -> "AU HEATINDX AU 85 85 227" [label=true]
+	"PC HEATINDX PC 0 1 28" -> "AU HEATINDX AU 0 131 228" [label="outside-if"]
+	"AU HEATINDX AU 0 131 228" [label="END-IF"]
+	"AU HEATINDX AU 85 85 227" [label="go to end-program"]
+	subgraph "Node 37" {
+	}
+	"PC HEATINDX PC 0 1 28" -> "AU HEATINDX AU 326 330 244" [label="procedure call"]
+	"PC HEATINDX PC 0 1 28" -> "PC HEATINDX PC 118 118 29" [label="sequential next"]
+	"PC HEATINDX PC 118 118 29" [label="if outside-temp > max-temp"]
+	"PC HEATINDX PC 118 118 29" -> "AU HEATINDX AU 119 120 229" [label=true]
+	"PC HEATINDX PC 118 118 29" -> "AU HEATINDX AU 0 137 230" [label="outside-if"]
+	"AU HEATINDX AU 0 137 230" [label="END-IF"]
+	"AU HEATINDX AU 119 120 229" [label="display \"Temperature \" too-much max-temp \" degF.\"
+go to outside-temp-data-entry"]
+	subgraph "Node 38" {
+	}
+	"PC HEATINDX PC 118 118 29" -> "AU HEATINDX AU 97 102 256" [label="procedure call"]
+	"PC HEATINDX PC 118 118 29" -> "PC HEATINDX PC 123 123 30" [label="sequential next"]
+	"PC HEATINDX PC 123 123 30" [label="if outside-temp < min-temp"]
+	"PC HEATINDX PC 123 123 30" -> "AU HEATINDX AU 124 125 231" [label=true]
+	"PC HEATINDX PC 123 123 30" -> "AU HEATINDX AU 0 146 232" [label="outside-if"]
+	"AU HEATINDX AU 0 146 232" [label="END-IF"]
+	"AU HEATINDX AU 124 125 231" [label="display \"Temperature \" too-small min-temp \" degF.\"
+go to outside-temp-data-entry"]
+	subgraph "Node 39" {
+	}
+	"PC HEATINDX PC 123 123 30" -> "AU HEATINDX AU 97 102 256" [label="procedure call"]
+	"PC HEATINDX PC 123 123 30" -> "AU HEATINDX AU 128 128 257" [label="sequential next"]
+	"AU HEATINDX AU 128 128 257" [label="move outside-temp to outside-temp-out"]
+	subgraph "Node 40" {
+	}
+	"AU HEATINDX AU 128 128 257" -> "AU HEATINDX AU 130 133 254" [label="sequential next"]
+	"AU HEATINDX AU 128 128 257" -> "AU HEATINDX AU 81 81 239" [label="sequential next"]
+	"AU HEATINDX AU 80 80 238" -> "AU HEATINDX AU 87 95 258" [label="procedure call"]
+	"AU HEATINDX AU 87 95 258" [label="display-title-screen .
+ 
+display spaces
+display \"********** HEAT INDEX CALCULATOR BEGINS **********\"
+display \"Written by, Clifford A. Chipman, EMIT \" with no advancing
+display \"July 4, 2020\"
+display \"in Enterprise COBOL v6.3 for z/OS\"
+display spaces
+display \"Enter zero for any parameter to end the program.\""]
+	subgraph "Node 41" {
+	}
+	"AU HEATINDX AU 87 95 258" -> "AU HEATINDX AU 97 102 256" [label="sequential next"]
+	"AU HEATINDX AU 87 95 258" -> "AU HEATINDX AU 80 80 238" [label="sequential next"]
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}

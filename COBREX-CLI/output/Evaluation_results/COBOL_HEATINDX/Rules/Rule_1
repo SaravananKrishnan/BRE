@@ -1,0 +1,19 @@
+digraph cluster0 {
+	"PC HEATINDX PC 294 294 31" [label="evaluate TRUE"]
+	"PC HEATINDX PC 0 11 32" [label="when outside-temp IS GREATER THAN OR EQUAL TO 80 AND outside-temp IS LESS THAN OR EQUAL TO 112 AND relative-humidity IS LESS THAN 13"]
+	"AU HEATINDX AU 194 211 233" [label="compute heat-index rounded = negative-one * cf1 + cf2 * outside-temp + cf3 * relative-humidity - cf4 * outside-temp * relative-humidity - cf5 * outside-temp ** 2 - cf6 * relative-humidity ** 2 + cf7 * outside-temp ** 2 * relative-humidity + cf8 * outside-temp * relative-humidity ** 2 - cf9 * outside-temp ** 2 * relative-humidity ** 2
+compute adjustment rounded = ( ( 13 - relative-humidity ) / 4 ) * function sqrt ( ( 17 - function abs ( outside-temp - 95 ) ) / 17 )
+subtract adjustment from heat-index"]
+	"PC HEATINDX PC 0 11 32" -> "AU HEATINDX AU 194 211 233" [label=true]
+	"PC HEATINDX PC 294 294 31" -> "PC HEATINDX PC 0 11 32" [label="evaluate when"]
+	"PC HEATINDX PC 220 17 33" [label="when relative-humidity IS GREATER THAN 85 AND outside-temp IS GREATER THAN OR EQUAL TO 80 AND outside-temp IS LESS THAN OR EQUAL TO 87"]
+	"AU HEATINDX AU 224 240 234" [label="compute heat-index rounded = negative-one * cf1 + cf2 * outside-temp + cf3 * relative-humidity - cf4 * outside-temp * relative-humidity - cf5 * outside-temp ** 2 - cf6 * relative-humidity ** 2 + cf7 * outside-temp ** 2 * relative-humidity + cf8 * outside-temp * relative-humidity ** 2 - cf9 * outside-temp ** 2 * relative-humidity ** 2
+compute adjustment rounded = ( ( relative-humidity - 85 ) / 10 ) * ( ( 87 - outside-temp ) / 5 )
+add adjustment to heat-index"]
+	"PC HEATINDX PC 220 17 33" -> "AU HEATINDX AU 224 240 234" [label=true]
+	"PC HEATINDX PC 294 294 31" -> "PC HEATINDX PC 220 17 33" [label="evaluate when"]
+	"PC HEATINDX PC 249 249 34" [label="when heat-index IS GREATER THAN 80"]
+	"AU HEATINDX AU 250 27 235" [label="compute heat-index rounded = negative-one * cf1 + cf2 * outside-temp + cf3 * relative-humidity - cf4 * outside-temp * relative-humidity - cf5 * outside-temp ** 2 - cf6 * relative-humidity ** 2 + cf7 * outside-temp ** 2 * relative-humidity + cf8 * outside-temp * relative-humidity ** 2 - cf9 * outside-temp ** 2 * relative-humidity ** 2"]
+	"PC HEATINDX PC 249 249 34" -> "AU HEATINDX AU 250 27 235" [label=true]
+	"PC HEATINDX PC 294 294 31" -> "PC HEATINDX PC 249 249 34" [label="evaluate when"]
+}

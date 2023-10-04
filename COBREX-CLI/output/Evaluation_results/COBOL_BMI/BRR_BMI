@@ -1,0 +1,73 @@
+digraph {
+	"AU BMI AU 0 0 526" [label=Begin]
+	subgraph "Node 82" {
+	}
+	"AU BMI AU 0 0 526" -> "AU BMI AU 22 39 527" [label=start]
+	"AU BMI AU 22 39 527" [label="MAIN-LOGIC SECTION
+DISPLAY \"Enter your name: \"
+ACCEPT NAME FROM CONSOLE
+DISPLAY \"Enter your height in meters: \"
+ACCEPT HEIGHTT FROM CONSOLE
+DISPLAY \"Enter your weight in kilograms: \"
+ACCEPT WEIGHT FROM CONSOLE
+DISPLAY \"Enter your age: \"
+ACCEPT AGE FROM CONSOLE
+DISPLAY \"Enter your gender (M/F): \"
+ACCEPT GENDER FROM CONSOLE
+COMPUTE BMI = WEIGHT / ( HEIGHTT ** 2 )"]
+	subgraph "Node 83" {
+	}
+	"AU BMI AU 22 39 527" -> "PC BMI PC 41 41 75" [label="sequential next"]
+	"PC BMI PC 41 41 75" [label="EVALUATE TRUE"]
+	"PC BMI PC 41 41 75" -> "PC BMI PC 42 42 76" [label="evaluate when"]
+	"PC BMI PC 41 41 75" -> "PC BMI PC 44 44 77" [label="evaluate when"]
+	"PC BMI PC 41 41 75" -> "PC BMI PC 46 46 78" [label="evaluate when"]
+	"PC BMI PC 41 41 75" -> "PC BMI PC 48 48 79" [label="evaluate when"]
+	"PC BMI PC 41 41 75" -> "AU BMI AU 51 51 525" [label=false]
+	"AU BMI AU 51 51 525" [label="MOVE \"Invalid input\" TO COMMENT"]
+	"PC BMI PC 48 48 79" [label="WHEN BMI >= 30"]
+	"PC BMI PC 48 48 79" -> "AU BMI AU 49 49 524" [label=true]
+	"AU BMI AU 49 49 524" [label="MOVE \"Obese\" TO COMMENT"]
+	"PC BMI PC 46 46 78" [label="WHEN BMI >= 25 AND BMI < 30"]
+	"PC BMI PC 46 46 78" -> "AU BMI AU 47 47 523" [label=true]
+	"AU BMI AU 47 47 523" [label="MOVE \"Overweight\" TO COMMENT"]
+	"PC BMI PC 44 44 77" [label="WHEN BMI >= 18.5 AND BMI < 25"]
+	"PC BMI PC 44 44 77" -> "AU BMI AU 45 45 522" [label=true]
+	"AU BMI AU 45 45 522" [label="MOVE \"Normal weight\" TO COMMENT"]
+	"PC BMI PC 42 42 76" [label="WHEN BMI < 18.5"]
+	"PC BMI PC 42 42 76" -> "AU BMI AU 43 43 521" [label=true]
+	"AU BMI AU 43 43 521" [label="MOVE \"Underweight\" TO COMMENT"]
+	subgraph "Node 84" {
+	}
+	"PC BMI PC 41 41 75" -> "AU BMI AU 54 61 528" [label="sequential next"]
+	"AU BMI AU 54 61 528" [label="DISPLAY \"Your BMI is: \" BMI
+DISPLAY \"Your weight status is: \" COMMENT
+COMPUTE HEART-RATE = MAX-HEART-RATE - AGE
+DISPLAY \"Your maximum heart\" \"rate is: \" HEART-RATE \" beats per minute\""]
+	subgraph "Node 85" {
+	}
+	"AU BMI AU 54 61 528" -> "PC BMI PC 63 63 74" [label="sequential next"]
+	"PC BMI PC 63 63 74" [label="IF GENDER = 'M' OR GENDER = 'm'"]
+	"PC BMI PC 63 63 74" -> "AU BMI AU 64 64 519" [label=true]
+	"PC BMI PC 63 63 74" -> "PC BMI PC 65 65 73" [label=false]
+	"PC BMI PC 65 65 73" [label="IF GENDER = 'F' OR GENDER = 'f'"]
+	"PC BMI PC 65 65 73" -> "AU BMI AU 66 66 516" [label=true]
+	"PC BMI PC 65 65 73" -> "AU BMI AU 68 68 518" [label=false]
+	"AU BMI AU 68 68 518" [label="MOVE ZEROES TO BLOOD-PRESSURE"]
+	"AU BMI AU 68 68 518" -> "AU BMI AU 69 69 517" [label="sequential next"]
+	"AU BMI AU 69 69 517" [label="END-IF"]
+	"AU BMI AU 66 66 516" [label="COMPUTE BLOOD-PRESSURE = MAX-BLOOD-PRESSURE - AGE"]
+	"AU BMI AU 66 66 516" -> "AU BMI AU 69 69 517" [label="sequential next"]
+	"AU BMI AU 64 64 519" [label="COMPUTE BLOOD-PRESSURE = MIN-BLOOD-PRESSURE + AGE"]
+	"AU BMI AU 64 64 519" -> "AU BMI AU 0 1 520" [label="sequential next"]
+	"AU BMI AU 0 1 520" [label="END-IF"]
+	subgraph "Node 86" {
+	}
+	"PC BMI PC 63 63 74" -> "AU BMI AU 71 73 529" [label="sequential next"]
+	"AU BMI AU 71 73 529" [label="DISPLAY \"Your blood pressure is: \" BLOOD-PRESSURE \" mmHg\"
+STOP RUN"]
+	subgraph "Node 87" {
+	}
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}

@@ -1,0 +1,41 @@
+digraph {
+	"AU PRIME AU 0 0 548" [label=Begin]
+	"AU PRIME AU 0 0 548" -> "AU PRIME AU 9 10 549" [label=start]
+	"AU PRIME AU 9 10 549" [label="DISPLAY \"Enter a number: \"
+ACCEPT N"]
+	"AU PRIME AU 9 10 549" -> "PC PRIME PC 11 11 85" [label="sequential next"]
+	"PC PRIME PC 11 11 85" [label="IF N < 2"]
+	"PC PRIME PC 11 11 85" -> "AU PRIME AU 12 12 550" [label=true]
+	"PC PRIME PC 11 11 85" -> "AU PRIME AU 14 1 552" [label=false]
+	"AU PRIME AU 14 1 552" [label="PERFORM VARYING I FROM 2 BY 1 UNTIL I * I > N OR FLAG = 'N'"]
+	"AU PRIME AU 14 1 552" -> "PC PRIME PC 16 16 84" [label=iteration]
+	"PC PRIME PC 16 16 84" [label="IF FUNCTION MOD ( N , I ) = ZERO"]
+	"PC PRIME PC 16 16 84" -> "AU PRIME AU 17 17 546" [label=true]
+	"PC PRIME PC 16 16 84" -> "AU PRIME AU 18 18 547" [label="outside-if"]
+	"AU PRIME AU 18 18 547" [label="END-IF"]
+	"AU PRIME AU 18 18 547" -> "AU PRIME AU 14 1 552" [label="sequential next"]
+	"AU PRIME AU 17 17 546" [label="MOVE 'N' TO FLAG"]
+	"AU PRIME AU 17 17 546" -> "AU PRIME AU 18 18 547" [label="sequential next"]
+	"AU PRIME AU 12 12 550" [label="MOVE 'N' TO FLAG"]
+	"AU PRIME AU 12 12 550" -> "AU PRIME AU 20 20 551" [label="sequential next"]
+	"AU PRIME AU 20 20 551" [label="END-IF"]
+	subgraph "Node 88" {
+	}
+	"AU PRIME AU 0 0 548" -> "PC PRIME PC 21 21 83" [label="sequential next"]
+	"PC PRIME PC 21 21 83" [label="IF FLAG = 'Y'"]
+	"PC PRIME PC 21 21 83" -> "AU PRIME AU 22 22 543" [label=true]
+	"PC PRIME PC 21 21 83" -> "AU PRIME AU 24 24 545" [label=false]
+	"AU PRIME AU 24 24 545" [label="DISPLAY N \" is not a prime number.\""]
+	"AU PRIME AU 24 24 545" -> "AU PRIME AU 25 25 544" [label="sequential next"]
+	"AU PRIME AU 25 25 544" [label="END-IF"]
+	"AU PRIME AU 22 22 543" [label="DISPLAY N \" is a prime number.\""]
+	"AU PRIME AU 22 22 543" -> "AU PRIME AU 25 25 544" [label="sequential next"]
+	subgraph "Node 89" {
+	}
+	"PC PRIME PC 21 21 83" -> "AU PRIME AU 26 26 553" [label="sequential next"]
+	"AU PRIME AU 26 26 553" [label="STOP RUN"]
+	subgraph "Node 90" {
+	}
+	node [filled=lightblue shape=circle]
+	edge [color=black]
+}
