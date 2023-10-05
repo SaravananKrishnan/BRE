@@ -1,0 +1,249 @@
+digraph cluster {
+	"eleve AU 311 311 8" [label="START NIDX KEY IS = NIDX-MAT" fillcolor=lightblue style=filled]
+	"eleve AU 351 351 124" [label="CLOSE NIDX" fillcolor=lightblue style=filled]
+	"eleve AU 111 111 125" [label="PERFORM CHERCHER-MATIERE" fillcolor=lightblue style=filled]
+	"eleve AU 270 311 126" [label="CHERCHER-MATIERE .
+ 
+DISPLAY \"Quelle matiere ?\" WITH NO ADVANCING
+ACCEPT RECH-MAT
+MOVE FUNCTION UPPER-CASE ( RECH-MAT ) TO NIDX-MAT
+OPEN I-O NIDX
+START NIDX KEY IS = NIDX-MAT" fillcolor=lightblue style=filled]
+	"eleve AU 313 313 127" [label="DISPLAY \"La matiere \" NIDX-MAT \" n'existe pas !\"" fillcolor=lightblue style=filled]
+	"eleve AU 282 282 128" [label="SET PERF-END TO 0" fillcolor=lightblue style=filled]
+	"eleve AU 283 283 129" [label="PERFORM UNTIL PERF-END-OK" fillcolor=lightblue style=filled]
+	"eleve AU 316 316 130" [label="READ NIDX NEXT" fillcolor=lightblue style=filled]
+	"eleve AU 318 318 131" [label="SET PERF-END-OK TO TRUE" fillcolor=lightblue style=filled]
+	"eleve AU 359 294 132" [label="CALL \"format-number\" USING BY CONTENT NIDX-MOY BY REFERENCE FORMATTED-NUMBER
+DISPLAY \" Matiere \" NIDX-MAT
+DISPLAY \" Moyenne \" FORMATTED-NUMBER
+DISPLAY \" Coefficient \" NIDX-COEFF
+DISPLAY \" \"" fillcolor=lightblue style=filled]
+	"eleve AU 0 0 133" [label="END-EVALUATE" fillcolor=lightblue style=filled]
+	"eleve AU 81 81 134" [label="PERFORM UNTIL MENU-CHOIX-QUITTER" fillcolor=lightblue style=filled]
+	"eleve AU 83 83 135" [label="PERFORM AFFICHER-MENU" fillcolor=lightblue style=filled]
+	"eleve PC 85 85 0" [label="EVALUATE TRUE" fillcolor=lightblue style=filled]
+	"eleve PC 90 90 1" [label="WHEN MENU-CHOIX-MOYG" fillcolor=lightblue style=filled]
+	"eleve AU 91 91 136" [label="PERFORM AFFICHER-MOYENNE-GENERALE" fillcolor=lightblue style=filled]
+	"eleve AU 332 185 137" [label="AFFICHER-MOYENNE-GENERALE .
+ 
+OPEN INPUT NIDX
+SET RES-MOYC TO 0
+SET RES-COEFF TO 0
+SET PERF-END TO 0" fillcolor=lightblue style=filled]
+	"eleve AU 186 186 138" [label="PERFORM UNTIL PERF-END-OK" fillcolor=lightblue style=filled]
+	"eleve AU 187 187 139" [label="READ NIDX NEXT" fillcolor=lightblue style=filled]
+	"eleve AU 189 189 140" [label="SET PERF-END-OK TO TRUE" fillcolor=lightblue style=filled]
+	"eleve AU 344 347 141" [label="COMPUTE RES-MOYC = RES-MOYC + ( NIDX-COEFF * NIDX-MOY )
+ADD NIDX-COEFF TO RES-COEFF" fillcolor=lightblue style=filled]
+	"eleve AU 220 364 142" [label="CLOSE NIDX
+DIVIDE RES-MOYC BY RES-COEFF GIVING RES-MOYG
+CALL \"format-number\" USING BY CONTENT RES-MOYG BY REFERENCE FORMATTED-NUMBER
+DISPLAY \"******\"
+DISPLAY \"Moyenne Generale : \" FORMATTED-NUMBER
+DISPLAY \"******\"" fillcolor=lightblue style=filled]
+	"eleve PC 94 94 2" [label="WHEN MENU-CHOIX-MOYD" fillcolor=lightblue style=filled]
+	"eleve AU 95 95 143" [label="PERFORM AFFICHER-MOYENNE-DETAILS" fillcolor=lightblue style=filled]
+	"eleve AU 200 204 144" [label="AFFICHER-MOYENNE-DETAILS .
+ 
+OPEN I-O NIDX
+SET PERF-END TO 0" fillcolor=lightblue style=filled]
+	"eleve AU 205 205 145" [label="PERFORM UNTIL PERF-END-OK" fillcolor=lightblue style=filled]
+	"eleve AU 206 206 146" [label="READ NIDX NEXT" fillcolor=lightblue style=filled]
+	"eleve AU 208 208 147" [label="SET PERF-END-OK TO TRUE" fillcolor=lightblue style=filled]
+	"eleve AU 288 216 148" [label="CALL \"format-number\" USING BY CONTENT NIDX-MOY BY REFERENCE FORMATTED-NUMBER
+DISPLAY \"Matiere \" NIDX-MAT
+DISPLAY \"Moyenne \" FORMATTED-NUMBER
+DISPLAY \"Coefficient \" NIDX-COEFF
+DISPLAY \" \"" fillcolor=lightblue style=filled]
+	"eleve AU 236 236 149" [label="CLOSE NIDX" fillcolor=lightblue style=filled]
+	"eleve PC 98 98 3" [label="WHEN MENU-CHOIX-AJOUTER" fillcolor=lightblue style=filled]
+	"eleve AU 99 99 150" [label="PERFORM AJOUTER-MATIERE" fillcolor=lightblue style=filled]
+	"eleve AU 224 227 151" [label="AJOUTER-MATIERE .
+ 
+DISPLAY \"Quelle matiere ?\" WITH NO ADVANCING
+ACCEPT RECH-MAT
+MOVE FUNCTION UPPER-CASE ( RECH-MAT ) TO RECH-MAT" fillcolor=lightblue style=filled]
+	"eleve AU 229 229 152" [label="PERFORM ENREGISTRER-NOTES" fillcolor=lightblue style=filled]
+	"eleve AU 231 266 153" [label="DISPLAY \"Coefficient ?\" WITH NO ADVANCING
+ACCEPT RECH-COEFF
+OPEN I-O NIDX
+WRITE NIDX-ENRG FROM RECHERCHES
+CLOSE NIDX" fillcolor=lightblue style=filled]
+	"eleve AU 150 151 154" [label="ENREGISTRER-NOTES .
+ 
+SET RECH-MOY TO 21" fillcolor=lightblue style=filled]
+	"eleve AU 152 152 155" [label="PERFORM UNTIL RECH-MOY-OK" fillcolor=lightblue style=filled]
+	"eleve AU 153 154 156" [label="DISPLAY \"Nouvelle Note ?\" WITH NO ADVANCING
+ACCEPT RECH-MOY" fillcolor=lightblue style=filled]
+	"eleve AU 321 321 157" [label="PERFORM ENREGISTRER-NOTES" fillcolor=lightblue style=filled]
+	"eleve AU 323 324 158" [label="MOVE RECH-MOY TO NIDX-MOY
+REWRITE NIDX-ENRG" fillcolor=lightblue style=filled]
+	"eleve AU 298 298 159" [label="CLOSE NIDX" fillcolor=lightblue style=filled]
+	"eleve AU 103 103 160" [label="PERFORM MODIFIER-MATIERE" fillcolor=lightblue style=filled]
+	"eleve AU 303 251 161" [label="MODIFIER-MATIERE .
+ 
+DISPLAY \"Quelle matiere ?\" WITH NO ADVANCING
+ACCEPT RECH-MAT
+MOVE FUNCTION UPPER-CASE ( RECH-MAT ) TO NIDX-MAT
+OPEN I-O NIDX
+START NIDX KEY IS = NIDX-MAT" fillcolor=lightblue style=filled]
+	"eleve AU 254 254 162" [label="DISPLAY \"La matiere \" NIDX-MAT \" n'existe pas !\"" fillcolor=lightblue style=filled]
+	"eleve AU 258 258 163" [label="READ NIDX NEXT" fillcolor=lightblue style=filled]
+	"eleve AU 260 260 164" [label="SET PERF-END-OK TO TRUE" fillcolor=lightblue style=filled]
+	"eleve PC 102 102 4" [label="WHEN MENU-CHOIX-MODIFIER" fillcolor=lightblue style=filled]
+	"eleve PC 106 106 5" [label="WHEN MENU-CHOIX-SUPPRIMER" fillcolor=lightblue style=filled]
+	"eleve AU 107 107 165" [label="PERFORM SUPPRIMER-MATIERE" fillcolor=lightblue style=filled]
+	"eleve AU 242 278 166" [label="SUPPRIMER-MATIERE .
+ 
+DISPLAY \"Quelle matiere ?\" WITH NO ADVANCING
+ACCEPT RECH-MAT
+MOVE FUNCTION UPPER-CASE ( RECH-MAT ) TO NIDX-MAT
+OPEN I-O NIDX
+START NIDX KEY IS = NIDX-MAT" fillcolor=lightblue style=filled]
+	"eleve AU 328 328 167" [label="CLOSE NIDX" fillcolor=lightblue style=filled]
+	"eleve AU 280 280 168" [label="DISPLAY \"La matiere \" NIDX-MAT \" n'existe pas !\"" fillcolor=lightblue style=filled]
+	"eleve AU 256 284 169" [label="SET PERF-END TO 0
+READ NIDX NEXT" fillcolor=lightblue style=filled]
+	"eleve AU 286 286 170" [label="SET PERF-END-OK TO TRUE" fillcolor=lightblue style=filled]
+	"eleve AU 262 262 171" [label="DELETE NIDX" fillcolor=lightblue style=filled]
+	"eleve PC 110 110 6" [label="WHEN MENU-CHOIX-CHERCHER" fillcolor=lightblue style=filled]
+	"eleve PC 114 114 7" [label="WHEN MENU-CHOIX-ENREGISTRER" fillcolor=lightblue style=filled]
+	"eleve AU 115 115 172" [label="PERFORM ENREGISTRER-MATIERES" fillcolor=lightblue style=filled]
+	"eleve AU 181 338 173" [label="ENREGISTRER-MATIERES .
+ 
+OPEN INPUT NIDX
+OPEN OUTPUT NOTES
+SET PERF-END TO 0" fillcolor=lightblue style=filled]
+	"eleve AU 339 339 174" [label="PERFORM UNTIL PERF-END-OK" fillcolor=lightblue style=filled]
+	"eleve AU 340 340 175" [label="READ NIDX NEXT" fillcolor=lightblue style=filled]
+	"eleve AU 342 342 176" [label="SET PERF-END-OK TO TRUE" fillcolor=lightblue style=filled]
+	"eleve AU 191 191 177" [label="WRITE NOTES-ENRG FROM NIDX-ENRG" fillcolor=lightblue style=filled]
+	"eleve AU 195 195 178" [label="CLOSE NOTES NIDX" fillcolor=lightblue style=filled]
+	"eleve AU 132 145 179" [label="AFFICHER-MENU .
+ 
+DISPLAY \" \"
+DISPLAY \" 1 : Afficher la moyenne generale\"
+DISPLAY \" 2 : Afficher details des moyennes\"
+DISPLAY \" 3 : Ajouter une moyenne\"
+DISPLAY \" 4 : Modifier une moyenne\"
+DISPLAY \" 5 : Supprimer une moyenne\"
+DISPLAY \" 6 : Chercher une matiere\"
+DISPLAY \" 7 : Enregistrer les modifications\"
+DISPLAY \" 8 : Quitter\"
+DISPLAY \" \"
+DISPLAY \"Choix : \" WITH NO ADVANCING
+ACCEPT MENU-CHOIX" fillcolor=lightblue style=filled]
+	"eleve AU 123 124 180" [label="FIN-PGM .
+ 
+STOP RUN" fillcolor=lightblue style=filled]
+	"eleve AU 270 311 126" -> "eleve AU 351 351 124" [label="sequential next"]
+	"eleve AU 313 313 127" -> "eleve AU 351 351 124" [label="sequential next"]
+	"eleve AU 270 311 126" -> "eleve AU 313 313 127" [label=InvalidKey]
+	"eleve AU 318 318 131" -> "eleve AU 283 283 129" [label="sequential next"]
+	"eleve AU 316 316 130" -> "eleve AU 318 318 131" [label=AtEnd]
+	"eleve AU 359 294 132" -> "eleve AU 283 283 129" [label="sequential next"]
+	"eleve AU 316 316 130" -> "eleve AU 359 294 132" [label=NotAtEnd]
+	"eleve AU 316 316 130" -> "eleve AU 283 283 129" [label="sequential next"]
+	"eleve AU 283 283 129" -> "eleve AU 316 316 130" [label=iteration]
+	"eleve AU 283 283 129" -> "eleve AU 351 351 124" [label="perform-exit"]
+	"eleve AU 282 282 128" -> "eleve AU 283 283 129" [label="sequential next"]
+	"eleve AU 270 311 126" -> "eleve AU 282 282 128" [label=NotInvalidKey]
+	"eleve AU 111 111 125" -> "eleve AU 270 311 126" [label="procedure call"]
+	"eleve AU 189 189 140" -> "eleve AU 186 186 138" [label="sequential next"]
+	"eleve AU 187 187 139" -> "eleve AU 189 189 140" [label=AtEnd]
+	"eleve AU 344 347 141" -> "eleve AU 186 186 138" [label="sequential next"]
+	"eleve AU 187 187 139" -> "eleve AU 344 347 141" [label=NotAtEnd]
+	"eleve AU 187 187 139" -> "eleve AU 186 186 138" [label="sequential next"]
+	"eleve AU 186 186 138" -> "eleve AU 187 187 139" [label=iteration]
+	"eleve AU 220 364 142" -> "eleve AU 91 91 136" [label="sequential next"]
+	"eleve AU 186 186 138" -> "eleve AU 220 364 142" [label="perform-exit"]
+	"eleve AU 332 185 137" -> "eleve AU 186 186 138" [label="sequential next"]
+	"eleve AU 91 91 136" -> "eleve AU 332 185 137" [label="procedure call"]
+	"eleve AU 91 91 136" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve PC 90 90 1" -> "eleve AU 91 91 136" [label=true]
+	"eleve PC 85 85 0" -> "eleve PC 90 90 1" [label="evaluate when"]
+	"eleve AU 208 208 147" -> "eleve AU 205 205 145" [label="sequential next"]
+	"eleve AU 206 206 146" -> "eleve AU 208 208 147" [label=AtEnd]
+	"eleve AU 288 216 148" -> "eleve AU 205 205 145" [label="sequential next"]
+	"eleve AU 206 206 146" -> "eleve AU 288 216 148" [label=NotAtEnd]
+	"eleve AU 206 206 146" -> "eleve AU 205 205 145" [label="sequential next"]
+	"eleve AU 205 205 145" -> "eleve AU 206 206 146" [label=iteration]
+	"eleve AU 236 236 149" -> "eleve AU 95 95 143" [label="sequential next"]
+	"eleve AU 205 205 145" -> "eleve AU 236 236 149" [label="perform-exit"]
+	"eleve AU 200 204 144" -> "eleve AU 205 205 145" [label="sequential next"]
+	"eleve AU 95 95 143" -> "eleve AU 200 204 144" [label="procedure call"]
+	"eleve AU 95 95 143" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve PC 94 94 2" -> "eleve AU 95 95 143" [label=true]
+	"eleve PC 85 85 0" -> "eleve PC 94 94 2" [label="evaluate when"]
+	"eleve AU 231 266 153" -> "eleve AU 99 99 150" [label="sequential next"]
+	"eleve AU 229 229 152" -> "eleve AU 231 266 153" [label="perform-exit"]
+	"eleve AU 153 154 156" -> "eleve AU 152 152 155" [label="sequential next"]
+	"eleve AU 152 152 155" -> "eleve AU 153 154 156" [label=iteration]
+	"eleve AU 303 251 161" -> "eleve AU 298 298 159" [label="sequential next"]
+	"eleve AU 254 254 162" -> "eleve AU 298 298 159" [label="sequential next"]
+	"eleve AU 303 251 161" -> "eleve AU 254 254 162" [label=InvalidKey]
+	"eleve AU 260 260 164" -> "eleve AU 298 298 159" [label="sequential next"]
+	"eleve AU 258 258 163" -> "eleve AU 260 260 164" [label=AtEnd]
+	"eleve AU 258 258 163" -> "eleve AU 321 321 157" [label=NotAtEnd]
+	"eleve AU 258 258 163" -> "eleve AU 298 298 159" [label="sequential next"]
+	"eleve AU 303 251 161" -> "eleve AU 258 258 163" [label=NotInvalidKey]
+	"eleve AU 103 103 160" -> "eleve AU 303 251 161" [label="procedure call"]
+	"eleve AU 103 103 160" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve AU 298 298 159" -> "eleve AU 103 103 160" [label="sequential next"]
+	"eleve AU 323 324 158" -> "eleve AU 298 298 159" [label="sequential next"]
+	"eleve AU 321 321 157" -> "eleve AU 323 324 158" [label="perform-exit"]
+	"eleve AU 321 321 157" -> "eleve AU 150 151 154" [label="procedure call"]
+	"eleve AU 152 152 155" -> "eleve AU 321 321 157" [label=backward]
+	"eleve AU 152 152 155" -> "eleve AU 229 229 152" [label="perform-exit"]
+	"eleve AU 150 151 154" -> "eleve AU 152 152 155" [label="sequential next"]
+	"eleve AU 229 229 152" -> "eleve AU 150 151 154" [label="procedure call"]
+	"eleve AU 224 227 151" -> "eleve AU 229 229 152" [label="sequential next"]
+	"eleve AU 99 99 150" -> "eleve AU 224 227 151" [label="procedure call"]
+	"eleve AU 99 99 150" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve PC 98 98 3" -> "eleve AU 99 99 150" [label=true]
+	"eleve PC 85 85 0" -> "eleve PC 98 98 3" [label="evaluate when"]
+	"eleve PC 102 102 4" -> "eleve AU 103 103 160" [label=true]
+	"eleve PC 85 85 0" -> "eleve PC 102 102 4" [label="evaluate when"]
+	"eleve AU 328 328 167" -> "eleve AU 107 107 165" [label="sequential next"]
+	"eleve AU 242 278 166" -> "eleve AU 328 328 167" [label="sequential next"]
+	"eleve AU 280 280 168" -> "eleve AU 328 328 167" [label="sequential next"]
+	"eleve AU 242 278 166" -> "eleve AU 280 280 168" [label=InvalidKey]
+	"eleve AU 286 286 170" -> "eleve AU 328 328 167" [label="sequential next"]
+	"eleve AU 256 284 169" -> "eleve AU 286 286 170" [label=AtEnd]
+	"eleve AU 262 262 171" -> "eleve AU 328 328 167" [label="sequential next"]
+	"eleve AU 256 284 169" -> "eleve AU 262 262 171" [label=NotAtEnd]
+	"eleve AU 256 284 169" -> "eleve AU 328 328 167" [label="sequential next"]
+	"eleve AU 242 278 166" -> "eleve AU 256 284 169" [label=NotInvalidKey]
+	"eleve AU 107 107 165" -> "eleve AU 242 278 166" [label="procedure call"]
+	"eleve AU 107 107 165" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve PC 106 106 5" -> "eleve AU 107 107 165" [label=true]
+	"eleve PC 85 85 0" -> "eleve PC 106 106 5" [label="evaluate when"]
+	"eleve PC 110 110 6" -> "eleve AU 111 111 125" [label=true]
+	"eleve PC 85 85 0" -> "eleve PC 110 110 6" [label="evaluate when"]
+	"eleve AU 342 342 176" -> "eleve AU 339 339 174" [label="sequential next"]
+	"eleve AU 340 340 175" -> "eleve AU 342 342 176" [label=AtEnd]
+	"eleve AU 191 191 177" -> "eleve AU 339 339 174" [label="sequential next"]
+	"eleve AU 340 340 175" -> "eleve AU 191 191 177" [label=NotAtEnd]
+	"eleve AU 340 340 175" -> "eleve AU 339 339 174" [label="sequential next"]
+	"eleve AU 339 339 174" -> "eleve AU 340 340 175" [label=iteration]
+	"eleve AU 195 195 178" -> "eleve AU 115 115 172" [label="sequential next"]
+	"eleve AU 339 339 174" -> "eleve AU 195 195 178" [label="perform-exit"]
+	"eleve AU 181 338 173" -> "eleve AU 339 339 174" [label="sequential next"]
+	"eleve AU 115 115 172" -> "eleve AU 181 338 173" [label="procedure call"]
+	"eleve AU 115 115 172" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve PC 114 114 7" -> "eleve AU 115 115 172" [label=true]
+	"eleve PC 114 114 7" -> "eleve AU 0 0 133" [label="sequential next"]
+	"eleve PC 85 85 0" -> "eleve PC 114 114 7" [label="evaluate when"]
+	"eleve AU 83 83 135" -> "eleve PC 85 85 0" [label="perform-exit"]
+	"eleve AU 132 145 179" -> "eleve AU 83 83 135" [label="sequential next"]
+	"eleve AU 83 83 135" -> "eleve AU 132 145 179" [label="procedure call"]
+	"eleve AU 81 81 134" -> "eleve AU 83 83 135" [label=iteration]
+	"eleve AU 81 81 134" -> "eleve AU 123 124 180" [label="perform-exit"]
+	"eleve AU 0 0 133" -> "eleve AU 81 81 134" [label="sequential next"]
+	"eleve AU 111 111 125" -> "eleve AU 0 0 133" [label="perform-exit"]
+	"eleve AU 351 351 124" -> "eleve AU 111 111 125" [label="sequential next"]
+	"eleve AU 311 311 8" -> "eleve AU 351 351 124" [label="sequential next"]
+	"eleve AU 311 311 8" -> "eleve AU 313 313 127" [label=InvalidKey]
+	"eleve AU 311 311 8" -> "eleve AU 282 282 128" [label=NotInvalidKey]
+}

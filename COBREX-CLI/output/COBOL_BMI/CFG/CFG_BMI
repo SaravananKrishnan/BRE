@@ -1,0 +1,116 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="MAIN-LOGIC SECTION
+"]
+	2 [label="DISPLAY \"Enter your name: \"
+"]
+	3 [label="ACCEPT NAME FROM CONSOLE
+"]
+	4 [label="DISPLAY \"Enter your height in meters: \"
+"]
+	5 [label="ACCEPT HEIGHTT FROM CONSOLE
+"]
+	6 [label="DISPLAY \"Enter your weight in kilograms: \"
+"]
+	7 [label="ACCEPT WEIGHT FROM CONSOLE
+"]
+	8 [label="DISPLAY \"Enter your age: \"
+"]
+	9 [label="ACCEPT AGE FROM CONSOLE
+"]
+	10 [label="DISPLAY \"Enter your gender (M/F): \"
+"]
+	11 [label="ACCEPT GENDER FROM CONSOLE
+"]
+	12 [label="COMPUTE BMI = WEIGHT / ( HEIGHTT ** 2 )
+"]
+	13 [label="EVALUATE TRUE
+" shape=diamond]
+	15 [label="WHEN BMI < 18.5
+" shape=diamond]
+	16 [label="MOVE \"Underweight\" TO COMMENT
+"]
+	14 [label="END-EVALUATE
+"]
+	33 [label="DISPLAY \"Your BMI is: \" BMI
+"]
+	34 [label="DISPLAY \"Your weight status is: \" COMMENT
+"]
+	35 [label="COMPUTE HEART-RATE = MAX-HEART-RATE - AGE
+"]
+	36 [label="DISPLAY \"Your maximum heart\" \"rate is: \" HEART-RATE \" beats per minute\"
+"]
+	37 [label="IF GENDER = 'M' OR GENDER = 'm'
+" shape=diamond]
+	38 [label="COMPUTE BLOOD-PRESSURE = MIN-BLOOD-PRESSURE + AGE
+"]
+	39 [label="END-IF
+"]
+	48 [label="DISPLAY \"Your blood pressure is: \" BLOOD-PRESSURE \" mmHg\"
+"]
+	49 [label="STOP RUN
+"]
+	48 -> 49 [label="sequential next"]
+	39 -> 48 [label="sequential next"]
+	38 -> 39 [label="sequential next"]
+	37 -> 38 [label=true]
+	40 [label="IF GENDER = 'F' OR GENDER = 'f'
+" shape=diamond]
+	42 [label="COMPUTE BLOOD-PRESSURE = MAX-BLOOD-PRESSURE - AGE
+"]
+	43 [label="END-IF
+"]
+	43 -> 39 [label="sequential next"]
+	42 -> 43 [label="sequential next"]
+	40 -> 42 [label=true]
+	44 [label="MOVE ZEROES TO BLOOD-PRESSURE
+"]
+	44 -> 43 [label="sequential next"]
+	40 -> 44 [label=false]
+	37 -> 40 [label=false]
+	36 -> 37 [label="sequential next"]
+	35 -> 36 [label="sequential next"]
+	34 -> 35 [label="sequential next"]
+	33 -> 34 [label="sequential next"]
+	14 -> 33 [label="sequential next"]
+	16 -> 14 [label="sequential next"]
+	15 -> 16 [label=true]
+	13 -> 15 [label="evaluate when"]
+	19 [label="WHEN BMI >= 18.5 AND BMI < 25
+" shape=diamond]
+	20 [label="MOVE \"Normal weight\" TO COMMENT
+"]
+	20 -> 14 [label="sequential next"]
+	19 -> 20 [label=true]
+	13 -> 19 [label="evaluate when"]
+	23 [label="WHEN BMI >= 25 AND BMI < 30
+" shape=diamond]
+	24 [label="MOVE \"Overweight\" TO COMMENT
+"]
+	24 -> 14 [label="sequential next"]
+	23 -> 24 [label=true]
+	13 -> 23 [label="evaluate when"]
+	27 [label="WHEN BMI >= 30
+" shape=diamond]
+	28 [label="MOVE \"Obese\" TO COMMENT
+"]
+	28 -> 14 [label="sequential next"]
+	27 -> 28 [label=true]
+	13 -> 27 [label="evaluate when"]
+	31 [label="MOVE \"Invalid input\" TO COMMENT
+"]
+	31 -> 14 [label="sequential next"]
+	13 -> 31 [label=false]
+	12 -> 13 [label="sequential next"]
+	11 -> 12 [label="sequential next"]
+	10 -> 11 [label="sequential next"]
+	9 -> 10 [label="sequential next"]
+	8 -> 9 [label="sequential next"]
+	7 -> 8 [label="sequential next"]
+	6 -> 7 [label="sequential next"]
+	5 -> 6 [label="sequential next"]
+	4 -> 5 [label="sequential next"]
+	3 -> 4 [label="sequential next"]
+	2 -> 3 [label="sequential next"]
+	1 -> 2 [label="sequential next"]
+}

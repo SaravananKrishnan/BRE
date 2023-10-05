@@ -1,0 +1,66 @@
+digraph cluster {
+	"LUHN AU 0 0 18" [label=Begin fillcolor=lightblue style=filled]
+	"LUHN AU 27 33 19" [label="100-MAIN .
+ 
+MOVE CC-NUM ( 16 : 1 ) TO CHECK-DIGIT
+MOVE FUNCTION REVERSE ( CC-NUM ) TO TEST-NUM" fillcolor=lightblue style=filled]
+	"LUHN AU 34 34 20" [label="PERFORM 200-LUHN" fillcolor=lightblue style=filled]
+	"LUHN AU 35 35 21" [label="PERFORM 300-SHOW-RESULTS" fillcolor=lightblue style=filled]
+	"LUHN AU 36 36 22" [label="STOP RUN" fillcolor=lightblue style=filled]
+	"LUHN AU 71 73 23" [label="300-SHOW-RESULTS .
+ 
+DISPLAY \"CC-NUM: \" CC-NUM WITH NO ADVANCING
+DISPLAY SPACES" fillcolor=lightblue style=filled]
+	"LUHN PC 95 95 0" [label="IF PASS" fillcolor=lightblue style=filled]
+	"LUHN AU 96 96 24" [label="DISPLAY \" VALID\"" fillcolor=lightblue style=filled]
+	"LUHN AU 99 99 25" [label="END-IF" fillcolor=lightblue style=filled]
+	"LUHN AU 98 98 26" [label="DISPLAY \" INVALID\"" fillcolor=lightblue style=filled]
+	"LUHN AU 38 41 27" [label="200-LUHN .
+ 
+MOVE 1 TO ODD-IDX
+MOVE 1 TO EVEN-IDX" fillcolor=lightblue style=filled]
+	"LUHN AU 44 1 28" [label="PERFORM VARYING DIGIT-COUNTER FROM 1 BY 1 UNTIL DIGIT-COUNTER IS GREATER THAN 16" fillcolor=lightblue style=filled]
+	"LUHN PC 46 46 2" [label="IF FUNCTION MOD ( DIGIT-COUNTER 2 ) IS EQUAL TO ZERO" fillcolor=lightblue style=filled]
+	"LUHN AU 47 49 29" [label="MOVE TEST-NUM ( DIGIT-COUNTER : 1 ) TO EVEN-DIGIT ( EVEN-IDX )
+ADD 1 TO EVEN-IDX" fillcolor=lightblue style=filled]
+	"LUHN AU 55 55 30" [label="END-IF" fillcolor=lightblue style=filled]
+	"LUHN AU 51 54 31" [label="MOVE TEST-NUM ( DIGIT-COUNTER : 1 ) TO ODD-DIGIT ( ODD-IDX )
+ADD ODD-DIGIT ( ODD-IDX ) TO CHECKSUM
+ADD 1 TO ODD-IDX" fillcolor=lightblue style=filled]
+	"LUHN AU 59 8 32" [label="PERFORM VARYING EVEN-IDX FROM 1 BY 1 UNTIL EVEN-IDX IS GREATER THAN 8" fillcolor=lightblue style=filled]
+	"LUHN AU 61 5 33" [label="MULTIPLY EVEN-DIGIT ( EVEN-IDX ) BY 2 GIVING DBL-DIGIT ( EVEN-IDX )" fillcolor=lightblue style=filled]
+	"LUHN PC 63 63 1" [label="IF DBL-DIGIT ( EVEN-IDX ) IS GREATER THAN 9" fillcolor=lightblue style=filled]
+	"LUHN AU 64 64 34" [label="SUBTRACT 9 FROM DBL-DIGIT ( EVEN-IDX )" fillcolor=lightblue style=filled]
+	"LUHN AU 65 65 35" [label="END-IF" fillcolor=lightblue style=filled]
+	"LUHN AU 66 66 36" [label="ADD DBL-DIGIT ( EVEN-IDX ) TO CHECKSUM" fillcolor=lightblue style=filled]
+	"LUHN AU 69 69 37" [label="COMPUTE PASS-FAIL = FUNCTION MOD ( CHECKSUM 10 )" fillcolor=lightblue style=filled]
+	"LUHN AU 35 35 21" -> "LUHN AU 36 36 22" [label="perform-exit"]
+	"LUHN AU 99 99 25" -> "LUHN AU 35 35 21" [label="sequential next"]
+	"LUHN AU 96 96 24" -> "LUHN AU 99 99 25" [label="sequential next"]
+	"LUHN PC 95 95 0" -> "LUHN AU 96 96 24" [label=true]
+	"LUHN AU 98 98 26" -> "LUHN AU 99 99 25" [label="sequential next"]
+	"LUHN PC 95 95 0" -> "LUHN AU 98 98 26" [label=false]
+	"LUHN AU 71 73 23" -> "LUHN PC 95 95 0" [label="sequential next"]
+	"LUHN AU 35 35 21" -> "LUHN AU 71 73 23" [label="procedure call"]
+	"LUHN AU 34 34 20" -> "LUHN AU 35 35 21" [label="perform-exit"]
+	"LUHN AU 55 55 30" -> "LUHN AU 44 1 28" [label="sequential next"]
+	"LUHN AU 47 49 29" -> "LUHN AU 55 55 30" [label="sequential next"]
+	"LUHN PC 46 46 2" -> "LUHN AU 47 49 29" [label=true]
+	"LUHN AU 51 54 31" -> "LUHN AU 55 55 30" [label="sequential next"]
+	"LUHN PC 46 46 2" -> "LUHN AU 51 54 31" [label=false]
+	"LUHN AU 44 1 28" -> "LUHN PC 46 46 2" [label=iteration]
+	"LUHN AU 66 66 36" -> "LUHN AU 59 8 32" [label="sequential next"]
+	"LUHN AU 65 65 35" -> "LUHN AU 66 66 36" [label="sequential next"]
+	"LUHN AU 64 64 34" -> "LUHN AU 65 65 35" [label="sequential next"]
+	"LUHN PC 63 63 1" -> "LUHN AU 64 64 34" [label=true]
+	"LUHN PC 63 63 1" -> "LUHN AU 65 65 35" [label="outside-if"]
+	"LUHN AU 61 5 33" -> "LUHN PC 63 63 1" [label="sequential next"]
+	"LUHN AU 59 8 32" -> "LUHN AU 61 5 33" [label=iteration]
+	"LUHN AU 69 69 37" -> "LUHN AU 34 34 20" [label="sequential next"]
+	"LUHN AU 59 8 32" -> "LUHN AU 69 69 37" [label="perform-exit"]
+	"LUHN AU 44 1 28" -> "LUHN AU 59 8 32" [label="perform-exit"]
+	"LUHN AU 38 41 27" -> "LUHN AU 44 1 28" [label="sequential next"]
+	"LUHN AU 34 34 20" -> "LUHN AU 38 41 27" [label="procedure call"]
+	"LUHN AU 27 33 19" -> "LUHN AU 34 34 20" [label="sequential next"]
+	"LUHN AU 0 0 18" -> "LUHN AU 27 33 19" [label=start]
+}

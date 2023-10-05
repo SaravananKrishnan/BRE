@@ -12,7 +12,7 @@ column_D_values = []
 column_E_values = []
 
 # till 22
-for row_number in range(2, 22):
+for row_number in range(21, 26):
     print(f"\n\n\n\n\n\n\n-----------------------   row {row_number} ----------------------------------\n\n\n\n\n\n\n")
     value_B = worksheet.cell(row=row_number, column=2).value
     value_D = worksheet.cell(row=row_number, column=4).value

@@ -1,0 +1,8 @@
+digraph cluster7 {
+	"PC HEATINDX PC 123 123 30" [label="if outside-temp < min-temp"]
+	"AU HEATINDX AU 124 125 231" [label="display \"Temperature \" too-small min-temp \" degF.\"
+go to outside-temp-data-entry"]
+	"PC HEATINDX PC 123 123 30" -> "AU HEATINDX AU 124 125 231" [label=true]
+	"AU HEATINDX AU 0 146 232" [label="END-IF"]
+	"PC HEATINDX PC 123 123 30" -> "AU HEATINDX AU 0 146 232" [label="outside-if"]
+}

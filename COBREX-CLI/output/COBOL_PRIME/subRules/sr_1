@@ -1,0 +1,10 @@
+digraph cluster0 {
+	"PC PRIME PC 21 21 79" [label="IF FLAG = 'Y'"]
+	"AU PRIME AU 22 22 491" [label="DISPLAY N \" is a prime number.\""]
+	"AU PRIME AU 25 25 492" [label="END-IF"]
+	"AU PRIME AU 22 22 491" -> "AU PRIME AU 25 25 492" [label="sequential next"]
+	"PC PRIME PC 21 21 79" -> "AU PRIME AU 22 22 491" [label=true]
+	"AU PRIME AU 24 24 493" [label="DISPLAY N \" is not a prime number.\""]
+	"AU PRIME AU 24 24 493" -> "AU PRIME AU 25 25 492" [label="sequential next"]
+	"PC PRIME PC 21 21 79" -> "AU PRIME AU 24 24 493" [label=false]
+}

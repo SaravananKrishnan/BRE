@@ -1,0 +1,8 @@
+digraph cluster6 {
+	"PC HEATINDX PC 118 118 29" [label="if outside-temp > max-temp"]
+	"AU HEATINDX AU 119 120 229" [label="display \"Temperature \" too-much max-temp \" degF.\"
+go to outside-temp-data-entry"]
+	"PC HEATINDX PC 118 118 29" -> "AU HEATINDX AU 119 120 229" [label=true]
+	"AU HEATINDX AU 0 137 230" [label="END-IF"]
+	"PC HEATINDX PC 118 118 29" -> "AU HEATINDX AU 0 137 230" [label="outside-if"]
+}

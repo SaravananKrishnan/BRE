@@ -1,0 +1,19 @@
+digraph cluster0 {
+	"AU ATM AU 15 15 87" [label="PERFORM ENTER-PIN UNTIL VALID = 'Y'"]
+	"AU ATM AU 20 22 88" [label="ENTER-PIN .
+ 
+DISPLAY \"PLEASE ENTER YOUR PIN NUMBER\"
+ACCEPT PIN-NUMBER"]
+	"PC ATM PC 23 23 9" [label="IF PIN-NUMBER = 1234"]
+	"AU ATM AU 24 24 84" [label="MOVE 'Y' TO VALID"]
+	"AU ATM AU 28 28 85" [label="END-IF"]
+	"AU ATM AU 28 28 85" -> "AU ATM AU 15 15 87" [label="sequential next"]
+	"AU ATM AU 24 24 84" -> "AU ATM AU 28 28 85" [label="sequential next"]
+	"PC ATM PC 23 23 9" -> "AU ATM AU 24 24 84" [label=true]
+	"AU ATM AU 26 27 86" [label="DISPLAY \"INVALID PIN NUMBER\"
+MOVE 'N' TO VALID"]
+	"AU ATM AU 26 27 86" -> "AU ATM AU 28 28 85" [label="sequential next"]
+	"PC ATM PC 23 23 9" -> "AU ATM AU 26 27 86" [label=false]
+	"AU ATM AU 20 22 88" -> "PC ATM PC 23 23 9" [label="sequential next"]
+	"AU ATM AU 15 15 87" -> "AU ATM AU 20 22 88" [label="procedure call"]
+}

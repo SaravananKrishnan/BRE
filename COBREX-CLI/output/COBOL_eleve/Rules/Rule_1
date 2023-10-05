@@ -1,0 +1,19 @@
+digraph cluster0 {
+	"AU eleve AU 83 83 181" [label="PERFORM AFFICHER-MENU"]
+	"AU eleve AU 132 145 182" [label="AFFICHER-MENU .
+ 
+DISPLAY \" \"
+DISPLAY \" 1 : Afficher la moyenne generale\"
+DISPLAY \" 2 : Afficher details des moyennes\"
+DISPLAY \" 3 : Ajouter une moyenne\"
+DISPLAY \" 4 : Modifier une moyenne\"
+DISPLAY \" 5 : Supprimer une moyenne\"
+DISPLAY \" 6 : Chercher une matiere\"
+DISPLAY \" 7 : Enregistrer les modifications\"
+DISPLAY \" 8 : Quitter\"
+DISPLAY \" \"
+DISPLAY \"Choix : \" WITH NO ADVANCING
+ACCEPT MENU-CHOIX"]
+	"AU eleve AU 132 145 182" -> "AU eleve AU 83 83 181" [label="sequential next"]
+	"AU eleve AU 83 83 181" -> "AU eleve AU 132 145 182" [label="procedure call"]
+}

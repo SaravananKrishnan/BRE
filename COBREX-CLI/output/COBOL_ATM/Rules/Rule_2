@@ -1,0 +1,34 @@
+digraph cluster1 {
+	"AU ATM AU 60 60 89" [label="PERFORM CALCULATE-DENOMINATIONS"]
+	"AU ATM AU 72 78 90" [label="CALCULATE-DENOMINATIONS .
+ 
+MOVE 500 TO DENOMINATIONS ( 1 )
+MOVE 200 TO DENOMINATIONS ( 2 )
+MOVE 100 TO DENOMINATIONS ( 3 )
+MOVE 50 TO DENOMINATIONS ( 4 )
+MOVE 10 TO DENOMINATIONS ( 5 )
+MOVE ZEROES TO COUNTS"]
+	"AU ATM AU 79 79 91" [label="PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5 OR AMOUNT = ZERO"]
+	"AU ATM AU 80 2 92" [label="DIVIDE DENOMINATIONS ( I ) INTO AMOUNT GIVING COUNTS ( I ) REMAINDER AMOUNT"]
+	"AU ATM AU 80 2 92" -> "AU ATM AU 79 79 91" [label="sequential next"]
+	"AU ATM AU 79 79 91" -> "AU ATM AU 80 2 92" [label=iteration]
+	"AU ATM AU 79 79 91" -> "AU ATM AU 60 60 89" [label="perform-exit"]
+	"AU ATM AU 61 61 93" [label="PERFORM DISPLAY-DENOMINATIONS"]
+	"AU ATM AU 84 84 94" [label="DISPLAY-DENOMINATIONS .
+ "]
+	"AU ATM AU 85 4 95" [label="PERFORM VARYING I FROM 1 BY 1 UNTIL I > 5 OR COUNTS ( I ) = ZERO"]
+	"PC ATM PC 87 87 8" [label="IF COUNTS ( I ) NOT = ZERO"]
+	"AU ATM AU 88 1 82" [label="DISPLAY COUNTS ( I ) \" X \" DENOMINATIONS ( I )"]
+	"AU ATM AU 64 64 83" [label="END-IF"]
+	"AU ATM AU 64 64 83" -> "AU ATM AU 85 4 95" [label="sequential next"]
+	"AU ATM AU 88 1 82" -> "AU ATM AU 64 64 83" [label="sequential next"]
+	"PC ATM PC 87 87 8" -> "AU ATM AU 88 1 82" [label=true]
+	"PC ATM PC 87 87 8" -> "AU ATM AU 64 64 83" [label="outside-if"]
+	"AU ATM AU 85 4 95" -> "PC ATM PC 87 87 8" [label=iteration]
+	"AU ATM AU 85 4 95" -> "AU ATM AU 61 61 93" [label="perform-exit"]
+	"AU ATM AU 84 84 94" -> "AU ATM AU 85 4 95" [label="sequential next"]
+	"AU ATM AU 61 61 93" -> "AU ATM AU 84 84 94" [label="procedure call"]
+	"AU ATM AU 79 79 91" -> "AU ATM AU 61 61 93" [label="perform-exit"]
+	"AU ATM AU 72 78 90" -> "AU ATM AU 79 79 91" [label="sequential next"]
+	"AU ATM AU 60 60 89" -> "AU ATM AU 72 78 90" [label="procedure call"]
+}

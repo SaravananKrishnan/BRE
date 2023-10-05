@@ -33,6 +33,14 @@ def extract_business_rules(file_path):
     # subprocess.run(['cp', './preprocessor_proleap/output/preprocessed.cbl', './preprocessed_files/'+sub_directory+'/'+file_name])
     preprocessed_file_path = os.path.join('clean_output.cbl')
 
+    try:
+        with open('clean_output.cbl','r') as f:
+            lines = f.readlines()
+        total_lines = len(lines)
+    except Exception as e:
+        print(e,' <--- some runtime error')
+
+    # return total_lines
     if not os.path.isdir('./output/COBOL_{}'.format(file_name)):
         cmd = 'mkdir ./output/COBOL_{}'.format(file_name)
         os.system(cmd)
@@ -52,7 +60,7 @@ def extract_business_rules(file_path):
     # f.write('# of constructs: {}\n'.format(len(allConstructs)))
     # f.write('Construct-Logic Mapping: {}\n'.format(construct_logic_map))
     # f.close()
-    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map,num_RBBs]
+    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map,num_RBBs,total_lines]
 
 
 

@@ -1,0 +1,10 @@
+digraph cluster0 {
+	"PC LUHN PC 95 95 3" [label="IF PASS"]
+	"AU LUHN AU 96 96 38" [label="DISPLAY \" VALID\""]
+	"AU LUHN AU 99 99 39" [label="END-IF"]
+	"AU LUHN AU 96 96 38" -> "AU LUHN AU 99 99 39" [label="sequential next"]
+	"PC LUHN PC 95 95 3" -> "AU LUHN AU 96 96 38" [label=true]
+	"AU LUHN AU 98 98 40" [label="DISPLAY \" INVALID\""]
+	"AU LUHN AU 98 98 40" -> "AU LUHN AU 99 99 39" [label="sequential next"]
+	"PC LUHN PC 95 95 3" -> "AU LUHN AU 98 98 40" [label=false]
+}

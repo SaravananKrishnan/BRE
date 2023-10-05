@@ -1,0 +1,9 @@
+digraph cluster3 {
+	"PC HEATINDX PC 0 9 26" [label="if relative-humidity < min-rh"]
+	"AU HEATINDX AU 158 160 222" [label="display \"Relative humidity \" too-small min-rh \"%.\"
+display spaces
+go to relative-humidity-data-entry"]
+	"PC HEATINDX PC 0 9 26" -> "AU HEATINDX AU 158 160 222" [label=true]
+	"AU HEATINDX AU 0 192 223" [label="END-IF"]
+	"PC HEATINDX PC 0 9 26" -> "AU HEATINDX AU 0 192 223" [label="outside-if"]
+}
