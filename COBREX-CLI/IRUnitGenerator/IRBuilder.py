@@ -169,16 +169,24 @@ class IR():
         return
 
 def runIR(fileName):
-    ir = IR()
-    with open('output/COBOL_{}/CFG/CFG_{}.json'.format(fileName,fileName)) as f:
-        cfg = json.load(f)
-    ir.buildIR(cfg,fileName)
-    output_directory = './output/COBOL_{}/IR'.format(fileName)
-    if not os.path.isdir(output_directory):
-        cmd = 'mkdir ./output/COBOL_{}/IR'.format(fileName)
-        os.system(cmd)
-    ir_json = ir.getJSON(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}.json'.format(fileName)))
-    ir.getPDF(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}'.format(fileName)),ir_json,'pdf')
+    try:
+        print('STAGE: IR stage initiated.')
+        ir = IR()
+        with open('output/COBOL_{}/CFG/CFG_{}.json'.format(fileName,fileName)) as f:
+            cfg = json.load(f)
+        ir.buildIR(cfg,fileName)
+        output_directory = './output/COBOL_{}/IR'.format(fileName)
+        if not os.path.isdir(output_directory):
+            cmd = 'mkdir ./output/COBOL_{}/IR'.format(fileName)
+            os.system(cmd)
+        ir_json = ir.getJSON(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}.json'.format(fileName)))
+        ir.getPDF(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}'.format(fileName)),ir_json,'pdf')
+        print('STAGE: IR stage successfully executed.')
+    except Exception as e:
+        print('ERROR: IR stage failed.')
+        print('cause of error: ',e)
+        system.exit(1)
+        
     constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = doBRR(ir.rootNode)
     # print("All the addressed constructs",constructs_addressed)
     # print("All the constructs present",ir.allConstructs)

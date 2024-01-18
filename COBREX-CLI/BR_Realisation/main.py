@@ -183,23 +183,32 @@ def getVarsfromUser():
     return primary,secondary
 
 def doBRR(rootNode):
-    # Let's say somehow you got the root node of the IR part, somehow.
-    p,s = getVarsfromUser()
 
-    br = BRDriver(rootNode,p,s)
-    # Form subRules
-    br.formSubRules()
+    try:
+        print('STAGE: BRR stage initialised.')
+        # Let's say somehow you got the root node of the IR part, somehow.
+        p,s = getVarsfromUser()
 
-    # This is the place where we would try to realise the RBBs count
-    num_RBB = br.countRBBs()
+        br = BRDriver(rootNode,p,s)
+        # Form subRules
+        br.formSubRules()
 
-    # Merge subRules
-    br.formRules()
-    # print("Total Number of Subrules: ",len(br.sub_rule.subRules))
-    # print("Total Number of Rules: ",len(br.rule.rules))
-    for r in br.rule.rules:
-        br.constructs_addressed = br.constructs_addressed.union(r.head.properties['name'])
-    make_graph(br.head)
+        # This is the place where we would try to realise the RBBs count
+        num_RBB = br.countRBBs()
+
+        # Merge subRules
+        br.formRules()
+        # print("Total Number of Subrules: ",len(br.sub_rule.subRules))
+        # print("Total Number of Rules: ",len(br.rule.rules))
+        for r in br.rule.rules:
+            br.constructs_addressed = br.constructs_addressed.union(r.head.properties['name'])
+        make_graph(br.head)
+        print('STAGE: BRR stage successfully executed.')
+    except Exception as e:
+        print('ERROR: BRR stage Failed.')
+        print('Cause of error: ',e)
+        system.exit(1)
+        
     # print("All the constructs to logic map: ",br.rule.construct_logic)
     return br.constructs_addressed,br.rule.construct_logic,len(br.sub_rule.subRules),len(br.rule.rules),num_RBB
 

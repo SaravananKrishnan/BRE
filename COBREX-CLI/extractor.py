@@ -24,26 +24,31 @@ def extract_business_rules(file_path):
     file_name = file_path.stem
 
 
-    preprocess(file_path)
-
-    # subprocess.run(['cp', './preprocessor_proleap/output/preprocessed.cbl', './preprocessed_files/'+sub_directory+'/'+file_name])
-    preprocessed_file_path = os.path.join('clean_output.cbl')
-
     try:
+        print('STAGE: Parsing stage intialised.')
+        preprocess(file_path)
+
+        # subprocess.run(['cp', './preprocessor_proleap/output/preprocessed.cbl', './preprocessed_files/'+sub_directory+'/'+file_name])
+        preprocessed_file_path = os.path.join('clean_output.cbl')
+
         with open('clean_output.cbl','r') as f:
             lines = f.readlines()
         total_lines = len(lines)
-    except Exception as e:
-        print(e,' <--- some runtime error')
 
-    # return total_lines
-    if not os.path.isdir('./output/COBOL_{}'.format(file_name)):
-        cmd = 'mkdir ./output/COBOL_{}'.format(file_name)
-        os.system(cmd)
-    # cfg_json, br_json =  extractor(preprocessed_file_path,file_name,file_path, 'output')
-    cfg_json,cyclomatic_complexity = extractor(preprocessed_file_path,file_name,file_path, 'output')
-    os.remove("clean_output.cbl")
-    # return cfg_json, br_json
+        # return total_lines
+        if not os.path.isdir('./output/COBOL_{}'.format(file_name)):
+            cmd = 'mkdir ./output/COBOL_{}'.format(file_name)
+            os.system(cmd)
+
+        cfg_json,cyclomatic_complexity = extractor(preprocessed_file_path,file_name,file_path, 'output')
+        os.remove("clean_output.cbl")
+        print('STAGE: Parsing stage successfully executed.')
+    except Exception as e:
+        print('ERROR: Parsing stage Failed.')
+        print('Cause of error: ',e)
+        system.exit(1)
+    
+
     allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = runIR(file_name)
 
     # f = open('./output/COBOL_{}/analysis.txt'.format(file_name),"w")
@@ -60,27 +65,27 @@ def extract_business_rules(file_path):
 
 
 
-def graph_json_to_dot(graph_json, format):
-    """
-    Function to convert graph in json format to dot format
-    """
+# def graph_json_to_dot(graph_json, format):
+#     """
+#     Function to convert graph in json format to dot format
+#     """
 
-    graph = gv.Digraph(name='cluster', format=format)
+#     graph = gv.Digraph(name='cluster', format=format)
 
-    for node in graph_json['nodes']:
+#     for node in graph_json['nodes']:
 
-        if 'type' in node.keys() and node['type'] == 'input':
-            graph.attr('node', shape='diamond', style='filled', color='lightgrey')
-            graph.node(node['id'], label=node['data']['label'])
-        else:
-            graph.attr('node', shape='box', style='filled', color='lightblue')
-            graph.node(node['id'], label=node['data']['label'])
+#         if 'type' in node.keys() and node['type'] == 'input':
+#             graph.attr('node', shape='diamond', style='filled', color='lightgrey')
+#             graph.node(node['id'], label=node['data']['label'])
+#         else:
+#             graph.attr('node', shape='box', style='filled', color='lightblue')
+#             graph.node(node['id'], label=node['data']['label'])
 
-    for edge in graph_json['edges']:
-        graph.edge(edge['source'], edge['target'], edge['label'])
+#     for edge in graph_json['edges']:
+#         graph.edge(edge['source'], edge['target'], edge['label'])
 
 
-    return graph
+#     return graph
 
 
 # def generate_graph_file(graph_json, format, filepath, export_path):
