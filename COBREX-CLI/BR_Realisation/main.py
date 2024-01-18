@@ -41,8 +41,8 @@ class BRDriver():
                 count += 1
                 if set(['start']) == vertex.head.properties['name'] or set(['stop','close','exit','paragraphName','evaluate','sectionHeader']) & vertex.head.properties['name'] or set(['display']) == vertex.head.properties['name'] or set(['perform']) == vertex.head.properties['name'] or set(['end-if']) == vertex.head.properties['name'] or set(['end-evaluate']) == vertex.head.properties['name']:
                     count-=1
-                else:
-                    print(vertex.head.properties['name'])
+                # else:
+                #     print(vertex.head.properties['name'])
                 for neighbor,_ in vertex.children:
                     if neighbor not in visited:
                         stack.append(neighbor)
