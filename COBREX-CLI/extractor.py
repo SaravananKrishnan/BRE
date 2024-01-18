@@ -20,10 +20,6 @@ def extract_business_rules(file_path):
     """
     Function to extract business rules from the COBOL file
     """
-    file_path = Path(file_path)
-
-    if not file_path.exists():
-        print("Oops, file doesn't exist!")
 
     file_name = file_path.stem
 
@@ -111,9 +107,13 @@ def graph_json_to_dot(graph_json, format):
 
 
 if __name__ == '__main__':
-    try:
-        file_name = sys.argv[1]
-    except:
-        file_name = "./tests/BELTLEN.cbl"
+    
+    if len(sys.argv) != 2:
+        print('ERROR: File path not specified.')
+    else:
+        file_path = Path(sys.argv[1])
 
-    ans = extract_business_rules(file_name)
+        if not file_path.exists():
+            print("ERROR: File does not exists!")
+        else:
+            ans = extract_business_rules(file_path)
