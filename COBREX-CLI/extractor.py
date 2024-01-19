@@ -51,16 +51,16 @@ def extract_business_rules(file_path):
 
     allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = runIR(file_name)
 
-    # f = open('./output/COBOL_{}/analysis.txt'.format(file_name),"w")
-    # f.write('Cyclomatic complexity: {}\n'.format(cyclomatic_complexity))
-    # f.write('Number of Subrules: {}\n'.format(num_subrules))
-    # f.write('Number of Rules: {}\n'.format(num_rules))
-    # f.write('Constructs Addressed: {}\n'.format(constructs_addressed))
-    # f.write('Constructs UnAddressed: {}\n'.format(set(allConstructs)-constructs_addressed))
-    # f.write('# of unique constructs: {}\n'.format(len(set(allConstructs))))
-    # f.write('# of constructs: {}\n'.format(len(allConstructs)))
+    f = open('./output/COBOL_{}/summary.txt'.format(file_name),"w")
+    f.write('Cyclomatic complexity: {}\n'.format(cyclomatic_complexity))
+    f.write('Number of Subrules: {}\n'.format(num_subrules))
+    f.write('Number of Rules: {}\n'.format(num_rules))
+    f.write('Constructs Addressed: {}\n'.format(constructs_addressed))
+    f.write('Constructs UnAddressed: {}\n'.format(set(allConstructs)-constructs_addressed))
+    f.write('# of unique constructs: {}\n'.format(len(set(allConstructs))))
+    f.write('# of constructs: {}\n'.format(len(allConstructs)))
     # f.write('Construct-Logic Mapping: {}\n'.format(construct_logic_map))
-    # f.close()
+    f.close()
     return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map,num_RBBs,total_lines]
 
 
