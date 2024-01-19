@@ -1,2 +1,0 @@
-Entire when one rule: EVALUATE TRUE
-

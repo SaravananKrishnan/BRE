@@ -1,8 +1,0 @@
-digraph cluster0 {
-	"PC didzorchcancelmovienight PC 24 24 122" [label="IF INPUT-RESULT IS NOT EQUAL SPACE AND LOW-VALUE"]
-	"AU didzorchcancelmovienight AU 25 25 591" [label="MOVE INPUT-RESULT TO ISMOVIENIGHT"]
-	"AU didzorchcancelmovienight AU 33 33 592" [label="END-IF"]
-	"AU didzorchcancelmovienight AU 25 25 591" -> "AU didzorchcancelmovienight AU 33 33 592" [label="sequential next"]
-	"PC didzorchcancelmovienight PC 24 24 122" -> "AU didzorchcancelmovienight AU 25 25 591" [label=true]
-	"PC didzorchcancelmovienight PC 24 24 122" -> "AU didzorchcancelmovienight AU 33 33 592" [label="outside-if"]
-}

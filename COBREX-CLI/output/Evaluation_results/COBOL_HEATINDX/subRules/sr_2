@@ -1,7 +1,0 @@
-digraph cluster1 {
-	"PC HEATINDX PC 151 2 24" [label="if relative-humidity IS EQUAL ZERO"]
-	"AU HEATINDX AU 115 115 218" [label="go to end-program"]
-	"PC HEATINDX PC 151 2 24" -> "AU HEATINDX AU 115 115 218" [label=true]
-	"AU HEATINDX AU 0 190 219" [label="END-IF"]
-	"PC HEATINDX PC 151 2 24" -> "AU HEATINDX AU 0 190 219" [label="outside-if"]
-}

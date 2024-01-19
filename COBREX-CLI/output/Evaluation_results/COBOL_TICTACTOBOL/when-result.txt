@@ -1,6 +1,0 @@
-Entire when one rule: EVALUATE WS-STATE
-
-Entire when one rule: EVALUATE WS-MOVE-OUTCOME
-
-Entire when one rule: EVALUATE FUNCTION UPPER-CASE ( WS-NEXT-MOVE ( 1 : 1 ) )
-

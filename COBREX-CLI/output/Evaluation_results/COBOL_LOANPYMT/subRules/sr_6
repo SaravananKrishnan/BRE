@@ -1,9 +1,0 @@
-digraph cluster5 {
-	"PC LOANPYMT PC 132 132 27" [label="if annual-interest > max-int"]
-	"AU LOANPYMT AU 133 135 218" [label="display interest-too-much
-display spaces
-go to interest-rate-data-entry"]
-	"PC LOANPYMT PC 132 132 27" -> "AU LOANPYMT AU 133 135 218" [label=true]
-	"AU LOANPYMT AU 0 39 219" [label="END-IF"]
-	"PC LOANPYMT PC 132 132 27" -> "AU LOANPYMT AU 0 39 219" [label="outside-if"]
-}

@@ -1,4 +1,0 @@
-Entire when one rule: EVALUATE TRUE
-
-Evaluate - when separate trigger: EVALUATE K
-

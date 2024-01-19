@@ -1,7 +1,0 @@
-digraph cluster1 {
-	"PC LOANPYMT PC 101 101 23" [label="if present-value IS EQUAL ZERO"]
-	"AU LOANPYMT AU 102 102 209" [label="go to end-program"]
-	"PC LOANPYMT PC 101 101 23" -> "AU LOANPYMT AU 102 102 209" [label=true]
-	"AU LOANPYMT AU 0 32 210" [label="END-IF"]
-	"PC LOANPYMT PC 101 101 23" -> "AU LOANPYMT AU 0 32 210" [label="outside-if"]
-}

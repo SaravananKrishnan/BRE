@@ -1,7 +1,0 @@
-digraph cluster3 {
-	"AU POKER AU 0 0 324" [label=Begin]
-	"AU POKER AU 24 25 325" [label="MAIN-SECTION .
- 
-ACCEPT CARD-TABLE"]
-	"AU POKER AU 0 0 324" -> "AU POKER AU 24 25 325" [label=start]
-}

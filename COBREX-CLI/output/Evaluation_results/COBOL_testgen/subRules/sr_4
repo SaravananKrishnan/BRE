@@ -1,8 +1,0 @@
-digraph cluster3 {
-	"PC testgen PC 64 64 137" [label="if failure"]
-	"AU testgen AU 75 75 674" [label="display 'Cannot begin row.'"]
-	"AU testgen AU 0 0 675" [label="END-IF"]
-	"AU testgen AU 75 75 674" -> "AU testgen AU 0 0 675" [label="sequential next"]
-	"PC testgen PC 64 64 137" -> "AU testgen AU 75 75 674" [label=true]
-	"PC testgen PC 64 64 137" -> "AU testgen AU 0 0 675" [label="outside-if"]
-}

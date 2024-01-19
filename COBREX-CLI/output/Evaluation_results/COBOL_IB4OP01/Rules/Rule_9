@@ -1,7 +1,0 @@
-digraph cluster8 {
-	"PC IB4OP01 PC 589 589 578" [label="IF ( CUR-LINE-CNT + 1 ) > MAX-LINES"]
-	"AU IB4OP01 AU 539 539 3627" [label="MOVE H1 TO RPT-REC"]
-	"PC IB4OP01 PC 589 589 578" -> "AU IB4OP01 AU 539 539 3627" [label=true]
-	"AU IB4OP01 AU 372 372 3628" [label="END-IF"]
-	"PC IB4OP01 PC 589 589 578" -> "AU IB4OP01 AU 372 372 3628" [label="outside-if"]
-}

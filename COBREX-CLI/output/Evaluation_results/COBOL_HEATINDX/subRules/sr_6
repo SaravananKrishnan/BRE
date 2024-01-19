@@ -1,7 +1,0 @@
-digraph cluster5 {
-	"PC HEATINDX PC 0 1 28" [label="if outside-temp IS EQUAL ZERO"]
-	"AU HEATINDX AU 85 85 227" [label="go to end-program"]
-	"PC HEATINDX PC 0 1 28" -> "AU HEATINDX AU 85 85 227" [label=true]
-	"AU HEATINDX AU 0 131 228" [label="END-IF"]
-	"PC HEATINDX PC 0 1 28" -> "AU HEATINDX AU 0 131 228" [label="outside-if"]
-}

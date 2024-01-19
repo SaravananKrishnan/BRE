@@ -1,8 +1,0 @@
-digraph cluster22 {
-	"PC IB4OP01 PC 384 384 560" [label="IF TI-TRAN = 'Q '"]
-	"AU IB4OP01 AU 385 385 3601" [label="MOVE 'QUERY' TO P-TRANS OF PRT-DTL"]
-	"AU IB4OP01 AU 389 389 3602" [label="END-IF"]
-	"AU IB4OP01 AU 385 385 3601" -> "AU IB4OP01 AU 389 389 3602" [label="sequential next"]
-	"PC IB4OP01 PC 384 384 560" -> "AU IB4OP01 AU 385 385 3601" [label=true]
-	"PC IB4OP01 PC 384 384 560" -> "AU IB4OP01 AU 389 389 3602" [label="outside-if"]
-}

@@ -1,7 +1,0 @@
-digraph cluster18 {
-	"PC IB4OP01 PC 645 645 588" [label="IF ( ERR-LINE-CNT + 5 ) > MAX-LINES"]
-	"AU IB4OP01 AU 646 646 3646" [label="MOVE H1-E TO ERR-REC"]
-	"PC IB4OP01 PC 645 645 588" -> "AU IB4OP01 AU 646 646 3646" [label=true]
-	"AU IB4OP01 AU 677 677 3647" [label="END-IF"]
-	"PC IB4OP01 PC 645 645 588" -> "AU IB4OP01 AU 677 677 3647" [label="outside-if"]
-}

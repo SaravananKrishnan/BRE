@@ -1,8 +1,0 @@
-digraph cluster1 {
-	"PC PRIME PC 16 16 80" [label="IF FUNCTION MOD ( N , I ) = ZERO"]
-	"AU PRIME AU 17 17 494" [label="MOVE 'N' TO FLAG"]
-	"AU PRIME AU 18 18 495" [label="END-IF"]
-	"AU PRIME AU 17 17 494" -> "AU PRIME AU 18 18 495" [label="sequential next"]
-	"PC PRIME PC 16 16 80" -> "AU PRIME AU 17 17 494" [label=true]
-	"PC PRIME PC 16 16 80" -> "AU PRIME AU 18 18 495" [label="outside-if"]
-}

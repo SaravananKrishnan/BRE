@@ -1,8 +1,0 @@
-digraph cluster0 {
-	"PC ATM PC 87 87 8" [label="IF COUNTS ( I ) NOT = ZERO"]
-	"AU ATM AU 88 1 82" [label="DISPLAY COUNTS ( I ) \" X \" DENOMINATIONS ( I )"]
-	"AU ATM AU 64 64 83" [label="END-IF"]
-	"AU ATM AU 88 1 82" -> "AU ATM AU 64 64 83" [label="sequential next"]
-	"PC ATM PC 87 87 8" -> "AU ATM AU 88 1 82" [label=true]
-	"PC ATM PC 87 87 8" -> "AU ATM AU 64 64 83" [label="outside-if"]
-}

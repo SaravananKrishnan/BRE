@@ -1,7 +1,0 @@
-digraph cluster13 {
-	"PC IB4OP01 PC 538 538 583" [label="IF ( CUR-LINE-CNT + 5 ) > MAX-LINES"]
-	"AU IB4OP01 AU 590 590 3637" [label="MOVE H1 TO RPT-REC"]
-	"PC IB4OP01 PC 538 538 583" -> "AU IB4OP01 AU 590 590 3637" [label=true]
-	"AU IB4OP01 AU 477 477 3638" [label="END-IF"]
-	"PC IB4OP01 PC 538 538 583" -> "AU IB4OP01 AU 477 477 3638" [label="outside-if"]
-}

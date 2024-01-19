@@ -1,9 +1,0 @@
-digraph cluster11 {
-	"PC LOANPYMT PC 174 174 33" [label="if annual-term < min-term"]
-	"AU LOANPYMT AU 175 177 231" [label="display term-too-short
-display spaces
-go to term-data-entry"]
-	"PC LOANPYMT PC 174 174 33" -> "AU LOANPYMT AU 175 177 231" [label=true]
-	"AU LOANPYMT AU 0 48 232" [label="END-IF"]
-	"PC LOANPYMT PC 174 174 33" -> "AU LOANPYMT AU 0 48 232" [label="outside-if"]
-}
