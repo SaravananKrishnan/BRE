@@ -586,6 +586,10 @@ class ruleHelper():
         with open(path,"a") as fp:
             if(self._check_multiple_branching_(node)):
                 fp.write('Evaluate - when separate trigger: {}\n\n'.format(node.head.value))
+                # ASK sarkris what will be good to add this directly in the output or
+                # keep it like this
+                print("Num of children of node: ",len(node.children))
+                # print("child0 daa value: ",node.children[0][0].head.value)
             elif (self._when_variable_based_merging_(node)):
                 fp.write('variable based merging\n\n')
             else:
