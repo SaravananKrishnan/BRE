@@ -8,8 +8,10 @@ import graphviz as gv
 class ruleHelper():
     def __init__(self,file_name):
         self.rules = []
+        self.separate_when = 0
         self.file_name = file_name
         self.construct_logic = {}
+        self.indirectly_addressed = set()
 
     def if_mergable_both_goto(self,left,right,parent):
         '''
@@ -264,6 +266,7 @@ class ruleHelper():
         graph.node(name=str(node),label=node.value)
         for child,label in node.properties['children']:
             self._get_graph(child,visited,graph)
+            self.indirectly_addressed = self.indirectly_addressed.union(child.properties['name'])
             graph.edge(str(node),str(child),label=label)
 
     def get_graph_rules(self):
@@ -586,10 +589,9 @@ class ruleHelper():
         with open(path,"a") as fp:
             if(self._check_multiple_branching_(node)):
                 fp.write('Evaluate - when separate trigger: {}\n\n'.format(node.head.value))
-                # ASK sarkris what will be good to add this directly in the output or
-                # keep it like this
-                print("Num of children of node: ",len(node.children))
-                # print("child0 daa value: ",node.children[0][0].head.value)
+                # Okay so we decided that here we don't need to add that thing in the rules explicitly,
+                # what we can do is to add the # of children - 1 to the ans.
+                self.separate_when += (len(node.children) - 1)
             elif (self._when_variable_based_merging_(node)):
                 fp.write('variable based merging\n\n')
             else:
@@ -665,7 +667,6 @@ class ruleHelper():
         self.rules.append(node)
 
 def getLeaf(node):
-    # TODO: Think what to do for nested loops which is failing to get a leaf node
     q = []
     while len(node.properties['children']) != 0:
         for ch,_ in node.properties['children']:

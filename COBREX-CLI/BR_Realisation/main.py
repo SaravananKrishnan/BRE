@@ -209,9 +209,13 @@ def doBRR(rootNode):
         print('ERROR: BRR stage Failed.')
         print('Cause of error: ',e)
         sys.exit(1)
-        
+    
+    # Checking if un-neccessary constructs added then to remove it from the set
+    if 'ruled' in br.constructs_addressed:
+        br.constructs_addressed = br.constructs_addressed - {'ruled'}
+
     # print("All the constructs to logic map: ",br.rule.construct_logic)
-    return br.constructs_addressed,br.rule.construct_logic,len(br.sub_rule.subRules),len(br.rule.rules),num_RBB
+    return br.constructs_addressed,br.rule.indirectly_addressed,len(br.sub_rule.subRules),len(br.rule.rules)+br.rule.separate_when,num_RBB
 
 if __name__ == '__main__':
     print('Hi there!')

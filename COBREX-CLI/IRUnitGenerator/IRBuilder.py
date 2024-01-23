@@ -188,11 +188,11 @@ def runIR(fileName):
         print('cause of error: ',e)
         sys.exit(1)
         
-    constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = doBRR(ir.rootNode)
+    constructs_addressed,indirectly_addressed,num_subrules,num_rules,num_RBBs = doBRR(ir.rootNode)
     # print("All the addressed constructs",constructs_addressed)
     # print("All the constructs present",ir.allConstructs)
     # print("Construct to logic map: ",construct_logic_map)
-    return ir.allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs
+    return ir.allConstructs,constructs_addressed,indirectly_addressed,num_subrules,num_rules,num_RBBs
 
 if __name__ == '__main__':
     try:

@@ -50,7 +50,7 @@ def extract_business_rules(file_path):
         sys.exit(1)
     
 
-    allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = runIR(file_name)
+    allConstructs,constructs_addressed,indirectly_addressed,num_subrules,num_rules,num_RBBs = runIR(file_name)
 
     print('\n###############################################################')
     print('SUMMARY')
@@ -61,10 +61,10 @@ def extract_business_rules(file_path):
     print('# of unique constructs: {}'.format(len(set(allConstructs))))
     print('# of constructs: {}'.format(len(allConstructs)))
     print('Directly addressed constructs: {}'.format(constructs_addressed))
-    print('Indirectly addressed constructs: {}'.format(set(allConstructs)-constructs_addressed))
-    print('Unaddressed constructs: bleh-bleh\n')
+    print('Indirectly addressed constructs: {}'.format(indirectly_addressed))
+    print('Unaddressed constructs: {}\n'.format(set(allConstructs)-(constructs_addressed.union(indirectly_addressed))))
     
-    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),construct_logic_map,num_RBBs,total_lines]
+    return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),indirectly_addressed,num_RBBs,total_lines]
 
 
 

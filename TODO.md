@@ -27,11 +27,12 @@ BUG:
 1. Add the format for the file path [DONE]
 2. when-result -> Log file [DONE]
 3. Manually verify the cyclomatic complexity or other ways
-4. 'ruled' showing in the directly addressed constructs that needs to be removed
-5. Unaddressed constructs' code
+4. 'ruled' showing in the directly addressed constructs that needs to be removed [DONE]
+5. Unaddressed constructs' code [DONE]
 6. Per stage where is the output available (ADD SUMMARY OF THE OUTPUT -> add near the stage completion part) [DONE]
 7. See if something is missing in try-catch
 
 -- 
 New Tasks:
 1. Rename things :: subrules, BRRs ... 
+2. Verify all the answers that are written
