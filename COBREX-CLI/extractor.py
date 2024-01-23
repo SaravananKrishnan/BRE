@@ -43,10 +43,11 @@ def extract_business_rules(file_path):
         cfg_json,cyclomatic_complexity = extractor(preprocessed_file_path,file_name,file_path, 'output')
         os.remove("clean_output.cbl")
         print('STAGE: Parsing stage successfully executed.')
+        print('OUTPUT-Parsing: COBREX-CLI/output/COBOL_{}/CFG'.format(file_name))
     except Exception as e:
         print('ERROR: Parsing stage Failed.')
         print('Cause of error: ',e)
-        system.exit(1)
+        sys.exit(1)
     
 
     allConstructs,constructs_addressed,construct_logic_map,num_subrules,num_rules,num_RBBs = runIR(file_name)
