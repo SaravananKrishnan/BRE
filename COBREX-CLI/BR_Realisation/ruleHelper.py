@@ -582,7 +582,7 @@ class ruleHelper():
             Here the evaluate would come which is going to have multiple children and now we need to work on those branches but before we move we need to make sure when the
             when block gets over, for which I think I need to go to main of CFG.
         '''
-        path = './output/COBOL_{}/when-result.txt'.format(node.head.fileName)
+        path = './output/COBOL_{}/log-file.txt'.format(node.head.fileName)
         with open(path,"a") as fp:
             if(self._check_multiple_branching_(node)):
                 fp.write('Evaluate - when separate trigger: {}\n\n'.format(node.head.value))

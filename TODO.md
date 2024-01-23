@@ -24,6 +24,10 @@ BUG:
 
 --
 
-Works done:
-1. If file path not specified or is not correct.
-2. Added a try-except the boundaries of each of the stage.
+1. Add the format for the file path [DONE]
+2. when-result -> Log file [DONE]
+3. Manually verify the cyclomatic complexity or other ways
+4. 'ruled' showing in the directly addressed constructs that needs to be removed
+5. Unaddressed constructs' code
+6. Per stage where is the output available (ADD SUMMARY OF THE OUTPUT -> add near the stage completion part)
+7. See if something is missing in try-catch
