@@ -182,7 +182,7 @@ def runIR(fileName):
         ir_json = ir.getJSON(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}.json'.format(fileName)))
         ir.getPDF(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}'.format(fileName)),ir_json,'pdf')
         print('STAGE: IR stage successfully executed.')
-        print('OUTPUT-IR: COBREX-CLI/output/COBOL_{}/IR'.format(fileName))
+        print('OUTPUT-IR: COBREX-CLI/output/COBOL_{}/IR\n'.format(fileName))
     except Exception as e:
         print('ERROR: IR stage failed.')
         print('cause of error: ',e)

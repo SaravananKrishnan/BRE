@@ -43,7 +43,7 @@ def extract_business_rules(file_path):
         cfg_json,cyclomatic_complexity = extractor(preprocessed_file_path,file_name,file_path, 'output')
         os.remove("clean_output.cbl")
         print('STAGE: Parsing stage successfully executed.')
-        print('OUTPUT-Parsing: COBREX-CLI/output/COBOL_{}/CFG'.format(file_name))
+        print('OUTPUT-Parsing: COBREX-CLI/output/COBOL_{}/CFG\n'.format(file_name))
     except Exception as e:
         print('ERROR: Parsing stage Failed.')
         print('Cause of error: ',e)
@@ -56,13 +56,12 @@ def extract_business_rules(file_path):
     print('SUMMARY')
     print('###############################################################')
     print('\nCyclomatic complexity: {}\n'.format(cyclomatic_complexity))
-    print('Number of RBBs: {}'.format(num_subrules))
-    print('Number of Rules: {}\n'.format(num_rules))
-    print('# of unique constructs: {}'.format(len(set(allConstructs))))
-    print('# of constructs: {}'.format(len(allConstructs)))
-    print('Directly addressed constructs: {}'.format(constructs_addressed))
-    print('Indirectly addressed constructs: {}'.format(indirectly_addressed))
-    print('Unaddressed constructs: {}\n'.format(set(allConstructs)-(constructs_addressed.union(indirectly_addressed))))
+    print('Number of extracted Rule Building Blocks from {}: {}'.format(file_name,num_subrules))
+    print('Number of extracted Rules from {}: {}\n'.format(file_name,num_rules))
+    print('# of unique constructs in {}: {}'.format(file_name,len(set(allConstructs))))
+    print('# of total constructs in {}: {}'.format(file_name,len(allConstructs)))
+    print('Constructs contributing to atleast one rule: {}'.format(constructs_addressed.union(indirectly_addressed) - set(['rule','end-if','end-evaluate'])))
+    print('Constructs not contributing to any of the rule: {}'.format(set(allConstructs)-constructs_addressed-indirectly_addressed))
     
     return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),indirectly_addressed,num_RBBs,total_lines]
 
@@ -118,7 +117,7 @@ if __name__ == '__main__':
     
     if len(sys.argv) != 2:
         print('ERROR: File path not specified.')
-        print('Supported Format :: python3 extractor.py <file-path>')
+        print('Supported Format :: python3 extractor.py <input-file-path>')
     else:
         file_path = Path(sys.argv[1])
 

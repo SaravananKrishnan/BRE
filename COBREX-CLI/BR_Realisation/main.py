@@ -204,7 +204,7 @@ def doBRR(rootNode):
             br.constructs_addressed = br.constructs_addressed.union(r.head.properties['name'])
         make_graph(br.head)
         print('STAGE: BRR stage successfully executed.')
-        print('OUTPUT-BRR: COBREX-CLI/output/COBOL_{}/BRR'.format(br.head.head.fileName))
+        print('OUTPUT-BRR: COBREX-CLI/output/COBOL_{}/BRR\n'.format(br.head.head.fileName))
     except Exception as e:
         print('ERROR: BRR stage Failed.')
         print('Cause of error: ',e)

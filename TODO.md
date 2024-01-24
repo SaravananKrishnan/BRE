@@ -26,7 +26,7 @@ BUG:
 
 1. Add the format for the file path [DONE]
 2. when-result -> Log file [DONE]
-3. Manually verify the cyclomatic complexity or other ways
+3. Manually verify the cyclomatic complexity or other ways (on9 tools also)
 4. 'ruled' showing in the directly addressed constructs that needs to be removed [DONE]
 5. Unaddressed constructs' code [DONE]
 6. Per stage where is the output available (ADD SUMMARY OF THE OUTPUT -> add near the stage completion part) [DONE]
@@ -35,4 +35,11 @@ BUG:
 -- 
 New Tasks:
 1. Rename things :: subrules, BRRs ... 
-2. Verify all the answers that are written
+
+2. input-file-path in supported format
+3. RBBs -> Rule Building Blocks, (extracted)
+4. available in the given program
+
+Constructs contributing to at least one rule -> direct + indirect
+Constructs that are not contributing to any rule -> total - direct - indirect
+<!-- Check with the test case of two ifs' -->
