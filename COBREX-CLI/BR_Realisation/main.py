@@ -204,7 +204,7 @@ def doBRR(rootNode):
             br.constructs_addressed = br.constructs_addressed.union(r.head.properties['name'])
         make_graph(br.head)
         print('STAGE: BRR stage successfully executed.')
-        print('OUTPUT-BRR: COBREX-CLI/output/COBOL_{}/BRR\n'.format(br.head.head.fileName))
+        print('OUTPUT-BRR: COBREX-CLI/output/COBOL_{}/Rules\n'.format(br.head.head.fileName))
     except Exception as e:
         print('ERROR: BRR stage Failed.')
         print('Cause of error: ',e)
@@ -215,7 +215,7 @@ def doBRR(rootNode):
         br.constructs_addressed = br.constructs_addressed - {'ruled'}
 
     # print("All the constructs to logic map: ",br.rule.construct_logic)
-    return br.constructs_addressed,br.rule.indirectly_addressed,len(br.sub_rule.subRules),len(br.rule.rules)+br.rule.separate_when,num_RBB
+    return br.constructs_addressed,br.rule.indirectly_addressed,len(br.sub_rule.subRules),len(br.rule.rules),num_RBB
 
 if __name__ == '__main__':
     print('Hi there!')

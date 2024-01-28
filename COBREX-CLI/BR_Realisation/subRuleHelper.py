@@ -94,7 +94,7 @@ class subRuleHelper():
 
     def get_graph_sub_rules(self):
         for i in range(len(self.subRules)):
-            path = 'output/COBOL_{}/subRules/sr_{}'.format(self.file_name,i+1)
+            path = 'output/COBOL_{}/RBBs/rbb_{}'.format(self.file_name,i+1)
             name = 'cluster'+str(i)
             graph = gv.Digraph(name=name,format='pdf')
             self._get_graph(self.subRules[i].head,[],graph)

@@ -23,7 +23,6 @@ def extract_business_rules(file_path):
 
     file_name = file_path.stem
 
-
     try:
         print('STAGE: Parsing stage intialised.')
         preprocess(file_path)
@@ -62,59 +61,19 @@ def extract_business_rules(file_path):
     print('# of total constructs in {}: {}'.format(file_name,len(allConstructs)))
     print('Constructs contributing to atleast one rule: {}'.format(constructs_addressed.union(indirectly_addressed) - set(['rule','end-if','end-evaluate'])))
     print('Constructs not contributing to any of the rule: {}'.format(set(allConstructs)-constructs_addressed-indirectly_addressed))
+    print('\n###############################################################')
+    print('Note: pls find the when-rules that are to be realised in the activation graph in the log file.')
+    print('Outputs: ')
+    print('Log-file (optional) :: COBREX-CLI/output/COBOL_{}/log-file.txt'.format(file_name))
+    print('Activation graph :: COBREX-CLI/output/COBOL_{}/BRR_{}.pdf'.format(file_name,file_name))
+    print('CFG :: COBREX-CLI/output/COBOL_{}/CFG/CFG_{}.pdf'.format(file_name,file_name))
+    print('RBBs :: COBREX-CLI/output/COBOL_{}/RBB'.format(file_name))
     
     return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),indirectly_addressed,num_RBBs,total_lines]
 
 
 
-# def graph_json_to_dot(graph_json, format):
-#     """
-#     Function to convert graph in json format to dot format
-#     """
-
-#     graph = gv.Digraph(name='cluster', format=format)
-
-#     for node in graph_json['nodes']:
-
-#         if 'type' in node.keys() and node['type'] == 'input':
-#             graph.attr('node', shape='diamond', style='filled', color='lightgrey')
-#             graph.node(node['id'], label=node['data']['label'])
-#         else:
-#             graph.attr('node', shape='box', style='filled', color='lightblue')
-#             graph.node(node['id'], label=node['data']['label'])
-
-#     for edge in graph_json['edges']:
-#         graph.edge(edge['source'], edge['target'], edge['label'])
-
-
-#     return graph
-
-
-# def generate_graph_file(graph_json, format, filepath, export_path):
-#     """
-#     Function to generate graph visualized files for the input graph present in json format
-#     """
-
-#     if not os.path.isdir(export_path):
-
-#         os.mkdir(export_path)
-#     else:
-
-#         shutil.rmtree(export_path) #done so that all previous files are deleted
-#         os.mkdir(export_path)
-
-#     graph = graph_json_to_dot(graph_json, format)
-
-#     graph.render(filename=filepath, view=False, cleanup=True)
-
-
-
-
-
-
-
 if __name__ == '__main__':
-    
     if len(sys.argv) != 2:
         print('ERROR: File path not specified.')
         print('Supported Format :: python3 extractor.py <input-file-path>')

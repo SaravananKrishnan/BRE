@@ -271,7 +271,7 @@ class ruleHelper():
 
     def get_graph_rules(self):
         for i in range(len(self.rules)):
-            path = 'output/COBOL_{}/Rules/Rule_{}'.format(self.file_name,i+1)
+            path = 'output/COBOL_{}/Rules/rule_{}'.format(self.file_name,i+1)
             name = 'cluster'+str(i)
             graph = gv.Digraph(name=name,format='pdf')
             self._get_graph(self.rules[i].head,[],graph)
@@ -596,7 +596,7 @@ class ruleHelper():
                 fp.write('variable based merging\n\n')
             else:
                 self._make_one_when_rule(node)
-                fp.write('Entire when one rule: {}\n\n'.format(node.head.value))
+                # fp.write('Entire when one rule: {}\n\n'.format(node.head.value))
                 self.rules.append(node)
         
         node.head.properties['name'].add('ruled')
