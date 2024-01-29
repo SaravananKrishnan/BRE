@@ -166,7 +166,7 @@ def getVarsfromUser():
     
     primary = []
     secondary = []
-    path1 = 'input.txt'
+    path1 = 'businessVariables.txt'
     with open(path1, 'r') as f:
         f = [line.strip() for line in f.readlines()]
     i = 0

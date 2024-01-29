@@ -304,6 +304,5 @@ class CFG():
         self._visit_nodes_json(output,self.entryblock,[])
 
         cyclomatic_complexity = len(output['edges']) - len(output['nodes']) + 2
-        # print('Cyclomatic Complexity: ',cyclomatic_complexity)
 
         return output,cyclomatic_complexity

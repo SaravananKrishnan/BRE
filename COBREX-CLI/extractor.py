@@ -10,7 +10,7 @@ import graphviz as gv
 import shutil
 from pathlib import Path
 import sys
-sys.path.append('./IRUnitGenerator/')
+sys.path.append('./RBB/')
 from IRBuilder import runIR 
 
 
@@ -34,7 +34,7 @@ def extract_business_rules(file_path):
             lines = f.readlines()
         total_lines = len(lines)
 
-        # return total_lines
+        # makes the output folder for us
         if not os.path.isdir('./output/COBOL_{}'.format(file_name)):
             cmd = 'mkdir ./output/COBOL_{}'.format(file_name)
             os.system(cmd)
@@ -55,19 +55,19 @@ def extract_business_rules(file_path):
     print('SUMMARY')
     print('###############################################################')
     print('\nCyclomatic complexity: {}\n'.format(cyclomatic_complexity))
-    print('Number of extracted Rule Building Blocks from {}: {}'.format(file_name,num_subrules))
-    print('Number of extracted Rules from {}: {}\n'.format(file_name,num_rules))
+    print('Number of extracted Rules* from {}: {}\n'.format(file_name,num_rules))
     print('# of unique constructs in {}: {}'.format(file_name,len(set(allConstructs))))
     print('# of total constructs in {}: {}'.format(file_name,len(allConstructs)))
     print('Constructs contributing to atleast one rule: {}'.format(constructs_addressed.union(indirectly_addressed) - set(['rule','end-if','end-evaluate'])))
     print('Constructs not contributing to any of the rule: {}'.format(set(allConstructs)-constructs_addressed-indirectly_addressed))
-    print('\n###############################################################')
-    print('Note: pls find the when-rules that are to be realised in the activation graph in the log file.')
-    print('Outputs: ')
+    print('\n###############################################################\n')
+    print('Note: pls find the when-rules (if present) that are to be realised in the activation graph in the log file.')
+    print('\nOutputs: ')
     print('Log-file (optional) :: COBREX-CLI/output/COBOL_{}/log-file.txt'.format(file_name))
-    print('Activation graph :: COBREX-CLI/output/COBOL_{}/BRR_{}.pdf'.format(file_name,file_name))
     print('CFG :: COBREX-CLI/output/COBOL_{}/CFG/CFG_{}.pdf'.format(file_name,file_name))
-    print('RBBs :: COBREX-CLI/output/COBOL_{}/RBB'.format(file_name))
+    print('RBBs :: COBREX-CLI/output/COBOL_{}/RBBs'.format(file_name))
+    print('Rules :: COBREX-CLI/output/COBOL_{}/Rules'.format(file_name))
+    print('Activation graph :: COBREX-CLI/output/COBOL_{}/BRR_{}.pdf'.format(file_name,file_name))
     
     return [cyclomatic_complexity,num_subrules,num_rules,constructs_addressed,set(allConstructs)-constructs_addressed,len(set(allConstructs)),len(allConstructs),indirectly_addressed,num_RBBs,total_lines]
 

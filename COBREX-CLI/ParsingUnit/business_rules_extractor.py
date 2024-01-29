@@ -357,8 +357,4 @@ class BusinessRulesExtractor:
             self._visit_rules_json(business_rules_dict,entry_rule,[])
             output['business_rules'][variable]= business_rules_dict
 
-
-        # with open(filepath, "w") as outfile:
-        #     json.dump(output, outfile)
-
         return output

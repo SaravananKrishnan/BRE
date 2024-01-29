@@ -170,21 +170,21 @@ class IR():
 
 def runIR(fileName):
     try:
-        print('STAGE: IR stage initiated.')
+        print('STAGE: RBB stage initiated.')
         ir = IR()
         with open('output/COBOL_{}/CFG/CFG_{}.json'.format(fileName,fileName)) as f:
             cfg = json.load(f)
         ir.buildIR(cfg,fileName)
-        output_directory = './output/COBOL_{}/IR'.format(fileName)
+        output_directory = './output/COBOL_{}/RBB'.format(fileName)
         if not os.path.isdir(output_directory):
-            cmd = 'mkdir ./output/COBOL_{}/IR'.format(fileName)
+            cmd = 'mkdir ./output/COBOL_{}/RBB'.format(fileName)
             os.system(cmd)
-        ir_json = ir.getJSON(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}.json'.format(fileName)))
-        ir.getPDF(os.path.join('output/COBOL_{}/IR/'.format(fileName),'IR_{}'.format(fileName)),ir_json,'pdf')
-        print('STAGE: IR stage successfully executed.')
-        print('OUTPUT-IR: COBREX-CLI/output/COBOL_{}/IR\n'.format(fileName))
+        ir_json = ir.getJSON(os.path.join('output/COBOL_{}/RBB/'.format(fileName),'RBB_{}.json'.format(fileName)))
+        ir.getPDF(os.path.join('output/COBOL_{}/RBB/'.format(fileName),'RBB_{}'.format(fileName)),ir_json,'pdf')
+        print('STAGE: RBB stage successfully executed.')
+        print('OUTPUT-RBB: COBREX-CLI/output/COBOL_{}/RBB\n'.format(fileName))
     except Exception as e:
-        print('ERROR: IR stage failed.')
+        print('ERROR: RBB stage failed.')
         print('cause of error: ',e)
         sys.exit(1)
         
