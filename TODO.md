@@ -1,45 +1,4 @@
-1. Modify the console to make it meaningful for the user running it.
-    - Should state what is the o/p
-        (processing file at x state -> when state is initialised)
-        (successfully processed x state -> end of state)
-    - Where is the o/p
-    - Summary
-    [DONE]
-2. Log at the end of each stage, and after it's execution {Report or Summary}[DONE]
-3. Add try-catch for each stage (Boundary conditions)
-    - Try adding them at sub-stages as well
-    [DONE](more can be added)
-4. Make sure:
-    - Successful run + summary
-    - Unsuccessful run + issues
-    - Abrubt end (Should not happen)
-    [DONE]
-5. SubRule -> BuildingBlock (RBBs)
-6. Mention the .gv file's existence and significance (purpose) in the final summary
-
-BUG:
-1. In the evaluate-when results, it is not overwriting an existing file, make sure it does so.
-2. Capture the when rules in the summary, they need to be counted. [BIG-BUG]
-    > Solved just need to confirm with sarkris which way to present.
-
---
-
-1. Add the format for the file path [DONE]
-2. when-result -> Log file [DONE]
-3. Manually verify the cyclomatic complexity or other ways (on9 tools also)
-4. 'ruled' showing in the directly addressed constructs that needs to be removed [DONE]
-5. Unaddressed constructs' code [DONE]
-6. Per stage where is the output available (ADD SUMMARY OF THE OUTPUT -> add near the stage completion part) [DONE]
-7. See if something is missing in try-catch
-
--- 
-New Tasks:
-1. Rename things :: subrules, BRRs ... 
-
-2. input-file-path in supported format
-3. RBBs -> Rule Building Blocks, (extracted)
-4. available in the given program
-
-Constructs contributing to at least one rule -> direct + indirect
-Constructs that are not contributing to any rule -> total - direct - indirect
-<!-- Check with the test case of two ifs' -->
+* Add the evaluation results and all the necessary things as well.
+* Clean-up the repo 
+* Make the change about the RBBs
+* Make the readme ready
