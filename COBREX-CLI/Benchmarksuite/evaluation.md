@@ -27,3 +27,17 @@
 | 23   | AESMAIN      | 27                      | 319                 | 133         | 16                          | 100                           | 100                                   | 6.25                               | 51.85                                   | 11.11                                   |
 | 24   | IB4OP01      | 5                       | 248                 | 102         | 24                          | 54.17                         | 54.17                                 | 0                                  | 60                                      | 0                                       |
 |     | Average      | 4.33                    | 232.83              | 26.75       | 6.25                        | 61.41                         | 58.16                                 | 34.20                              | 76.60                                   | 47.83                                   |
+
+## Explanation of Columns
+
+- **S.No:** Serial number of the program.
+- **Program Name:** Name of the program being evaluated.
+- **Ground Truth Rules (GTR):** Number of ground truth rules for the program.
+- **Total Lines in GTR:** Total lines in the ground truth rules.
+- **RBBs Formed:** Number of Rule-Building Blocks formed.
+- **Total Extracted Rules (TER):** Total number of rules extracted from the program.
+- **% TER with some match in GTR:** Percentage of extracted rules with some match in the ground truth.
+- **% TER with greater than 50% matching GTR:** Percentage of extracted rules with greater than 50% match in the ground truth.
+- **% TER with exactly matching GTR:** Percentage of extracted rules with exactly matching ground truth.
+- **Recall1 (% GTR that were extracted with fuzzy match):** Recall percentage for fuzzy matches.
+- **Recall2 (% GTR that were extracted with exact match):** Recall percentage for exact matches.
