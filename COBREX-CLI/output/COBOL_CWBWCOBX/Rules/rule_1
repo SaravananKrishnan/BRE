@@ -1,0 +1,7 @@
+digraph cluster0 {
+	"PC CWBWCOBX PC 342 342 26" [label="IF GOOD-PARM"]
+	"AU CWBWCOBX AU 343 343 342" [label="PERFORM 9200-INIT"]
+	"PC CWBWCOBX PC 342 342 26" -> "AU CWBWCOBX AU 343 343 342" [label=true]
+	"AU CWBWCOBX AU 0 68 343" [label="END-IF"]
+	"PC CWBWCOBX PC 342 342 26" -> "AU CWBWCOBX AU 0 68 343" [label="outside-if"]
+}

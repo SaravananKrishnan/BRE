@@ -1,0 +1,8 @@
+Evaluate - when separate trigger: EVALUATE TRUE
+
+Evaluate - when separate trigger: EVALUATE W-FORMAT-ENTRY
+
+Evaluate - when separate trigger: EVALUATE TRUE
+
+Evaluate - when separate trigger: EVALUATE TRUE
+

@@ -1,0 +1,215 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="MAIN .
+ 
+"]
+	2 [label="PERFORM SUB-1000-START-UP THRU SUB-1000-EXIT
+"]
+	4 [label="PERFORM SUB-9100-READ-TESTINPT THRU SUB-9100-EXIT
+"]
+	6 [label="PERFORM SUB-2000-PROCESS THRU SUB-2000-EXIT UNTIL W-EOF
+"]
+	8 [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT
+"]
+	10 [label="MAIN-EXIT .
+ 
+"]
+	11 [label="STOP RUN
+"]
+	10 -> 11 [label="sequential next"]
+	8 -> 10 [label="perform-exit"]
+	64 [label="SUB-3000-SHUT-DOWN .
+ 
+"]
+	65 [label="CLOSE TESTINPT TESTOUTP
+"]
+	66 [label="MOVE W-TESTINPT-RECS TO W-DISP-NUM
+"]
+	67 [label="DISPLAY 'TESTINPT records read:    ' W-DISP-NUM
+"]
+	68 [label="MOVE W-TESTOUTP-RECS TO W-DISP-NUM
+"]
+	69 [label="DISPLAY 'TESTOUTP records written: ' W-DISP-NUM
+"]
+	70 [label="DISPLAY 'FAKERTST completed'
+"]
+	72 [label="SUB-3000-EXIT .
+ 
+"]
+	73 [label=EXIT
+]
+	73 -> 8 [label="procedure backward call"]
+	72 -> 73 [label="sequential next"]
+	70 -> 72 [label="sequential next"]
+	69 -> 70 [label="sequential next"]
+	68 -> 69 [label="sequential next"]
+	67 -> 68 [label="sequential next"]
+	66 -> 67 [label="sequential next"]
+	65 -> 66 [label="sequential next"]
+	64 -> 65 [label="sequential next"]
+	8 -> 64 [label="procedure call"]
+	6 -> 8 [label="perform-exit"]
+	21 [label="SUB-2000-PROCESS .
+ 
+"]
+	22 [label="MOVE TI-PROVIDER-FUNCTION TO FAKER-PROVIDER-FUNCTION
+"]
+	23 [label="IF TI-COUNT NUMERIC
+" shape=diamond]
+	24 [label="MOVE TI-COUNT TO W-TEST-CNT
+"]
+	25 [label="END-IF
+"]
+	29 [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT W-TEST-CNT TIMES
+"]
+	39 [label="SUB-2100-CALL-FAKER .
+ 
+"]
+	40 [label="CALL W-FAKER-PROG USING W-FAKER-PARAMETER
+"]
+	41 [label="IF FAKER-RESPONSE-GOOD
+" shape=diamond]
+	42 [label="MOVE TI-PROVIDER-FUNCTION TO TO-PROVIDER-FUNCTION
+"]
+	45 [label="MOVE ': ' TO TO-COLON
+"]
+	46 [label="MOVE FAKER-RESULT TO TO-FAKER-RESULT
+"]
+	47 [label="PERFORM SUB-9200-WRITE-TESTOUTP THRU SUB-9200-EXIT
+"]
+	49 [label="IF ADDRESS-ADDRESS OR PERSON-NAME OR PERSON-NAME-MALE OR PERSON-NAME-FEMALE
+" shape=diamond]
+	50 [label="MOVE SPACES TO TO-PROVIDER-FUNCTION
+"]
+	53 [label="MOVE ': ' TO TO-COLON
+"]
+	54 [label="MOVE FAKER-RESULT-FIELDS TO TO-FAKER-RESULT
+"]
+	55 [label="PERFORM SUB-9200-WRITE-TESTOUTP THRU SUB-9200-EXIT
+"]
+	85 [label="SUB-9200-WRITE-TESTOUTP .
+ 
+"]
+	86 [label="WRITE TESTOUTP-REC
+"]
+	87 [label="ADD 1 TO W-TESTOUTP-RECS
+"]
+	89 [label="SUB-9200-EXIT .
+ 
+"]
+	90 [label=EXIT
+]
+	90 -> 47 [label="procedure backward call"]
+	90 -> 55 [label="procedure backward call"]
+	89 -> 90 [label="sequential next"]
+	87 -> 89 [label="sequential next"]
+	87 -> 89 [label="sequential next"]
+	86 -> 87 [label="sequential next"]
+	85 -> 86 [label="sequential next"]
+	55 -> 85 [label="procedure call"]
+	51 [label="END-IF
+"]
+	43 [label="END-IF
+"]
+	51 -> 43 [label="sequential next"]
+	55 -> 51 [label="perform-exit"]
+	54 -> 55 [label="sequential next"]
+	53 -> 54 [label="sequential next"]
+	50 -> 53 [label="sequential next"]
+	49 -> 50 [label=true]
+	49 -> 51 [label="outside-if"]
+	47 -> 49 [label="perform-exit"]
+	47 -> 85 [label="procedure call"]
+	46 -> 47 [label="sequential next"]
+	45 -> 46 [label="sequential next"]
+	42 -> 45 [label="sequential next"]
+	41 -> 42 [label=true]
+	44 [label="DISPLAY W-ERROR-MSG FAKER-RESPONSE-CODE ' - ' FAKER-RESPONSE-MSG
+"]
+	61 [label="SUB-2100-EXIT .
+ 
+"]
+	62 [label=EXIT
+]
+	62 -> 29 [label="procedure backward call"]
+	61 -> 62 [label="sequential next"]
+	44 -> 61 [label="sequential next"]
+	44 -> 43 [label="sequential next"]
+	41 -> 44 [label=false]
+	40 -> 41 [label="sequential next"]
+	39 -> 40 [label="sequential next"]
+	29 -> 39 [label="procedure call"]
+	32 [label="SUB-2000-READ .
+ 
+"]
+	33 [label="PERFORM SUB-9100-READ-TESTINPT THRU SUB-9100-EXIT
+"]
+	75 [label="SUB-9100-READ-TESTINPT .
+ 
+"]
+	76 [label="READ TESTINPT
+"]
+	78 [label="SET W-EOF TO TRUE
+"]
+	76 -> 78 [label=AtEnd]
+	80 [label="ADD 1 TO W-TESTINPT-RECS
+"]
+	82 [label="SUB-9100-EXIT .
+ 
+"]
+	83 [label=EXIT
+]
+	83 -> 4 [label="procedure backward call"]
+	83 -> 33 [label="procedure backward call"]
+	82 -> 83 [label="sequential next"]
+	80 -> 82 [label="sequential next"]
+	80 -> 82 [label="sequential next"]
+	76 -> 80 [label=NotAtEnd]
+	75 -> 76 [label="sequential next"]
+	33 -> 75 [label="procedure call"]
+	36 [label="SUB-2000-EXIT .
+ 
+"]
+	37 [label=EXIT
+]
+	37 -> 6 [label="procedure backward call"]
+	36 -> 37 [label="sequential next"]
+	33 -> 36 [label="sequential next"]
+	32 -> 33 [label="sequential next"]
+	29 -> 32 [label="sequential next"]
+	25 -> 29 [label="sequential next"]
+	24 -> 25 [label="sequential next"]
+	23 -> 24 [label=true]
+	26 [label="MOVE 1 TO W-TEST-CNT
+"]
+	26 -> 25 [label="sequential next"]
+	23 -> 26 [label=false]
+	22 -> 23 [label="sequential next"]
+	21 -> 22 [label="sequential next"]
+	6 -> 21 [label="procedure call"]
+	4 -> 6 [label="perform-exit"]
+	4 -> 75 [label="procedure call"]
+	2 -> 4 [label="perform-exit"]
+	13 [label="SUB-1000-START-UP .
+ 
+"]
+	14 [label="MOVE FUNCTION WHEN-COMPILED TO W-COMPILED-DATE
+"]
+	15 [label="DISPLAY 'FAKERTST compiled on ' W-COMPILED-DATE-YYYY '/' W-COMPILED-DATE-MM '/' W-COMPILED-DATE-DD ' at ' W-COMPILED-TIME-HH ':' W-COMPILED-TIME-MM ':' W-COMPILED-TIME-SS
+"]
+	16 [label="OPEN INPUT TESTINPT OUTPUT TESTOUTP
+"]
+	18 [label="SUB-1000-EXIT .
+ 
+"]
+	19 [label=EXIT
+]
+	19 -> 2 [label="procedure backward call"]
+	18 -> 19 [label="sequential next"]
+	16 -> 18 [label="sequential next"]
+	15 -> 16 [label="sequential next"]
+	14 -> 15 [label="sequential next"]
+	13 -> 14 [label="sequential next"]
+	2 -> 13 [label="procedure call"]
+	1 -> 2 [label="sequential next"]
+}

@@ -1,0 +1,421 @@
+digraph cluster {
+	"CWBWCOBX AU 0 0 228" [label=Begin fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 339 339 229" [label="0000-MAINLINE .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 340 340 230" [label="PERFORM 9000-OPEN" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 341 341 231" [label="PERFORM 9100-CHECK-PARM" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 342 342 10" [label="IF GOOD-PARM" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 343 343 232" [label="PERFORM 9200-INIT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 344 12 233" [label="PERFORM 8000-READ-INPUT UNTIL RECORDS-READ = START-NUMBER OR END-OF-FILE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 347 13 234" [label="PERFORM 1000-PROCESS-DATA UNTIL END-OF-FILE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 349 349 235" [label="PERFORM 6000-PRINT-EMPLOYEE-REPORT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 643 643 236" [label="MOVE 1 TO REGION-SUB" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 351 351 0" [label="IF END-OF-MONTH" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 352 51 237" [label="PERFORM 7000-PRINT-REGION-REPORT UNTIL REGION-SUB > 4" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 564 564 238" [label="7000-PRINT-REGION-REPORT .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 565 565 1" [label="IF REG-LINE-COUNT GREATER THAN 55" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 566 566 239" [label="PERFORM 7100-PRINT-REGION-HEADERS" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 593 609 240" [label="7100-PRINT-REGION-HEADERS .
+ 
+MOVE PAGE-COUNT TO REG-PAGE
+MOVE DATE-YY TO REG-RUN-YEAR
+MOVE DATE-MM TO REG-RUN-MONTH
+MOVE DATE-DD TO REG-RUN-DAY
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM REGION-HDR1
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM REGION-HDR2
+WRITE REPORT-RECORD FROM BLANK-LINE
+ADD 1 TO PAGE-COUNT
+MOVE 4 TO REG-LINE-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 52 241" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 567 583 242" [label="MOVE SPACES TO REGION-DETAIL
+MOVE REGION-NAME ( REGION-SUB ) TO REG-DTL-REGION
+MOVE REGION-MANAGER ( REGION-SUB ) TO REG-DTL-MANAGER
+MOVE REGION-SALARY ( REGION-SUB ) TO REG-DTL-SALARY
+MOVE REGION-SALES ( REGION-SUB ) TO REG-DTL-SALES
+MOVE REGION-SALES ( REGION-SUB ) TO CALC-SALES
+MOVE REGION-COMMENT ( REGION-SUB ) TO REG-DTL-COMMENT
+MOVE 'M' TO EMP-TYPE
+CALL 'CWBWSUBC' USING EMP-TYPE CALC-SALES CALC-COMMISSION
+MOVE CALC-COMMISSION TO REG-DTL-COMM
+COMPUTE MGMT-COMPENSATION = CALC-COMMISSION + REGION-SALARY ( REGION-SUB )
+ADD MGMT-COMPENSATION TO GRAND-TOTAL-MGMT
+MOVE MGMT-COMPENSATION TO REG-DTL-TOTAL
+WRITE REPORT-RECORD FROM REGION-DETAIL" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 584 584 2" [label="IF REGION-SUB = 4" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 607 587 243" [label="WRITE REPORT-RECORD FROM BLANK-LINE
+MOVE GRAND-TOTAL-MGMT TO MGMT-GRAND-TOTAL
+WRITE REPORT-RECORD FROM MGMT-TOTAL-DTL" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 60 244" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 588 659 245" [label="ADD 1 TO REG-LINE-COUNT
+ADD 1 TO REGION-SUB" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 67 246" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 68 247" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 354 355 248" [label="MOVE RECORDS-READ TO TOTAL-RECORD
+MOVE EMP-GRAND-TOTAL TO GRAND-TOTAL" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 356 356 249" [label="PERFORM 9900-CLOSE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 357 357 250" [label=GOBACK fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 669 671 251" [label="9900-CLOSE .
+ 
+CLOSE EMPLOYEE-FILE
+CLOSE REPORT-FILE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 496 497 252" [label="6000-PRINT-EMPLOYEE-REPORT .
+ 
+SET REG-IX TO 1" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 498 37 253" [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > NORTH-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 501 501 254" [label="SET REG-IX TO 2" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 502 46 255" [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > SOUTH-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 505 505 256" [label="SET REG-IX TO 3" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 506 54 257" [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > EAST-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 509 509 258" [label="SET REG-IX TO 4" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 510 62 259" [label="PERFORM 6100-PRINT-EMPLOYEE-DETAIL VARYING HOLD-IX FROM 1 BY 1 UNTIL HOLD-IX > WEST-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 555 49 260" [label="WRITE REPORT-RECORD FROM BLANK-LINE
+MOVE GRAND-TOTAL-EMP TO EMP-GRAND-TOTAL
+WRITE REPORT-RECORD FROM EMP-TOTAL-DTL" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 519 519 261" [label="6100-PRINT-EMPLOYEE-DETAIL .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 520 520 3" [label="IF EMP-LINE-COUNT GREATER THAN 55" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 521 521 262" [label="PERFORM 6200-PRINT-EMPLOYEE-HEADERS" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 542 557 263" [label="6200-PRINT-EMPLOYEE-HEADERS .
+ 
+MOVE PAGE-COUNT TO EMP-PAGE
+MOVE DATE-YY TO EMP-RUN-YY
+MOVE DATE-MM TO EMP-RUN-MM
+MOVE DATE-DD TO EMP-RUN-DD
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM EMPLOYEE-HDR1
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM BLANK-LINE
+WRITE REPORT-RECORD FROM EMPLOYEE-HDR2
+WRITE REPORT-RECORD FROM EMPLOYEE-HDR3
+WRITE REPORT-RECORD FROM BLANK-LINE
+ADD 1 TO PAGE-COUNT
+MOVE 5 TO EMP-LINE-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 36 264" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 522 538 265" [label="MOVE HOLD-NAME ( REG-IX HOLD-IX ) TO EMP-DTL-NAME
+MOVE HOLD-REGION ( REG-IX HOLD-IX ) TO EMP-DTL-REGION
+MOVE HOLD-TYPE ( REG-IX HOLD-IX ) TO EMP-DTL-TYPE
+MOVE HOLD-HIRE-MM ( REG-IX HOLD-IX ) TO EMP-DTL-HIRE-MM
+MOVE '/' TO EMP-DTL-SLASH1
+MOVE HOLD-HIRE-DD ( REG-IX HOLD-IX ) TO EMP-DTL-HIRE-DD
+MOVE '/' TO EMP-DTL-SLASH2
+MOVE HOLD-HIRE-YY ( REG-IX HOLD-IX ) TO EMP-DTL-HIRE-YY
+MOVE HOLD-YEARS ( REG-IX HOLD-IX ) TO EMP-DTL-YRS-OF-SERVICE
+MOVE HOLD-WAGES ( REG-IX HOLD-IX ) TO EMP-DTL-WAGES
+MOVE HOLD-OT ( REG-IX HOLD-IX ) TO EMP-DTL-OT
+MOVE HOLD-COMM ( REG-IX HOLD-IX ) TO EMP-DTL-COMM
+MOVE HOLD-TOTAL ( REG-IX HOLD-IX ) TO EMP-DTL-TOTAL
+WRITE REPORT-RECORD FROM EMPLOYEE-DTL AFTER ADVANCING 1 LINE
+ADD 1 TO EMP-LINE-COUNT
+MOVE SPACES TO EMPLOYEE-DTL" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 364 364 266" [label="1000-PROCESS-DATA .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 365 365 4" [label="IF HOURLY" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 366 366 267" [label="PERFORM 2000-PROCESS-HOURLY" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 385 386 268" [label="2000-PROCESS-HOURLY .
+ 
+MOVE ZERO TO OT-AMOUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 387 387 5" [label="IF WA-EMP-HOURS GREATER THAN 40" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 388 390 269" [label="COMPUTE EMP-WAGES = WA-EMP-RATE * 40
+COMPUTE OT-HOURS = WA-EMP-HOURS - 40
+COMPUTE OT-AMOUNT = OT-HOURS * ( WA-EMP-RATE * 1.5 )" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 15 270" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 393 21 271" [label="COMPUTE EMP-COMPENSATION = EMP-WAGES + OT-AMOUNT
+ADD EMP-COMPENSATION TO GRAND-TOTAL-EMP
+CALL 'CWBWDATE' USING END-OF-MONTH-SW YRS-OF-SERVICE TODAYS-DATE WA-EMP-HIRE-DATE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 399 399 272" [label="PERFORM 5000-STORE-EMPLOYEE-DETAIL" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 400 400 273" [label="SET HOLD-IX UP BY 1" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 427 427 274" [label="5000-STORE-EMPLOYEE-DETAIL .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 444 444 275" [label="PERFORM 5100-SET-INDEX" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 490 490 11" [label="IF VALID-REGION" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 435 57 276" [label="MOVE WA-EMP-NAME TO HOLD-NAME ( REG-IX HOLD-IX )
+MOVE REGION-ID ( WA-EMP-REGION ) TO HOLD-REGION ( REG-IX HOLD-IX )
+MOVE WA-EMP-TYPE TO HOLD-TYPE ( REG-IX HOLD-IX )
+MOVE WA-EMP-HIRE-DATE TO HOLD-HIRE-DATE ( REG-IX HOLD-IX )
+MOVE YRS-OF-SERVICE TO HOLD-YEARS ( REG-IX HOLD-IX )
+MOVE EMP-COMPENSATION TO HOLD-TOTAL ( REG-IX HOLD-IX )" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 454 454 6" [label="IF HOURLY" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 455 63 277" [label="MOVE EMP-WAGES TO HOLD-WAGES ( REG-IX HOLD-IX )
+MOVE OT-AMOUNT TO HOLD-OT ( REG-IX HOLD-IX )
+MOVE ZEROS TO HOLD-COMM ( REG-IX HOLD-IX )" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 25 278" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 26 279" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 459 76 280" [label="MOVE WA-SALES-SALARY TO HOLD-WAGES ( REG-IX HOLD-IX )
+MOVE CALC-COMMISSION TO HOLD-COMM ( REG-IX HOLD-IX )
+MOVE ZERO TO HOLD-OT ( REG-IX HOLD-IX )" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 30 281" [label="PERFORM 5000-STORE-EMPLOYEE-DETAIL" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 428 428 282" [label="SET HOLD-IX UP BY 1" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 369 369 283" [label="PERFORM 3000-PROCESS-SALES" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 409 409 284" [label="3000-PROCESS-SALES .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 410 410 7" [label="IF WA-SALES-AMOUNT > 0" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 411 27 285" [label="ADD WA-SALES-AMOUNT TO REGION-SALES ( WA-EMP-REGION )
+MOVE WA-SALES-AMOUNT TO CALC-SALES
+MOVE 0 TO CALC-COMMISSION
+MOVE 'S' TO EMP-TYPE
+CALL 'CWBWSUBC' USING EMP-TYPE CALC-SALES CALC-COMMISSION" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 28 286" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 420 23 287" [label="COMPUTE EMP-COMPENSATION = WA-SALES-SALARY + CALC-COMMISSION
+ADD EMP-COMPENSATION TO GRAND-TOTAL-EMP
+CALL 'CWBWDATE' USING END-OF-MONTH-SW YRS-OF-SERVICE TODAYS-DATE WA-EMP-HIRE-DATE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 419 419 288" [label="MOVE 'UH-OH' TO REGION-COMMENT ( WA-EMP-REGION )" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 33 289" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 35 290" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 38 291" [label="PERFORM 8000-READ-INPUT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 376 613 292" [label="8000-READ-INPUT .
+ 
+READ EMPLOYEE-FILE INTO EMPLOYEE-WORK-AREA" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 616 616 293" [label="ADD 1 TO RECORDS-READ" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 615 615 294" [label="MOVE 'Y' TO EOF-SW" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 471 472 295" [label="5100-SET-INDEX .
+ 
+MOVE 'N' TO REGION-ERROR-SW" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 473 473 8" [label="IF NORTH" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 474 475 296" [label="ADD 1 TO NORTH-COUNT
+SET HOLD-IX TO NORTH-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 22 297" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 445 445 12" [label="IF VALID-REGION" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 491 491 298" [label="SET REG-IX TO WA-EMP-REGION" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 24 299" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 477 477 13" [label="IF SOUTH" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 478 479 300" [label="ADD 1 TO SOUTH-COUNT
+SET HOLD-IX TO SOUTH-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 20 301" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 481 481 14" [label="IF EAST" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 482 483 302" [label="ADD 1 TO EAST-COUNT
+SET HOLD-IX TO EAST-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 19 303" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 485 485 15" [label="IF WEST" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 486 487 304" [label="ADD 1 TO WEST-COUNT
+SET HOLD-IX TO WEST-COUNT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 18 305" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 489 489 306" [label="MOVE 'Y' TO REGION-ERROR-SW" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 392 392 307" [label="COMPUTE EMP-WAGES = WA-EMP-HOURS * WA-EMP-RATE" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 368 368 16" [label="IF SALES" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 371 371 17" [label="IF MANAGEMENT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 372 372 308" [label="PERFORM 4000-PROCESS-MANAGEMENT" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 434 436 309" [label="4000-PROCESS-MANAGEMENT .
+ 
+MOVE WA-EMP-NAME TO REGION-MANAGER ( WA-EMP-REGION )
+MOVE WA-MGMT-SALARY TO REGION-SALARY ( WA-EMP-REGION )" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 32 310" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 374 666 311" [label="MOVE ' INVALID EMPLOYEE TYPE ' TO ERROR-LINE
+WRITE REPORT-RECORD FROM ERROR-LINE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 638 350 312" [label="9200-INIT .
+ 
+MOVE 'NORTH' TO REGION-NAME ( 1 )
+MOVE 'SOUTH' TO REGION-NAME ( 2 )
+MOVE 'EAST ' TO REGION-NAME ( 3 )
+MOVE 'WEST ' TO REGION-NAME ( 4 )
+MOVE 1 TO REGION-SUB" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 644 10 313" [label="PERFORM 9300-INITIALIZE-REGION-TABLE UNTIL REGION-SUB > 4" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 646 11 314" [label="SET HOLD-IX TO 1
+MOVE RUN-DATE TO TODAYS-DATE
+CALL 'CWBWDATE' USING END-OF-MONTH-SW YRS-OF-SERVICE TODAYS-DATE WA-EMP-HIRE-DATE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 654 589 315" [label="9300-INITIALIZE-REGION-TABLE .
+ 
+MOVE SPACES TO REGION-MANAGER ( REGION-SUB )
+MOVE SPACES TO REGION-COMMENT ( REGION-SUB )
+MOVE 0 TO REGION-SALARY ( REGION-SUB )
+MOVE 0 TO REGION-SALES ( REGION-SUB )
+ADD 1 TO REGION-SUB" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 625 625 316" [label="9100-CHECK-PARM .
+ " fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 626 626 9" [label="IF PARM-LTH = 12" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 627 627 18" [label="IF PARM-DATA IS NUMERIC" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 628 628 317" [label="MOVE PARM-DATA TO START-NUMBER" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 5 318" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 8 319" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 630 630 320" [label="PERFORM 9800-BAD-PARM" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 635 375 321" [label="9800-BAD-PARM .
+ 
+MOVE 'Y' TO PARM-ERROR-SW
+MOVE '   PARAMETER LENGTH OR DATA IS INCORRECT   ' TO ERROR-LINE
+WRITE REPORT-RECORD FROM ERROR-LINE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 2 322" [label="PERFORM 9800-BAD-PARM" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 0 7 323" [label="END-IF" fillcolor=lightblue style=filled]
+	"CWBWCOBX PC 632 632 19" [label="IF PARM-LTH = 0" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 633 633 324" [label="MOVE 1 TO START-NUMBER" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 619 621 325" [label="9000-OPEN .
+ 
+OPEN INPUT EMPLOYEE-FILE
+OPEN OUTPUT REPORT-FILE" fillcolor=lightblue style=filled]
+	"CWBWCOBX AU 593 609 240" -> "CWBWCOBX AU 566 566 239" [label="sequential next"]
+	"CWBWCOBX AU 566 566 239" -> "CWBWCOBX AU 593 609 240" [label="procedure call"]
+	"CWBWCOBX AU 588 659 245" -> "CWBWCOBX AU 352 51 237" [label="sequential next"]
+	"CWBWCOBX AU 0 60 244" -> "CWBWCOBX AU 588 659 245" [label="sequential next"]
+	"CWBWCOBX AU 607 587 243" -> "CWBWCOBX AU 0 60 244" [label="sequential next"]
+	"CWBWCOBX PC 584 584 2" -> "CWBWCOBX AU 607 587 243" [label=true]
+	"CWBWCOBX PC 584 584 2" -> "CWBWCOBX AU 0 60 244" [label="outside-if"]
+	"CWBWCOBX AU 567 583 242" -> "CWBWCOBX PC 584 584 2" [label="sequential next"]
+	"CWBWCOBX AU 0 52 241" -> "CWBWCOBX AU 567 583 242" [label="sequential next"]
+	"CWBWCOBX AU 566 566 239" -> "CWBWCOBX AU 0 52 241" [label="perform-exit"]
+	"CWBWCOBX PC 565 565 1" -> "CWBWCOBX AU 566 566 239" [label=true]
+	"CWBWCOBX PC 565 565 1" -> "CWBWCOBX AU 0 52 241" [label="outside-if"]
+	"CWBWCOBX AU 564 564 238" -> "CWBWCOBX PC 565 565 1" [label="sequential next"]
+	"CWBWCOBX AU 352 51 237" -> "CWBWCOBX AU 564 564 238" [label="procedure call"]
+	"CWBWCOBX AU 356 356 249" -> "CWBWCOBX AU 357 357 250" [label="perform-exit"]
+	"CWBWCOBX AU 669 671 251" -> "CWBWCOBX AU 356 356 249" [label="sequential next"]
+	"CWBWCOBX AU 356 356 249" -> "CWBWCOBX AU 669 671 251" [label="procedure call"]
+	"CWBWCOBX AU 354 355 248" -> "CWBWCOBX AU 356 356 249" [label="sequential next"]
+	"CWBWCOBX AU 0 68 247" -> "CWBWCOBX AU 354 355 248" [label="sequential next"]
+	"CWBWCOBX AU 0 67 246" -> "CWBWCOBX AU 0 68 247" [label="sequential next"]
+	"CWBWCOBX AU 352 51 237" -> "CWBWCOBX AU 0 67 246" [label="perform-exit"]
+	"CWBWCOBX PC 351 351 0" -> "CWBWCOBX AU 352 51 237" [label=true]
+	"CWBWCOBX PC 351 351 0" -> "CWBWCOBX AU 0 67 246" [label="outside-if"]
+	"CWBWCOBX AU 643 643 236" -> "CWBWCOBX PC 351 351 0" [label="sequential next"]
+	"CWBWCOBX AU 349 349 235" -> "CWBWCOBX AU 643 643 236" [label="perform-exit"]
+	"CWBWCOBX AU 555 49 260" -> "CWBWCOBX AU 349 349 235" [label="sequential next"]
+	"CWBWCOBX AU 510 62 259" -> "CWBWCOBX AU 555 49 260" [label="perform-exit"]
+	"CWBWCOBX AU 542 557 263" -> "CWBWCOBX AU 521 521 262" [label="sequential next"]
+	"CWBWCOBX AU 521 521 262" -> "CWBWCOBX AU 542 557 263" [label="procedure call"]
+	"CWBWCOBX AU 522 538 265" -> "CWBWCOBX AU 502 46 255" [label=backward]
+	"CWBWCOBX AU 522 538 265" -> "CWBWCOBX AU 506 54 257" [label=backward]
+	"CWBWCOBX AU 522 538 265" -> "CWBWCOBX AU 510 62 259" [label=backward]
+	"CWBWCOBX AU 522 538 265" -> "CWBWCOBX AU 498 37 253" [label="sequential next"]
+	"CWBWCOBX AU 0 36 264" -> "CWBWCOBX AU 522 538 265" [label="sequential next"]
+	"CWBWCOBX AU 521 521 262" -> "CWBWCOBX AU 0 36 264" [label="perform-exit"]
+	"CWBWCOBX PC 520 520 3" -> "CWBWCOBX AU 521 521 262" [label=true]
+	"CWBWCOBX PC 520 520 3" -> "CWBWCOBX AU 0 36 264" [label="outside-if"]
+	"CWBWCOBX AU 519 519 261" -> "CWBWCOBX PC 520 520 3" [label="sequential next"]
+	"CWBWCOBX AU 510 62 259" -> "CWBWCOBX AU 519 519 261" [label="procedure call"]
+	"CWBWCOBX AU 509 509 258" -> "CWBWCOBX AU 510 62 259" [label="sequential next"]
+	"CWBWCOBX AU 506 54 257" -> "CWBWCOBX AU 509 509 258" [label="perform-exit"]
+	"CWBWCOBX AU 506 54 257" -> "CWBWCOBX AU 519 519 261" [label="procedure call"]
+	"CWBWCOBX AU 505 505 256" -> "CWBWCOBX AU 506 54 257" [label="sequential next"]
+	"CWBWCOBX AU 502 46 255" -> "CWBWCOBX AU 505 505 256" [label="perform-exit"]
+	"CWBWCOBX AU 502 46 255" -> "CWBWCOBX AU 519 519 261" [label="procedure call"]
+	"CWBWCOBX AU 501 501 254" -> "CWBWCOBX AU 502 46 255" [label="sequential next"]
+	"CWBWCOBX AU 498 37 253" -> "CWBWCOBX AU 501 501 254" [label="perform-exit"]
+	"CWBWCOBX AU 498 37 253" -> "CWBWCOBX AU 519 519 261" [label="procedure call"]
+	"CWBWCOBX AU 496 497 252" -> "CWBWCOBX AU 498 37 253" [label="sequential next"]
+	"CWBWCOBX AU 349 349 235" -> "CWBWCOBX AU 496 497 252" [label="procedure call"]
+	"CWBWCOBX AU 347 13 234" -> "CWBWCOBX AU 349 349 235" [label="perform-exit"]
+	"CWBWCOBX AU 400 400 273" -> "CWBWCOBX AU 366 366 267" [label="sequential next"]
+	"CWBWCOBX AU 399 399 272" -> "CWBWCOBX AU 400 400 273" [label="perform-exit"]
+	"CWBWCOBX AU 0 26 279" -> "CWBWCOBX AU 399 399 272" [label="sequential next"]
+	"CWBWCOBX AU 0 25 278" -> "CWBWCOBX AU 0 26 279" [label="sequential next"]
+	"CWBWCOBX AU 455 63 277" -> "CWBWCOBX AU 0 25 278" [label="sequential next"]
+	"CWBWCOBX PC 454 454 6" -> "CWBWCOBX AU 455 63 277" [label=true]
+	"CWBWCOBX AU 459 76 280" -> "CWBWCOBX AU 0 25 278" [label="sequential next"]
+	"CWBWCOBX PC 454 454 6" -> "CWBWCOBX AU 459 76 280" [label=false]
+	"CWBWCOBX AU 435 57 276" -> "CWBWCOBX PC 454 454 6" [label="sequential next"]
+	"CWBWCOBX PC 490 490 11" -> "CWBWCOBX AU 435 57 276" [label=true]
+	"CWBWCOBX PC 490 490 11" -> "CWBWCOBX AU 0 26 279" [label="outside-if"]
+	"CWBWCOBX AU 420 23 287" -> "CWBWCOBX AU 0 30 281" [label="sequential next"]
+	"CWBWCOBX AU 0 28 286" -> "CWBWCOBX AU 420 23 287" [label="sequential next"]
+	"CWBWCOBX AU 411 27 285" -> "CWBWCOBX AU 0 28 286" [label="sequential next"]
+	"CWBWCOBX PC 410 410 7" -> "CWBWCOBX AU 411 27 285" [label=true]
+	"CWBWCOBX AU 419 419 288" -> "CWBWCOBX AU 0 28 286" [label="sequential next"]
+	"CWBWCOBX PC 410 410 7" -> "CWBWCOBX AU 419 419 288" [label=false]
+	"CWBWCOBX AU 409 409 284" -> "CWBWCOBX PC 410 410 7" [label="sequential next"]
+	"CWBWCOBX AU 369 369 283" -> "CWBWCOBX AU 409 409 284" [label="procedure call"]
+	"CWBWCOBX AU 616 616 293" -> "CWBWCOBX AU 0 38 291" [label=backward]
+	"CWBWCOBX AU 616 616 293" -> "CWBWCOBX AU 344 12 233" [label="sequential next"]
+	"CWBWCOBX AU 376 613 292" -> "CWBWCOBX AU 616 616 293" [label="sequential next"]
+	"CWBWCOBX AU 615 615 294" -> "CWBWCOBX AU 616 616 293" [label="sequential next"]
+	"CWBWCOBX AU 376 613 292" -> "CWBWCOBX AU 615 615 294" [label=AtEnd]
+	"CWBWCOBX AU 0 38 291" -> "CWBWCOBX AU 376 613 292" [label="procedure call"]
+	"CWBWCOBX AU 0 38 291" -> "CWBWCOBX AU 347 13 234" [label="perform-exit"]
+	"CWBWCOBX AU 0 35 290" -> "CWBWCOBX AU 0 38 291" [label="sequential next"]
+	"CWBWCOBX AU 0 33 289" -> "CWBWCOBX AU 0 35 290" [label="sequential next"]
+	"CWBWCOBX AU 369 369 283" -> "CWBWCOBX AU 0 33 289" [label="perform-exit"]
+	"CWBWCOBX AU 428 428 282" -> "CWBWCOBX AU 369 369 283" [label="sequential next"]
+	"CWBWCOBX AU 0 30 281" -> "CWBWCOBX AU 428 428 282" [label="perform-exit"]
+	"CWBWCOBX AU 0 30 281" -> "CWBWCOBX AU 427 427 274" [label="procedure call"]
+	"CWBWCOBX PC 490 490 11" -> "CWBWCOBX AU 0 30 281" [label=backward]
+	"CWBWCOBX AU 444 444 275" -> "CWBWCOBX PC 490 490 11" [label="perform-exit"]
+	"CWBWCOBX AU 0 24 299" -> "CWBWCOBX AU 444 444 275" [label="sequential next"]
+	"CWBWCOBX AU 491 491 298" -> "CWBWCOBX AU 0 24 299" [label="sequential next"]
+	"CWBWCOBX PC 445 445 12" -> "CWBWCOBX AU 491 491 298" [label=true]
+	"CWBWCOBX PC 445 445 12" -> "CWBWCOBX AU 0 24 299" [label="outside-if"]
+	"CWBWCOBX AU 0 22 297" -> "CWBWCOBX PC 445 445 12" [label="sequential next"]
+	"CWBWCOBX AU 474 475 296" -> "CWBWCOBX AU 0 22 297" [label="sequential next"]
+	"CWBWCOBX PC 473 473 8" -> "CWBWCOBX AU 474 475 296" [label=true]
+	"CWBWCOBX AU 0 20 301" -> "CWBWCOBX AU 0 22 297" [label="sequential next"]
+	"CWBWCOBX AU 478 479 300" -> "CWBWCOBX AU 0 20 301" [label="sequential next"]
+	"CWBWCOBX PC 477 477 13" -> "CWBWCOBX AU 478 479 300" [label=true]
+	"CWBWCOBX AU 0 19 303" -> "CWBWCOBX AU 0 20 301" [label="sequential next"]
+	"CWBWCOBX AU 482 483 302" -> "CWBWCOBX AU 0 19 303" [label="sequential next"]
+	"CWBWCOBX PC 481 481 14" -> "CWBWCOBX AU 482 483 302" [label=true]
+	"CWBWCOBX AU 0 18 305" -> "CWBWCOBX AU 0 19 303" [label="sequential next"]
+	"CWBWCOBX AU 486 487 304" -> "CWBWCOBX AU 0 18 305" [label="sequential next"]
+	"CWBWCOBX PC 485 485 15" -> "CWBWCOBX AU 486 487 304" [label=true]
+	"CWBWCOBX AU 489 489 306" -> "CWBWCOBX AU 0 18 305" [label="sequential next"]
+	"CWBWCOBX PC 485 485 15" -> "CWBWCOBX AU 489 489 306" [label=false]
+	"CWBWCOBX PC 481 481 14" -> "CWBWCOBX PC 485 485 15" [label=false]
+	"CWBWCOBX PC 477 477 13" -> "CWBWCOBX PC 481 481 14" [label=false]
+	"CWBWCOBX PC 473 473 8" -> "CWBWCOBX PC 477 477 13" [label=false]
+	"CWBWCOBX AU 471 472 295" -> "CWBWCOBX PC 473 473 8" [label="sequential next"]
+	"CWBWCOBX AU 444 444 275" -> "CWBWCOBX AU 471 472 295" [label="procedure call"]
+	"CWBWCOBX AU 427 427 274" -> "CWBWCOBX AU 444 444 275" [label="sequential next"]
+	"CWBWCOBX AU 399 399 272" -> "CWBWCOBX AU 427 427 274" [label="procedure call"]
+	"CWBWCOBX AU 393 21 271" -> "CWBWCOBX AU 399 399 272" [label="sequential next"]
+	"CWBWCOBX AU 0 15 270" -> "CWBWCOBX AU 393 21 271" [label="sequential next"]
+	"CWBWCOBX AU 388 390 269" -> "CWBWCOBX AU 0 15 270" [label="sequential next"]
+	"CWBWCOBX PC 387 387 5" -> "CWBWCOBX AU 388 390 269" [label=true]
+	"CWBWCOBX AU 392 392 307" -> "CWBWCOBX AU 0 15 270" [label="sequential next"]
+	"CWBWCOBX PC 387 387 5" -> "CWBWCOBX AU 392 392 307" [label=false]
+	"CWBWCOBX AU 385 386 268" -> "CWBWCOBX PC 387 387 5" [label="sequential next"]
+	"CWBWCOBX AU 366 366 267" -> "CWBWCOBX AU 385 386 268" [label="procedure call"]
+	"CWBWCOBX AU 366 366 267" -> "CWBWCOBX AU 0 35 290" [label="perform-exit"]
+	"CWBWCOBX PC 365 365 4" -> "CWBWCOBX AU 366 366 267" [label=true]
+	"CWBWCOBX PC 368 368 16" -> "CWBWCOBX AU 369 369 283" [label=true]
+	"CWBWCOBX AU 434 436 309" -> "CWBWCOBX AU 372 372 308" [label="sequential next"]
+	"CWBWCOBX AU 372 372 308" -> "CWBWCOBX AU 434 436 309" [label="procedure call"]
+	"CWBWCOBX AU 0 32 310" -> "CWBWCOBX AU 0 33 289" [label="sequential next"]
+	"CWBWCOBX AU 372 372 308" -> "CWBWCOBX AU 0 32 310" [label="perform-exit"]
+	"CWBWCOBX PC 371 371 17" -> "CWBWCOBX AU 372 372 308" [label=true]
+	"CWBWCOBX AU 374 666 311" -> "CWBWCOBX AU 0 32 310" [label="sequential next"]
+	"CWBWCOBX PC 371 371 17" -> "CWBWCOBX AU 374 666 311" [label=false]
+	"CWBWCOBX PC 368 368 16" -> "CWBWCOBX PC 371 371 17" [label=false]
+	"CWBWCOBX PC 365 365 4" -> "CWBWCOBX PC 368 368 16" [label=false]
+	"CWBWCOBX AU 364 364 266" -> "CWBWCOBX PC 365 365 4" [label="sequential next"]
+	"CWBWCOBX AU 347 13 234" -> "CWBWCOBX AU 364 364 266" [label="procedure call"]
+	"CWBWCOBX AU 344 12 233" -> "CWBWCOBX AU 347 13 234" [label="perform-exit"]
+	"CWBWCOBX AU 344 12 233" -> "CWBWCOBX AU 376 613 292" [label="procedure call"]
+	"CWBWCOBX AU 343 343 232" -> "CWBWCOBX AU 344 12 233" [label="perform-exit"]
+	"CWBWCOBX AU 646 11 314" -> "CWBWCOBX AU 343 343 232" [label="sequential next"]
+	"CWBWCOBX AU 644 10 313" -> "CWBWCOBX AU 646 11 314" [label="perform-exit"]
+	"CWBWCOBX AU 654 589 315" -> "CWBWCOBX AU 644 10 313" [label="sequential next"]
+	"CWBWCOBX AU 644 10 313" -> "CWBWCOBX AU 654 589 315" [label="procedure call"]
+	"CWBWCOBX AU 638 350 312" -> "CWBWCOBX AU 644 10 313" [label="sequential next"]
+	"CWBWCOBX AU 343 343 232" -> "CWBWCOBX AU 638 350 312" [label="procedure call"]
+	"CWBWCOBX PC 342 342 10" -> "CWBWCOBX AU 343 343 232" [label=true]
+	"CWBWCOBX PC 342 342 10" -> "CWBWCOBX AU 0 68 247" [label="outside-if"]
+	"CWBWCOBX AU 341 341 231" -> "CWBWCOBX PC 342 342 10" [label="perform-exit"]
+	"CWBWCOBX AU 0 8 319" -> "CWBWCOBX AU 341 341 231" [label="sequential next"]
+	"CWBWCOBX AU 0 5 318" -> "CWBWCOBX AU 0 8 319" [label="sequential next"]
+	"CWBWCOBX AU 628 628 317" -> "CWBWCOBX AU 0 5 318" [label="sequential next"]
+	"CWBWCOBX PC 627 627 18" -> "CWBWCOBX AU 628 628 317" [label=true]
+	"CWBWCOBX AU 0 2 322" -> "CWBWCOBX AU 635 375 321" [label="procedure call"]
+	"CWBWCOBX AU 0 7 323" -> "CWBWCOBX AU 0 8 319" [label="sequential next"]
+	"CWBWCOBX AU 0 2 322" -> "CWBWCOBX AU 0 7 323" [label="perform-exit"]
+	"CWBWCOBX AU 635 375 321" -> "CWBWCOBX AU 0 2 322" [label=backward]
+	"CWBWCOBX AU 635 375 321" -> "CWBWCOBX AU 630 630 320" [label="sequential next"]
+	"CWBWCOBX AU 630 630 320" -> "CWBWCOBX AU 635 375 321" [label="procedure call"]
+	"CWBWCOBX AU 630 630 320" -> "CWBWCOBX AU 0 5 318" [label="perform-exit"]
+	"CWBWCOBX PC 627 627 18" -> "CWBWCOBX AU 630 630 320" [label=false]
+	"CWBWCOBX PC 626 626 9" -> "CWBWCOBX PC 627 627 18" [label=true]
+	"CWBWCOBX AU 633 633 324" -> "CWBWCOBX AU 0 7 323" [label="sequential next"]
+	"CWBWCOBX PC 632 632 19" -> "CWBWCOBX AU 633 633 324" [label=true]
+	"CWBWCOBX PC 632 632 19" -> "CWBWCOBX AU 0 2 322" [label=false]
+	"CWBWCOBX PC 626 626 9" -> "CWBWCOBX PC 632 632 19" [label=false]
+	"CWBWCOBX AU 625 625 316" -> "CWBWCOBX PC 626 626 9" [label="sequential next"]
+	"CWBWCOBX AU 341 341 231" -> "CWBWCOBX AU 625 625 316" [label="procedure call"]
+	"CWBWCOBX AU 340 340 230" -> "CWBWCOBX AU 341 341 231" [label="perform-exit"]
+	"CWBWCOBX AU 619 621 325" -> "CWBWCOBX AU 340 340 230" [label="sequential next"]
+	"CWBWCOBX AU 340 340 230" -> "CWBWCOBX AU 619 621 325" [label="procedure call"]
+	"CWBWCOBX AU 339 339 229" -> "CWBWCOBX AU 340 340 230" [label="sequential next"]
+	"CWBWCOBX AU 0 0 228" -> "CWBWCOBX AU 339 339 229" [label=start]
+}

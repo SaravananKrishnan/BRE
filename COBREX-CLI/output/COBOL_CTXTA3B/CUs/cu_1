@@ -1,0 +1,10 @@
+digraph cluster0 {
+	"PC CTXTA3B PC 44 44 15" [label="IF CRM = 99"]
+	"AU CTXTA3B AU 45 45 21" [label="MOVE 'M' TO PARM"]
+	"AU CTXTA3B AU 48 48 22" [label="END-IF"]
+	"AU CTXTA3B AU 45 45 21" -> "AU CTXTA3B AU 48 48 22" [label="sequential next"]
+	"PC CTXTA3B PC 44 44 15" -> "AU CTXTA3B AU 45 45 21" [label=true]
+	"AU CTXTA3B AU 47 47 23" [label="MOVE ' ' TO PARM"]
+	"AU CTXTA3B AU 47 47 23" -> "AU CTXTA3B AU 48 48 22" [label="sequential next"]
+	"PC CTXTA3B PC 44 44 15" -> "AU CTXTA3B AU 47 47 23" [label=false]
+}

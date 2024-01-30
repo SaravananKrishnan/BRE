@@ -1,0 +1,8 @@
+digraph cluster4 {
+	"PC CWBWCOBX PC 445 445 24" [label="IF VALID-REGION"]
+	"AU CWBWCOBX AU 491 491 337" [label="SET REG-IX TO WA-EMP-REGION"]
+	"AU CWBWCOBX AU 0 24 338" [label="END-IF"]
+	"AU CWBWCOBX AU 491 491 337" -> "AU CWBWCOBX AU 0 24 338" [label="sequential next"]
+	"PC CWBWCOBX PC 445 445 24" -> "AU CWBWCOBX AU 491 491 337" [label=true]
+	"PC CWBWCOBX PC 445 445 24" -> "AU CWBWCOBX AU 0 24 338" [label="outside-if"]
+}

@@ -1,0 +1,122 @@
+digraph cluster {
+	graph [label=test]
+	1 [label="TRAIT .
+ 
+"]
+	2 [label="IF CRM = 99
+" shape=diamond]
+	3 [label="MOVE 'M' TO PARM
+"]
+	4 [label="END-IF
+"]
+	8 [label="MOVE 00 TO CRM
+"]
+	9 [label="EVALUATE E-ANNEE
+" shape=diamond]
+	11 [label="WHEN '2006'
+" shape=diamond]
+	12 [label="CALL 'EFITA3B6' USING ENTREE SORTIE CRM RCM PARM
+"]
+	10 [label="END-EVALUATE
+"]
+	63 [label=GOBACK
+]
+	10 -> 63 [label="sequential next"]
+	12 -> 10 [label="sequential next"]
+	11 -> 12 [label=true]
+	9 -> 11 [label="evaluate when"]
+	15 [label="WHEN '2007'
+" shape=diamond]
+	16 [label="CALL 'EFITA3B7' USING ENTREE SORTIE CRM RCM PARM
+"]
+	16 -> 10 [label="sequential next"]
+	15 -> 16 [label=true]
+	9 -> 15 [label="evaluate when"]
+	19 [label="WHEN '2008'
+" shape=diamond]
+	20 [label="CALL 'EFITA3B8' USING ENTREE SORTIE CRM RCM PARM
+"]
+	20 -> 10 [label="sequential next"]
+	19 -> 20 [label=true]
+	9 -> 19 [label="evaluate when"]
+	23 [label="WHEN '2009'
+" shape=diamond]
+	24 [label="CALL 'EFITA3B8' USING ENTREE SORTIE CRM RCM PARM
+"]
+	24 -> 10 [label="sequential next"]
+	23 -> 24 [label=true]
+	9 -> 23 [label="evaluate when"]
+	27 [label="WHEN '2010'
+" shape=diamond]
+	28 [label="CALL 'EFITA3B0' USING ENTREE SORTIE CRM RCM PARM
+"]
+	28 -> 10 [label="sequential next"]
+	27 -> 28 [label=true]
+	9 -> 27 [label="evaluate when"]
+	31 [label="WHEN '2011'
+" shape=diamond]
+	32 [label="CALL 'EFITA3B1' USING ENTREE SORTIE CRM RCM PARM
+"]
+	32 -> 10 [label="sequential next"]
+	31 -> 32 [label=true]
+	9 -> 31 [label="evaluate when"]
+	35 [label="WHEN '2012'
+" shape=diamond]
+	36 [label="CALL 'EFITA3B2' USING ENTREE SORTIE CRM RCM PARM
+"]
+	36 -> 10 [label="sequential next"]
+	35 -> 36 [label=true]
+	9 -> 35 [label="evaluate when"]
+	39 [label="WHEN '2013'
+" shape=diamond]
+	40 [label="CALL 'EFITA3B3' USING ENTREE SORTIE CRM RCM PARM
+"]
+	40 -> 10 [label="sequential next"]
+	39 -> 40 [label=true]
+	9 -> 39 [label="evaluate when"]
+	43 [label="WHEN '2014'
+" shape=diamond]
+	44 [label="CALL 'EFITA3B4' USING ENTREE SORTIE CRM RCM PARM
+"]
+	44 -> 10 [label="sequential next"]
+	43 -> 44 [label=true]
+	9 -> 43 [label="evaluate when"]
+	47 [label="WHEN '2015'
+" shape=diamond]
+	48 [label="CALL 'EFITA3B5' USING ENTREE SORTIE CRM RCM PARM
+"]
+	48 -> 10 [label="sequential next"]
+	47 -> 48 [label=true]
+	9 -> 47 [label="evaluate when"]
+	51 [label="WHEN '2016'
+" shape=diamond]
+	52 [label="CALL 'EFITA3B6' USING ENTREE SORTIE CRM RCM PARM
+"]
+	52 -> 10 [label="sequential next"]
+	51 -> 52 [label=true]
+	9 -> 51 [label="evaluate when"]
+	55 [label="WHEN '2017'
+" shape=diamond]
+	56 [label="CALL 'EFITA3B7' USING ENTREE SORTIE CRM RCM PARM
+"]
+	56 -> 10 [label="sequential next"]
+	55 -> 56 [label=true]
+	9 -> 55 [label="evaluate when"]
+	59 [label="WHEN '2018'
+" shape=diamond]
+	60 [label="CALL 'EFITA3B8' USING ENTREE SORTIE CRM RCM PARM
+"]
+	60 -> 10 [label="sequential next"]
+	59 -> 60 [label=true]
+	59 -> 10 [label="sequential next"]
+	9 -> 59 [label="evaluate when"]
+	8 -> 9 [label="sequential next"]
+	4 -> 8 [label="sequential next"]
+	3 -> 4 [label="sequential next"]
+	2 -> 3 [label=true]
+	5 [label="MOVE ' ' TO PARM
+"]
+	5 -> 4 [label="sequential next"]
+	2 -> 5 [label=false]
+	1 -> 2 [label="sequential next"]
+}

@@ -1,0 +1,130 @@
+digraph cluster {
+	"FAKERTST AU 0 0 50" [label=Begin fillcolor=lightblue style=filled]
+	"FAKERTST AU 258 258 51" [label="MAIN .
+ " fillcolor=lightblue style=filled]
+	"FAKERTST AU 261 261 52" [label="PERFORM SUB-1000-START-UP THRU SUB-1000-EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 263 263 53" [label="PERFORM SUB-9100-READ-TESTINPT THRU SUB-9100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 265 1 54" [label="PERFORM SUB-2000-PROCESS THRU SUB-2000-EXIT UNTIL W-EOF" fillcolor=lightblue style=filled]
+	"FAKERTST AU 268 268 55" [label="PERFORM SUB-3000-SHUT-DOWN THRU SUB-3000-EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 270 271 56" [label="MAIN-EXIT .
+ 
+STOP RUN" fillcolor=lightblue style=filled]
+	"FAKERTST AU 359 373 57" [label="SUB-3000-SHUT-DOWN .
+ 
+CLOSE TESTINPT TESTOUTP
+MOVE W-TESTINPT-RECS TO W-DISP-NUM
+DISPLAY 'TESTINPT records read:    ' W-DISP-NUM
+MOVE W-TESTOUTP-RECS TO W-DISP-NUM
+DISPLAY 'TESTOUTP records written: ' W-DISP-NUM
+DISPLAY 'FAKERTST completed'" fillcolor=lightblue style=filled]
+	"FAKERTST AU 375 376 58" [label="SUB-3000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 293 14 59" [label="SUB-2000-PROCESS .
+ 
+MOVE TI-PROVIDER-FUNCTION TO FAKER-PROVIDER-FUNCTION" fillcolor=lightblue style=filled]
+	"FAKERTST PC 299 299 0" [label="IF TI-COUNT NUMERIC" fillcolor=lightblue style=filled]
+	"FAKERTST AU 300 300 60" [label="MOVE TI-COUNT TO W-TEST-CNT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 303 303 61" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERTST AU 305 60 62" [label="PERFORM SUB-2100-CALL-FAKER THRU SUB-2100-EXIT W-TEST-CNT TIMES" fillcolor=lightblue style=filled]
+	"FAKERTST AU 315 318 63" [label="SUB-2100-CALL-FAKER .
+ 
+CALL W-FAKER-PROG USING W-FAKER-PARAMETER" fillcolor=lightblue style=filled]
+	"FAKERTST PC 320 320 1" [label="IF FAKER-RESPONSE-GOOD" fillcolor=lightblue style=filled]
+	"FAKERTST AU 321 324 64" [label="MOVE TI-PROVIDER-FUNCTION TO TO-PROVIDER-FUNCTION
+MOVE ': ' TO TO-COLON
+MOVE FAKER-RESULT TO TO-FAKER-RESULT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 326 326 65" [label="PERFORM SUB-9200-WRITE-TESTOUTP THRU SUB-9200-EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST PC 328 19 2" [label="IF ADDRESS-ADDRESS OR PERSON-NAME OR PERSON-NAME-MALE OR PERSON-NAME-FEMALE" fillcolor=lightblue style=filled]
+	"FAKERTST AU 332 22 66" [label="MOVE SPACES TO TO-PROVIDER-FUNCTION
+MOVE ': ' TO TO-COLON
+MOVE FAKER-RESULT-FIELDS TO TO-FAKER-RESULT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 337 337 67" [label="PERFORM SUB-9200-WRITE-TESTOUTP THRU SUB-9200-EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 391 396 68" [label="SUB-9200-WRITE-TESTOUTP .
+ 
+WRITE TESTOUTP-REC
+ADD 1 TO W-TESTOUTP-RECS" fillcolor=lightblue style=filled]
+	"FAKERTST AU 398 399 69" [label="SUB-9200-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 338 338 70" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERTST AU 344 344 71" [label="END-IF" fillcolor=lightblue style=filled]
+	"FAKERTST AU 340 24 72" [label="DISPLAY W-ERROR-MSG FAKER-RESPONSE-CODE ' - ' FAKER-RESPONSE-MSG" fillcolor=lightblue style=filled]
+	"FAKERTST AU 356 357 73" [label="SUB-2100-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 308 308 74" [label="SUB-2000-READ .
+ " fillcolor=lightblue style=filled]
+	"FAKERTST AU 310 310 75" [label="PERFORM SUB-9100-READ-TESTINPT THRU SUB-9100-EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 378 381 76" [label="SUB-9100-READ-TESTINPT .
+ 
+READ TESTINPT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 383 383 77" [label="SET W-EOF TO TRUE" fillcolor=lightblue style=filled]
+	"FAKERTST AU 385 385 78" [label="ADD 1 TO W-TESTINPT-RECS" fillcolor=lightblue style=filled]
+	"FAKERTST AU 388 389 79" [label="SUB-9100-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 312 313 80" [label="SUB-2000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 302 302 81" [label="MOVE 1 TO W-TEST-CNT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 273 4 82" [label="SUB-1000-START-UP .
+ 
+MOVE FUNCTION WHEN-COMPILED TO W-COMPILED-DATE
+DISPLAY 'FAKERTST compiled on ' W-COMPILED-DATE-YYYY '/' W-COMPILED-DATE-MM '/' W-COMPILED-DATE-DD ' at ' W-COMPILED-TIME-HH ':' W-COMPILED-TIME-MM ':' W-COMPILED-TIME-SS
+OPEN INPUT TESTINPT OUTPUT TESTOUTP" fillcolor=lightblue style=filled]
+	"FAKERTST AU 290 291 83" [label="SUB-1000-EXIT .
+ 
+EXIT" fillcolor=lightblue style=filled]
+	"FAKERTST AU 268 268 55" -> "FAKERTST AU 270 271 56" [label="perform-exit"]
+	"FAKERTST AU 375 376 58" -> "FAKERTST AU 268 268 55" [label="procedure backward call"]
+	"FAKERTST AU 359 373 57" -> "FAKERTST AU 375 376 58" [label="sequential next"]
+	"FAKERTST AU 268 268 55" -> "FAKERTST AU 359 373 57" [label="procedure call"]
+	"FAKERTST AU 265 1 54" -> "FAKERTST AU 268 268 55" [label="perform-exit"]
+	"FAKERTST AU 398 399 69" -> "FAKERTST AU 326 326 65" [label="procedure backward call"]
+	"FAKERTST AU 398 399 69" -> "FAKERTST AU 337 337 67" [label="procedure backward call"]
+	"FAKERTST AU 391 396 68" -> "FAKERTST AU 398 399 69" [label="sequential next"]
+	"FAKERTST AU 391 396 68" -> "FAKERTST AU 398 399 69" [label="sequential next"]
+	"FAKERTST AU 337 337 67" -> "FAKERTST AU 391 396 68" [label="procedure call"]
+	"FAKERTST AU 338 338 70" -> "FAKERTST AU 344 344 71" [label="sequential next"]
+	"FAKERTST AU 337 337 67" -> "FAKERTST AU 338 338 70" [label="perform-exit"]
+	"FAKERTST AU 332 22 66" -> "FAKERTST AU 337 337 67" [label="sequential next"]
+	"FAKERTST PC 328 19 2" -> "FAKERTST AU 332 22 66" [label=true]
+	"FAKERTST PC 328 19 2" -> "FAKERTST AU 338 338 70" [label="outside-if"]
+	"FAKERTST AU 326 326 65" -> "FAKERTST PC 328 19 2" [label="perform-exit"]
+	"FAKERTST AU 326 326 65" -> "FAKERTST AU 391 396 68" [label="procedure call"]
+	"FAKERTST AU 321 324 64" -> "FAKERTST AU 326 326 65" [label="sequential next"]
+	"FAKERTST PC 320 320 1" -> "FAKERTST AU 321 324 64" [label=true]
+	"FAKERTST AU 356 357 73" -> "FAKERTST AU 305 60 62" [label="procedure backward call"]
+	"FAKERTST AU 340 24 72" -> "FAKERTST AU 356 357 73" [label="sequential next"]
+	"FAKERTST AU 340 24 72" -> "FAKERTST AU 344 344 71" [label="sequential next"]
+	"FAKERTST PC 320 320 1" -> "FAKERTST AU 340 24 72" [label=false]
+	"FAKERTST AU 315 318 63" -> "FAKERTST PC 320 320 1" [label="sequential next"]
+	"FAKERTST AU 305 60 62" -> "FAKERTST AU 315 318 63" [label="procedure call"]
+	"FAKERTST AU 378 381 76" -> "FAKERTST AU 383 383 77" [label=AtEnd]
+	"FAKERTST AU 388 389 79" -> "FAKERTST AU 263 263 53" [label="procedure backward call"]
+	"FAKERTST AU 388 389 79" -> "FAKERTST AU 310 310 75" [label="procedure backward call"]
+	"FAKERTST AU 385 385 78" -> "FAKERTST AU 388 389 79" [label="sequential next"]
+	"FAKERTST AU 385 385 78" -> "FAKERTST AU 388 389 79" [label="sequential next"]
+	"FAKERTST AU 378 381 76" -> "FAKERTST AU 385 385 78" [label=NotAtEnd]
+	"FAKERTST AU 310 310 75" -> "FAKERTST AU 378 381 76" [label="procedure call"]
+	"FAKERTST AU 312 313 80" -> "FAKERTST AU 265 1 54" [label="procedure backward call"]
+	"FAKERTST AU 310 310 75" -> "FAKERTST AU 312 313 80" [label="sequential next"]
+	"FAKERTST AU 308 308 74" -> "FAKERTST AU 310 310 75" [label="sequential next"]
+	"FAKERTST AU 305 60 62" -> "FAKERTST AU 308 308 74" [label="sequential next"]
+	"FAKERTST AU 303 303 61" -> "FAKERTST AU 305 60 62" [label="sequential next"]
+	"FAKERTST AU 300 300 60" -> "FAKERTST AU 303 303 61" [label="sequential next"]
+	"FAKERTST PC 299 299 0" -> "FAKERTST AU 300 300 60" [label=true]
+	"FAKERTST AU 302 302 81" -> "FAKERTST AU 303 303 61" [label="sequential next"]
+	"FAKERTST PC 299 299 0" -> "FAKERTST AU 302 302 81" [label=false]
+	"FAKERTST AU 293 14 59" -> "FAKERTST PC 299 299 0" [label="sequential next"]
+	"FAKERTST AU 265 1 54" -> "FAKERTST AU 293 14 59" [label="procedure call"]
+	"FAKERTST AU 263 263 53" -> "FAKERTST AU 265 1 54" [label="perform-exit"]
+	"FAKERTST AU 263 263 53" -> "FAKERTST AU 378 381 76" [label="procedure call"]
+	"FAKERTST AU 261 261 52" -> "FAKERTST AU 263 263 53" [label="perform-exit"]
+	"FAKERTST AU 290 291 83" -> "FAKERTST AU 261 261 52" [label="procedure backward call"]
+	"FAKERTST AU 273 4 82" -> "FAKERTST AU 290 291 83" [label="sequential next"]
+	"FAKERTST AU 261 261 52" -> "FAKERTST AU 273 4 82" [label="procedure call"]
+	"FAKERTST AU 258 258 51" -> "FAKERTST AU 261 261 52" [label="sequential next"]
+	"FAKERTST AU 0 0 50" -> "FAKERTST AU 258 258 51" [label=start]
+}
