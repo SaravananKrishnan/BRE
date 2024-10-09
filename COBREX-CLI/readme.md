@@ -3,9 +3,9 @@
 ## Working of the Tool
 The tool takes COBOL source code and the set of primary and secondary variables that are present in the source code as input. The source code parser generates the CFG from the source code. This CFG is passed to the Rule Building Block(RBB) graph generator which will form Atomic Units and Condition Units out of CFG while retaining the control flow information. The output of this graph generator is a RBB graph. This RBB graph is passed to the Business Rule Realisation (BRR) unit to extract business rules and activation graph.
 
-![Overview](./media/Overview.png)
+![Overview](./Overview.jpg)
 
-Kindly refer to the [demo](https://youtu.be/72X5Lfr74lU?si=suZIuzuskD-GqA0V) video for further explaination.
+Kindly refer to the [demo](https://youtu.be/-1aVF2EyfxM) video for further explaination.
 
 
 ## Root Directory Contents
